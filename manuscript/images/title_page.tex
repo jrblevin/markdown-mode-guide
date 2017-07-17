@@ -1,0 +1,92 @@
+% LaTeX title page
+% Jason R. Blevins <jrblevin@sdf.org>
+%
+% xelatex title_page.tex
+% convert -density 300 title_page.pdf -quality 100 title_page.png
+
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+\usepackage[paperwidth=6in,paperheight=9in,margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {Jason R. Blevins},
+  pdfkeywords = {Emacs, markdown, markdown-mode, writing, plain text},
+  pdftitle = {Guide to Markdown Mode for Emacs},
+  pdfsubject = {},
+  pdfpagemode = UseNone
+}
+
+\setmainfont{Source Code Pro}
+%\setmainfont{CamingoCode}
+%\setmainfont{Inconsolata}
+
+% Colors
+\definecolor{GuideBlack}{rgb}{0.15,0.15,0.15}
+\definecolor{GuideBlue}{rgb}{0.34,0.45,0.66}
+\definecolor{GuideGreen}{rgb}{0.49,0.57,0.33}
+\definecolor{GuideYellow}{rgb}{0.96,0.67,0.20}
+\definecolor{GuideOrange}{rgb}{0.91,0.50,0.18}
+\definecolor{GuideGray}{rgb}{0.47,0.48,0.51}
+\definecolor{GuideRed}{rgb}{0.59,0.22,0.19}
+\definecolor{GuideLightGray}{rgb}{0.66,0.66,0.66}
+\definecolor{GuideDarkGray}{rgb}{0.26,0.26,0.26}
+\definecolor{GuideTeal}{rgb}{0.50,0.91,0.97}
+\definecolor{GuideWhite}{rgb}{1,1,1}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+\begin{document}
+
+\pagestyle{empty}
+\pagecolor{GuideBlack}
+
+\vspace*{1in}
+
+%\begin{centering}
+
+\noindent
+{\fontsize{36}{36}\selectfont\color{GuideOrange}{Guide to}}\par
+
+\vspace{1em}
+
+\noindent
+{\fontsize{36}{36}\selectfont\color{GuideOrange}{Markdown Mode}}\par
+
+\vspace{1em}
+
+\noindent
+{\fontsize{36}{36}\selectfont\color{GuideOrange}{for Emacs}}\par
+
+\vspace{1em}
+
+\noindent
+{\fontsize{36}{36}\selectfont\color{GuideGray}{=============}}\par
+
+%\end{centering}
+
+\vspace*{0.6in}
+
+\noindent
+{\LARGE \color{GuideGray}{\`{}}\color{GuideBlue}{markdown-mode}\color{GuideGray}{\`{}} \color{GuideLightGray}{v2.3}}
+
+
+\vspace*{\fill}
+
+\noindent
+{\Large\color{GuideGray}{*}\textit{\color{GuideGreen}{Jason R. \kern-6pt Blevins}}\color{GuideGray}{*}}\par
+
+\clearpage
+
+\end{document}
+
+%%% Local Variables: 
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% End: 
