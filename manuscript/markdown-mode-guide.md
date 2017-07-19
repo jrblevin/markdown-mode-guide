@@ -42,7 +42,7 @@ If you are a seasoned Markdown Mode user, here is a quick reference table:
 | Bold                                                | `C-c C-s b`       |
 | Italics                                             | `C-c C-s i`       |
 | Inline code                                         | `C-c C-s c`       |
-| `<kbd>` tag                                         | `C-c C-s k`       |
+| `kbd` tag                                           | `C-c C-s k`       |
 | Wiki link                                           | `C-c C-s w`       |
 | **Block Elements**                                  |                   |
 | Preformatted/code block (active region)             | `C-c C-s p`       |
@@ -214,7 +214,7 @@ Markdown.pl also does not transform any text within “raw” block-level
 XHTML elements (although some other processors do).  Thus it is
 possible to include sections of XHTML within a Markdown source
 document by wrapping them in block-level XHTML tags.  However, with a
-small number of exceptions (e.g., comments and `<kbd>` tags) Markdown
+small number of exceptions (e.g., comments and `kbd` tags) Markdown
 Mode does not explicitly support inline XHTML.
 
 ### Additional Information
@@ -940,7 +940,7 @@ suggestions, and especially patches.
         been changed to `C-c C-l` (think "leap" or "loop"
         instead of jump).  It's also close to `C-c C-o` (used
         for opening links).  ([GH-26][])
-    -   Insertion of ``` tags with <kbd>C-c C-s k` or
+    -   Insertion of `kbd` tags with `C-c C-s k` or
         `markdown-insert-kbd`.
     -   Add YAML metadata parsing.  Also allow multiple Pandoc
         metadata, with tests.  Thanks to Danny McClanahan and Syohei
@@ -1244,7 +1244,7 @@ bug reports. Thanks to everyone for your contributions.
         `markdown-unordered-list-item-prefix`.
     -   Add asymmetric ATX heading adornment option
         `markdown-asymmetric-header`.
-    -   Font lock for ``` tags.
+    -   Font lock for `kbd` tags.
     -   Support GFM-style code blocks in `markdown-mode` (as well as
         `gfm-mode`).  ([GH-2][])
     -   New function `markdown-electric-backquote` will prompt for a
@@ -1255,9 +1255,9 @@ bug reports. Thanks to everyone for your contributions.
         A list of pre-defined languages is included, but this can be
         augmented by setting `markdown-gfm-additional-languages`.
         ([GH-38][], [GH-54][], [GH-59][], [GH-60][], [GH-64][])
-    -   strikethrough support in `gfm-mode`.
+    -   Strikethrough support in `gfm-mode`.
     -   Support for GFM toggling checkboxes `mouse-1` or
-        <kbd>RET`.  This is controlled by a new custom variable,
+        `RET`.  This is controlled by a new custom variable,
         `markdown-make-gfm-checkboxes-buttons`.  Thanks to Howard
         Melman for a patch.  ([GH-7][])
     -   Font lock and filling for Pandoc "fancy lists," which use `#`
