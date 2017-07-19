@@ -458,6 +458,480 @@ to load automatically by adding the following to your init file:
 ```
 
 
+# Movement & Editing {#editing}
+
+This section describes the movement, insertion, and editing commands
+provided by Markdown Mode.  Commands pertaining to block elements are
+described first: headers, paragraphs, blockquotes, lists, code blocks,
+and horizontal rules.  Then, commands for editing span elements are
+described: emphasis, code, links, images, and comments.  Finally,
+miscellaneous editing commands are described for markup completion,
+markup cycling, indentation, etc.
+
+Markdown Mode keybindings are grouped by prefixes based on their
+function.  Like other major modes, most commands begin with `C-c`, the
+`mode-specific-command-prefix`.  Commands are then grouped by category
+under a second-level prefix.  For example, the commands for styling
+text are grouped under `C-c C-s`.  Similarly, commands for running
+Markdown and performing maintenance tasks reside under `C-c C-c`.
+
+Movement and shifting commands tend to be associated with paired
+delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.  If you are
+familiar with `org-mode`, Markdown Mode uses the same outline
+navigation keybindings (`C-c C-n`, `C-c C-p`, `C-c C-f`, `C-c C-b`,
+and `C-c C-u`).
+
+We begin with a summary of Markdown Mode prefixes and mnemonics.  The
+commands in each group will be described in detail below.  You can
+obtain a list of all keybindings by pressing `C-c C-h` or `C-h m`.  To
+see commands under a specific prefix, then add `C-h` to the end of the
+prefix.  For example, press `C-c C-s C-h` to list all commands under
+`C-c C-s`
+
+| Prefix    | Function               |
+|-----------|------------------------|
+| `C-c C-s` | *S*tyles               |
+| `C-c C-l` | *L*inks                |
+| `C-c C-i` | *I*mages               |
+| `C-c C-c` | *C*ommands             |
+| `C-c C-x` | Toggles                |
+
+## Headings
+
+Headings in Markdown can be defined using either of two formats:
+Setext and atx.
+
+Atx-style headings are lines beginning with one to six hashmarks
+followed by the heading text.  The number of hash marks corresponds to
+the level of the heading, with one being the most prominent and six
+being the least prominent (corresponding to the six levels of headings
+in HTML, `<h1>` through `<h6>`).  The heading text may optionally be
+followed by an equal number of hash marks.
+
+``` markdown
+# First-level heading #
+
+First section text.  Here we close the header with a hash mark.
+
+## Second-level heading
+
+Second section text.  No closing hash mark here.
+
+### Third-level heading ###
+
+Third section text.
+```
+
+I> Markdown.pl and several other processors allow one to omit the
+I> whitespace between the hash mark and the header text, but some
+I> processors and specifications such as CommonMark do require the
+I> whitespace.  To help guarantee compatibility, Markdown Mode also
+I> requires whitespace.  This has other advantages, for example, it
+I> allows one to use #hashtags that might wrap to the beginning of the
+I> line.
+
+There is also an alternative syntax for the first two levels of
+headers.  Instead of hash marks, you may use equals signs (`=`) or
+hyphens (`-`) to underline the heading text.  Headers of this form are
+called Setext headers:
+
+``` markdown
+First-level header
+==================
+
+Second-level header
+-------------------
+```
+
+T> You don't have to get the alignment exactly right, as in the above
+T> examples, but if you want to keep things tidy Markdown Mode can
+T> "complete" markup for you after the fact.  See the [Markup Completion]
+T> section of this chapter for more details.
+
+### Visibility Cycling
+
+<!-- Section Folding -->
+
+### Header Customization
+
+Markdown Mode distinguishes between *symmetric* and *asymmetric* atx
+header markup.  Symmetric headers have an equal number of hash marks
+at the beginning and end of the line.  Asymmetric headers have only
+leading hash marks.  You can customize Markdown Mode to fit your
+preference by setting the `markdown-asymmetric-header` variable.
+
+`markdown-asymmetric-header`
+
+:   `nil` or `t`, default: `nil`.
+
+    Determines if atx header style will be asymmetric.
+
+    Set to a non-nil value to use asymmetric header styling, placing
+    header markup only at the beginning of the line. By default,
+    balanced markup will be inserted at the beginning and end of the
+    line around the header title.
+
+The default is to use symmetric atx headers, but if you prefer the
+asymmetric styling then you can either change this variable in the
+customize interface or set it in your init file, like so:
+
+``` emacs-lisp
+(setq markdown-asymmetric-header t)
+```
+
+## Paragraphs
+
+A paragraph in Markdown is one or more consecutive lines of text
+separated by one or more blank lines.  Normal paragraphs should not be
+indented with spaces or tabs:
+
+``` markdown
+This is a paragraph.  It has two sentences.
+
+This is another paragraph.  It also has two sentences.
+```
+
+<!-- FIXME: Discuss paragraph filling, movement, marking,
+yanking, transposing, etc. -->
+
+## Blockquotes
+
+To produce a blockquote (`<blockquote>` in HTML), prefix each line
+with a right angle bracket (`>`), just as when quoting an email:
+
+``` markdown
+> This text will be enclosed in an HTML blockquote element.
+```
+
+Blockquotes may be nested, like so:
+
+``` markdown
+> Blockquote
+>
+> > Nested blockquote
+```
+
+## Lists
+
+To produce an unordered list (`<ul>` in HTML), prefix each line with a
+list marker.  Valid list marker characters are asterisks (`*`),
+hyphens (`-`), and plus signs (`+`):
+
+``` markdown
+* An item in a bulleted (unordered) list
+* Another item in a bulleted list
+```
+
+Ordered lists (`<ol>` in HTML) are created similarly, by prefixing
+each line with a number followed by a period:
+
+``` markdown
+1. An item in an enumerated (ordered) list
+2. Another item in an enumerated list
+```
+
+### Editing Lists
+
+`M-RET`, `M-UP`, `M-DOWN`, `M-LEFT`, and `M-RIGHT`
+
+:   New list items can be inserted with `M-RET`.  This command
+    determines the appropriate marker (one of the possible unordered
+    list markers or the next number in sequence for an ordered list)
+    and indentation level by examining nearby list items.  If there is
+    no list before or after the point, start a new list.  Prefix this
+    command by `C-u` to decrease the indentation by one level.  Prefix
+    this command by `C-u C-u` to increase the indentation by one
+    level.
+
+    Existing list items can be moved up or down with `M-UP` or
+    `M-DOWN` and indented or exdented with `M-RIGHT` or `M-LEFT`.
+
+### List Customization
+
+  * `markdown-list-indent-width` - depth of indentation for lists
+    when inserting, promoting, and demoting list items (default: 4).
+
+## Code Blocks
+
+With Markdown.pl, the only way to format code blocks is to prefix
+each line with four spaces:
+
+``` markdown
+    #include <stdio.h>
+    int main()
+    {
+        printf("hello, world\n");
+        return 0;
+    }
+```
+
+Several variations on this have emerged, which are broadly referred to
+in Markdown Mode as *fenced code blocks*.  These are blocks surrounded
+above and below by strings of characters to indicate that code appears
+between, and sometimes to indicate the language of the source code
+contained within (to assist with syntax highlighting, etc.).
+
+The first type supported by Markdown Mode are tilde-fenced code blocks
+supported by Markdown processors such as [PHP Markdown Extra][ph]
+and [Pandoc][pd], among others.  The block opens with *at least three*
+tildes (`~`) and closes with at least as many tildes as it was opened
+with, but possibly more:
+
+``` markdown
+~~~~~~~~~~~~~~~~~~~~~
+a one-line code block
+~~~~~~~~~~~~~~~~~~~~~
+```
+
+Some processors allow you to specify the language of the source code
+using attribute lists of various formats, as in the following
+examples.  Markdown Mode takes an inclusive approach to highlighting
+such blocks:
+
+``` markdown
+~~~~~~~~~~~~~~~~~~~ .html
+<p>hello, world</p>
+~~~~~~~~~~~~~~~~~~~
+
+~~~ruby
+puts("hello, world")
+~~~
+
+~~~~{.python}
+print("hello, world")
+~~~~
+
+~~~~~~~ {: lang=fortran }
+program main
+  print *, 'hello, world'
+end program main
+~~~~~~~~~~~~~~~~~~~~~~~~~
+```
+
+The second type of code blocks supported by Markdown Mode are those
+used by [GitHub-Flavored Markdown (GFM)][gf].  These blocks begin
+with three backquotes and end with three backquotes.  After the
+opening three backquotes, you may give an optional language
+identifier, possibly separated by a space.  These are referred to in
+Markdown simply as GFM code blocks:
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+```
+a one-line code block
+```
+
+```python
+print("hello, world")
+```
+
+``` Ruby
+puts("hello, world")
+```
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+<!-- FIXME: For GFM code blocks, describe how to use `completing-read'.
+and minibuffer-local-map (https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-from-Minibuffer.html#Definition%20of%20minibuffer%2dlocal%2dmap)
+
+C-j
+exit-minibuffer 
+<RET>
+exit-minibuffer 
+C-g
+abort-recursive-edit 
+M-n
+<DOWN>
+next-history-element 
+M-p
+<UP>
+previous-history-element 
+M-s
+next-matching-history-element 
+M-r
+previous-matching-history-element
+
+ -->
+
+## Horizontal Rules
+
+Horizontal rules are created by placing three or more hyphens,
+asterisks, or underscores on a line by themselves.  You may use spaces
+between the hyphens or asterisks.  Each of the following lines will
+produce a horizontal rule:
+
+``` markdown
+* * *
+***
+- - -
+---------------------------------------
+```
+
+The list of strings inserted by Markdown Mode can be customized by
+redefining the variable `markdown-hr-strings`.
+
+`markdown-hr-strings`
+
+:   A list of strings.  The default value is:
+
+    ``` emacs-lisp
+    ("-------------------------------------------------------------------------------"
+     "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+     "---------------------------------------"
+     "* * * * * * * * * * * * * * * * * * * *"
+     "---------"
+     "* * * * *")
+    ```
+
+    A list of strings to use when inserting horizontal rules.
+    Different strings will not be distinguished when converted to
+    HTML—they will all be converted to `<hr/>`—but they may add
+    visual distinction and style to plain text documents.  To maintain
+    notions of promotion and demotion, these should be ordered from
+    largest to smallest.
+
+To insert a specific horizontal rule from the list, use a prefix
+argument like so: `C-# C-c C-s -` where # is the index of the
+string in the list.
+
+## Emphasis: Bold & Italic
+
+To emphasize or _italicize_ text, enclosed it between single asterisks
+or underscores, like so:
+
+``` markdown
+*emphasis* or _emphasis_
+```
+
+Similarly, to produce **bold** text, enclose it between two asterisks
+or two underscores, like so:
+
+``` markdown
+**bold** or __bold__
+```
+
+The use of asterisks or underscores for italicized or bold text is a
+personal preference, and Markdown Mode lets you customize the default
+choice used for inserting new markup.
+
+  * `markdown-bold-underscore` - set to a non-nil value to use two
+    underscores when inserting bold text instead of two asterisks
+    (default: `nil`).
+
+  * `markdown-italic-underscore` - set to a non-nil value to use
+    underscores when inserting italic text instead of asterisks
+    (default: `nil`).
+
+## Inline Code
+
+To mark up inline source code, for command names, file names, etc.,
+place the text between backquotes (`` ` ``) like so:
+
+``` markdown
+This is inline code: `printf("hello, world\n");`
+```
+
+## Links & Images
+
+To create simple links, you can simply place a URL or email address inside angle brackets, like so:
+
+``` markdown
+<http://jblevins.org/projects/markdown-mode/>
+
+<jrblevin@sdf.org>
+```
+
+To create hyperlinks with text, place the link text in square brackets
+followed by the URL in parentheses:
+
+``` markdown
+[Link text](http://link.url/)
+```
+
+Optionally, you can add title text to the link which will appear when
+the user hovers over the link, like so:
+
+``` markdown
+[Link text](http://link.url/ "Title text")
+```
+
+A similar syntax is used for images.  Add an exclamation point (`!`)
+before the square bracket.  There is no link text displayed for
+images, rather, the text in square brackets will be used for the "alt
+text":
+
+``` markdown
+![Alt text](http://image.url/file.jpg "Title text")
+```
+
+In Markdown Mode, links of the above form are referred to as "inline
+links" because the URL is written out in full inline in the Markdown
+text.  On the other hand, "reference links" allow you to keep the text
+clean and define the URLs later:
+
+``` markdown
+You can define short reference link like this:
+[link text here][1]
+
+   [1]: http://link.url/
+
+You can still include a title, like this:
+[link text here][2]
+
+   [2]: http://link.url/ "Title text"
+
+Finally, you can use implicitly defined reference links
+where the reference tag is the same as the link text:
+[link text][]
+
+   [link text]: http://link.url/
+```
+
+  * `markdown-reference-location` - where to insert reference
+    definitions (default: `header`).  The possible locations are
+    the end of the document (`end`), after the current block
+    (`immediately`), before the next header (`header`).
+
+  * `markdown-uri-types` - a list of protocol schemes (e.g., "http")
+    for URIs that Markdown Mode should highlight.
+
+<!-- FIXME: Inline Images -->
+
+## Comments
+
+<!-- FIXME: Write comments section -->
+
+## Line Breaks
+
+<!-- FIXME: Write line break section -->
+
+## Footnotes
+
+  * `markdown-footnote-location` - where to insert footnote text
+    (default: `end`).  The set of location options is the same as
+    for `markdown-reference-location`.
+
+## Subscripts and Superscripts
+
+[Pandoc][pd] and [MultiMarkdown][mu]—two of the most popular Markdown
+processors—support subscript and superscript markup.  Markdown Mode
+supports this syntax as well.  Superscripts may be written by placing
+carats (`^`) immediately before and after the text.  Similarly,
+subscripts may be written by placing tildes (`~`) immediately before
+and after the text.
+
+``` markdown
+H~2~O is a liquid.  2^10^ is 1024.
+```
+
+<!-- FIXME: Explain how to toggle hidden markup -->
+
+## Markup Cycling
+
+<!-- FIXME: Write Markup Cycling section -->
+
+## Markup Completion
+
+<!-- FIXME: Write Markup Completion section -->
+
 # Customization {#customization}
 
 ![Markdown customize group in Emacs](images/customize-group-markdown.png)
@@ -1947,6 +2421,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
 [em]: https://www.gnu.org/software/emacs/
 [fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
+[gf]: http://github.github.com/github-flavored-markdown/
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
@@ -1958,7 +2433,10 @@ syntax highlighting and element insertion commands for Markdown files.
 [mp]: https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile
 [ms]: https://stable.melpa.org/#/markdown-mode
 [mt]: http://trac.macports.org/ticket/35716
+[mu]: http://fletcherpenney.net/multimarkdown/
 [nb]: http://pkgsrc.se/textproc/markdown-mode
+[ph]: https://michelf.ca/projects/php-markdown/extra/
+[pd]: http://pandoc.org
 [st]: http://docutils.sourceforge.net/mirror/setext.html 
 [sx]: http://daringfireball.net/projects/markdown/syntax
 [up]: https://github.com/jwiegley/use-package
