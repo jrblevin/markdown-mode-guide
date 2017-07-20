@@ -20,6 +20,7 @@
 (load-theme 'sanityinc-tomorrow-day)
 (set-frame-size (selected-frame) 70 35)
 (set-face-attribute 'default nil :background "#f8f8f8")
+(set-face-attribute 'fringe nil :background nil)
 
 ;; Load markdown-mode
 (load-library "markdown-mode.el")
