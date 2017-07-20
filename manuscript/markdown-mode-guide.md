@@ -1935,44 +1935,44 @@ syntax highlighting and element insertion commands for Markdown files.
 
 
 
-  [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
+[^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
 
-  [at]: http://www.aaronsw.com/2002/atx/
-  [bk]: https://leanpub.com/markdown-mode
-  [cg]: https://github.com/jrblevin/markdown-mode/graphs/contributors
-  [df]: https://daringfireball.net
-  [dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
-  [du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
-  [ei]: https://github.com/Fanael/edit-indirect/
-  [el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
-  [em]: https://www.gnu.org/software/emacs/
-  [fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
-  [gh]: https://github.com/jrblevin/markdown-mode
-  [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-  [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
-  [is]: https://github.com/jrblevin/markdown-mode/issues
-  [jb]: http://jblevins.org/
-  [md]: http://daringfireball.net/projects/markdown/
-  [ml]: https://melpa.org/#/markdown-mode
-  [mm]: http://jblevins.org/projects/markdown-mode/
-  [mp]: https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile
-  [ms]: https://stable.melpa.org/#/markdown-mode
-  [mt]: http://trac.macports.org/ticket/35716
-  [nb]: http://pkgsrc.se/textproc/markdown-mode
-  [st]: http://docutils.sourceforge.net/mirror/setext.html 
-  [sx]: http://daringfireball.net/projects/markdown/syntax
-  [up]: https://github.com/jwiegley/use-package
-  [v1.1]: http://jblevins.org/projects/markdown-mode/rev-1-1
-  [v1.2]: http://jblevins.org/projects/markdown-mode/rev-1-2
-  [v1.3]: http://jblevins.org/projects/markdown-mode/rev-1-3
-  [v1.4]: http://jblevins.org/projects/markdown-mode/rev-1-4
-  [v1.5]: http://jblevins.org/projects/markdown-mode/rev-1-5
-  [v1.6]: http://jblevins.org/projects/markdown-mode/rev-1-6
-  [v1.7]: http://jblevins.org/projects/markdown-mode/rev-1-7
-  [v1.8.1]: http://jblevins.org/projects/markdown-mode/rev-1-8-1
-  [v1.8]: http://jblevins.org/projects/markdown-mode/rev-1-8
-  [v1.9]: http://jblevins.org/projects/markdown-mode/rev-1-9
-  [v2.0]: http://jblevins.org/projects/markdown-mode/rev-2-0
-  [v2.1]: http://jblevins.org/projects/markdown-mode/rev-2-1
-  [v2.2]: http://jblevins.org/projects/markdown-mode/rev-2-2
-  [v2.3]: http://jblevins.org/projects/markdown-mode/rev-2-3
+[at]: http://www.aaronsw.com/2002/atx/
+[bk]: https://leanpub.com/markdown-mode
+[cg]: https://github.com/jrblevin/markdown-mode/graphs/contributors
+[df]: https://daringfireball.net
+[dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
+[du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
+[ei]: https://github.com/Fanael/edit-indirect/
+[el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
+[em]: https://www.gnu.org/software/emacs/
+[fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
+[gh]: https://github.com/jrblevin/markdown-mode
+[gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+[hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
+[is]: https://github.com/jrblevin/markdown-mode/issues
+[jb]: http://jblevins.org/
+[md]: http://daringfireball.net/projects/markdown/
+[ml]: https://melpa.org/#/markdown-mode
+[mm]: http://jblevins.org/projects/markdown-mode/
+[mp]: https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile
+[ms]: https://stable.melpa.org/#/markdown-mode
+[mt]: http://trac.macports.org/ticket/35716
+[nb]: http://pkgsrc.se/textproc/markdown-mode
+[st]: http://docutils.sourceforge.net/mirror/setext.html 
+[sx]: http://daringfireball.net/projects/markdown/syntax
+[up]: https://github.com/jwiegley/use-package
+[v1.1]: http://jblevins.org/projects/markdown-mode/rev-1-1
+[v1.2]: http://jblevins.org/projects/markdown-mode/rev-1-2
+[v1.3]: http://jblevins.org/projects/markdown-mode/rev-1-3
+[v1.4]: http://jblevins.org/projects/markdown-mode/rev-1-4
+[v1.5]: http://jblevins.org/projects/markdown-mode/rev-1-5
+[v1.6]: http://jblevins.org/projects/markdown-mode/rev-1-6
+[v1.7]: http://jblevins.org/projects/markdown-mode/rev-1-7
+[v1.8.1]: http://jblevins.org/projects/markdown-mode/rev-1-8-1
+[v1.8]: http://jblevins.org/projects/markdown-mode/rev-1-8
+[v1.9]: http://jblevins.org/projects/markdown-mode/rev-1-9
+[v2.0]: http://jblevins.org/projects/markdown-mode/rev-2-0
+[v2.1]: http://jblevins.org/projects/markdown-mode/rev-2-1
+[v2.2]: http://jblevins.org/projects/markdown-mode/rev-2-2
+[v2.3]: http://jblevins.org/projects/markdown-mode/rev-2-3
