@@ -19,6 +19,7 @@
   (disable-theme theme))
 (load-theme 'sanityinc-tomorrow-day)
 (set-frame-size (selected-frame) 80 35)
+(set-face-attribute 'default nil :background "#f8f8f8")
 
 ;; Load markdown-mode
 (load-library "markdown-mode.el")
