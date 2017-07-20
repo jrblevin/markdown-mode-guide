@@ -9,7 +9,7 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 # Introduction {#intro}
 
-![Markdown Mode Screenshot](images/markdown-mode-2.1.png)
+![Markdown Mode Screenshot](images/markdown-mode-2.3.png)
 
 This guide describes how to install, use, and customize [Markdown
 Mode][mm], a major mode for editing Markdown-formatted text files
