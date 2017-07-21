@@ -972,7 +972,7 @@ markdown-mode`.  Alternatively, you can customize variables using `M-x
 customize-group RET markdown` (i.e., by customizing the *group* rather
 than the *mode*).
 
-![Markdown customize group in Emacs](images/customize-group-markdown.png)
+![Markdown Customize Group](images/customize-group-markdown.png)
 
 T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
