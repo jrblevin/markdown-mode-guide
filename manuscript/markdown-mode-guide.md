@@ -545,8 +545,9 @@ Second-level header
 
 T> You don't have to get the alignment exactly right, as in the above
 T> examples, but if you want to keep things tidy Markdown Mode can
-T> "complete" markup for you after the fact.  See the [Markup Completion]
-T> section of this chapter for more details.
+T> "complete" markup for you after the fact.  See
+T> the [Markup Completion](#completion) section of this chapter for
+T> more details.
 
 ### Visibility Cycling
 
@@ -935,7 +936,7 @@ H~2~O is a liquid.  2^10^ is 1024.
 
 <!-- FIXME: Write Markup Cycling section -->
 
-## Markup Completion
+## Markup Completion {#completion}
 
 <!-- FIXME: Write Markup Completion section -->
 
