@@ -956,7 +956,7 @@ T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
 T> button.
 
-### Markdown Command
+## Markdown Command
 
 The main variable you'll most likely need to customize is
 `markdown-command`.  Markdown Mode expects that a Markdown binary is
