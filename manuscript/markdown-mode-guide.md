@@ -809,9 +809,9 @@ redefining the variable `markdown-hr-strings`.
     notions of promotion and demotion, these should be ordered from
     largest to smallest.
 
-T> To insert a specific horizontal rule from the list, use a prefix
-T> argument like so: `C-# C-c C-s -` where # is the index of the
-T> string in the list.
+T> To insert a specific horizontal rule from the `markdown-hr-strings`
+T> list, use a prefix argument to `C-c C-s -`, as in `C-# C-c C-s -`
+T> where `#` is the index of the string in the list.
 
 I> The longest two strings in `markdown-hr-strings` are 79 characters
 I> long, rather than 80 characters long.  This is to prevent seeing a
