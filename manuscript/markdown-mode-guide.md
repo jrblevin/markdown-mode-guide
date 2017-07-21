@@ -159,7 +159,7 @@ Additional details about each type of element are explained in the
 course of describing the available Markdown Mode commands.  See the
 original [Markdown syntax page][sx] for more complete details.
 
-``` markdown
+```
 # First-Level Header
 
 ## Second-Level Header
@@ -206,7 +206,7 @@ which are ordinarily interpreted by Markdown as formatting commands
 will instead be interpreted literally if preceded by a backslash.  For
 example, when you need to type a literal asterisk or underscore:
 
-``` markdown
+```
 This is *italic*, but this \*is not\*.
 ```
 
@@ -508,7 +508,7 @@ being the least prominent (corresponding to the six levels of headings
 in HTML, `<h1>` through `<h6>`).  The heading text may optionally be
 followed by an equal number of hash marks.
 
-``` markdown
+```
 # First-level heading #
 
 First section text.  Here we close the header with a hash mark.
@@ -535,7 +535,7 @@ headers.  Instead of hash marks, you may use equals signs (`=`) or
 hyphens (`-`) to underline the heading text.  Headers of this form are
 called Setext headers:
 
-``` markdown
+```
 First-level header
 ==================
 
@@ -586,7 +586,7 @@ A paragraph in Markdown is one or more consecutive lines of text
 separated by one or more blank lines.  Normal paragraphs should not be
 indented with spaces or tabs:
 
-``` markdown
+```
 This is a paragraph.  It has two sentences.
 
 This is another paragraph.  It also has two sentences.
@@ -600,13 +600,13 @@ yanking, transposing, etc. -->
 To produce a blockquote (`<blockquote>` in HTML), prefix each line
 with a right angle bracket (`>`), just as when quoting an email:
 
-``` markdown
+```
 > This text will be enclosed in an HTML blockquote element.
 ```
 
 Blockquotes may be nested, like so:
 
-``` markdown
+```
 > Blockquote
 >
 > > Nested blockquote
@@ -618,7 +618,7 @@ To produce an unordered list (`<ul>` in HTML), prefix each line with a
 list marker.  Valid list marker characters are asterisks (`*`),
 hyphens (`-`), and plus signs (`+`):
 
-``` markdown
+```
 * An item in a bulleted (unordered) list
 * Another item in a bulleted list
 ```
@@ -626,7 +626,7 @@ hyphens (`-`), and plus signs (`+`):
 Ordered lists (`<ol>` in HTML) are created similarly, by prefixing
 each line with a number followed by a period:
 
-``` markdown
+```
 1. An item in an enumerated (ordered) list
 2. Another item in an enumerated list
 ```
@@ -657,7 +657,7 @@ each line with a number followed by a period:
 With Markdown.pl, the only way to format code blocks is to prefix
 each line with four spaces:
 
-``` markdown
+```
     #include <stdio.h>
     int main()
     {
@@ -678,7 +678,7 @@ and [Pandoc][pd], among others.  The block opens with *at least three*
 tildes (`~`) and closes with at least as many tildes as it was opened
 with, but possibly more:
 
-``` markdown
+```
 ~~~~~~~~~~~~~~~~~~~~~
 a one-line code block
 ~~~~~~~~~~~~~~~~~~~~~
@@ -689,7 +689,7 @@ using attribute lists of various formats, as in the following
 examples.  Markdown Mode takes an inclusive approach to highlighting
 such blocks:
 
-``` markdown
+```
 ~~~~~~~~~~~~~~~~~~~ .html
 <p>hello, world</p>
 ~~~~~~~~~~~~~~~~~~~
@@ -759,7 +759,7 @@ asterisks, or underscores on a line by themselves.  You may use spaces
 between the hyphens or asterisks.  Each of the following lines will
 produce a horizontal rule:
 
-``` markdown
+```
 * * *
 ***
 - - -
@@ -805,14 +805,14 @@ I> your local configuration.
 To emphasize or _italicize_ text, enclosed it between single asterisks
 or underscores, like so:
 
-``` markdown
+```
 *emphasis* or _emphasis_
 ```
 
 Similarly, to produce **bold** text, enclose it between two asterisks
 or two underscores, like so:
 
-``` markdown
+```
 **bold** or __bold__
 ```
 
@@ -833,7 +833,7 @@ choice used for inserting new markup.
 To mark up inline source code, for command names, file names, etc.,
 place the text between backquotes (`` ` ``) like so:
 
-``` markdown
+```
 This is inline code: `printf("hello, world\n");`
 ```
 
@@ -841,23 +841,22 @@ This is inline code: `printf("hello, world\n");`
 
 To create simple links, you can simply place a URL or email address inside angle brackets, like so:
 
-``` markdown
+```
 <http://jblevins.org/projects/markdown-mode/>
-
 <jrblevin@sdf.org>
 ```
 
 To create hyperlinks with text, place the link text in square brackets
 followed by the URL in parentheses:
 
-``` markdown
+```
 [Link text](http://link.url/)
 ```
 
 Optionally, you can add title text to the link which will appear when
 the user hovers over the link, like so:
 
-``` markdown
+```
 [Link text](http://link.url/ "Title text")
 ```
 
@@ -866,7 +865,7 @@ before the square bracket.  There is no link text displayed for
 images, rather, the text in square brackets will be used for the "alt
 text":
 
-``` markdown
+```
 ![Alt text](http://image.url/file.jpg "Title text")
 ```
 
@@ -875,7 +874,7 @@ links" because the URL is written out in full inline in the Markdown
 text.  On the other hand, "reference links" allow you to keep the text
 clean and define the URLs later:
 
-``` markdown
+```
 You can define short reference link like this:
 [link text here][1]
 
@@ -926,7 +925,7 @@ carats (`^`) immediately before and after the text.  Similarly,
 subscripts may be written by placing tildes (`~`) immediately before
 and after the text.
 
-``` markdown
+```
 H~2~O is a liquid.  2^10^ is 1024.
 ```
 
