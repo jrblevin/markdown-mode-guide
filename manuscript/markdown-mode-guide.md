@@ -945,8 +945,6 @@ H~2~O is a liquid.  2^10^ is 1024.
 
 # Customization {#customization}
 
-![Markdown customize group in Emacs](images/customize-group-markdown.png)
-
 Although strictly speaking no configuration is *necessary*, there are
 a few settings that users should usually customize.  When in Markdown
 Mode, the `M-x customize-mode` command provides an interface to all of
@@ -955,6 +953,8 @@ mode, then you'll need to be more specific: `M-x customize-mode RET
 markdown-mode`.  Alternatively, you can customize variables using `M-x
 customize-group RET markdown` (i.e., by customizing the *group* rather
 than the *mode*).
+
+![Markdown customize group in Emacs](images/customize-group-markdown.png)
 
 T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
