@@ -551,7 +551,25 @@ T> more details.
 
 ### Visibility Cycling
 
-<!-- Section Folding -->
+Markdown Mode supports `org-mode`-style visibility cycling for
+headings and sections.  There are two types of visibility cycling:
+global and local.
+
+Pressing `S-TAB` cycles _globally_ between three levels of visibility:
+
+1. table of contents view (headings only),
+2. outline view (top-level headings only),
+3. full document view (all sections visible).
+
+![Global Visibility Cycling](images/global-visibility.png)
+
+On the other hand, pressing `TAB` while the point is at a heading will
+cycle through three levels of visibility _locally_ for the current
+subtree:
+
+1. all subsections and subheadings completely folded,
+2. child headings visible,
+3. all subsections and subheadings fully visible.
 
 ### Header Customization
 
