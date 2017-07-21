@@ -774,6 +774,8 @@ redefining the variable `markdown-hr-strings`.
 :   A list of strings to use when inserting horizontal rules.
     The default value is:
 
+    <!-- FIXME: This code block is too wide for Leanpub PDF format. -->
+
     ``` emacs-lisp
     ("-------------------------------------------------------------------------------"
      "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
