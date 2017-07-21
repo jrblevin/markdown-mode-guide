@@ -770,7 +770,8 @@ redefining the variable `markdown-hr-strings`.
 
 `markdown-hr-strings`
 
-:   A list of strings.  The default value is:
+:   A list of strings to use when inserting horizontal rules.
+    The default value is:
 
     ``` emacs-lisp
     ("-------------------------------------------------------------------------------"
@@ -781,16 +782,22 @@ redefining the variable `markdown-hr-strings`.
      "* * * * *")
     ```
 
-    A list of strings to use when inserting horizontal rules.
     Different strings will not be distinguished when converted to
-    HTML—they will all be converted to `<hr/>`—but they may add
-    visual distinction and style to plain text documents.  To maintain
+    HTML—they will all be converted to `<hr/>`—but they may add visual
+    distinction and style to plain text documents.  To maintain
     notions of promotion and demotion, these should be ordered from
     largest to smallest.
 
-To insert a specific horizontal rule from the list, use a prefix
-argument like so: `C-# C-c C-s -` where # is the index of the
-string in the list.
+T> To insert a specific horizontal rule from the list, use a prefix
+T> argument like so: `C-# C-c C-s -` where # is the index of the
+T> string in the list.
+
+I> The longest two strings in `markdown-hr-strings` are 79 characters
+I> long, rather than 80 characters long.  This is to prevent seeing a
+I> line wrap indicator in the right fringe when the window is exactly
+I> 80 characters wide.  However, this is fully customizable, so if you
+I> prefer an 80-character-wide string, you can set this variable in
+I> your local configuration.
 
 ## Emphasis: Bold & Italic
 
