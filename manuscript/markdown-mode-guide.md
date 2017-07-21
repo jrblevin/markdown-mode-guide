@@ -804,15 +804,15 @@ I> your local configuration.
 
 ## Emphasis: Bold & Italic
 
-To emphasize or _italicize_ text, enclosed it between single asterisks
-or underscores, like so:
+To emphasize or _italicize_ text, enclose it between asterisks or
+underscores:
 
 ```
 *emphasis* or _emphasis_
 ```
 
 Similarly, to produce **bold** text, enclose it between two asterisks
-or two underscores, like so:
+or two underscores:
 
 ```
 **bold** or __bold__
@@ -822,13 +822,15 @@ The use of asterisks or underscores for italicized or bold text is a
 personal preference, and Markdown Mode lets you customize the default
 choice used for inserting new markup.
 
-  * `markdown-bold-underscore` - set to a non-nil value to use two
-    underscores when inserting bold text instead of two asterisks
-    (default: `nil`).
+`markdown-bold-underscore`
 
-  * `markdown-italic-underscore` - set to a non-nil value to use
-    underscores when inserting italic text instead of asterisks
-    (default: `nil`).
+:   Set to a non-nil value to use two underscores when inserting bold
+    text instead of two asterisks (default: `nil`).
+
+`markdown-italic-underscore`
+
+:   Set to a non-nil value to use underscores when inserting italic
+    text instead of asterisks (default: `nil`).
 
 ## Inline Code
 
