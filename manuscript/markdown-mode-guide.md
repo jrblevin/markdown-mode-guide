@@ -984,6 +984,20 @@ I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g,. using Pandoc) and then
 I> print.
 
+## Using a Standalone Markdown Previewer
+
+Another option for previewing files is to use an external viewer with
+`C-c C-c o`.  The program used to preview files is specified by the
+`markdown-open-command` variable.
+
+`markdown-open-command`
+
+:   The command used for calling a standalone Markdown previewer
+    capable of opening Markdown source files directly (default:
+    `nil`).  This command will be called with a single argument, the
+    file name of the current buffer.
+
+
 # Customization {#customization}
 
 Although strictly speaking no configuration is *necessary*, there are
