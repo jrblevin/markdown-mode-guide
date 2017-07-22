@@ -961,6 +961,29 @@ H~2~O is a liquid.  2^10^ is 1024.
 
 <!-- FIXME: Write Markup Completion section -->
 
+
+# Previewing & Exporting Files {#preview-export}
+
+## Markup Hiding {#markup-hiding}
+
+One simple way to preview (and even edit) files is to toggle markup
+hiding with `C-c C-x C-m` or `M-x markdown-toggle-markup-hiding`.  The
+side-by-side screenshots below illustrate the effects of this:
+asterisks for italics, square brackets and URLs for links, backquotes
+for inline code and code blocks, and other markup will be hidden or
+otherwise beautified.
+
+![Markup Hiding in Markdown Mode](images/markup-hiding.png)
+
+I> Markup hiding works by adding text properties to positions in the
+I> buffer---either the `invisible` property or the `display` property
+I> in cases where alternative glyphs are used (e.g., list bullets).
+I> *This does not, however, affect printing or other output.*
+I> Functions such as `htmlfontify-buffer` and `ps-print-buffer` will
+I> not honor these text properties.  For printing, it would be better
+I> to convert to HTML or PDF first (e.g,. using Pandoc) and then
+I> print.
+
 # Customization {#customization}
 
 Although strictly speaking no configuration is *necessary*, there are
