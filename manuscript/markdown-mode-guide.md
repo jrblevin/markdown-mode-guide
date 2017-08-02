@@ -1180,6 +1180,97 @@ current file by setting `markdown-open-command`:
 Furthermore, once you install the `mark` script you can simply type
 `mark post.md` from the terminal to open a Markdown file.
 
+## File Local Variables
+
+Emacs allows one to [specify values for variables inside files
+themselves][fl].  For example, you can specify which mode Emacs should
+use to edit a particular file by setting a special `mode` variable.
+You can specify such file local variables at either the beginning or
+end of a file.
+
+Perhaps you have seen lines like the following at the beginning of
+scripts.  This particular line tells Emacs that you'd like to open
+this file using `cperl-mode`:
+
+``` perl
+#!/usr/bin/perl       -*- mode: cperl -*-
+```
+
+The `mode` variable is special; it's not an actual variable name in
+Emacs.  Another special variable is `coding`, which specifies the
+character coding system for this file (e.g., `utf-8` or `latin-1`).  A
+third special variable is `eval`, which specifies a Lisp expression to
+evaluate.  Multiple `eval` declarations can be given in the same file.
+
+Among the special variables, `mode` is the most special of all and so
+the `mode:` declaration can even be omitted:
+
+``` perl
+#!/usr/bin/perl       -*-cperl-*-
+```
+
+File variable definitions should appear in a comment, and the comment
+syntax used by Markdown Mode is the same as for HTML comments: `<!--
+comment -->`.  So, to specify a local variable at the beginning of a
+file you could add the following to the first line (which would result
+in Emacs loading the file in `gfm-mode` instead of, say,
+`markdown-mode`):
+
+``` markdown
+<!-- -*- mode: gfm -*- -->
+```
+
+To specify multiple variables, separate them by semicolons:
+
+``` markdown
+<!-- -*- mode: markdown; coding: utf-8 -*- -->
+```
+
+Alternatively, you can insert a local variable block at the _end_ of a
+file.  Such a block opens with a `Local Variables:` declaration and
+closes with `End:`, like so:
+
+``` markdown
+<!-- Local Variables: -->
+<!-- markdown-enable-math: t -->
+<!-- End: -->
+```
+
+It's not necessary that each line is a self-contained comment, so the
+following also works and it is a personal preference which form you
+use:
+
+``` markdown
+<!--
+Local Variables:
+markdown-enable-math: t
+End:
+-->
+```
+
+One useful scenario for using file local variables with Markdown files
+include toggling special modes, like setting `markdown-enable-math` in
+the previous example.  If you mostly have math mode disabled (so that
+`$` is not a special character), but sometimes want to enable it,
+using a file-local variable as above is a great way to handle this
+case.
+
+Other example uses are setting the `fill-column` in a particular file,
+or declaring that spaces should be used for indentation instead of
+tabs:
+
+``` markdown
+<!--
+Local Variables:
+fill-column: 70
+indent-tabs-mode: nil
+End:
+-->
+```
+
+### References
+
+*   [GNU Emacs manual: Local Variables in Files][fl]
 
 ------------------------------------------------------------------------------
 
@@ -2519,6 +2610,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
 [em]: https://www.gnu.org/software/emacs/
 [fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
+[fl]: https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html
 [gf]: http://github.github.com/github-flavored-markdown/
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
