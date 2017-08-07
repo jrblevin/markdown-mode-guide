@@ -21,6 +21,7 @@
 (set-frame-size (selected-frame) 70 35)
 (set-face-attribute 'default nil :background "#f8f8f8")
 (set-face-attribute 'fringe nil :background nil)
+(setq frame-title-format "%b")
 
 ;; Load markdown-mode
 (load-library "markdown-mode.el")
