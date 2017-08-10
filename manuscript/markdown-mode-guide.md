@@ -1153,33 +1153,6 @@ able to run `markdown-command` from buffers which are visiting a file.
 
 # Tips & Tricks {#tips}
 
-## Using Marked 2 as a Standalone Previewer
-
-You can customize the program used to "open" Markdown files from
-Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
-is `markdown-open-command`.
-
-On macOS, a representative program for opening Markdown files
-is [Marked 2][m2], a live-updating Markdown previewer.  Perhaps the
-easiest way to set things up is to write a simple shell script to
-serve as a wrapper to open Marked 2 from the command line.[^m2]
-
-Below is an example script named `mark`.  Be sure to place it
-somewhere in your path (e.g., `/usr/local/bin`) and use `chmod +x` to
-make it executable.
-
-<<[Shell Script to Use Marked 2 as a Previewer](code/mark)
-
-Then you can ask Markdown Mode to call the script for opening the
-current file by setting `markdown-open-command`:
-
-``` emacs-lisp
-(setq markdown-open-command "/usr/local/bin/mark")
-```
-
-Furthermore, once you install the `mark` script you can simply type
-`mark post.md` from the terminal to open a Markdown file.
-
 ## File Local Variables
 
 Emacs allows one to [specify values for variables inside files
@@ -1271,6 +1244,34 @@ End:
 ### References
 
 *   [GNU Emacs manual: Local Variables in Files][fl]
+
+
+## Using Marked 2 as a Standalone Previewer
+
+You can customize the program used to "open" Markdown files from
+Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
+is `markdown-open-command`.
+
+On macOS, a representative program for opening Markdown files
+is [Marked 2][m2], a live-updating Markdown previewer.  Perhaps the
+easiest way to set things up is to write a simple shell script to
+serve as a wrapper to open Marked 2 from the command line.[^m2]
+
+Below is an example script named `mark`.  Be sure to place it
+somewhere in your path (e.g., `/usr/local/bin`) and use `chmod +x` to
+make it executable.
+
+<<[Shell Script to Use Marked 2 as a Previewer](code/mark)
+
+Then you can ask Markdown Mode to call the script for opening the
+current file by setting `markdown-open-command`:
+
+``` emacs-lisp
+(setq markdown-open-command "/usr/local/bin/mark")
+```
+
+Furthermore, once you install the `mark` script you can simply type
+`mark post.md` from the terminal to open a Markdown file.
 
 ------------------------------------------------------------------------------
 
