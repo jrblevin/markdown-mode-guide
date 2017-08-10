@@ -1153,6 +1153,69 @@ able to run `markdown-command` from buffers which are visiting a file.
 
 # Tips & Tricks {#tips}
 
+## Imenu and Imenu-List
+
+Markdown Mode includes support for `imenu`, an interface for quickly
+navigating to different sections within a buffer.  To try imenu with
+Markdown Mode, simply run `M-x imenu-add-menubar-index`.  An "Index"
+menu will appear in the menubar.  Clicking a heading moves the point
+to that heading.  Alternatively, when invoking `M-x imenu` using the
+keyboard Emacs will present you with a list of headings in the
+minibuffer.
+
+![`imenu` Index Menu](images/imenu-index.png)
+
+Markdown Mode adds a "." to the top of each sub-menu.  Clicking this
+dot takes you to the parent section.  Otherwise, there is no way to
+jump directly to headings that are not "leaf nodes."
+
+To automatically load `imenu` when `markdown-mode` is loaded, you can
+add the following to your `.emacs` or `init.el` file:
+
+``` emacs-lisp
+(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
+(setq imenu-auto-rescan t)
+```
+
+The first line asks Emacs to run the `imenu-add-menubar-index`
+function each time `markdown-mode` is loaded.  The second line asks
+`imenu` to keep the index up to date when files are modified, as
+sections may be added or removed.
+
+Another useful `imenu`-based package is [`imenu-list`][il], a
+third-party package which shows the current buffer's `imenu` entries
+in a popup buffer.  You can install `imenu-list` from MELPA.
+With [use-package][up], you can configure it like so:
+
+``` emacs-lisp
+(use-package imenu-list
+  :ensure t
+  :bind (("C-'" . imenu-list-smart-toggle))
+  :config
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil))
+```
+
+This binds <kbd>C-'</kbd> so that when pressing it a window appears on
+the right side showing the heading hierarchy in the `*Ilist*` buffer.
+Pressing <kbd>C-'</kbd> again hides the window.
+
+![`imenu-list` with Markdown Mode](images/imenu-list.png)
+
+Of course, there are several keybindings in the `*Ilist*` buffer for
+navigating between sections:
+
+* <kbd>RET</kbd> or mouse click - visit heading at point
+* <kbd>SPC</kbd> - visit heading, but keep focus on *Ilist* buffer
+* <kbd>TAB</kbd> or <kbd>f</kbd> - fold/unfold subtree
+* <kbd>n</kbd> and <kbd>p</kbd> - next/previous line
+* <kbd>g</kbd> - refresh entries
+* <kbd>q</kbd> - quit window and disable `imenu-list-minor-mode`
+
+Unlike the `imenu` Index menu, the `*Ilist*` buffer is updated
+automatically when Emacs is idle.
+
+
 ## File Local Variables
 
 Emacs allows one to [specify values for variables inside files
@@ -2616,6 +2679,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
+[il]: https://github.com/bmag/imenu-list
 [is]: https://github.com/jrblevin/markdown-mode/issues
 [jb]: http://jblevins.org/
 [m2]: https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs
