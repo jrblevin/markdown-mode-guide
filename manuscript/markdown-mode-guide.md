@@ -1320,6 +1320,19 @@ End:
 *   [GNU Emacs manual: Local Variables in Files][fl]
 
 
+## Whitespace Cleanup Mode
+
+Whitespace is meaningful in Markdown.  For example, two spaces at the
+end of a line indicate a hard line break.  Therefore, if you use
+`whitespace-cleanup-mode` to tidy up your files automatically, you may
+want to disable it in `markdown-mode`.  To do so, you can add the
+following to your init file:
+
+``` emacs-lisp
+(after-load 'whitespace-cleanup-mode
+            (push 'markdown-mode whitespace-cleanup-mode-ignore-modes))
+```
+
 ## Using Marked 2 as a Standalone Previewer
 
 You can customize the program used to "open" Markdown files from
