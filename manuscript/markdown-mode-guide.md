@@ -1160,6 +1160,8 @@ unattractive, so you may want to use a custom stylesheet by either
 linking to an external stylesheet or including a `<style>` block in
 the exported HTML itself.
 
+![Custom CSS in Markdown Mode Output](images/custom-css.png)
+
 ### Linking to an External Stylesheet
 
 The easiest way to customize the style of previewed and exported HTML
