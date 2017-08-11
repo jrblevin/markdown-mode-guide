@@ -1160,7 +1160,7 @@ unattractive, so you may want to use a custom stylesheet by either
 linking to an external stylesheet or including a `<style>` block in
 the exported HTML itself.
 
-![Custom CSS in Markdown Mode Output](images/custom-css.png)
+![Default and Custom CSS in Markdown Mode Output](images/custom-css.png)
 
 ### Linking to an External Stylesheet
 
@@ -1271,9 +1271,9 @@ With [use-package][up], you can configure it like so:
         imenu-list-auto-resize nil))
 ```
 
-This binds <kbd>C-'</kbd> so that when pressing it a window appears on
+This binds `C-'` so that when pressing it a window appears on
 the right side showing the heading hierarchy in the `*Ilist*` buffer.
-Pressing <kbd>C-'</kbd> again hides the window.
+Pressing `C-'` again hides the window.
 
 ![`imenu-list` with Markdown Mode](images/imenu-list.png)
 
@@ -1291,12 +1291,12 @@ instead.
 Of course, there are several keybindings in the `*Ilist*` buffer for
 navigating between sections:
 
-* <kbd>RET</kbd> or mouse click - visit heading at point
-* <kbd>SPC</kbd> - visit heading, but keep focus on *Ilist* buffer
-* <kbd>TAB</kbd> or <kbd>f</kbd> - fold/unfold subtree
-* <kbd>n</kbd> and <kbd>p</kbd> - next/previous line
-* <kbd>g</kbd> - refresh entries
-* <kbd>q</kbd> - quit window and disable `imenu-list-minor-mode`
+* `RET` or mouse click - visit heading at point
+* `SPC` - visit heading, but keep focus on *Ilist* buffer
+* `TAB` or `f` - fold/unfold subtree
+* `n` and `p` - next/previous line
+* `g` - refresh entries
+* `q` - quit window and disable `imenu-list-minor-mode`
 
 Unlike the `imenu` Index menu, the `*Ilist*` buffer is updated
 automatically when Emacs is idle.
