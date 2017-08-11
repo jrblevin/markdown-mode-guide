@@ -1153,6 +1153,79 @@ able to run `markdown-command` from buffers which are visiting a file.
 
 # Tips & Tricks {#tips}
 
+## Linking to or Including Custom CSS
+
+The default stylesheet for HTML in most browsers is rather
+unattractive, so you may want to use a custom stylesheet by either
+linking to an external stylesheet or including a `<style>` block in
+the exported HTML itself.
+
+### Linking to an External Stylesheet
+
+The easiest way to customize the style of previewed and exported HTML
+output is to link to an existing CSS stylesheet.  Markdown Mode has a
+customizable variable `markdown-css-paths`, which is a list of
+stylesheets to link to.  For each path or URL in `markdown-css-paths`,
+a line like the following will be included in the HTML output:
+
+``` html
+<link rel="stylesheet" type="text/css" media="all" href="URL" />
+```
+
+The most obvious way to use this is to link to an existing stylesheet.
+Noting that the variable is a list, one can specify a single CSS path
+on the local filesystem like so:
+
+``` emacs-lisp
+(setq markdown-css-paths '("/path/to/custom.css"))
+```
+
+On the other hand, to use an existing URL use the following form:
+
+``` emacs-lisp
+(setq markdown-css-paths '("http://mydomain.com/style.css"))
+```
+
+As another example, the [Marked 2][m2] previewer contains several
+built-in stylesheets that users can choose between.  Conveniently,
+these stylesheets are stored on the filesystem as CSS files inside the
+application package and you can link to them locally.  To use the
+"Lopash" style when previewing from `markdown-mode`, you can set the
+`markdown-css-paths` list as follows:
+
+``` emacs-lisp
+(setq markdown-css-paths
+    '("/Applications/Marked 2.app/Contents/Resources/Lopash.css"))
+```
+
+If you don't have a stylesheet already, there are many popular
+Markdown stylesheets available online.  For example, here are three
+such repositories on GitHub:
+
+*   <http://markdowncss.github.io>
+*   <http://jasonm23.github.io/markdown-css-themes/>
+*   <https://sindresorhus.com/github-markdown-css/>
+
+### Embedding a Custom Stylesheet
+
+As an alternative (or in addition to) linking to an external
+stylesheet, you can also include inline style information in output
+files by using the `markdown-xhtml-header-content` variable.  This
+variable specifies a string to add to the `<head>` block of the
+resulting HTML output.
+
+For example, to remove the underline from links, but underline links
+when hovering, you can add the following `<style>` block to
+`markdown-xhtml-header-content`:
+
+``` emacs-lisp
+(setq markdown-xhtml-header-content
+      "<style type='text/css'>
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>")
+```
+
 ## Imenu and Imenu-List
 
 Markdown Mode includes support for `imenu`, an interface for quickly
