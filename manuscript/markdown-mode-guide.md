@@ -1202,6 +1202,17 @@ Pressing <kbd>C-'</kbd> again hides the window.
 
 ![`imenu-list` with Markdown Mode](images/imenu-list.png)
 
+By default, the point stays in the original window and so the
+`*Ilist*` window is not focused.  Setting the variable
+`imenu-list-focus-after-activation` to a non-nil value, as above,
+changes the focus to the new window so that you can immediately issue
+commands.
+
+The `*Ilist*` buffer is periodically refreshed.  If you want the width
+of the window containing it to adjust automatically each time it is
+refreshed, then set the variable `imenu-list-auto-resize` to `t`
+instead.
+
 Of course, there are several keybindings in the `*Ilist*` buffer for
 navigating between sections:
 
