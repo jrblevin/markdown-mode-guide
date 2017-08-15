@@ -1478,7 +1478,7 @@ With Markdown Mode, the Markdown processor given by the variable
 markdown-command` can be a pipeline, and so it can be used to pre- or
 post-process your Markdown files.
 
-As an example, one common Markdown post-processor is [SmartyPants][],
+As an example, one common Markdown post-processor is [SmartyPants][sp],
 which implements "smart typography" (curly quotation marks, en-dashes,
 em-dashes, and so on).  To use it, you'll need to first install
 SmartyPants.
@@ -1486,7 +1486,7 @@ SmartyPants.
 *   On Debian Linux, you can install `libtext-typography-perl`.
 *   On macOS with Homebrew, you can use `brew install smartypants`.
 *   Otherwise, you can install manually by downloading the
-    [SmartyPants zip file][SmartyPants], uncompressing it, and placing
+    [SmartyPants zip file][sp], uncompressing it, and placing
     `SmartyPants.pl` in your `PATH`.
 
 Once you have SmartyPants installed, note the path of the script.  For
@@ -2944,6 +2944,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [ph]: https://michelf.ca/projects/php-markdown/extra/
 [pd]: http://pandoc.org
 [st]: http://docutils.sourceforge.net/mirror/setext.html 
+[sp]: http://daringfireball.net/projects/smartypants/
 [sx]: http://daringfireball.net/projects/markdown/syntax
 [up]: https://github.com/jwiegley/use-package
 [v1.1]: http://jblevins.org/projects/markdown-mode/rev-1-1
