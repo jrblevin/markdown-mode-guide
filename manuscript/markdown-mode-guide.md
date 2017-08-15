@@ -1228,6 +1228,7 @@ a:hover { text-decoration: underline; }
 </style>")
 ```
 
+
 ## Customizing the Heading Faces
 
 To customize the faces used in Markdown Mode---the font family, color,
@@ -1268,6 +1269,7 @@ I> default.  If you don't like the appearance of headings on your
 I> system, first ensure that you're setting the family of
 I> `variable-pitch` to something that pairs well with your `default`
 I> font.
+
 
 ## Imenu and Imenu-List
 
@@ -1554,6 +1556,7 @@ This example changes the browse function to `browse-url-chromium` for
 the `markdown-preview` function only.  See the section called
 "[Advising Emacs Lisp Functions][ad]" in the Emacs Lisp Reference
 Manual for additional details.
+
 
 ## Using Marked 2 as a Standalone Previewer
 
