@@ -1,7 +1,7 @@
 ---
 title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
-date: July 2017
+date: August 2017
 tags: Emacs, markdown, markdown-mode, writing, plain text
 ---
 
