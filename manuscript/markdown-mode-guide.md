@@ -1452,6 +1452,61 @@ init file:
 ```
 
 
+## Using a Custom Web Browser
+
+To open a browser, Markdown Mode calls the function specified in
+`browse-url-browser-function`.  You can use `M-x describe-variable RET
+browse-url-browser-function` to determine what value is currently set
+in your own Emacs.  To choose a different browser, simply customize
+`browse-url-browser-function` using `M-x customize-option` and answer
+the questions presented.
+
+![Customizing `browse-url-browser-function`](images/browse-url-browser-function.png)
+
+If you want to change the setting in your init file instead, you can
+simply add something like the following:
+
+``` emacs-lisp
+(setq browse-url-browser-function 'browse-url-chrome)
+```
+
+For reference, here is a selection of the available functions in Emacs 25.2:
+
+``` text
+browse-url-chrome                   browse-url-epiphany
+browse-url-chromium                 browse-url-firefox
+browse-url-conkeror                 browse-url-galeon
+browse-url-default-browser          browse-url-generic
+browse-url-default-macosx-browser   browse-url-gnome-moz
+browse-url-default-windows-browser  browse-url-kde
+browse-url-elinks                   browse-url-mozilla
+browse-url-elinks-new-window        browse-url-w3
+```
+
+If your browser is not supported, choose `browse-url-generic` and set
+`browse-url-generic-program` to the path of your browser's executable.
+The downside of using a generic browser is that you lose remote
+control and as a result a new process will be spawned for every URL
+you open.
+
+The above options change the browser for Emacs _globally_.  On the other
+hand, if for some reason you only wanted to change the browser used
+for Markdown Mode previewing, you can achieve this by "advising" the
+`markdown-preview` function:
+
+``` emacs-lisp
+(advice-add 'markdown-preview :around
+            (lambda (orig &rest args)
+              "Use Chromium as default browser"
+              (let ((browse-url-browser-function #'browse-url-chromium))
+                (apply orig args))))
+```
+
+This example changes the browse function to `browse-url-chromium` for
+the `markdown-preview` function only.  See the section called
+"[Advising Emacs Lisp Functions][ad]" in the Emacs Lisp Reference
+Manual for additional details.
+
 ## Using Marked 2 as a Standalone Previewer
 
 You can customize the program used to "open" Markdown files from
@@ -2808,6 +2863,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [^m2]: See <http://jblevins.org/log/marked-2-command> for details.
 
 [at]: http://www.aaronsw.com/2002/atx/
+[ad]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
 [bk]: https://leanpub.com/markdown-mode
 [cg]: https://github.com/jrblevin/markdown-mode/graphs/contributors
 [df]: https://daringfireball.net
