@@ -1228,6 +1228,47 @@ a:hover { text-decoration: underline; }
 </style>")
 ```
 
+## Customizing the Heading Faces
+
+To customize the faces used in Markdown Mode---the font family, color,
+size, and so on---you can use the Customize interface by issuing `M-x
+customize-faces RET markdown-faces`.
+
+<!-- FIXME: Insert a screenshot. -->
+
+Additionally, Markdown Mode has the ability to scale the font sizes
+used for headings in proportion to their importance (as in AUCTeX, for
+example).  To enable this, customize `markdown-header-scaling` or set
+it in your init file:
+
+``` emacs-lisp
+(setq markdown-header-scaling t)
+```
+
+Note that Markdown Mode defines separate heading faces for each
+heading level:
+
+``` text
+markdown-header-face-1
+markdown-header-face-2
+markdown-header-face-3
+markdown-header-face-4
+markdown-header-face-5
+markdown-header-face-6
+```
+
+Each of these inherits from the common `markdown-header-face`.  So, to
+change all faces (e.g., a common font family or color) you can
+customize `markdown-header-face` directly.  To change the face used
+for a specific heading level, customize that face individually.
+
+I> `markdown-header-face` inherits from `variable-pitch` by default,
+I> for contrast with `default`, which is a fixed width font by
+I> default.  If you don't like the appearance of headings on your
+I> system, first ensure that you're setting the family of
+I> `variable-pitch` to something that pairs well with your `default`
+I> font.
+
 ## Imenu and Imenu-List
 
 Markdown Mode includes support for `imenu`, an interface for quickly
