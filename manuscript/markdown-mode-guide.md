@@ -984,6 +984,78 @@ I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g,. using Pandoc) and then
 I> print.
 
+## HTML Preview & Export
+
+Markdown Mode also offers _preview_ and _export_ functions.  Both of
+these tasks involve processing the contents of a buffer using an
+external processor (`markdown-command`) to convert Markdown to HTML.
+The difference is that when _previewing_, the output is written to a
+temporary file and is then opened in a browser, but when _exporting_
+the output is written to a file and is not opened.
+
+| Description  | Keybinding     | Processor          | Destination                  |  Viewer                 |
+|--------------|----------------|--------------------|------------------------------|-------------------------|
+| Hide Markup  | `C-c C-x -C-m` | `markdown-mode`    |  same buffer                 | Emacs                   |
+| Compile      | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer   | Emacs                   |
+| Kill Ring    | `C-c C-c w`    | `markdown-command` | kill ring                    | --                      |
+| Preview      | `C-c C-c p`    | `markdown-command` | temporary file               | Browser                 |
+| Export       | `C-c C-c e`    | `markdown-command` | `basename.html`              | --                      |
+| View         | `C-c C-c v`    | `markdown-command` | `basename.html`              | Browser                 |
+| Live Preview | `C-c C-c l`    | `markdown-command` | `*eww*` buffer               | eww                     |
+| Open         | `C-c C-c o`    | --                 | --                           | `markdown-open-command` |
+
+### Compiling to a Temporary Buffer
+
+
+
+
+### Static HTML Preview
+
+
+
+### Live Preview Mode
+
+
+### Static HTML Export
+
+
+### Preview & Export Customization
+
+`markdown-xhtml-standalone-regexp`
+
+:   A regular expression which Markdown Mode uses to determine whether
+    the output of `markdown-command` is a standalone XHTML document or
+    an XHTML fragment (default: `"^\\(<\\?xml\\|<!DOCTYPE\\|<html\\)"`).
+    If this regular expression not matched in the first five lines of
+    output, Markdown Mode assumes the output is a fragment and adds a
+    header and footer.
+
+`markdown-css-paths`
+
+:   A list of CSS files to link to in the HTML output (default: `nil`).
+
+`markdown-content-type`
+
+:   When set to a nonempty string, an `http-equiv` attribute will be
+    included in the XHTML `<head>` block (default: `""`).  If needed,
+    the suggested values are `application/xhtml+xml` or `text/html`.
+    See also: `markdown-coding-system`.
+
+`markdown-coding-system`
+
+:   Used for specifying the character set identifier in the
+    `http-equiv` attribute when included (default: `nil`).  See
+    `markdown-content-type`, which must be set before this variable
+    has any effect.  When set to `nil`, `buffer-file-coding-system`
+    will be used to automatically determine the coding system string
+    (falling back to `iso-8859-1` when unavailable).  Common settings
+    are `utf-8` and `iso-latin-1`.
+
+`markdown-xhtml-header-content`
+
+:   Additional content to include in the XHTML `<head>` block
+    (default: `""`).
+
 ## Using a Standalone Markdown Previewer
 
 Another option for previewing files is to use an external viewer with
