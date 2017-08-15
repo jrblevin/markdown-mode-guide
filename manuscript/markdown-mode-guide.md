@@ -1408,6 +1408,50 @@ following to your init file:
             (push 'markdown-mode whitespace-cleanup-mode-ignore-modes))
 ```
 
+
+## Using Pre- and Post-Processors
+
+A Unix "pipeline" is a sequence of processes connected through
+*pipes*.  The standard output of each process is directed to the
+standard input of the following one.
+
+X> To give a generic example of pipes, the following command lists all
+X> running processes, filters out those with `markdown` in the name,
+X> removes the `grep markdown` process itself, extracts the process ID
+X> of each remaining process using `awk`, and then kills these
+X> processes by mapping their process IDs to the `kill` command using
+X> xargs:
+X>
+X>     ps aux | grep markdown | grep -v grep | awk '{print $2}' | xargs kill
+
+With Markdown Mode, the Markdown processor given by the variable
+markdown-command` can be a pipeline, and so it can be used to pre- or
+post-process your Markdown files.
+
+As an example, one common Markdown post-processor is [SmartyPants][],
+which implements "smart typography" (curly quotation marks, en-dashes,
+em-dashes, and so on).  To use it, you'll need to first install
+SmartyPants.
+
+*   On Debian Linux, you can install `libtext-typography-perl`.
+*   On macOS with Homebrew, you can use `brew install smartypants`.
+*   Otherwise, you can install manually by downloading the
+    [SmartyPants zip file][SmartyPants], uncompressing it, and placing
+    `SmartyPants.pl` in your `PATH`.
+
+Once you have SmartyPants installed, note the path of the script.  For
+example, suppose it is installed in your Emacs `exec-path` path as
+`smartypants`.  Then to use SmartyPants when previewing and exporting
+from Markdown Mode, you would set `markdown-command` to be
+`"markdown | smartypants"`.  You can do this either by using
+`M-x customize-group RET markdown` or by placing the following in your
+init file:
+
+``` emacs-lisp
+(setq markdown-command "markdown | smartypants")
+```
+
+
 ## Using Marked 2 as a Standalone Previewer
 
 You can customize the program used to "open" Markdown files from
