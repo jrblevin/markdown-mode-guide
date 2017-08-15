@@ -1585,6 +1585,41 @@ current file by setting `markdown-open-command`:
 Furthermore, once you install the `mark` script you can simply type
 `mark post.md` from the terminal to open a Markdown file.
 
+
+## Tracking Changes with CriticMarkup Mode
+
+<!-- FIXME: Insert a screenshot. -->
+
+[CriticMarkup][cm] is a plain text markup language for tracking
+changes to Markdown and other compatible documents.  It defines the
+following tags for marking changes:
+
+*   Addition `{++added++}`
+*   Deletion `{--removed--}`
+*   Substitution `{~~old~>new~~}
+*   Comment `{>>comment<<}`
+*   Highlight `{==highlight==}{>>comment<<}`
+
+[`cm-mode`][ce] is a minor mode that provides support for CriticMarkup
+in Emacs.  First, it provides font-lock support for the markup tags
+above, and it defines the customizable faces used to highlight them.
+To customize the faces, see the `criticmarkup-faces` group.  Second,
+it provides keybindings for insert CriticMarkup tags to track changes
+in a file:
+
+*   `C-c * a` - add text
+*   `C-c * d` - delete text
+*   `C-c * s` - substitute text
+*   `C-c * c` - insert a comment (possibly with highlight)
+
+By default, `cm-mode` uses `C-c *` as a prefix, but this can easily be
+changed to, say, `C-c c` like so:
+
+``` emacs-lisp
+(define-key cm-mode-map (kbd "C-c *") nil)
+(define-key cm-mode-map (kbd "C-c c") cm-prefix-map)
+```
+
 ------------------------------------------------------------------------------
 
 # Markdown Mode Development {#devel}
@@ -2916,7 +2951,9 @@ syntax highlighting and element insertion commands for Markdown files.
 [at]: http://www.aaronsw.com/2002/atx/
 [ad]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
 [bk]: https://leanpub.com/markdown-mode
+[ce]: https://github.com/joostkremers/criticmarkup-emacs
 [cg]: https://github.com/jrblevin/markdown-mode/graphs/contributors
+[cm]: http://criticmarkup.com
 [df]: https://daringfireball.net
 [dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
 [du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
