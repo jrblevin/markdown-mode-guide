@@ -1333,8 +1333,20 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 ## Markup Completion {#completion}
 
-<!-- FIXME: Write Markup Completion section -->
+_Complete markup_ refers to markup in normalized form.  This means,
+for example, that the underline portion of a setext header is the same
+length as the heading text, or that the number of leading and trailing
+hash marks of an atx header are equal and that there is no extra
+whitespace in the header text.
 
+Markdown Mode provides two commands for markup completion, one local
+and one global:
+
+*   `C-c C-]` completes the markup at the point, if it is determined
+    to be incomplete.
+
+*   `C-c C-c ]` completes all headings and normalizes all horizontal
+    rules in the buffer.
 
 # Previewing & Exporting Files {#preview-export}
 
