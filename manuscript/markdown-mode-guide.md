@@ -975,7 +975,7 @@ detail in the sections that follow.
 
 | Description   | Keybinding     | Processor          | Destination/Viewer            |
 |---------------|----------------|--------------------|-------------------------------|
-| Hide Markup   | `C-c C-x -C-m` | `markdown-mode`    | Same buffer                   |
+| Hide Markup   | `C-c C-x C-m`  | `markdown-mode`    | Same buffer                   |
 | Compile       | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer    |
 | Kill Ring     | `C-c C-c w`    | `markdown-command` | kill ring                     |
 | Preview       | `C-c C-c p`    | `markdown-command` | Browser (temporary file)      |
