@@ -1168,30 +1168,26 @@ produce a horizontal rule:
 ---------------------------------------
 ```
 
+To insert a horizontal rule, press `C-c C-s -`.  Markdown Mode allows
+you to define several horizontal rules of decreasing prominence in a
+list variable named `markdown-hr-strings`.  By default, this insertion
+command inserts the first string in `markdown-hr-strings`, which
+should be the most prominent rule.  With a `C-u` prefix, insert the
+last string.  With a numeric prefix `N`, insert the string in position
+`N` (counting from 1).
+
 The list of strings inserted by Markdown Mode can be customized by
 redefining the variable `markdown-hr-strings`.
 
 `markdown-hr-strings`
 
 :   A list of strings to use when inserting horizontal rules.
-    The default value is:
 
-    <!-- FIXME: This code block is too wide for Leanpub PDF format. -->
-
-    ``` emacs-lisp
-    ("-------------------------------------------------------------------------------"
-     "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
-     "---------------------------------------"
-     "* * * * * * * * * * * * * * * * * * * *"
-     "---------"
-     "* * * * *")
-    ```
-
-    Different strings will not be distinguished when converted to
-    HTML—they will all be converted to `<hr/>`—but they may add visual
-    distinction and style to plain text documents.  To maintain
-    notions of promotion and demotion, these should be ordered from
-    largest to smallest.
+W> Different strings will not be distinguished when converted to
+W> HTML—they will all be converted to `<hr/>`—but they may add visual
+W> distinction and style to plain text documents.  To maintain notions
+W> of promotion and demotion, these should be ordered from largest to
+W> smallest.
 
 T> To insert a specific horizontal rule from the `markdown-hr-strings`
 T> list, use a prefix argument to `C-c C-s -`, as in `C-# C-c C-s -`
