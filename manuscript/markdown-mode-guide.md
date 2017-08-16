@@ -1522,7 +1522,7 @@ To customize the faces used in Markdown Mode---the font family, color,
 size, and so on---you can use the Customize interface by issuing `M-x
 customize-faces RET markdown-faces`.
 
-<!-- FIXME: Insert a screenshot. -->
+![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 Additionally, Markdown Mode has the ability to scale the font sizes
 used for headings in proportion to their importance (as in AUCTeX, for
