@@ -46,19 +46,28 @@
 ;; Color themes
 (setq custom-theme-directory "~/.emacs.d/themes")
 
+;; Set frame geometry according to display resolution.
+(setq default-frame-alist
+      `((top . 1)
+        (left . 1)
+        (width . 70)
+        (height . 35)
+        (vertical-scroll-bars . 0)
+        (menu-bar-lines . 0)
+        (tool-bar-lines . 0)))
+
+;; Don't show so many messages on startup
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+
 ;; Set up a consistent look for screenshots.
 (setq-default line-spacing 0.25)
 (set-face-attribute 'default nil :family "Operator Mono" :weight 'light :height 150)
 (set-face-attribute 'fixed-pitch nil :family "Courier Prime")
 (set-face-attribute 'variable-pitch nil :family "Fira Sans")
-(dolist (theme custom-enabled-themes)
-  (disable-theme theme))
-(load-theme 'sanityinc-tomorrow-day)
-(set-frame-size (selected-frame) 70 35)
 (set-face-attribute 'default nil :background "#f8f8f8")
 (set-face-attribute 'fringe nil :background nil)
 (setq frame-title-format "%b")
-(powerline-reset)
 (global-hl-line-mode 0)
 (blink-cursor-mode 0)
 
@@ -75,17 +84,6 @@
   :config
   (setq markdown-command "multimarkdown --snippet --smart --notes"
         markdown-open-command "mark"))
-
-;; Load powerline
-(use-package powerline
-  :config
-  (setq powerline-display-hud nil
-        powerline-display-buffer-size nil
-        powerline-display-mule-info nil
-        ;; powerline-gui-use-vcs-glyph t
-        powerline-height 24
-        powerline-default-separator 'slant)
-  :init (powerline-default-theme))
 
 ;; Screenshots
 (defconst markdown-guide-images-dir "~/work/markdown-mode-guide/manuscript/images/")
