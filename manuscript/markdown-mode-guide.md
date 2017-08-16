@@ -1327,9 +1327,37 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 ---
 ```
 
-## Markup Cycling
+## Markup Promotion & Demotion
 
-<!-- FIXME: Write Markup Cycling section -->
+Markdown Mode allows certain markup (headings, for example) to be
+_promoted_ and _demoted_.  Press `C-c C--` or `C-c <left>` to promote
+the element at the point if possible.  Similarly, `C-c C-=` or
+`C-c <right>` to demote the element at the point.
+
+Headings, horizontal rules, and list items can be promoted and
+demoted, as well as bold and italic text.  For headings,
+"promotion" means _decreasing_ the level (i.e., moving from
+`<h2>` to `<h1>`) while "demotion" means _increasing_ the
+level.  For horizontal rules, promotion and demotion means
+moving backward or forward through the list of rule strings in
+`markdown-hr-strings`.  For bold and italic text, promotion and
+demotion means changing the markup from underscores to asterisks.
+
+I> To promote or demote any markup at the point, use `C-c C--` and `C-c C-=`.
+
+To remember the promotion and demotion commands, note that `-` is for
+decreasing the level (promoting), and `=` (on the same key as `+`) is
+for increasing the level (demoting).  Similarly, the left and right
+arrow keys indicate the direction in which the atx heading markup will
+moving when promoting or demoting.
+
+T> You can change the level of a heading level two ways:
+T>
+T> 1. Using markup cycling, with either `C-c C--` and `C-c C-=` or the
+T>    alternatives `C-c <left>’ and `C-c <right>’.
+T> 2. By re-issuing a heading insertion command when the point is at a
+T>    heading.  For example, `C-c C-s 4` will replace the current heading
+T>    (of any level) with a level-four heading.
 
 ## Markup Completion {#completion}
 
