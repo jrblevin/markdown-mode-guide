@@ -1239,6 +1239,10 @@ hidden, the URL and optional title text can still be viewed either in a
 tooltip when hovering your mouse pointer over a link or in the minibuffer,
 by placing the point on the link.
 
+To follow a link using the keyboard, press `C-c C-o` when the point is
+on an inline or reference link to open the URL in a browser.  Use `M-p` and
+`M-n` to quickly jump to the previous or next link of any type.
+
 Certain aspects of link insertion can be customized, such as the default
 location of reference links and the type of URLs recognized automatically.
 
