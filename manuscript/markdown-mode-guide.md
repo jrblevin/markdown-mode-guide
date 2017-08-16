@@ -1312,10 +1312,12 @@ T> commands, but they are also available from the Markdown menu.
 
 _Markup hiding_ with `C-c C-x C-m` or `M-x markdown-toggle-markup-hiding`
 is one simple way to preview (and even edit) files.  The side-by-side
-screenshots below illustrate the effects of this: asterisks for
-italics, square brackets and URLs for links, backquotes for inline
-code and code blocks, and other markup will be hidden or otherwise
-beautified.
+screenshots below illustrate the effects of this.  Most markup will be hidden,
+including asterisks and underscores for italics and bold, square brackets and
+URLs for links, backquotes for inline code and fenced code blocks.
+Additionally, this enables Unicode bullet characters for lists,
+with different bullets for different nested list levels. Horizontal
+rules and blockquotes will also be styled nicely.
 
 ![Markup Hiding in Markdown Mode](images/markup-hiding.png)
 
