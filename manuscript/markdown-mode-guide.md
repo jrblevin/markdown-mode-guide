@@ -973,20 +973,26 @@ Pandoc, or MultiMarkdown).  The various methods for previewing and
 exporting are summarized in the following table and described in more
 detail in the sections that follow.
 
-| Description   | Keybinding     | Processor          | Destination/Viewer            |
-|---------------|----------------|--------------------|-------------------------------|
-| Hide Markup   | `C-c C-x C-m`  | `markdown-mode`    | Same buffer                   |
-| Compile       | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer    |
-| Kill Ring     | `C-c C-c w`    | `markdown-command` | kill ring                     |
-| Preview       | `C-c C-c p`    | `markdown-command` | Browser (temporary file)      |
-| Export        | `C-c C-c e`    | `markdown-command` | `<basename>.html`             |
-| Export & View | `C-c C-c v`    | `markdown-command` | `<basename>.html` and browser |
-| Live Preview  | `C-c C-c l`    | `markdown-command` | `eww` in Emacs                |
-| Open          | `C-c C-c o`    | None               | `markdown-open-command`       |
+| Description   | Keybinding     | Destination/Viewer            |
+|---------------|----------------|-------------------------------|
+| Hide Markup   | `C-c C-x C-m`  | Same buffer                   |
+| Compile       | `C-c C-c m`    | `*markdown-output*` buffer    |
+| Kill Ring     | `C-c C-c w`    | kill ring                     |
+| Preview       | `C-c C-c p`    | Browser (temporary file)      |
+| Export        | `C-c C-c e`    | `<basename>.html`             |
+| Export & View | `C-c C-c v`    | `<basename>.html` and browser |
+| Live Preview  | `C-c C-c l`    | `eww` in Emacs                |
+| Open          | `C-c C-c o`    | `markdown-open-command`       |
 
-Markdown Mode also offers _preview_ and _export_ functions.  Both of
-these tasks involve processing the contents of a buffer using an
-external processor (`markdown-command`) to convert Markdown to HTML.
+All commands except Hide Markup and Open involve the additional step
+of sending the contents of the buffer to an external processor
+(`markdown-command`) to convert Markdown to HTML.
+
+I> To use Compile and other command commands that make use of an
+I> external Markdown processor, `markdown-command` must be configured
+I> as described in the [Markdown Command](#markdown-command) section.
+
+The Preview and Export commands are similar and worthy of discussion.
 The difference is that when _previewing_, the output is written to a
 temporary file and is then opened in a browser.  When _exporting_,
 the output is written to a file named like the one being visited,
@@ -997,8 +1003,8 @@ the file is saved permanently and is also opened for viewing.
 W> For the Export and View commands, the output file of form
 W> `<basename>.html` will be overwritten without notice.
 
-The table above lists the keybindings for carrying out these commands,
-but they are also available from the Markdown menu.
+T> The table above lists the keybindings for carrying out these
+T> commands, but they are also available from the Markdown menu.
 
 ## Markup Hiding {#markup-hiding}
 
@@ -1025,10 +1031,6 @@ I> print.
 _Compiling_ (i.e., running Markdown) with `C-c C-c m` will send the
 contents of the current buffer to `markdown-command` and show the
 output in a temporary `*markdown-output*` buffer.
-
-I> To use the Compile command, and other commands below that use an
-I> external Markdown processor, `markdown-command` must be configured
-I> as described in the [Markdown Command](#markdown-command) section.
 
 As an alternative, rather than displaying the output in another
 buffer you can save the output directly to the kill ring with
