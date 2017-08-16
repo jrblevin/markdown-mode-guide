@@ -656,7 +656,7 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 ## Headings
 
 Headings in Markdown can be defined using either of two formats:
-Setext and atx.
+atx and setext.
 
 Atx-style headings are lines beginning with one to six hashmarks
 followed by the heading text.  The number of hash marks corresponds to
@@ -679,6 +679,32 @@ Second section text.  No closing hash mark here.
 Third section text.
 ```
 
+There are two options for inserting or replacing headings: You can
+either insert a heading of a specific level directly or let Markdown
+Mode determine the level and type for you.  To insert a heading of a
+specific level directly, simply use `C-c C-s #` where `#` is a number
+`1` through `6`.
+
+For automatic heading insertion use `C-c C-s h`.  The type and level
+are determined based on the previous heading.  By default the new
+heading will be a sibling (same level).  A `C-u` prefix can be added
+to insert a heading _promoted_ (lower number) by one level or a `C-u
+C-u` prefix can be given to insert a heading _demoted_ (higher number)
+by one level.  In cases where the automatically-determined level is
+not what you intended, the level can be quickly promoted or demoted
+(as described below).
+
+If the point is at a heading, these commands will replace the existing
+markup in order to update the level and/or type of the heading.  To
+remove the markup of the heading at the point, press `C-c C-k` to kill
+the heading and press `C-y` to yank the heading text back into the
+buffer.
+
+As with several other markup commands, the heading insertion commands
+use the text in the active region, if any, as the heading text.
+Otherwise, if the current line is not blank, they use the text on the
+current line.
+
 I> Markdown.pl and several other processors allow one to omit the
 I> whitespace between the hash mark and the header text, but some
 I> processors and specifications such as CommonMark do require the
@@ -700,9 +726,19 @@ Second-level header
 -------------------
 ```
 
-T> You don't have to get the alignment exactly right, as in the above
-T> examples, but if you want to keep things tidy Markdown Mode can
-T> "complete" markup for you after the fact.  See
+To automatically insert setext-style headings, use `C-c C-s H`.  This
+command behaves like `C-c C-c h` in that the level is calculated
+automatically and it can accept the same prefix arguments, but it uses
+setext (underlined) headings whenever possible (only for levels one
+and two).  To insert setext headings directly, use `C-c C-s !` for
+level one or `C-c C-s @` or level two.  Noting that `!` is `S-1` and
+`@` is `S-2` may make these commands easier to remember.  These setext
+heading insertion commands will prompt for heading text if there is no
+active region and the current line is blank.
+
+T> If the alignment of the underline characters is not exactly right,
+T> as in the above examples, you can still keep things tidy.
+T> Markdown Mode can "complete" markup for you after the fact.  See
 T> the [Markup Completion](#completion) section of this chapter for
 T> more details.
 
