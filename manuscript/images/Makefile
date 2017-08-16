@@ -3,7 +3,7 @@ TARGETS=global-visibility.png title_page.png markup-hiding.png url-hiding.png
 all: $(TARGETS)
 
 global-visibility.png: global-visibility-all.png global-visibility-overview.png global-visibility-contents.png
-	convert $^ -background transparent -splice 0x10+0+0 -append -chop 0x10+0+0 $@
+	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
 
 title_page.png: title_page.tex
 	xelatex title_page.tex
