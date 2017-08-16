@@ -12,8 +12,8 @@
 
 ;; Set up a consistent look for screenshots.
 (setq-default line-spacing 0.25)
-(set-face-attribute 'default nil :family "Fira Code" :height 160)
-(set-face-attribute 'fixed-pitch nil :family "Source Code Pro")
+(set-face-attribute 'default nil :family "Operator Mono" :weight 'light :height 150)
+(set-face-attribute 'fixed-pitch nil :family "Courier Prime")
 (set-face-attribute 'variable-pitch nil :family "Fira Sans")
 (dolist (theme custom-enabled-themes)
   (disable-theme theme))
@@ -22,6 +22,7 @@
 (set-face-attribute 'default nil :background "#f8f8f8")
 (set-face-attribute 'fringe nil :background nil)
 (setq frame-title-format "%b")
+(powerline-reset)
 
 ;; Load markdown-mode
 (load-library "markdown-mode.el")
