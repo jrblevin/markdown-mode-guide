@@ -973,6 +973,8 @@ I> dedicated command for inserting them.
 
 #### Native Font Lock and Indirect Editing
 
+![Native Font Lock](images/native-font-lock.png)
+
 Markdown Mode can also optionally perform native syntax highlighting
 of source code in fenced code blocks.  This works for GFM or
 tilde-fenced code blocks for which a language name has been specified.
@@ -991,7 +993,15 @@ default behavior by customizing the variable
 Additionally, if you have the [`edit-indirect`][ei] package installed
 Markdown Mode can open code blocks for editing in an "indirect" buffer
 with the native major mode enabled.  To do this, press `C-c '`
-(`markdown-edit-code-block`).
+(`markdown-edit-code-block`).  A new window will open with the
+contents of the code block and with the guessed major mode enabled.
+The code block in the Markdown buffer will be highlighted to indicate
+that it is being edited elsewhere.  When you are finished editing in
+the indirect buffer, press `C-c C-c` to "commit" any changes and
+update the Markdown buffer or press `C-c C-k` to cancel and ignore any
+changes.
+
+![Indirect Editing of a Fenced Code Block](images/edit-indirect.png)
 
 Both native font lock and indirect editing require Markdown Mode to
 try to determine the appropriate mode to use for each language identifier.
