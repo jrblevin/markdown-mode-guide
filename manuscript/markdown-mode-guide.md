@@ -824,6 +824,14 @@ blockquotes.  To move backward one block use `C-M-{`
 (`markdown-end-of-block`).  To mark a block, use `C-c M-h`
 (`markdown-mark-block`).
 
+To compare paragraph and block movement, consider some specific
+examples.  In terms of list items, paragraph movement moves
+item-by-item, regardless of the list item level.  On the other hand,
+block movement moves across the entire list.  Consider a blockquote
+with multiple paragraphs as another example.  Paragraph movement stops
+at individual paragraphs in a blockquote while the block movement
+commands move over the entire blockquote.
+
 ## Blockquotes
 
 To produce a blockquote (`<blockquote>` in HTML), prefix each line
