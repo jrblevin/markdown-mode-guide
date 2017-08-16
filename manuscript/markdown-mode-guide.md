@@ -1875,7 +1875,7 @@ Furthermore, once you install the `mark` script you can simply type
 
 ## Tracking Changes with CriticMarkup Mode
 
-<!-- FIXME: Insert a screenshot. -->
+![CriticMarkup Mode and Markdown Mode](images/cm-mode.png)
 
 [CriticMarkup][cm] is a plain text markup language for tracking
 changes to Markdown and other compatible documents.  It defines the
