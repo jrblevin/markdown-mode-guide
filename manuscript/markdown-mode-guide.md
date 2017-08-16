@@ -829,6 +829,15 @@ each line with a number followed by a period:
 
 ## Code Blocks
 
+Markdown Mode supports indented code blocks (pre blocks) as well as
+also several variations referred to as _fenced code blocks_.  Indented
+code blocks begin with four spaces, while fenced code blocks are
+surrounded above and below by strings of characters (tildes or
+backquotes).  Although fenced code blocks are not universally
+supported by all Markdown processors, a primary advantage is that they
+allow authors to indicate the name of the language of the source code
+contained within, to assist with syntax highlighting and CSS styling.
+
 ### Markdown Code Blocks
 
 With Markdown.pl, the only way to format code blocks is to prefix
@@ -855,15 +864,7 @@ you have a potentially inactive region (i.e., the text between the
 mark and the point) you can also format it as a code block using a
 separate command `C-c C-s P` (`markdown-pre-region`).
 
-### Fenced Code Blocks
-
-There are also several variations on the code block syntax, referred to
-in Markdown Mode as *fenced code blocks*.  These are blocks surrounded
-above and below by strings of characters to indicate that code appears
-between, and sometimes to indicate the language of the source code
-contained within (to assist with syntax highlighting, etc.).
-
-#### GFM Code Blocks
+### GFM Code Blocks
 
 The second type of code blocks supported by Markdown Mode are those
 used by [GitHub-Flavored Markdown (GFM)][gf].  These blocks begin
@@ -928,7 +929,7 @@ preference for lowercase language identifiers with
 :   When non-nil, `downcase` suggested programming language names
     (default: `t`).
 
-#### Tilde-Fenced Code Blocks
+### Tilde-Fenced Code Blocks
 
 The second type supported by Markdown Mode are tilde-fenced code blocks
 supported by Markdown processors such as [PHP Markdown Extra][ph]
@@ -971,7 +972,7 @@ I> Markdown Mode supports font-lock and indirect editing of
 I> tilde-fenced code blocks, but it does not currently have a
 I> dedicated command for inserting them.
 
-#### Native Font Lock and Indirect Editing
+### Native Font Lock and Indirect Editing
 
 ![Native Font Lock](images/native-font-lock.png)
 
