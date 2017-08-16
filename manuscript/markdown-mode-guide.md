@@ -993,16 +993,16 @@ The difference is that when _previewing_, the output is written to a
 temporary file and is then opened in a browser, but when _exporting_
 the output is written to a file and is not opened.
 
-| Description  | Keybinding     | Processor          | Destination                  |  Viewer                 |
-|--------------|----------------|--------------------|------------------------------|-------------------------|
-| Hide Markup  | `C-c C-x -C-m` | `markdown-mode`    |  same buffer                 | Emacs                   |
-| Compile      | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer   | Emacs                   |
-| Kill Ring    | `C-c C-c w`    | `markdown-command` | kill ring                    | --                      |
-| Preview      | `C-c C-c p`    | `markdown-command` | temporary file               | Browser                 |
-| Export       | `C-c C-c e`    | `markdown-command` | `basename.html`              | --                      |
-| View         | `C-c C-c v`    | `markdown-command` | `basename.html`              | Browser                 |
-| Live Preview | `C-c C-c l`    | `markdown-command` | `*eww*` buffer               | eww                     |
-| Open         | `C-c C-c o`    | --                 | --                           | `markdown-open-command` |
+| Description  | Keybinding     | Processor          | Destination/Viewer            |
+|--------------|----------------|--------------------|-------------------------------|
+| Hide Markup  | `C-c C-x -C-m` | `markdown-mode`    | Same buffer                   |
+| Compile      | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer    |
+| Kill Ring    | `C-c C-c w`    | `markdown-command` | kill ring                     |
+| Preview      | `C-c C-c p`    | `markdown-command` | Browser (temporary file)      |
+| Export       | `C-c C-c e`    | `markdown-command` | `basename.html`               |
+| View         | `C-c C-c v`    | `markdown-command` | `basename.html` _and_ browser |
+| Live Preview | `C-c C-c l`    | `markdown-command` | `eww` in Emacs                |
+| Open         | `C-c C-c o`    | None               | `markdown-open-command`       |
 
 ### Compiling to a Temporary Buffer
 
