@@ -187,15 +187,15 @@ Ordered list:
   2. oranges
   3. pears
 
-Inline [link](http://jblevins.org/).
+Inline [link](https://jblevins.org/).
 
 Reference [link][tag].
 
-[tag]: http://jblevins.org/
+[tag]: https://jblevins.org/
 
 Implicit reference [link][].
 
-[link]: http://jblevins.org/projects/markdown-mode/
+[link]: https://jblevins.org/projects/markdown-mode/
 
 Use two spaces at the end of a line  
 to create a hard line break.
@@ -1021,8 +1021,8 @@ This is inline code: `printf("hello, world\n");`
 To create simple links, you can simply place a URL or email address inside angle brackets, like so:
 
 ```
-<http://jblevins.org/projects/markdown-mode/>
-<jrblevin@sdf.org>
+<https://www.gnu.org/software/emacs/>
+<bug-gnu-emacs@gnu.org>
 ```
 
 To create hyperlinks with text, place the link text in square brackets
@@ -3110,7 +3110,7 @@ syntax highlighting and element insertion commands for Markdown files.
 
 
 [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
-[^m2]: See <http://jblevins.org/log/marked-2-command> for details.
+[^m2]: See <https://jblevins.org/log/marked-2-command> for details.
 
 [at]: http://www.aaronsw.com/2002/atx/
 [ad]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
@@ -3122,7 +3122,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
 [du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
 [ei]: https://github.com/Fanael/edit-indirect/
-[el]: http://jblevins.org/projects/markdown-mode/markdown-mode.el
+[el]: https://jblevins.org/projects/markdown-mode/markdown-mode.el
 [em]: https://www.gnu.org/software/emacs/
 [fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
 [fl]: https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html
@@ -3132,11 +3132,11 @@ syntax highlighting and element insertion commands for Markdown files.
 [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
 [il]: https://github.com/bmag/imenu-list
 [is]: https://github.com/jrblevin/markdown-mode/issues
-[jb]: http://jblevins.org/
+[jb]: https://jblevins.org/
 [m2]: https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs
 [md]: http://daringfireball.net/projects/markdown/
 [ml]: https://melpa.org/#/markdown-mode
-[mm]: http://jblevins.org/projects/markdown-mode/
+[mm]: https://jblevins.org/projects/markdown-mode/
 [mp]: https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile
 [ms]: https://stable.melpa.org/#/markdown-mode
 [mt]: http://trac.macports.org/ticket/35716
@@ -3148,17 +3148,17 @@ syntax highlighting and element insertion commands for Markdown files.
 [sp]: http://daringfireball.net/projects/smartypants/
 [sx]: http://daringfireball.net/projects/markdown/syntax
 [up]: https://github.com/jwiegley/use-package
-[v1.1]: http://jblevins.org/projects/markdown-mode/rev-1-1
-[v1.2]: http://jblevins.org/projects/markdown-mode/rev-1-2
-[v1.3]: http://jblevins.org/projects/markdown-mode/rev-1-3
-[v1.4]: http://jblevins.org/projects/markdown-mode/rev-1-4
-[v1.5]: http://jblevins.org/projects/markdown-mode/rev-1-5
-[v1.6]: http://jblevins.org/projects/markdown-mode/rev-1-6
-[v1.7]: http://jblevins.org/projects/markdown-mode/rev-1-7
-[v1.8.1]: http://jblevins.org/projects/markdown-mode/rev-1-8-1
-[v1.8]: http://jblevins.org/projects/markdown-mode/rev-1-8
-[v1.9]: http://jblevins.org/projects/markdown-mode/rev-1-9
-[v2.0]: http://jblevins.org/projects/markdown-mode/rev-2-0
-[v2.1]: http://jblevins.org/projects/markdown-mode/rev-2-1
-[v2.2]: http://jblevins.org/projects/markdown-mode/rev-2-2
-[v2.3]: http://jblevins.org/projects/markdown-mode/rev-2-3
+[v1.1]: https://jblevins.org/projects/markdown-mode/rev-1-1
+[v1.2]: https://jblevins.org/projects/markdown-mode/rev-1-2
+[v1.3]: https://jblevins.org/projects/markdown-mode/rev-1-3
+[v1.4]: https://jblevins.org/projects/markdown-mode/rev-1-4
+[v1.5]: https://jblevins.org/projects/markdown-mode/rev-1-5
+[v1.6]: https://jblevins.org/projects/markdown-mode/rev-1-6
+[v1.7]: https://jblevins.org/projects/markdown-mode/rev-1-7
+[v1.8.1]: https://jblevins.org/projects/markdown-mode/rev-1-8-1
+[v1.8]: https://jblevins.org/projects/markdown-mode/rev-1-8
+[v1.9]: https://jblevins.org/projects/markdown-mode/rev-1-9
+[v2.0]: https://jblevins.org/projects/markdown-mode/rev-2-0
+[v2.1]: https://jblevins.org/projects/markdown-mode/rev-2-1
+[v2.2]: https://jblevins.org/projects/markdown-mode/rev-2-2
+[v2.3]: https://jblevins.org/projects/markdown-mode/rev-2-3

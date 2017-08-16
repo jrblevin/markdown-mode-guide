@@ -1,6 +1,6 @@
 ;; Support code for updating release notes
 ;;
-;; Jason Blevins <jrblevin@sdf.org>
+;; Jason Blevins <jblevins@xbeta.org>
 
 (defun markdown-mode-guide-changes ()
   "Retrieve and process contents of CHANGES.md."

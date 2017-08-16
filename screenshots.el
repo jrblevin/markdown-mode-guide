@@ -1,6 +1,6 @@
 ;; Support code for generating screenshots on macOS from within Emacs
 ;;
-;; Jason Blevins <jrblevin@sdf.org>
+;; Jason Blevins <jblevins@xbeta.org>
 ;;
 ;; screencapture arguments:
 ;;    -o      no shadow
