@@ -971,6 +971,57 @@ I> Markdown Mode supports font-lock and indirect editing of
 I> tilde-fenced code blocks, but it does not currently have a
 I> dedicated command for inserting them.
 
+#### Native Font Lock and Indirect Editing
+
+Markdown Mode can also optionally perform native syntax highlighting
+of source code in fenced code blocks.  This works for GFM or
+tilde-fenced code blocks for which a language name has been specified.
+You can toggle this mode with either `C-c C-x C-f` or
+`M-x markdown-toggle-fontify-code-blocks-natively` and you can set the
+default behavior by customizing the variable
+`markdown-fontify-code-blocks-natively`.
+
+`markdown-fontify-code-blocks-natively`
+
+:   When non-nil, fontify code in code blocks using the native major
+    mode (default: `nil`).  This only works for fenced code blocks where
+    the language is specified and where Markdown Mode can
+    automatically determine the appropriate mode to use.
+
+Additionally, if you have the [`edit-indirect`][ei] package installed
+Markdown Mode can open code blocks for editing in an "indirect" buffer
+with the native major mode enabled.  To do this, press `C-c '`
+(`markdown-edit-code-block`).
+
+Both native font lock and indirect editing require Markdown Mode to
+try to determine the appropriate mode to use for each language identifier.
+Sometimes this is straightforward, for example `shell` and `shell-mode`,
+or `emacs-lisp` and `emacs-lisp-mode`, but in other cases the language
+and mode names may not agree or a different mode may be desired.
+This language-to-mode mapping may be customized as needed by setting the
+variable `markdown-code-lang-modes`.
+
+`markdown-code-lang-modes`
+
+:   An alist mapping languages to their major modes.  Keys are
+    language names and values are major mode symbols.  For example,
+    a default element of this alist is `("sqlite" . sql-mode)`,
+    which instructs Markdown Mode to use `sql-mode` to highlight
+    and edit `sqlite` code blocks.
+
+In practice the language-to-mode mapping is handled by the
+`markdown-get-lang-mode` function, which looks for a defined function
+satisfying one of the following forms, in order, where `<lang>`
+represents the language keyword specified for the code block:
+
+1. An entry with key `<lang>` specified in `markdown-code-lang-modes`.
+2. A function named `<lang>-mode`.
+
+As an example, suppose we have a code block with language name `matlab`.
+By default there is no element of `markdown-code-lang-modes` with
+key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
+If so, it will be used for syntax highlighting of the code block and also
+for indirect editing of the code block.
 
 ## Horizontal Rules
 
