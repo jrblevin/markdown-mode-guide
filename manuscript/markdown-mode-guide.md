@@ -953,6 +953,44 @@ H~2~O is a liquid.  2^10^ is 1024.
 
 <!-- FIXME: Explain how to toggle hidden markup -->
 
+## Metadata
+
+Markdown Mode provides font lock support for several common metadata
+formats, such as those supported by MultiMarkdown, Pandoc, and GitHub.
+
+One of the simplest forms is email-style metadata that must appear at
+the beginning of the file.  This metadata format is supported by
+MultiMarkdown and some blog generation systems.
+
+``` text
+title: Guide to Markdown Mode for Emacs
+author: Jason R. Blevins
+```
+
+Markdown Mode also supports Pandoc metadata, which also must appear at
+the beginning of a file and is indicated by percent signs:
+
+``` text
+% title
+% author(s) (separated by semicolons)
+% date
+```
+
+Finally, Markdown Mode supports YAML metadata blocks that can occur
+anywhere in the document.  YAML metadata blocks begin with a line of
+three hyphens (`---`) and end with either a line of three hyphens
+(`---`) or three dots (`...`).  Pandoc and GitHub, among other
+systems, support YAML metadata.
+
+```
+---
+title: Guide to Markdown Mode for Emacs
+author: Jason R. Blevins
+date: August 2017
+tags: Emacs, markdown, markdown-mode, writing, plain text
+---
+```
+
 ## Markup Cycling
 
 <!-- FIXME: Write Markup Cycling section -->
