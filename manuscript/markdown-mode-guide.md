@@ -829,6 +829,8 @@ each line with a number followed by a period:
 
 ## Code Blocks
 
+### Markdown Code Blocks
+
 With Markdown.pl, the only way to format code blocks is to prefix
 each line with four spaces:
 
@@ -841,13 +843,66 @@ each line with four spaces:
     }
 ```
 
-Several variations on this have emerged, which are broadly referred to
+To begin a new code block press `C-c C-s p` (`markdown-insert-pre`),
+where `p` refers to the HTML `<pre>` tag used to format such a block.
+This command works on an _active_ region also, so if you have marked a
+region of unindented code that you'd like to format as a code block,
+you can also use `markdown-insert-pre`.
+
+If you use `transient-mark-mode` (which is on by default in recent
+versions of Emacs), then the region is always active.  Otherwise, if
+you have a potentially inactive region (i.e., the text between the
+mark and the point) you can also format it as a code block using a
+separate command `C-c C-s P` (`markdown-pre-region`).
+
+### Fenced Code Blocks
+
+There are also several variations on the code block syntax, referred to
 in Markdown Mode as *fenced code blocks*.  These are blocks surrounded
 above and below by strings of characters to indicate that code appears
 between, and sometimes to indicate the language of the source code
 contained within (to assist with syntax highlighting, etc.).
 
-The first type supported by Markdown Mode are tilde-fenced code blocks
+#### GFM Code Blocks
+
+The second type of code blocks supported by Markdown Mode are those
+used by [GitHub-Flavored Markdown (GFM)][gf].  These blocks begin
+with three backquotes and end with three backquotes.  After the
+opening three backquotes, you may give an optional language
+identifier, possibly separated by a space.  These are referred to in
+Markdown simply as GFM code blocks:
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+```
+a one-line code block
+```
+
+```python
+print("hello, world")
+```
+
+``` Ruby
+puts("hello, world")
+```
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To insert a GFM code block interactively in Markdown Mode, press `C-c
+C-s C`.  You will be greeted with a minibuffer prompt asking for the
+programming language name.  Markdown Mode includes a large list of
+know languages to select from.  The default value will be the
+most recently used language.
+
+The GFM programming language prompt uses `completing-read`, which has
+several useful keybindings such as `M-n` and `M-p` to select the next
+or previous elements and `M-s` and `M-r` to select the next or
+previous elements matching a partially complete string.
+
+T> Since it uses `completing-read`, programming language selection
+T> will also work with `ido`, `ivy`, and `helm`.
+
+#### Tilde-Fenced Code Blocks
+
+The second type supported by Markdown Mode are tilde-fenced code blocks
 supported by Markdown processors such as [PHP Markdown Extra][ph]
 and [Pandoc][pd], among others.  The block opens with *at least three*
 tildes (`~`) and closes with at least as many tildes as it was opened
@@ -884,48 +939,10 @@ end program main
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
-The second type of code blocks supported by Markdown Mode are those
-used by [GitHub-Flavored Markdown (GFM)][gf].  These blocks begin
-with three backquotes and end with three backquotes.  After the
-opening three backquotes, you may give an optional language
-identifier, possibly separated by a space.  These are referred to in
-Markdown simply as GFM code blocks:
+I> Markdown Mode supports font-lock and indirect editing of
+I> tilde-fenced code blocks, but it does not currently have a
+I> dedicated command for inserting them.
 
-~~~~~~~~~~~~~~~~~~~~~~~~
-```
-a one-line code block
-```
-
-```python
-print("hello, world")
-```
-
-``` Ruby
-puts("hello, world")
-```
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-<!-- FIXME: For GFM code blocks, describe how to use `completing-read'.
-and minibuffer-local-map (https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-from-Minibuffer.html#Definition%20of%20minibuffer%2dlocal%2dmap)
-
-C-j
-exit-minibuffer 
-<RET>
-exit-minibuffer 
-C-g
-abort-recursive-edit 
-M-n
-<DOWN>
-next-history-element 
-M-p
-<UP>
-previous-history-element 
-M-s
-next-matching-history-element 
-M-r
-previous-matching-history-element
-
- -->
 
 ## Horizontal Rules
 
