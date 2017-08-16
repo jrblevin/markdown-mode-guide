@@ -803,8 +803,26 @@ This is a paragraph.  It has two sentences.
 This is another paragraph.  It also has two sentences.
 ```
 
-<!-- FIXME: Discuss paragraph filling, movement, marking,
-yanking, transposing, etc. -->
+For the purposes of defining movement and marking commands, paragraphs
+in Markdown Mode include not only regular paragraphs as described
+above, but also paragraphs inside blockquotes, individual list items,
+headings, etc.
+
+To move the point from one "paragraph" to another, use `M-{` and
+`M-}`.  These keys are usually bound to `forward-paragraph` and
+`backward-paragraph`, but the built-in Emacs functions are based on
+simple regular expressions that fail in Markdown files.  Instead, they
+are bound to `markdown-forward-paragraph` and
+`markdown-backward-paragraph`.  To mark a paragraph, you can use `M-h`
+(`markdown-mark-paragraph`).
+
+Markdown Mode also defines "block" movement commands, which are larger
+in scope and may contain multiple "paragraphs" in some cases.  Blocks
+are considered to be entire lists, entire code blocks, and entire
+blockquotes.  To move backward one block use `C-M-{`
+(`markdown-beginning-block`) and to move forward use `C-M-}`
+(`markdown-end-of-block`).  To mark a block, use `C-c M-h`
+(`markdown-mark-block`).
 
 ## Blockquotes
 
