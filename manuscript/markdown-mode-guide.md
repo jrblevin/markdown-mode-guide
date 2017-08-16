@@ -1178,13 +1178,27 @@ where the reference tag is the same as the link text:
    [link text]: http://link.url/
 ```
 
-  * `markdown-reference-location` - where to insert reference
-    definitions (default: `header`).  The possible locations are
-    the end of the document (`end`), after the current block
-    (`immediately`), before the next header (`header`).
+Links in Markdown Mode are clickable and doing so will open the URL in
+the default browser.  URLs can also be hidden, and this can be toggled
+with `C-c C-x C-l` or `M-x markdown-toggle-url-hiding`.  When URLs are
+hidden, the URL and optional title text can still be viewed either in a
+tooltip when hovering your mouse pointer over a link or in the minibuffer,
+by placing the point on the link.
 
-  * `markdown-uri-types` - a list of protocol schemes (e.g., "http")
-    for URIs that Markdown Mode should highlight.
+Certain aspects of link insertion can be customized, such as the default
+location of reference links and the type of URLs recognized automatically.
+
+`markdown-reference-location`
+
+:   Determines where to insert reference definitions (default:
+    `header`).  The possible locations are the end of the document
+    (`end`), after the current block (`immediately`), before the next
+    header (`header`).
+
+`markdown-uri-types`
+
+:   A list of protocol schemes (e.g., "http") for URIs that Markdown
+    Mode should highlight.
 
 <!-- FIXME: Inline Images -->
 
