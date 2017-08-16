@@ -23,6 +23,8 @@
 (set-face-attribute 'fringe nil :background nil)
 (setq frame-title-format "%b")
 (powerline-reset)
+(global-hl-line-mode 0)
+(blink-cursor-mode 0)
 
 ;; Load markdown-mode
 (load-library "markdown-mode.el")
