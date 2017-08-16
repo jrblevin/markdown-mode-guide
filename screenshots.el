@@ -56,9 +56,17 @@
         (menu-bar-lines . 0)
         (tool-bar-lines . 0)))
 
-;; Don't show so many messages on startup
 (setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
+      inhibit-startup-echo-area-message t
+      inhibit-splash-screen t
+      initial-scratch-message nil
+      select-enable-clipboard t
+      column-number-mode 0
+      line-number-mode 0
+      mode-line-position nil)
+
+;; Remove Git branch info from mode line
+(delete '(vc-mode vc-mode) mode-line-format)
 
 ;; Set up a consistent look for screenshots.
 (setq-default line-spacing 0.25)
@@ -77,10 +85,6 @@
   :commands (markdown-mode gfm-mode)
   :mode (("\\.text\\'" . markdown-mode)
          ("\\.md\\'" . markdown-mode))
-  :init
-  (setq markdown-header-scaling t
-        markdown-hide-urls t
-        markdown-fontify-code-blocks-natively t)
   :config
   (setq markdown-command "multimarkdown --snippet --smart --notes"
         markdown-open-command "mark"))
