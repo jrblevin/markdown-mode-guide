@@ -742,6 +742,58 @@ T> Markdown Mode can "complete" markup for you after the fact.  See
 T> the [Markup Completion](#completion) section of this chapter for
 T> more details.
 
+### Outline Navigation {#outline}
+
+Markdown Mode defines keys for hierarchical navigation in headings and
+lists.  When the point is in a list, they move between list items.
+Otherwise, they move between headings.
+
+*   Use `C-c C-n` and `C-c C-p` to move between the next and previous
+    visible headings or list items of any level.
+*   Similarly, `C-c C-f` and `C-c C-b` move to the next and previous
+    visible headings or list items _at the same level_ as the one at the
+    point.
+*   Finally, `C-c C-u` will move up to the parent heading or list
+    item.
+
+T> The outline navigation commands in `markdown-mode`---`C-c C-n`,
+T> `C-c C-p`, `C-c C-f`, `C-c C-b`, and `C-c C-u`---are the same as in
+T> `org-mode`.
+
+### Movement by Defun
+
+The usual Emacs commands can be used to move by defuns (top-level
+major definitions), but in Markdown Mode, **a defun is a section.** As
+usual, `C-M-a` will move the point to the beginning of the current or
+preceding defun, `C-M-e` will move to the end of the current or
+following defun, and `C-M-h` will mark the entire defun.  To narrow
+the buffer to show only the current section, use `C-x n d`
+(`narrow-to-defun`) and to widen again, use `C-x n w` (`widen`) as
+usual.
+
+T> The defun movement and marking commands in
+T> `markdown-mode`---`C-M-a`, `C-M-e`, and `C-M-h`---are the same as
+T> in Emacs more generally in programming modes.
+
+To include the entire subtree when marking and narrowing, Markdown
+Mode also defines `C-c C-M-h` (`markdown-mark-subtree`) and `C-x n s`
+(`markdown-narrow-to-subtree`).
+
+### Movement by Page
+
+Markdown Mode also re-defines the "page" movement and marking commands
+in Emacs, since they aren't otherwise useful in Markdown documents.
+Elsewhere in Emacs, pages are defined by a regular expression given in
+the `page-delimiter` variable, usually `^L` (control-L, the page break
+control code).  Markdown Mode redefines a page to be a complete
+top-level subtree, so you can navigate between top-level headings
+using the standard Emacs page movement keys: `C-x ]`
+(`markdown-forward-page`) and `C-x [` (`markdown-backward-page`).  To
+mark the current top-level subtree, use `C-x C-p`
+(`markdown-mark-page`).  To narrow the buffer to show only the current
+top-level subtree, use `C-x n p` (`markdown-narrow-to-page`) and to
+widen again, use `C-x n w` (`widen`) as usual.
+
 ### Visibility Cycling
 
 Markdown Mode supports `org-mode`-style visibility cycling for
