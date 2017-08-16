@@ -964,14 +964,50 @@ H~2~O is a liquid.  2^10^ is 1024.
 
 # Previewing & Exporting Files {#preview-export}
 
+There are a variety of ways to preview and export files in Markdown
+Mode.  Perhaps the simplest way to "preview" what your Markdown will
+look like on the web or elsewhere is to hide the markup in the buffer
+itself.  Several other options are available, such as previewing in a
+browsers, which use an external Markdown processor (e.g., Markdown.pl,
+Pandoc, or MultiMarkdown).  The various methods for previewing and
+exporting are summarized in the following table and described in more
+detail in the sections that follow.
+
+| Description   | Keybinding     | Processor          | Destination/Viewer            |
+|---------------|----------------|--------------------|-------------------------------|
+| Hide Markup   | `C-c C-x -C-m` | `markdown-mode`    | Same buffer                   |
+| Compile       | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer    |
+| Kill Ring     | `C-c C-c w`    | `markdown-command` | kill ring                     |
+| Preview       | `C-c C-c p`    | `markdown-command` | Browser (temporary file)      |
+| Export        | `C-c C-c e`    | `markdown-command` | `<basename>.html`             |
+| Export & View | `C-c C-c v`    | `markdown-command` | `<basename>.html` and browser |
+| Live Preview  | `C-c C-c l`    | `markdown-command` | `eww` in Emacs                |
+| Open          | `C-c C-c o`    | None               | `markdown-open-command`       |
+
+Markdown Mode also offers _preview_ and _export_ functions.  Both of
+these tasks involve processing the contents of a buffer using an
+external processor (`markdown-command`) to convert Markdown to HTML.
+The difference is that when _previewing_, the output is written to a
+temporary file and is then opened in a browser.  When _exporting_,
+the output is written to a file named like the one being visited,
+but with a `.html` extension, and it is not opened.  On the other
+hand, _viewing_ is a combination of previewing and exporting where
+the file is saved permanently and is also opened for viewing.
+
+W> For the Export and View commands, the output file of form
+W> `<basename>.html` will be overwritten without notice.
+
+The table above lists the keybindings for carrying out these commands,
+but they are also available from the Markdown menu.
+
 ## Markup Hiding {#markup-hiding}
 
-One simple way to preview (and even edit) files is to toggle markup
-hiding with `C-c C-x C-m` or `M-x markdown-toggle-markup-hiding`.  The
-side-by-side screenshots below illustrate the effects of this:
-asterisks for italics, square brackets and URLs for links, backquotes
-for inline code and code blocks, and other markup will be hidden or
-otherwise beautified.
+_Markup hiding_ with `C-c C-x C-m` or `M-x markdown-toggle-markup-hiding`
+is one simple way to preview (and even edit) files.  The side-by-side
+screenshots below illustrate the effects of this: asterisks for
+italics, square brackets and URLs for links, backquotes for inline
+code and code blocks, and other markup will be hidden or otherwise
+beautified.
 
 ![Markup Hiding in Markdown Mode](images/markup-hiding.png)
 
@@ -984,42 +1020,67 @@ I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g,. using Pandoc) and then
 I> print.
 
-## HTML Preview & Export
+## Compiling to a Temporary Buffer or Kill Ring
 
-Markdown Mode also offers _preview_ and _export_ functions.  Both of
-these tasks involve processing the contents of a buffer using an
-external processor (`markdown-command`) to convert Markdown to HTML.
-The difference is that when _previewing_, the output is written to a
-temporary file and is then opened in a browser, but when _exporting_
-the output is written to a file and is not opened.
+_Compiling_ (i.e., running Markdown) with `C-c C-c m` will send the
+contents of the current buffer to `markdown-command` and show the
+output in a temporary `*markdown-output*` buffer.
 
-| Description  | Keybinding     | Processor          | Destination/Viewer            |
-|--------------|----------------|--------------------|-------------------------------|
-| Hide Markup  | `C-c C-x -C-m` | `markdown-mode`    | Same buffer                   |
-| Compile      | `C-c C-c m`    | `markdown-command` | `*markdown-output*` buffer    |
-| Kill Ring    | `C-c C-c w`    | `markdown-command` | kill ring                     |
-| Preview      | `C-c C-c p`    | `markdown-command` | Browser (temporary file)      |
-| Export       | `C-c C-c e`    | `markdown-command` | `basename.html`               |
-| View         | `C-c C-c v`    | `markdown-command` | `basename.html` _and_ browser |
-| Live Preview | `C-c C-c l`    | `markdown-command` | `eww` in Emacs                |
-| Open         | `C-c C-c o`    | None               | `markdown-open-command`       |
+I> To use the Compile command, and other commands below that use an
+I> external Markdown processor, `markdown-command` must be configured
+I> as described in the [Markdown Command](#markdown-command) section.
 
-### Compiling to a Temporary Buffer
+As an alternative, rather than displaying the output in another
+buffer you can save the output directly to the kill ring with
+`C-c C-c w`.
 
+## Static HTML Preview
 
+_Previewing_ the current buffer with `C-c C-c p` runs Markdown on the
+current buffer, stores the output in a temporary file, and opens or
+"previews" the file in the default browser.
 
+T> See the Tips section for details on how to configure the default
+T> browser in Emacs.
 
-### Static HTML Preview
+## Static HTML Export & View
 
+_Exporting_ with `C-c C-c e` will run Markdown on the current buffer and
+save the result in the file `<basename>.html`, where `<basename>` is
+the name of the Markdown file visited by the current buffer, with the
+extension removed.
 
+Similarly _viewing_ with `C-c C-c v` is the same as _exporting_ the
+file and opening it in the default browser.
 
-### Live Preview Mode
+## Live Preview Mode
 
+*   *Live Export*: Press <kbd>C-c C-c l</kbd> to turn on
+    `markdown-live-preview-mode` to view the exported output
+    side-by-side with the source Markdown.
+    `markdown-live-preview-window-function` can be customized to open
+    in a browser other than `eww`.
 
-### Static HTML Export
+## Opening in a Standalone Markdown Previewer
 
+A final option for previewing files is to use an external previewer
+with `C-c C-c o`.  The program used to preview files is specified by
+the `markdown-open-command` variable, which must be customized to use
+an available external previewer on your system.
 
-### Preview & Export Customization
+`markdown-open-command`
+
+:   The command used for calling a standalone Markdown previewer
+    capable of opening Markdown source files directly (default:
+    `nil`).  This command will be called with a single argument, the
+    file name of the current buffer.
+
+T> As described in the Tips section, one popular viewer on macOS
+T> is [Marked 2][m2], which can easily be used as with Markdown Mode
+T> with a simple shell script acting as a `markdown-open-command`
+T> wrapper.
+
+## Preview & Export Customization
 
 `markdown-xhtml-standalone-regexp`
 
@@ -1056,19 +1117,6 @@ the output is written to a file and is not opened.
 :   Additional content to include in the XHTML `<head>` block
     (default: `""`).
 
-## Using a Standalone Markdown Previewer
-
-Another option for previewing files is to use an external viewer with
-`C-c C-c o`.  The program used to preview files is specified by the
-`markdown-open-command` variable.
-
-`markdown-open-command`
-
-:   The command used for calling a standalone Markdown previewer
-    capable of opening Markdown source files directly (default:
-    `nil`).  This command will be called with a single argument, the
-    file name of the current buffer.
-
 
 # Customization {#customization}
 
@@ -1087,7 +1135,7 @@ T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
 T> button.
 
-## Markdown Command
+## Markdown Command {#markdown-command}
 
 The main variable you'll most likely need to customize is
 `markdown-command`.  Markdown Mode expects that a Markdown binary is
