@@ -306,7 +306,7 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 > Visher, Ben Voui, Sebastian Wiesner, Peter Williams, Tianxiang
 > Xiong, Ian Yang, Syohei Yoshida, and Google, Inc.
 
-# Installation {#install}
+# Installation & Configuration {#install}
 
 There are many ways to load packages in Emacs, but here I will cover
 three: installation using the built-in Emacs package manager
@@ -323,7 +323,9 @@ Mode, but installing the development version is similar.  If you'd
 like to test the development version see the [Development](#devel)
 chapter at the end.
 
-## Emacs Package Manager
+## Installation Methods
+
+### Emacs Package Manager
 
 The recommended way to install Markdown Mode is to use the built-in
 Emacs package manager, `package.el`, which has been included since
@@ -377,7 +379,7 @@ file, like so:
 (package-initialize)
 ```
 
-## OS Package Manager
+### OS Package Manager
 
 Markdown Mode is also available in various package managers on several
 operating systems.  You should confirm that the package you install
@@ -435,7 +437,7 @@ above.
 pkg_add textproc/markdown-mode
 ```
 
-## Manual Download
+### Manual Download
 
 Alternatively you can manually download and install Markdown Mode.
 First, download the [latest stable version][el] and save
@@ -456,6 +458,161 @@ to load automatically by adding the following to your init file:
 (add-to-list 'auto-mode-alist
     '("README\\.md\\'" . gfm-mode))
 ```
+
+## Configuration {#configuration}
+
+Although strictly speaking no configuration is *necessary*, there are
+a few settings that users should usually customize.  The most important
+is the `markdown-command` variable, which tells Markdown Mode where to
+find an external program for converting Markdown to HTML on your system.
+
+When in Markdown Mode, the `M-x customize-mode` command provides an
+interface to all of the possible customizations.  If you are currently
+using a different mode, then you'll need to be more specific: `M-x
+customize-mode RET markdown-mode`.  Alternatively, you can customize
+variables using `M-x customize-group RET markdown` (i.e., by
+customizing the *group* rather than the *mode*).
+
+![Markdown Customize Group](images/customize-group-markdown.png)
+
+T> If you use this built-in customize interface, be sure to save your
+T> changes before closing the buffer by clicking the "Apply and Save"
+T> button.
+
+### Markdown Command
+
+The main variable you'll most likely need to customize is
+`markdown-command`.  Markdown Mode expects that a Markdown binary is
+available, determined by the value of `markdown-command`.  You should
+customize this variable so that Markdown Mode uses your Markdown
+processor of choice.
+
+`markdown-command`
+
+:   The `markdown-command` variable contains the command used to run
+    Markdown.  The default is to look for an executable named
+    `markdown` in the Emacs `exec-path`.
+
+You can either provide the full path to the executable, or you can
+simply provide the name if the executable is in your Emacs
+`exec-path`.  See below for details on determining and configuring
+your `exec-path`.
+
+If you are using the customize interface, you simply need to type the
+path to your Markdown script or binary in the "Markdown Command" field
+in the customize interface (e.g., `/usr/local/bin/multimarkdown`).  If
+you know the name of the executable, but you're not sure where it is
+located, and you are using macOS or Linux, you can find it by typing
+`which multimarkdown` at the command line.
+
+To set this variable in your init file, add a line such as the
+following:
+
+``` emacs-lisp
+(setq markdown-command "/usr/local/bin/multimarkdown")
+```
+
+#### Markdown Command and `exec-path`
+
+You can always set `markdown-command` to be the full path to the
+executable, but a better solution is to set your `exec-path` properly.
+A simple way to do this is to use the `exec-path-from-shell` package,
+which sets the Emacs `exec-path` using your system `$PATH` variable,
+allowing Emacs to find any commands you can also use from the command
+line.
+
+If you attempt to preview or export your buffer and you see an error
+regarding the `markdown` command, then most likely you need to check
+your `markdown-command` setting or install a Markdown processor (or
+both).  Below are some common error messages that indicate that either
+the `markdown` binary cannot be found or `markdown-command` should be
+customized to your system:
+
+```
+/bin/bash: markdown: command not found
+zsh:1: command not found: markdown
+'markdown' is not recognized as an internal or external
+    command, operable program or batch file.
+```
+
+If your Markdown executable is in your Emacs `exec-path`, then Emacs
+can find it without the full path.  You can check this in two ways.
+First, to see the value of `exec-path`, issue `M-x describe-variable
+RET exec-path`.  If you see the directory containing your Markdown
+executable in the path, then the name of the program by itself should
+suffice without the path (e.g., `multimarkdown`).
+
+Second, you can also check to see if Emacs can find your executable by
+using the `executable-find` command.  This isn't an interactive
+command, but you can run it using `eval-expression` via `M-:`.  For
+example, to check whether Emacs can find an executable named `pandoc`,
+you can issue `M-: (executable-find "pandoc")`.  The return value will
+be displayed in the minibuffer.  If you see the path to `pandoc`, then
+Emacs can find it.  If you see `nil`, then it could not be found in
+`exec-path`.
+
+#### Configuring Markdown on macOS with Homebrew
+
+If you use Homebrew, then you can install Markdown.pl or Pandoc by
+issuing one of the following commands:
+
+```
+brew install markdown
+brew install pandoc
+```
+
+Then, in Emacs, type `M-x customize-mode RET markdown-mode` and set
+'Markdown Command' to the path of the executable you just installed:
+`/usr/local/bin/markdown` or `/usr/local/bin/pandoc` for Pandoc.
+
+#### Configuring Markdown on Windows
+
+On Windows, you'll need to use the full path including the drive
+letter.  For example, if you installed Pandoc in `C:\Utils\Console`,
+then you'd set `markdown-command like this:
+
+``` emacs-lisp
+(setq markdown-command "c:/Utils/Console/pandoc.exe")
+```
+
+If you need to run Markdown as a script, with an interpreter, then
+you'll need to add that as well.  For example, to use Markdown.pl with
+Perl (both need to be installed), something like this should suffice:
+
+``` emacs-lisp
+(setq markdown-command "c:/path/to/perl.exe c:/path/to/Markdown.pl")
+```
+
+#### Passing Command Line Options to Markdown
+
+You can also customize this variable to pass any necessary
+command line options to your Markdown processor.  For example, to ask
+MultiMarkdown to enable smart typography and footnotes, you can define
+`markdown-command` as follows:
+
+``` emacs-lisp
+(setq markdown-command "multimarkdown --smart")
+```
+
+By default, Markdown Mode assumes that your Markdown processor accepts
+input via `stdin`.  That is, it assumes that if you were using it from
+the command line, you could *pipe* input to it like so:
+
+``` shell
+cat document.md | markdown
+```
+
+#### Passing a File Name to Markdown
+
+If your Markdown processor needs to be passed a file name, you'll need
+to set another variable: `markdown-command-needs-filename`.  Set this
+variable to `t` if `markdown-command` does not accept standard input.
+The default value is `nil`.  When this variable is `nil`,
+Markdown Mode will pass the Markdown content to `markdown-command`
+using standard input (`stdin`).  When set to `t`, Markdown Mode will
+pass the name of the file as the final command line argument to
+`markdown-command`.  Note that in the latter case, you will only be
+able to run `markdown-command` from buffers which are visiting a file.
 
 
 # Movement & Editing {#editing}
@@ -1028,7 +1185,7 @@ of sending the contents of the buffer to an external processor
 
 I> To use Compile and other command commands that make use of an
 I> external Markdown processor, `markdown-command` must be configured
-I> as described in the [Markdown Command](#markdown-command) section.
+I> as described in the [Configuration](#configuration) section.
 
 The Preview and Export commands are similar and worthy of discussion.
 The difference is that when _previewing_, the output is written to a
@@ -1156,159 +1313,6 @@ T> wrapper.
 
 :   Additional content to include in the XHTML `<head>` block
     (default: `""`).
-
-
-# Customization {#customization}
-
-Although strictly speaking no configuration is *necessary*, there are
-a few settings that users should usually customize.  When in Markdown
-Mode, the `M-x customize-mode` command provides an interface to all of
-the possible customizations.  If you are currently using a different
-mode, then you'll need to be more specific: `M-x customize-mode RET
-markdown-mode`.  Alternatively, you can customize variables using `M-x
-customize-group RET markdown` (i.e., by customizing the *group* rather
-than the *mode*).
-
-![Markdown Customize Group](images/customize-group-markdown.png)
-
-T> If you use this built-in customize interface, be sure to save your
-T> changes before closing the buffer by clicking the "Apply and Save"
-T> button.
-
-## Markdown Command {#markdown-command}
-
-The main variable you'll most likely need to customize is
-`markdown-command`.  Markdown Mode expects that a Markdown binary is
-available, determined by the value of `markdown-command`.  You should
-customize this variable so that Markdown Mode uses your Markdown
-processor of choice.
-
-`markdown-command`
-
-:   The `markdown-command` variable contains the command used to run
-    Markdown.  The default is to look for an executable named
-    `markdown` in the Emacs `exec-path`.
-
-You can either provide the full path to the executable, or you can
-simply provide the name if the executable is in your Emacs
-`exec-path`.  See below for details on determining and configuring
-your `exec-path`.
-
-If you are using the customize interface, you simply need to type the
-path to your Markdown script or binary in the "Markdown Command" field
-in the customize interface (e.g., `/usr/local/bin/multimarkdown`).  If
-you know the name of the executable, but you're not sure where it is
-located, and you are using macOS or Linux, you can find it by typing
-`which multimarkdown` at the command line.
-
-To set this variable in your init file, add a line such as the
-following:
-
-``` emacs-lisp
-(setq markdown-command "/usr/local/bin/multimarkdown")
-```
-
-### Markdown Command and `exec-path`
-
-You can always set `markdown-command` to be the full path to the
-executable, but a better solution is to set your `exec-path` properly.
-A simple way to do this is to use the `exec-path-from-shell` package,
-which sets the Emacs `exec-path` using your system `$PATH` variable,
-allowing Emacs to find any commands you can also use from the command
-line.
-
-If you attempt to preview or export your buffer and you see an error
-regarding the `markdown` command, then most likely you need to check
-your `markdown-command` setting or install a Markdown processor (or
-both).  Below are some common error messages that indicate that either
-the `markdown` binary cannot be found or `markdown-command` should be
-customized to your system:
-
-```
-/bin/bash: markdown: command not found
-zsh:1: command not found: markdown
-'markdown' is not recognized as an internal or external
-    command, operable program or batch file.
-```
-
-If your Markdown executable is in your Emacs `exec-path`, then Emacs
-can find it without the full path.  You can check this in two ways.
-First, to see the value of `exec-path`, issue `M-x describe-variable
-RET exec-path`.  If you see the directory containing your Markdown
-executable in the path, then the name of the program by itself should
-suffice without the path (e.g., `multimarkdown`).
-
-Second, you can also check to see if Emacs can find your executable by
-using the `executable-find` command.  This isn't an interactive
-command, but you can run it using `eval-expression` via `M-:`.  For
-example, to check whether Emacs can find an executable named `pandoc`,
-you can issue `M-: (executable-find "pandoc")`.  The return value will
-be displayed in the minibuffer.  If you see the path to `pandoc`, then
-Emacs can find it.  If you see `nil`, then it could not be found in
-`exec-path`.
-
-### Configuring Markdown on macOS with Homebrew
-
-If you use Homebrew, then you can install Markdown.pl or Pandoc by
-issuing one of the following commands:
-
-```
-brew install markdown
-brew install pandoc
-```
-
-Then, in Emacs, type `M-x customize-mode RET markdown-mode` and set
-'Markdown Command' to the path of the executable you just installed:
-`/usr/local/bin/markdown` or `/usr/local/bin/pandoc` for Pandoc.
-
-### Configuring Markdown on Windows
-
-On Windows, you'll need to use the full path including the drive
-letter.  For example, if you installed Pandoc in `C:\Utils\Console`,
-then you'd set `markdown-command like this:
-
-``` emacs-lisp
-(setq markdown-command "c:/Utils/Console/pandoc.exe")
-```
-
-If you need to run Markdown as a script, with an interpreter, then
-you'll need to add that as well.  For example, to use Markdown.pl with
-Perl (both need to be installed), something like this should suffice:
-
-``` emacs-lisp
-(setq markdown-command "c:/path/to/perl.exe c:/path/to/Markdown.pl")
-```
-
-### Passing Command Line Options to Markdown
-
-You can also customize this variable to pass any necessary
-command line options to your Markdown processor.  For example, to ask
-MultiMarkdown to enable smart typography and footnotes, you can define
-`markdown-command` as follows:
-
-``` emacs-lisp
-(setq markdown-command "multimarkdown --smart")
-```
-
-By default, Markdown Mode assumes that your Markdown processor accepts
-input via `stdin`.  That is, it assumes that if you were using it from
-the command line, you could *pipe* input to it like so:
-
-``` shell
-cat document.md | markdown
-```
-
-### Passing a File Name to Markdown
-
-If your Markdown processor needs to be passed a file name, you'll need
-to set another variable: `markdown-command-needs-filename`.  Set this
-variable to `t` if `markdown-command` does not accept standard input.
-The default value is `nil`.  When this variable is `nil`,
-Markdown Mode will pass the Markdown content to `markdown-command`
-using standard input (`stdin`).  When set to `t`, Markdown Mode will
-pass the name of the file as the final command line argument to
-`markdown-command`.  Note that in the latter case, you will only be
-able to run `markdown-command` from buffers which are visiting a file.
 
 
 # Tips & Tricks {#tips}
