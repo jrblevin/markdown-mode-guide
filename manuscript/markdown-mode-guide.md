@@ -884,6 +884,12 @@ each line with a number followed by a period:
     Existing list items can be moved up or down with `M-UP` or
     `M-DOWN` and indented or exdented with `M-RIGHT` or `M-LEFT`.
 
+### List Navigation
+
+The same keys used for heading outline navigation also work inside
+nested lists.  See the [Outline Navigation](#outline) section for
+details.
+
 ### List Customization
 
   * `markdown-list-indent-width` - depth of indentation for lists
