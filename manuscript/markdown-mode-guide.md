@@ -886,11 +886,11 @@ puts("hello, world")
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To insert a GFM code block interactively in Markdown Mode, press `C-c
-C-s C`.  You will be greeted with a minibuffer prompt asking for the
-programming language name.  Markdown Mode includes a large list of
-know languages to select from.  The default value will be the
-most recently used language.
+To insert a GFM code block interactively in Markdown Mode, press
+`C-c C-s C` (`markdown-insert-gfm-code-block`).  You will be greeted
+with a minibuffer prompt asking for the programming language name.
+Markdown Mode includes a large list of know languages to select from.
+The default value will be the most recently used language.
 
 The GFM programming language prompt uses `completing-read`, which has
 several useful keybindings such as `M-n` and `M-p` to select the next
@@ -899,6 +899,34 @@ previous elements matching a partially complete string.
 
 T> Since it uses `completing-read`, programming language selection
 T> will also work with `ido`, `ivy`, and `helm`.
+
+Another way to insert a GFM code block is to use the _electric
+backquote_ feature, which is enabled by default.  When this setting is
+enabled, pressing `` ` `` three times triggers
+`markdown-insert-gfm-code-block` automatically.
+
+`markdown-gfm-use-electric-backquote`
+
+:   When non-nil, trigger interactive insertion of GFM code blocks
+    when backquote is pressed three times (default: `t`).
+
+Additionally, you can augment the list of known language names by
+setting `markdown-gfm-additional-languages` and you can indicate a
+preference for lowercase language identifiers with
+`markdown-gfm-downcase-languages`.
+
+`markdown-gfm-additional-languages`
+
+:   A list containing additional languages to make available, aside
+    from those predefined in `markdown-gfm-recognized-languages`, when
+    inserting GFM code blocks (default: `nil`).  Language strings must
+    have be trimmed of whitespace and not contain curly braces.  They
+    may be of arbitrary capitalization.
+
+`markdown-gfm-downcase-languages`
+
+:   When non-nil, `downcase` suggested programming language names
+    (default: `t`).
 
 #### Tilde-Fenced Code Blocks
 
