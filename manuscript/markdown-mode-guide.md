@@ -933,17 +933,52 @@ commands move over the entire blockquote.
 To produce a blockquote (`<blockquote>` in HTML), prefix each line
 with a right angle bracket (`>`), just as when quoting an email:
 
-```
+``` markdown
 > This text will be enclosed in an HTML blockquote element.
 ```
 
 Blockquotes may be nested, like so:
 
-```
+``` markdown
 > Blockquote
 >
 > > Nested blockquote
 ```
+
+To insert markup for a blockquote in Markdown Mode, use `C-c C-s q`
+(`markdown-insert-blockquote`).  When `transient-mark-mode` is
+enabled, this command adds blockquote markup to the entire region,
+when active.  Otherwise, it simply inserts markup for an empty
+blockquote and positions the point appropriately.  The appropriate
+amount of indentation, if any, is calculated automatically given the
+surrounding context, but may be adjusted later using the region
+indentation commands.
+
+If you want to specifically operate on the region, whether or not
+`transient-mark-mode` and the region is active, you can use the
+region-specific command `C-c C-s Q` (`markdown-blockquote-region`).
+
+I> Notice that the keybinding for this command is similar, but the `Q`
+I> is uppercase.  This pattern is also used with other paired commands
+I> in Markdown Mode.
+
+T> The region-specific functions such as `markdown-blockquote-region`
+T> are useful in some less obvious cases.  For example, yanking text
+T> from the kill ring sets the mark at the beginning of the yanked
+T> text and leaves the point to the end.  Therefore, even though the
+T> region is not active (i.e., it is not highlighted) the region does
+T> contain the yanked text and so `C-c C-s Q` will format it as a
+T> blockquote.
+
+When [Markup Hiding](#markup-hiding) is enabled, the `>` prefix will
+be displayed as a special block character.  To customize this
+character, you can set `markdown-blockquote-display-char`.
+
+`markdown-blockquote-display-char`
+
+: String, default: "▌".
+
+    Character displayed when hiding blockquote markup.
 
 ## Lists
 
