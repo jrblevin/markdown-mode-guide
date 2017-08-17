@@ -1634,6 +1634,17 @@ line breaks when filling paragraphs.
 W> Line break behavior is different in GitHub Flavored Markdown, where
 W> all newlines correspond to hard line breaks.
 
+## Killing Elements
+
+Press `C-c C-k` (`markdown-kill-thing-at-point`) to kill the thing at
+point and add the most important text, without markup, to the kill
+ring.  Possible things to kill include (roughly in order of
+precedece): inline code, headings, horizonal rules, links (adds the
+link text to kill ring), images (adds the alt text to kill ring),
+plain URLs, email addresses, bold, italics, reference definitions
+(adds URL to kill ring), footnote markers and text (kills both the
+marker and text, adds text to kill ring), and list items.
+
 ## Footnotes
 
 To insert a footnote, using an extension to the original Markdown syntax, press
