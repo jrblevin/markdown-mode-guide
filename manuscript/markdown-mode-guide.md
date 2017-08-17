@@ -1353,7 +1353,14 @@ in Markdown Mode for commenting and uncommenting:
 
 ## Line Breaks
 
-<!-- FIXME: Write line break section -->
+In Markdown, whitespace at the end of a line is meaningful.  Adding
+two trailing spaces at the end of a line creates a hard line break.
+Markdown Mode highlights these spaces to draw attention to them, in
+case the whitespace was suprious.  Markdown Mode also respects hard
+line breaks when filling paragraphs.
+
+W> Line break behavior is different in GitHub Flavored Markdown, where
+W> all newlines correspond to hard line breaks.
 
 ## Footnotes
 
