@@ -1248,7 +1248,8 @@ This is inline code: `printf("hello, world\n");`
 
 ## Links & Images
 
-To create simple links, you can simply place a URL or email address inside angle brackets, like so:
+To create simple links, you can simply place a URL or email address
+inside angle brackets, like so:
 
 ```
 <https://www.gnu.org/software/emacs/>
@@ -1301,6 +1302,67 @@ where the reference tag is the same as the link text:
    [link text]: http://link.url/
 ```
 
+### Inserting Links & Images
+
+For links, `C-c C-l` (`markdown-insert-link`) is the general command
+for inserting new link markup or editing existing link markup
+interactively.  This command can be used to insert links of any form:
+either inline links, reference links, or plain URLs in angle brackets.
+The URL or `[reference]` label, link text, and optional title are
+entered through a series of prompts.  The type of link is determined
+by which values are provided:
+
+*   If both a URL and link text are given, insert an inline link:
+    `[text](url)`.
+*   If both a `[reference]` label and link text are given, insert
+    a reference link: `[text][reference]`.
+*   If only link text is given, insert an implicit reference link:
+    `[text][]`.
+*   If only a URL is given, insert a plain URL link:
+    `<url>`.
+
+T> This interactive link insertion and modification command is
+T> especially useful when markup or URL hiding is enabled, in which
+T> case URLs can't easily be edited directly.
+
+Similarly, `C-c C-i` (`markdown-insert-image`) is a general command for
+inserting or editing image markup interactively.  As with the link
+insertion command, through a series interactive prompts you can insert
+either an inline or reference image:
+
+*   If both a URL and alt text are given, insert an inline
+    image: `![alt text](url)`.
+*   If both a `[reference]` label and alt text are given,
+    insert a reference link: `![alt text][reference]`.
+
+If there is an existing link or image at the point, these command will
+edit the existing markup rather than inserting new markup.  Otherwise,
+if `transient-mark-mode` is on and there is an active region, these
+commands use the region as either the default URL (if it seems to be a
+URL) or link text value otherwise.  In that case, the region will be
+deleted and replaced by the link.
+
+If a reference label is given that is not yet defined, you
+will be prompted for the URL and optional title and the
+reference will be inserted according to the value of
+`markdown-reference-location`.  If a title is given, it will be
+added to the end of the reference definition and will be used
+to populate the title attribute when converted to HTML.
+
+T> Note that these interactive functions can be used to convert links
+T> and images from one type to another (inline, reference, or plain
+T> URL) by selectively adding or removing properties via the
+T> interactive prompts.
+T>
+T> For example, suppose you have an inline link of the form
+T> `[text](url)` and want to convert it to a plain URL link as in
+T> `<url>`.  If you press `C-c C-l` and leave the URL when prompted
+T> but delete the link text, then a plain URL, as in `<url>`, will be
+T> inserted in place of the inline link.  If you removed the URL
+T> instead, then you will be prompted for a reference tag.
+
+### Following Links
+
 Links in Markdown Mode are clickable and doing so will open the URL in
 the default browser.  URLs can also be hidden, and this can be toggled
 with `C-c C-x C-l` or `M-x markdown-toggle-url-hiding`.  When URLs are
@@ -1312,22 +1374,30 @@ To follow a link using the keyboard, press `C-c C-o` when the point is
 on an inline or reference link to open the URL in a browser.  Use `M-p` and
 `M-n` to quickly jump to the previous or next link of any type.
 
-Certain aspects of link insertion can be customized, such as the default
-location of reference links and the type of URLs recognized automatically.
+### Link & Image Customizations
+
+Certain aspects of link and image insertion can be customized, such as
+the default location of reference links and the type of URLs
+recognized automatically.
 
 `markdown-reference-location`
 
 :   Determines where to insert reference definitions (default:
     `header`).  The possible locations are the end of the document
-    (`end`), after the current block (`immediately`), before the next
-    header (`header`).
+    (`end`), after the current block (`immediately`), the end of the
+    current subtree (`subtree`), or before the next header (`header`).
 
 `markdown-uri-types`
 
 :   A list of protocol schemes (e.g., "http") for URIs that Markdown
     Mode should highlight.
 
-<!-- FIXME: Inline Images -->
+### Inline Image Display
+
+Local images associated with image links may be displayed inline in
+the buffer by pressing `C-c C-x C-i` or `M-x
+markdown-toggle-inline-images`.  This is a toggle command, so pressing
+this again will remove inline images.
 
 ## Comments
 
