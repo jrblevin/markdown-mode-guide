@@ -1490,10 +1490,6 @@ by which values are provided:
 *   If only a URL is given, insert a plain URL link:
     `<url>`.
 
-T> This interactive link insertion and modification command is
-T> especially useful when markup or URL hiding is enabled, in which
-T> case URLs can't easily be edited directly.
-
 Similarly, `C-c C-i` (`markdown-insert-image`) is a general command for
 inserting or editing image markup interactively.  As with the link
 insertion command, through a series interactive prompts you can insert
@@ -1672,8 +1668,6 @@ and after the text.
 ```
 H~2~O is a liquid.  2^10^ is 1024.
 ```
-
-<!-- FIXME: Explain how to toggle hidden markup -->
 
 ## Metadata
 
