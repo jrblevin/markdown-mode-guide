@@ -1163,6 +1163,13 @@ preference for lowercase language identifiers with
 :   When non-nil, `downcase` suggested programming language names
     (default: `t`).
 
+`markdown-spaces-after-code-fence`
+
+:   Integer, default: 1.
+
+    Number of space characters to insert between code fences
+    and programming language name.
+
 ### Tilde-Fenced Code Blocks
 
 The second type supported by Markdown Mode are tilde-fenced code blocks
