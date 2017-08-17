@@ -997,6 +997,58 @@ details.
   * `markdown-list-indent-width` - depth of indentation for lists
     when inserting, promoting, and demoting list items (default: 4).
 
+## Indentation
+
+### The Return Key
+
+When the point is at the end of a (potentially nested) list item and
+you press `RET`, what happens next depends on the value of
+`markdown-indent-on-enter`.
+
+``` markdown
+- list item
+    - nested list item█
+```
+
+When `markdown-indent-on-enter` is `nil`, the point will move to
+column 0 of the following line:
+
+``` markdown
+- list item
+    - nested list item
+█
+```
+
+When `markdown-indent-on-enter` is set to `t`, the point will be
+positioned for continuing your nested list.
+
+``` markdown
+- list item
+    - nested list item
+    █
+```
+
+In this scenario, if you wanted to continue your existing (now
+line-wrapped) list item with hanging indentation, simply press `TAB`
+to indent to the next logical position.
+
+``` markdown
+- list item
+    - nested list item
+      █
+```
+
+Finally, when `markdown-indent-on-enter` is set to
+`indent-and-new-item`, Markdown Mode will automatically
+insert a new list item.  (With this setting, if you wanted
+to insert a literal newline you can use `C-q C-j`.)
+
+``` markdown
+- list item
+    - nested list item
+    - █
+```
+
 ## Code Blocks
 
 Markdown Mode supports indented code blocks (pre blocks) as well as
