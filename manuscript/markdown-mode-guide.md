@@ -985,7 +985,7 @@ character, you can set `markdown-blockquote-display-char`.
 
 `markdown-blockquote-display-char`
 
-: String, default: "▌".
+: String, default: 0x258C (left half block)
 
     Character displayed when hiding blockquote markup.
 
