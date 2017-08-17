@@ -1078,6 +1078,16 @@ deeper level of nesting, and 4) adding a nested indented code block.
 Outdenting is handled similarly when `DEL` (backspace) is pressed at
 the beginning of the non-whitespace portion of a line.
 
+If you so desire, you can fully customize this behavior by writing
+your own indentation function and setting the variable
+`markdown-indent-function` appropriately.
+
+`markdown-indent-function`
+
+:   Function, default: `markdown-indent-line`.
+
+    Function to use for automatic indentation.
+
 ### The Return Key
 
 When the point is at the end of a (potentially nested) list item, code
@@ -1127,6 +1137,14 @@ to insert a literal newline you can use `C-q C-j`.)
     - nested list item
     - █
 ```
+
+`markdown-indent-on-enter`
+
+:   `nil`, `t`, or `` `indent-and-new-item ``, default: `t`.
+
+    When non-`nil`, automatically indent new lines when the enter key
+    is pressed.  When set to `` `indent-and-new-item ``, additionally
+    insert a new list item marker if the point was in a list item.
 
 ### Shifting the Region
 
