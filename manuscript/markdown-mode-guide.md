@@ -1602,6 +1602,12 @@ reference will be inserted according to the value of
 added to the end of the reference definition and will be used
 to populate the title attribute when converted to HTML.
 
+You can use `C-c C-d` (`markdown-do`) to jump between reference labels
+and reference definitions.  If more than one link uses the same
+reference label, a window will be shown containing clickable buttons
+for jumping to each link.  Pressing `TAB` or `S-TAB` cycles between
+buttons in this window.
+
 T> Note that these interactive functions can be used to convert links
 T> and images from one type to another (inline, reference, or plain
 T> URL) by selectively adding or removing properties via the
@@ -1744,7 +1750,8 @@ W> Footnotes are an extension to Markdown and are not supported by all
 W> processors.
 
 As with reference links, you can customize the location of footnote
-definitions.
+definitions.  Similarly, you can use `C-c C-d` (`markdown-do`) to jump
+between footnote markers and footnote definitions.
 
 `markdown-footnote-location`
 
