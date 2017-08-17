@@ -1762,6 +1762,40 @@ between footnote markers and footnote definitions.
     the end of the current subtree (`subtree`), or before the next
     header (`header`).
 
+## Task List Items (Checkboxes)
+
+GitHub Flavored Markdown (GFM) defines a syntax for checkboxes, called
+task lists, which is a straightforward and backwards-compatible
+modification of Markdown's unordered list syntax.
+
+``` text
+- [ ] Incomplete task
+- [x] Completed task
+```
+
+By default, Markdown Mode activates these checkboxes so that they can
+be clicked using the mouse, or by pressing `RET` when the point is at
+a checkbox.  You can also toggle checkboxes using either the dedicated
+toggle command `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) or
+the context-specific command `C-c C-d` (`markdown-do`).
+
+`markdown-make-gfm-checkboxes-buttons`
+
+:   Boolean, default: `t`.
+
+    Whether GitHub Flavored Markdown style task lists (checkboxes)
+    should be turned into buttons that can be toggled with `mouse-1`
+    or `RET`.  When non-`nil`, then buttons are enabled.  This works
+    in `markdown-mode` as well as `gfm-mode`.
+
+`markdown-gfm-uppercase-checkbox`
+
+:   Boolean, default: `nil`
+
+    When non-nil, complete GFM task list items with `[X]` instead of
+    `[x]`.  This is useful for compatibility with Org Mode, which
+    doesn't recognize the lowercase form.
+
 ## Subscripts and Superscripts
 
 [Pandoc][pd] and [MultiMarkdown][mu]—two of the most popular Markdown
