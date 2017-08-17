@@ -1966,6 +1966,20 @@ T> wrapper.
 :   Additional content to include in the XHTML `<head>` block
     (default: `""`).
 
+`markdown-before-export-hook`
+
+:   List of functions, default: `nil`.
+
+    Hook run before running `markdown-command` to export HTML output.
+    The hook may modify the buffer, which will be restored to the
+    original state after exporting is complete.
+
+`markdown-after-export-hook`
+
+:   List of functions, default: `nil`.
+
+    Hook run after HTML output has been saved.  Any changes to the
+    output buffer made by this hook will be saved.
 
 # Extensions {#extensions}
 
@@ -2078,6 +2092,9 @@ a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 </style>")
 ```
+
+For more advanced customization, there are two export hooks available:
+`markdown-before-export-hook` and `markdown-after-export-hook`.
 
 
 ## Customizing the Heading Faces
