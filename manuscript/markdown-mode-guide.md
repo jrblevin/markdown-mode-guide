@@ -1138,12 +1138,15 @@ T> will also work with `ido`, `ivy`, and `helm`.
 Another way to insert a GFM code block is to use the _electric
 backquote_ feature, which is enabled by default.  When this setting is
 enabled, pressing `` ` `` three times triggers
-`markdown-insert-gfm-code-block` automatically.
+`markdown-insert-gfm-code-block` automatically.  Currently this
+ony happens when in `gfm-mode`.
 
 `markdown-gfm-use-electric-backquote`
 
-:   When non-nil, trigger interactive insertion of GFM code blocks
-    when backquote is pressed three times (default: `t`).
+:   Boolean, default: `t`.
+
+    When non-nil, trigger interactive insertion of GFM code blocks
+    when backquote is pressed three times.
 
 Additionally, you can augment the list of known language names by
 setting `markdown-gfm-additional-languages` and you can indicate a
@@ -1152,23 +1155,38 @@ preference for lowercase language identifiers with
 
 `markdown-gfm-additional-languages`
 
-:   A list containing additional languages to make available, aside
+:   List of strings, default: `nil`.
+
+    This variable contains additional languages to make available, aside
     from those predefined in `markdown-gfm-recognized-languages`, when
-    inserting GFM code blocks (default: `nil`).  Language strings must
-    have be trimmed of whitespace and not contain curly braces.  They
-    may be of arbitrary capitalization.
+    inserting GFM code blocks.  Language strings must have be trimmed
+    of whitespace and not contain curly braces.  They may be of
+    arbitrary capitalization.
+
+    Example:
+
+    ```
+    (setq markdown-gfm-additional-languages '("Texinfo" "Zimbu"))
+    ```
 
 `markdown-gfm-downcase-languages`
 
-:   When non-nil, `downcase` suggested programming language names
-    (default: `t`).
+:   Boolean, default: `t`.
+
+    When non-`nil`, `downcase` suggested programming language names.
 
 `markdown-spaces-after-code-fence`
 
-:   Integer, default: 1.
+:   Integer, default: `1`.
 
     Number of space characters to insert between code fences
     and programming language name.
+
+    Example:
+
+    ```
+    (setq markdown-spaces-after-code-fence 0)
+    ```
 
 ### Tilde-Fenced Code Blocks
 
