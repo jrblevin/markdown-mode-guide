@@ -1331,7 +1331,25 @@ location of reference links and the type of URLs recognized automatically.
 
 ## Comments
 
-<!-- FIXME: Write comments section -->
+Although there is no official syntax for comments in Markdown, since
+it is most often converted to HTML the most natural comment syntax is that
+used in HTML: `<!-- comment -->`.  You can use the usual Emacs commands
+in Markdown Mode for commenting and uncommenting:
+
+`M-;` (`comment-dwim`)
+
+:   Insert or align comment on current line.  If `transient-mark-mode`
+    is on and the region is active, invoke `comment-region` instead
+    (unless the region is a block comments, in which case invoke
+    `uncomment-region`).
+
+`C-x C-;` (`comment-line`)
+
+:   Comment or uncomment current line.
+
+`C-u M-;` (`comment-kill`)
+
+:   Kill comment on current line.
 
 ## Line Breaks
 
