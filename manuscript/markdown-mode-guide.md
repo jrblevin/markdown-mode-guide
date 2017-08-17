@@ -2232,6 +2232,16 @@ the final `e` is for _equation_.  Imporantly, this is _not_ full
 LaTeX support.  It only involves font lock and only expressions
 delimited by `$..$`, `$$..$$`, or `\[..\]` are supported.
 
+``` text
+A simple equation for a line in $\mathbb{R}^2$:
+
+\[ y = mx + b \]
+
+Again, but with dollar signs:
+
+$$ y = mx + b $$
+```
+
 Alternatively, you can enable this by default by setting
 `markdown-enable-math` to a non-`nil` value.  You can do this on a
 file-by-file basis using [File Local Variables](#file-local).  Or you can enable
