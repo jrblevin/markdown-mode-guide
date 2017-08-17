@@ -1404,8 +1404,8 @@ I> your local configuration.
 
 ## Emphasis: Bold & Italic
 
-To emphasize or _italicize_ text, enclose it between asterisks or
-underscores:
+To emphasize or _italicize_ text in Markdown, enclose it between
+asterisks or underscores:
 
 ```
 *emphasis* or _emphasis_
@@ -1418,19 +1418,52 @@ or two underscores:
 **bold** or __bold__
 ```
 
-The use of asterisks or underscores for italicized or bold text is a
-personal preference, and Markdown Mode lets you customize the default
-choice used for inserting new markup.
+In Markdown Mode, `C-c C-s i` (`markdown-insert-italic`) inserts
+markup to make the region or a word italic.  Like other commands, it
+works as follows.  If `transient-mark-mode` is on and there is an
+active region, it wraps the region in italic markers (asterisks by
+default, or optionally underscores).  Else, if the point is at a
+non-italic word, make the word italic, or if the point is at an italic
+word or phrase, remove (toggle) the markup.  Otherwise, simply insert
+italic markup and place the point in between them.
 
-`markdown-bold-underscore`
+Similarly, use `C-c C-s b` (`markdown-insert-bold`) for bold text.
+This command works in exactly the same way as
+`markdown-insert-italic`.
 
-:   Set to a non-nil value to use two underscores when inserting bold
-    text instead of two asterisks (default: `nil`).
+Like the three possible list markers, the use of asterisks or
+underscores for italic or bold text is a personal preference in
+Markdown.  Markdown Mode lets you customize the default choice
+for inserting new markup, via the two variables described below.
+You can also _toggle_ between asterisks and underscores using the
+promotion and demotion commands, `C-c C--` and `C-c C-=`
+(`markdown-promote` and `markdown-demote`).
 
 `markdown-italic-underscore`
 
-:   Set to a non-nil value to use underscores when inserting italic
-    text instead of asterisks (default: `nil`).
+:   Boolean, default: `nil`.
+
+    Set to a non-`nil` value to use underscores instead of astersisk
+    when inserting markup for italic text.
+
+    Example:
+
+    ``` emacs-lisp
+    (setq markdown-italic-underscore t)
+    ```
+
+`markdown-bold-underscore`
+
+:   Boolean, default: `nil`.
+
+    Set to a non-`nil` value to use two underscores instead of two
+    asterisks when inserting markup for bold text.
+
+    Example:
+
+    ``` emacs-lisp
+    (setq markdown-italic-underscore t)
+    ```
 
 ## Inline Code
 
