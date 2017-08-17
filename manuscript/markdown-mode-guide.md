@@ -955,7 +955,17 @@ each line with a number followed by a period:
 2. Another item in an enumerated list
 ```
 
-<!-- FIXME: discuss nested lists -->
+To create a _nested list_, use four spaces to indent the markers of
+subordinate items (and this four-space convention will show up again,
+for creating code blocks).  You may change list markers if you wish to
+add more visual distinction.  Note that it is the marker indentation
+that matters, not the whitespace following the marker.
+
+```
+*   An item in a bulleted (unordered) list
+
+    *   A sub-item in a nested list
+```
 
 ### Creating and Editing Lists
 
