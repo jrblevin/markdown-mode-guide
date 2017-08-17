@@ -1045,11 +1045,37 @@ details.
 
 ## Indentation
 
+### The Tab Key
+
+Markdown Mode attempts to be flexible in how it handles indentation.
+When you press `TAB` repeatedly, the point will cycle through several
+possible indentation levels corresponding to locations you might have
+in mind.  For example, you may want to start a new list item, continue
+a list item with hanging indentation, indent for a nested pre block,
+and so on.
+
+``` markdown
+- list item
+    - nested list item
+█
+5   1 2 3   4
+```
+
+The numbers in the block represent the indentation positions that are
+cycled through following a nested list, when the point is at the block
+as shown.  In order, these positions would be appropriate for 1)
+starting a new nested list item, 2) continuing the nested list item
+with indentation past the marker, 3) starting a list item with a
+deeper level of nesting, and 4) adding a nested indented code block.
+
+Outdenting is handled similarly when `DEL` (backspace) is pressed at
+the beginning of the non-whitespace portion of a line.
+
 ### The Return Key
 
-When the point is at the end of a (potentially nested) list item and
-you press `RET`, what happens next depends on the value of
-`markdown-indent-on-enter`.
+When the point is at the end of a (potentially nested) list item, code
+block, etc. and you press `RET`, what happens next depends on the
+value of `markdown-indent-on-enter`.
 
 ``` markdown
 - list item
