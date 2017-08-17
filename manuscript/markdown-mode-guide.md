@@ -2256,6 +2256,83 @@ should restart Emacs or call `markdown-reload-extensions`.
     Enable syntax highlighting for LaTeX expressions.
 
 
+## GitHub Flavored Markdown (GFM) Mode {#gfm}
+
+A [GitHub Flavored Markdown][GFM] mode, or GFM Mode, is also available
+as `gfm-mode`.  The GitHub implementation of Markdown differs slightly
+from standard Markdown in that it supports things like different
+behavior for underscores inside of words, automatic linking of URLs,
+strikethrough text, and fenced code blocks with an optional language
+keyword.  Many of these extensions have been discussed above, but
+here we address them collectively in relation to `gfm-mode`.
+
+On GitHub, the GFM-specific features above apply to `README.md` files,
+wiki pages, and other Markdown-formatted files in repositories on
+GitHub.  GitHub also enables [additional features][GFM comments] for writing on
+the site (for issues, pull requests, messages, etc.)  that are further
+extensions of GFM.  These features include task lists (checkboxes),
+newlines corresponding to hard line breaks, auto-linked references to
+issues and commits, wiki links, and so on.  To make matters more
+confusing, although task lists are not part of [GFM proper][GFM],
+[since 2014][] they are rendered (in a read-only fashion) in all
+Markdown documents in repositories on the site.  These additional
+extensions are supported to varying degrees by Markdown Mode and GFM
+Mode as described below.
+
+* **URL autolinking:**  Both Markdown Mode and GFM Mode support
+  highlighting of URLs without angle brackets.
+
+* **Underscores inside words:**  You must enable GFM Mode to
+  toggle support for underscores inside of words. In this mode
+  variable names such as `a_test_variable` will not trigger
+  emphasis (italics).
+
+* **Fenced code blocks:**  Code blocks between backquotes (`` ` ``),
+  with optional programming language keywords, are highlighted in both
+  Markdown Mode and GFM Mode.  They can be inserted with `C-c C-s C`
+  (`markdown-insert-gfm-code-block`) or by typing three backquotes
+  when `markdown-electric-backquote` is non-`nil`.
+
+* **Strikethrough:**  Strikethrough text is only supported in GFM Mode
+  and can be inserted (and toggled) using `C-c C-s s`
+  (`markdown-insert-strike-through`).
+
+* **Task lists:**  GFM task lists will be rendered as checkboxes (Emacs
+  buttons) in both Markdown Mode and GFM Mode when
+  `markdown-make-gfm-checkboxes-buttons` is set to a non-nil value
+  (and this variable is `t` by default).  These checkboxes can be
+  toggled by clicking `mouse-1`, pressing `RET` over the button, or by
+  pressing either `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) or
+  `C-c C-d` (`markdown-do`) with the point anywhere in the task list
+  item.
+
+* **Wiki links:**  Generic wiki links are supported in
+  Markdown Mode, but in GFM Mode specifically they will be
+  treated as they are on GitHub: spaces will be replaced by hyphens
+  in file names and the first letter of the file name will be
+  capitalized.  For example, `[[wiki link]]` will map to a file
+  named `Wiki-link` with the same extension as the current file.
+
+* **Newlines:**  Neither Markdown Mode nor GFM Mode do anything
+  specifically with respect to newline behavior.  If you use
+  GFM Mode mostly to write text _for comments or issues_ on the
+  GitHub site---where newlines are indeed significant and correspond
+  to hard line breaks---then you may want to enable `visual-line-mode`
+  for line wrapping in buffers.  You can do this with a
+  `gfm-mode-hook` as follows:
+
+  ``` emacs-lisp
+  ;; Use visual-line-mode in gfm-mode
+  (defun my-gfm-mode-hook ()
+    (visual-line-mode 1))
+  (add-hook 'gfm-mode-hook 'my-gfm-mode-hook)
+  ```
+
+* **Preview:**  GFM-specific preview can be powered by setting
+  `markdown-command` to use [Docter][dr].  This may also be
+  configured to work with [Marked 2][m2] for `markdown-open-command`.
+
+
 # Tips & Tricks {#tips}
 
 ## Switching and Toggling Markup
@@ -4088,6 +4165,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [cm]: http://criticmarkup.com
 [df]: https://daringfireball.net
 [dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
+[dr]: https://github.com/alampros/Docter
 [du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
 [ei]: https://github.com/Fanael/edit-indirect/
 [el]: https://jblevins.org/projects/markdown-mode/markdown-mode.el
