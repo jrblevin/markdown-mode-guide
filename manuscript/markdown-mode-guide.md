@@ -2258,7 +2258,7 @@ should restart Emacs or call `markdown-reload-extensions`.
 
 ## GitHub Flavored Markdown (GFM) Mode {#gfm}
 
-A [GitHub Flavored Markdown][GFM] mode, or GFM Mode, is also available
+A [GitHub Flavored Markdown][gf] mode, or GFM Mode, is also available
 as `gfm-mode`.  The GitHub implementation of Markdown differs slightly
 from standard Markdown in that it supports things like different
 behavior for underscores inside of words, automatic linking of URLs,
@@ -2268,13 +2268,13 @@ here we address them collectively in relation to `gfm-mode`.
 
 On GitHub, the GFM-specific features above apply to `README.md` files,
 wiki pages, and other Markdown-formatted files in repositories on
-GitHub.  GitHub also enables [additional features][GFM comments] for writing on
+GitHub.  GitHub also enables [additional features][gc] for writing on
 the site (for issues, pull requests, messages, etc.)  that are further
 extensions of GFM.  These features include task lists (checkboxes),
 newlines corresponding to hard line breaks, auto-linked references to
 issues and commits, wiki links, and so on.  To make matters more
-confusing, although task lists are not part of [GFM proper][GFM],
-[since 2014][] they are rendered (in a read-only fashion) in all
+confusing, although task lists are not part of [GFM proper][gf],
+[since 2014][gd] they are rendered (in a read-only fashion) in all
 Markdown documents in repositories on the site.  These additional
 extensions are supported to varying degrees by Markdown Mode and GFM
 Mode as described below.
@@ -4172,6 +4172,8 @@ syntax highlighting and element insertion commands for Markdown files.
 [em]: https://www.gnu.org/software/emacs/
 [fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
 [fl]: https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html
+[gc]: https://help.github.com/articles/writing-on-github/
+[gd]: https://github.com/blog/1825-task-lists-in-all-markdown-documents
 [gf]: http://github.github.com/github-flavored-markdown/
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
