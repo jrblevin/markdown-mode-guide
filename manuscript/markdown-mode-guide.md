@@ -2023,35 +2023,68 @@ T> wrapper.
 ## Wiki Links
 
 Besides supporting the basic Markdown syntax, Markdown Mode also
-includes syntax highlighting for `[[Wiki Links]]` by default.  Wiki
-links may be followed by pressing `C-c C-o` when the point is at a
-wiki link.  Use `M-p` and `M-n` to quickly jump to the previous and
-next links (including links of other types).  Aliased or piped wiki
-links of the form `[[link text|PageName]]` are also supported.  Since
-some wikis reverse these components, set
+supports syntax highlighting for `[[Wiki Links]]`.  Note that wiki
+links are an extension to Markdown and are not supported by all
+processors, so this support is disabled by default.  Support can be
+toggled with `M-x markdown-toggle-wiki-links` or by setting
+`markdown-enable-wiki-links`.
+
+To insert a wiki link, use `C-c C-s w` (`markdown-insert-wiki-link`).
+If `transient-mark-mode` is on and there is an active region, this
+command will use the region as the link text.  If the point is at a
+word, use the word as the link text.  If there is no active region and
+the point is not at word, it will simply insert empty link markup.
+
+Wiki links may be followed by pressing `C-c C-o` when the point is at
+a wiki link.  This will find the corresponding file in the current
+window, by default, or in another window with the `C-u` prefix.  As
+with regular links, you can use `M-p` and `M-n` to quickly jump to the
+previous and next links (including links of other types).
+
+Aliased or piped wiki links of the form `[[link text|PageName]]` are
+also supported.  Since some wikis reverse these components, set
 `markdown-wiki-link-alias-first` to nil to treat them as
 `[[PageName|link text]]`.
 
 By default, Markdown Mode only searches for target files in the
-current directory.  Sequential parent directory search can be
-enabled by setting `markdown-wiki-link-search-parent-directories`
-to a non-nil value.
+current directory.  Sequential parent directory search can be enabled
+by setting `markdown-wiki-link-search-parent-directories` to a non-nil
+value.
 
 ### Wiki Link Customization
 
+`markdown-enable-wiki-links`
+
+:   Boolean, default: `nil`.
+
+    Enable or disable syntax highlighting for wiki links.  Set this to
+    a non-`nil` value to enable wiki link support.  Wiki link
+    support can also be toggled using the function
+    `markdown-toggle-wiki-links`.
+
 `markdown-wiki-link-alias-first`
 
-:   Set to a non-nil value tomtreat aliased wiki links like
-    `[[link text|PageName]]` (default: `t`).  When set to `nil`,
+:   Boolean, default: `t`.
+
+    Set to a non-nil value tomtreat aliased wiki links like
+    `[[link text|PageName]]`.  When set to `nil`,
     they will be treated as `[[PageName|link text]]`.
 
 `markdown-link-space-sub-char`
 
-:   Character to replace spaces when mapping wiki links to filenames
-    (default: `"_"`).  For example, use an underscore for compatibility
-    with the Python Markdown WikiLinks extension.  In GFM Mode, this is
-    set to `"-"` to conform with GitHub wiki links.
+:   String, default: "_".
 
+    Character to replace spaces when mapping wiki links to filenames.
+    For example, use an underscore for compatibility with the Python
+    Markdown WikiLinks extension.  In GFM Mode, this is set to `"-"`
+    to conform with GitHub wiki links.
+
+`markdown-wiki-link-search-parent-directories`
+
+:   Boolean, default: `nil`.
+
+    When non-nil, search for wiki link targets in parent directories.
+    This is the default search behavior of the Ikiwiki engine.
 
 # Tips & Tricks {#tips}
 
