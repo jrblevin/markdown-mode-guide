@@ -45,9 +45,9 @@ If you are a seasoned Markdown Mode user, here is a quick reference table:
 | `kbd` tag                                           | `C-c C-s k`       |
 | Wiki link                                           | `C-c C-s w`       |
 | **Block Elements**                                  |                   |
-| Preformatted/code block (active region)             | `C-c C-s p`       |
+| Preformatted/code block                             | `C-c C-s p`       |
 | Preformatted/code block (region)                    | `C-c C-s P`       |
-| Blockquote (active region)                          | `C-c C-s q`       |
+| Blockquote                                          | `C-c C-s q`       |
 | Blockquote (region)                                 | `C-c C-s Q`       |
 | GFM code block                                      | `C-c C-s C`       |
 | Edit code block in indirect buffer                  | `C-c '`           |
@@ -700,10 +700,10 @@ remove the markup of the heading at the point, press `C-c C-k` to kill
 the heading and press `C-y` to yank the heading text back into the
 buffer.
 
-As with several other markup commands, the heading insertion commands
-use the text in the active region, if any, as the heading text.
-Otherwise, if the current line is not blank, they use the text on the
-current line.
+As with several other markup commands, if the region is active and
+`transient-mark-mode` is on, the heading insertion commands use the
+text in the region as the heading text.  Otherwise, if the current
+line is not blank, they use the text on the current line.
 
 I> Markdown.pl and several other processors allow one to omit the
 I> whitespace between the hash mark and the header text, but some
@@ -732,9 +732,13 @@ automatically and it can accept the same prefix arguments, but it uses
 setext (underlined) headings whenever possible (only for levels one
 and two).  To insert setext headings directly, use `C-c C-s !` for
 level one or `C-c C-s @` or level two.  Noting that `!` is `S-1` and
-`@` is `S-2` may make these commands easier to remember.  These setext
-heading insertion commands will prompt for heading text if there is no
-active region and the current line is blank.
+`@` is `S-2` may make these commands easier to remember.
+
+As with the atx heading commands, when the region is active and
+`transient-mark-mode` is enabled, the setext heading insertion
+commands will use the region as the heading text.  Next, if the
+line is not blank, the current line is transformed into a heading.
+Otherwise, the user is prompted to provide the heading text.
 
 T> If the alignment of the underline characters is not exactly right,
 T> as in the above examples, you can still keep things tidy.
@@ -974,15 +978,18 @@ each line with four spaces:
 
 To begin a new code block press `C-c C-s p` (`markdown-insert-pre`),
 where `p` refers to the HTML `<pre>` tag used to format such a block.
-This command works on an _active_ region also, so if you have marked a
-region of unindented code that you'd like to format as a code block,
-you can also use `markdown-insert-pre`.
+When `transient-mark-mode` is enabled, this command also works on the
+active region or inserts an empty code block otherwise.
 
-If you use `transient-mark-mode` (which is on by default in recent
-versions of Emacs), then the region is always active.  Otherwise, if
-you have a potentially inactive region (i.e., the text between the
-mark and the point) you can also format it as a code block using a
-separate command `C-c C-s P` (`markdown-pre-region`).
+If you want to specifically operate on the region, whether it is
+highlighted with `transient-mark-mode` or not, you can also format it
+as a code block using the separate region command `C-c C-s P`
+(`markdown-pre-region`).
+
+T> Region-specific commands such as this one are useful when you have
+T> just yanked some text and want to format it, say, as a code block.
+T> Upon yanking, the mark moved to the beginning of the yanked text
+T> and so the region is already set appropriately.
 
 ### GFM Code Blocks
 
