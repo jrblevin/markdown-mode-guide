@@ -1061,11 +1061,11 @@ and so on.
 5   1 2 3   4
 ```
 
-The numbers in the block represent the indentation positions that are
-cycled through following a nested list, when the point is at the block
-as shown.  In order, these positions would be appropriate for 1)
-starting a new nested list item, 2) continuing the nested list item
-with indentation past the marker, 3) starting a list item with a
+The numbers in the block above represent the indentation positions
+that are cycled through following a nested list, when the point is at
+the block as shown.  In order, these positions would be appropriate
+for 1) starting a new nested list item, 2) continuing the nested list
+item with indentation past the marker, 3) starting a list item with a
 deeper level of nesting, and 4) adding a nested indented code block.
 
 Outdenting is handled similarly when `DEL` (backspace) is pressed at
