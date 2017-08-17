@@ -969,18 +969,22 @@ that matters, not the whitespace following the marker.
 
 ### Creating and Editing Lists
 
-New list items can be inserted with `M-RET` or `C-c C-j`.  This
-command determines the appropriate marker (one of the possible
-unordered list markers or the next number in sequence for an ordered
-list) and indentation level by examining nearby list items.  If there
-is no list before or after the point, start a new list.  As with
-heading insertion, you may prefix this command by `C-u` to decrease
-the indentation by one level.  Prefix this command by `C-u C-u` to
-increase the indentation by one level.
+New list items can be inserted with `M-RET` or `C-c C-j`
+(`markdown-insert-list-item`).  This command determines the
+appropriate marker (one of the possible unordered list markers or the
+next number in sequence for an ordered list) and indentation level by
+examining nearby list items.  If there is no list before or after the
+point, start a new list.
 
-Existing list items (and their nested sub-items) can be moved up or
-down with `C-c <up>` or `C-c <down>` and indented or outdented with
-`C-c <right>` or `C-c <left>`.
+As with heading insertion, you may prefix `markdown-insert-list-item`
+by `C-u` to decrease the indentation by one level.  Prefix this
+command by `C-u C-u` to increase the indentation by one level.
+
+Existing list items (and their nested sub-items) can be moved up and
+down with `C-c <up>` and `C-c <down>` (`markdown-move-up` and
+`markdown-move-down`).  List items can also be indented and outdented
+with `C-c <right>` and `C-c <left>` (`markdown-promote` and
+`markdown-demote`).
 
 ### List Navigation
 
