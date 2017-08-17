@@ -1434,9 +1434,25 @@ W> all newlines correspond to hard line breaks.
 
 ## Footnotes
 
-  * `markdown-footnote-location` - where to insert footnote text
-    (default: `end`).  The set of location options is the same as
-    for `markdown-reference-location`.
+To insert a footnote, using an extension to the original Markdown syntax, press
+`C-c C-s f`.  This inserts a footnote marker such as `[^1]` at the point,
+inserts a footnote definition below, and positions the point for inserting
+the footnote text.
+
+W> Footnotes are an extension to Markdown and are not supported by all
+W> processors.
+
+As with reference links, you can customize the location of footnote
+definitions.
+
+`markdown-footnote-location`
+
+:   Determines where to insert footnote text (default: `end`).  The
+    set of location options is the same as for
+    `markdown-reference-location`: the possible locations are the end
+    of the document (`end`), after the current block (`immediately`),
+    the end of the current subtree (`subtree`), or before the next
+    header (`header`).
 
 ## Subscripts and Superscripts
 
