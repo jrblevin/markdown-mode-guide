@@ -2220,6 +2220,32 @@ value.
     When non-nil, search for wiki link targets in parent directories.
     This is the default search behavior of the Ikiwiki engine.
 
+
+## Mathematical Expressions (LaTeX)
+
+{width=33%}
+![LaTeX Math in Markdown Mode](images/math.png)
+
+Syntax highlighting for mathematical expressions written in LaTeX can
+be toggling with `C-c C-x C-e` (`markdown-toggle-math`), where
+the final `e` is for _equation_.  Imporantly, this is _not_ full
+LaTeX support.  It only involves font lock and only expressions
+delimited by `$..$`, `$$..$$`, or `\[..\]` are supported.
+
+Alternatively, you can enable this by default by setting
+`markdown-enable-math` to a non-`nil` value.  You can do this on a
+file-by-file basis using [File Local Variables](#file-local).  Or you can enable
+this setting globally, via `M-x customize` or by placing `(setq
+markdown-enable-math t)` in your startup file.  In that case you
+should restart Emacs or call `markdown-reload-extensions`.
+
+`markdown-enable-math`
+
+:   Boolean, default: `nil`.
+
+    Enable syntax highlighting for LaTeX expressions.
+
+
 # Tips & Tricks {#tips}
 
 ## Switching and Toggling Markup
@@ -2441,7 +2467,7 @@ Unlike the `imenu` Index menu, the `*Ilist*` buffer is updated
 automatically when Emacs is idle.
 
 
-## File Local Variables
+## File Local Variables {#file-local}
 
 Emacs allows one to [specify values for variables inside files
 themselves][fl].  For example, you can specify which mode Emacs should
