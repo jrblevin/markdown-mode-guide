@@ -839,6 +839,27 @@ subtree:
 2. child headings visible,
 3. all subsections and subheadings fully visible.
 
+### Subtree Editing
+
+Entire subtrees of ATX headings can be promoted and demoted with
+`C-c <left>` and `C-c <right>` (`markdown-promote` and
+`markdown-demote`).  Conveniently, these are the same keybindings used
+for promotion and demotion of list items.  If the point is in a list
+item, they operate on the list item.  Otherwise, they operate on the
+current heading subtree.  Similarly, subtrees can be moved up and down
+with `C-c <up>` and `C-c <down>` (`markdown-move-up` and
+`markdown-move-down`).
+
+W> These commands currently do not work properly if there are setext
+W> headings in the region.
+
+Note the following "boundary" behavior for promotion and demotion.
+Any level-six headings will not be demoted further (i.e., they remain
+at level six, since Markdown and HTML do not define more than six
+levels of headings) and any level-one headings will promoted away
+entirely (i.e., heading markup will be removed, since a level-zero
+heading is not defined).
+
 ### Header Customization
 
 Markdown Mode distinguishes between *symmetric* and *asymmetric* atx
@@ -1015,8 +1036,8 @@ command by `C-u C-u` to increase the indentation by one level.
 Existing list items (and their nested sub-items) can be moved up and
 down with `C-c <up>` and `C-c <down>` (`markdown-move-up` and
 `markdown-move-down`).  List items can also be indented and outdented
-with `C-c <right>` and `C-c <left>` (`markdown-promote` and
-`markdown-demote`).
+with `C-c <right>` and `C-c <left>` (`markdown-demote` and
+`markdown-promote`).
 
 ### List Navigation
 
