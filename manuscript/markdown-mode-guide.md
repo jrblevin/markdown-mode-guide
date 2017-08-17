@@ -710,6 +710,8 @@ Second section text.  No closing hash mark here.
 Third section text.
 ```
 
+### Inserting & Replacing Headings
+
 There are two options for inserting or replacing headings: You can
 either insert a heading of a specific level directly or let Markdown
 Mode determine the level and type for you.  To insert a heading of a
