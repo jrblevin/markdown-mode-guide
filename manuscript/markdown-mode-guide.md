@@ -1863,8 +1863,8 @@ _Previewing_ the current buffer with `C-c C-c p` runs Markdown on the
 current buffer, stores the output in a temporary file, and opens or
 "previews" the file in the default browser.
 
-T> See the Tips section for details on how to configure the default
-T> browser in Emacs.
+T> See the [Tips](#tips) section for details on how to configure the
+T> default browser in Emacs.
 
 ## Static HTML Export & View
 
