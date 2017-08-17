@@ -865,10 +865,19 @@ preference by setting the `markdown-asymmetric-header` variable.
 
     Determines if atx header style will be asymmetric.
 
-    Set to a non-nil value to use asymmetric header styling, placing
-    header markup only at the beginning of the line. By default,
-    balanced markup will be inserted at the beginning and end of the
-    line around the header title.
+    When `nil`, balanced markup will be inserted at the beginning and
+    end of the line around the header title.
+
+    ```
+    ## Heading ##
+    ```
+
+    Set to a non-`nil` value to use asymmetric header styling, placing
+    header markup only at the beginning of the line.
+
+    ```
+    ## Heading
+    ```
 
 The default is to use symmetric atx headers, but if you prefer the
 asymmetric styling then you can either change this variable in the
