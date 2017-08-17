@@ -1815,6 +1815,19 @@ author = "Jason R. Blevins"
 ---
 ```
 
+## Markdown Do
+
+Inspired by Org Mode, Markdown Mode has a command---`C-c C-d`
+(`markdown-do`)---for doing something sensible with the object at the
+point.  Depending on the context, it does the following:
+
+*   Jumps between reference links and reference definitions.
+
+*   Jumps between footnote markers and footnote text.
+
+*   Toggles the completion status of GFM task list items (checkboxes).
+
+
 ## Markup Promotion & Demotion
 
 Markdown Mode allows certain markup (headings, for example) to be
