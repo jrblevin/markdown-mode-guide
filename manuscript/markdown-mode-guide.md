@@ -662,6 +662,28 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 | `C-c C-c` | *C*ommands             |
 | `C-c C-x` | Toggles                |
 
+The following sections describe many commands for inserting
+markup---for headings, blockquotes, lists, source code, and so
+on---and many of these commands behave differently depending on
+whether `transient-mark-mode` is enabled or not.  When it makes sense,
+if `transient-mark-mode` is on and there is an active region, the
+command applies to the text in the region.  For example, `C-c C-s b`
+would make the region bold.  When this is not the case, many commands
+then proceed to work with either the word at the point (e.g., for
+italics) or the current line (e.g., for headings).
+
+There are also some parallel commands that act specifically on the
+region, even when `transient-mark-mode` is disabled.  These commands
+have the same keybinding as their standard counterparts, but use an
+uppercase letter instead.  For example, `markdown-insert-blockquote`
+is bound to `C-c C-s q` and only acts on the region in
+`transient-mark-mode` while `markdown-blockquote-region` is bound to
+`C-c C-s Q` and always applies to the region.
+
+T> For users who prefer to work _without_ `transient-mark-mode`,
+T> conveniently since Emacs 22 it can be enabled temporarily by pressing
+T> `C-SPC C-SPC`.
+
 ## Headings
 
 Headings in Markdown can be defined using either of two formats:
