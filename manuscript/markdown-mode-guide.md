@@ -1460,6 +1460,17 @@ place the text between backquotes (`` ` ``) like so:
 This is inline code: `printf("hello, world\n");`
 ```
 
+To insert inline code in Markdown Mode, use `C-c C-s c`
+(`markdown-insert-code`).  This command works for both insertion and
+toggling and it uses the region when appropriate, just like the
+commands for bold and italics describe above.
+
+T> Because Markdown is often used for technical documentation (e.g.,
+T> README files on GitHub), Markdown Mode also provides `C-c C-s k`
+T> (`markdown-insert-kbd`) for inserting HTML `<kbd>` tags, for which
+T> there is no Markdown equivalent.  In terms of font lock, it treats
+T> `<kbd>` tags like inline code.
+
 ## Links & Images
 
 To create simple links, you can simply place a URL or email address
