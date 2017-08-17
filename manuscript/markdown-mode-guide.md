@@ -238,10 +238,10 @@ following links:
 
 <!-- FIXME: Update version number and release date. -->
 
-As of this writing, the latest stable version is Markdown Mode version
-2.3, released on **[RELEASE DATE]**.  See the [release notes][v2.3] for
-details.  A complete listing of release notes can also be found
-in [the appendix](#release-notes).
+As of this writing, the latest stable release of Markdown Mode is
+version 2.3, released on **[RELEASE DATE]**.  For a additional
+details, a complete listing of [Release Notes](#release-notes) can be found in the
+Appendix.
 
 Markdown Mode was originally written and is still maintained
 by [Jason Blevins][jb].  The initial release, version 1.1, was created on
@@ -253,20 +253,6 @@ revisions starting at 1.1 by default.  After version 1.5, the source
 was moved to Git, where it still resides today.  See the chapter
 on [Markdown Mode Development](#devel) for instructions to obtain the source
 code.
-
-  * 2007-05-24: [Version 1.1][v1.1]
-  * 2007-05-25: [Version 1.2][v1.2]
-  * 2007-06-05: [Version 1.3][v1.3]
-  * 2007-06-29: [Version 1.4][v1.4]
-  * 2007-10-11: [Version 1.5][v1.5]
-  * 2008-06-04: [Version 1.6][v1.6]
-  * 2009-10-01: [Version 1.7][v1.7]
-  * 2011-08-12: [Version 1.8][v1.8]
-  * 2011-08-15: [Version 1.8.1][v1.8.1]
-  * 2013-01-25: [Version 1.9][v1.9]
-  * 2013-03-24: [Version 2.0][v2.0]
-  * 2016-01-09: [Version 2.1][v2.1]
-  * 2017-05-26: [Version 2.2][v2.2]
 
 ## Acknowledgments
 
