@@ -2018,6 +2018,36 @@ to a non-nil value.
 
 # Tips & Tricks {#tips}
 
+## Switching and Toggling Markup
+
+There are a couple of ways to quickly switch or toggle markup in
+Markdown Mode (e.g., from bold to italics).  As an example, suppose
+you type `**italics**` and want to change it to `*italics*`.  You can
+quickly fix the mistake in at least two ways.
+
+1. *Using the kill ring:* Move the point to the bold phrase and press
+   `C-c C-k` to execute `markdown-kill-thing-at-point`.  This removes
+   the bold span and the text and adds "italics", without the
+   asterisks, to the kill ring.  Then press `C-c C-s e` to insert an
+   empty italic span and yank in the "italics" text with `C-y`.
+
+2. *Using markup toggling:*  Markdown Mode allows you to "toggle"
+   certain markup, including, bold, italics, and inline code, by
+   repeating the insertion command.  Returning to the example, you can
+   press `C-c C-s b` to first remove (toggle) the bold asterisks,
+   leaving "italics" behind.  Then, pressing `C-c C-s i` adds single
+   asterisks the italic markup to the word.
+
+These methods also apply to other forms of markup such as inline code
+and even links.
+
+Suppose instead that you have `__bold__` in the buffer and want to use
+asterisks instead.  Both will render in HTML as bold, but you might
+have a preference for the latter in plain text.  You can use the
+Markdown Mode cycling commands to switch between underscores and
+asterisks in bold and italic phrases by pressing either `C-c C--` or
+`C-c C-=` (`markdown-promote` or `markdown-demote`).
+
 ## Linking to or Including Custom CSS
 
 The default stylesheet for HTML in most browsers is rather
