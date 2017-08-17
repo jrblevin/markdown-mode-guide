@@ -1692,11 +1692,11 @@ the beginning of a file and is indicated by percent signs:
 % date
 ```
 
-Finally, Markdown Mode supports YAML metadata blocks that can occur
-anywhere in the document.  YAML metadata blocks begin with a line of
-three hyphens (`---`) and end with either a line of three hyphens
-(`---`) or three dots (`...`).  Pandoc and GitHub, among other
-systems, support YAML metadata.
+Finally, Markdown Mode supports YAML and TOML metadata blocks that can
+occur anywhere in the document.  YAML and TOML metadata blocks begin
+with a line of three hyphens (`---`) and end with either a line of
+three hyphens (`---`) or three dots (`...`).  Pandoc, GitHub, and
+Jekyll, among other systems, support YAML metadata.
 
 ```
 ---
@@ -1704,6 +1704,15 @@ title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
 date: August 2017
 tags: Emacs, markdown, markdown-mode, writing, plain text
+---
+```
+
+Some website generators, such as Hugo, also support TOML metadata.
+
+```
+---
+title = "Guide to Markdown Mode for Emacs"
+author = "Jason R. Blevins"
 ---
 ```
 
