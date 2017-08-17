@@ -1570,7 +1570,7 @@ link text to see the URL.
 :   Character, default: `∞`.
 
     Placeholder character for hidden URLs.  Depending on your font,
-    some other good choices are …, ⋯, #, ∞, ★, and ⚓.
+    some other good choices are `…`, `⋯`, `#`, `∞`, `★`, and `⚓`.
 
 T> The interactive link and image commands (`C-c C-l` and `C-c C-i`)
 T> are especially useful when markup or URL hiding is enabled, in
