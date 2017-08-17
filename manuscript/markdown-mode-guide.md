@@ -1128,6 +1128,17 @@ to insert a literal newline you can use `C-q C-j`.)
     - █
 ```
 
+### Shifting the Region
+
+Text in the region can be indented or outdented as a group using
+`C-c >` (`markdown-indent-region`) to indent to the next indentation
+point calculated in the current context, as discussed above), and
+`C-c <` (`markdown-outdent-region`) to outdent to the previous
+indentation point.
+
+T> These keybindings are the same as those for the corresponding
+T> commands in `python-mode`.
+
 ## Code Blocks
 
 Markdown Mode supports indented code blocks (pre blocks) as well as
