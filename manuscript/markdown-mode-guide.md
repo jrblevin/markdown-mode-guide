@@ -1543,6 +1543,43 @@ To follow a link using the keyboard, press `C-c C-o` when the point is
 on an inline or reference link to open the URL in a browser.  Use `M-p` and
 `M-n` to quickly jump to the previous or next link of any type.
 
+### URL Hiding {#url-hiding}
+
+It is possible to hide URLs for inline and reference links while
+keeping other markup visible.  When URL hiding is enabled, the URL
+portion of links will be displayed as a single, customizable character
+(`∞` by default).  That is, URLs will appear as `[link](∞)` instead of
+`[link](long/url)`.  This feature can be toggled as needed using `C-c
+C-x C-l` (`markdown-toggle-url-hiding`) or from the Markdown menu.
+To change the placeholder (composition) character used, set the
+variable `markdown-url-compose-char`.
+
+URL hiding is accomplished using _composition_, so the URLs are still
+part of the buffer.  When URL hiding is enabled, the link properties
+will be displayed in the minibuffer along with a hint to use `C-c C-l`
+for editing the link.  You can also edit URLs directly, for example,
+by deleting the final parenthesis, which removes the composition
+property.  Finally, you can also hover your mouse pointer over the
+link text to see the URL.
+
+`markdown-hide-urls`
+
+:   Boolean, default: `nil`.
+
+    Determines whether URL and reference labels are hidden for inline
+    and reference links.
+
+`markdown-url-compose-char`
+
+:   Character, default: `∞`.
+
+    Placeholder character for hidden URLs.  Depending on your font,
+    some other good choices are …, ⋯, #, ∞, ★, and ⚓.
+
+T> The interactive link and image commands (`C-c C-l` and `C-c C-i`)
+T> are especially useful when markup or URL hiding is enabled, in
+T> which case URLs can't easily be edited directly.
+
 ### Link & Image Customizations
 
 Certain aspects of link and image insertion can be customized, such as
@@ -1792,6 +1829,11 @@ with different bullets for different nested list levels. Horizontal
 rules and blockquotes will also be styled nicely.
 
 ![Markup Hiding in Markdown Mode](images/markup-hiding.png)
+
+Note that markup hiding supersedes [URL hiding](#url-hiding).  With
+markup hiding, the URL and surrounding markup is hidden entirely,
+while with URL hiding, only the URL itself is replaced by a
+composition character.
 
 I> Markup hiding works by adding text properties to positions in the
 I> buffer---either the `invisible` property or the `display` property
