@@ -2223,7 +2223,7 @@ value.
 
 ## Mathematical Expressions (LaTeX)
 
-{width=33%}
+{width=60%}
 ![LaTeX Math in Markdown Mode](images/math.png)
 
 Syntax highlighting for mathematical expressions written in LaTeX can
