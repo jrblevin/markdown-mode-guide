@@ -466,19 +466,6 @@ a few settings that users should usually customize.  The most important
 is the `markdown-command` variable, which tells Markdown Mode where to
 find an external program for converting Markdown to HTML on your system.
 
-When in Markdown Mode, the `M-x customize-mode` command provides an
-interface to all of the possible customizations.  If you are currently
-using a different mode, then you'll need to be more specific: `M-x
-customize-mode RET markdown-mode`.  Alternatively, you can customize
-variables using `M-x customize-group RET markdown` (i.e., by
-customizing the *group* rather than the *mode*).
-
-![Markdown Customize Group](images/customize-group-markdown.png)
-
-T> If you use this built-in customize interface, be sure to save your
-T> changes before closing the buffer by clicking the "Apply and Save"
-T> button.
-
 ### Markdown Command
 
 The main variable you'll most likely need to customize is
@@ -614,6 +601,28 @@ pass the name of the file as the final command line argument to
 `markdown-command`.  Note that in the latter case, you will only be
 able to run `markdown-command` from buffers which are visiting a file.
 
+## Customization
+
+When in Markdown Mode, the `M-x customize-mode` command provides an
+interface to all of the possible customizations.  If you are currently
+using a different mode, then you'll need to be more specific: `M-x
+customize-mode RET markdown-mode`.  Alternatively, you can customize
+variables using `M-x customize-group RET markdown` (i.e., by
+customizing the _group_ rather than the _mode_).
+
+![Markdown Customize Group](images/customize-group-markdown.png)
+
+T> If you use this built-in customize interface, be sure to save your
+T> changes before closing the buffer by clicking the "Apply and Save"
+T> button.
+
+Additionally, the faces used for font lock (syntax highlighting)
+can be modified to your liking---the font family, color,
+size, and so on---by issuing `M-x customize-group RET
+markdown-faces` or by using the "Markdown Faces" link at the
+bottom of the mode customization screen.
+
+![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 # Movement & Editing {#editing}
 
@@ -1808,13 +1817,7 @@ a:hover { text-decoration: underline; }
 
 ## Customizing the Heading Faces
 
-To customize the faces used in Markdown Mode---the font family, color,
-size, and so on---you can use the Customize interface by issuing `M-x
-customize-faces RET markdown-faces`.
-
-![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
-
-Additionally, Markdown Mode has the ability to scale the font sizes
+Markdown Mode has the ability to scale the font sizes
 used for headings in proportion to their importance (as in AUCTeX, for
 example).  To enable this, customize `markdown-header-scaling` or set
 it in your init file:
