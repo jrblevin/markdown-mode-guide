@@ -1192,14 +1192,15 @@ contained within, to assist with syntax highlighting and CSS styling.
 With Markdown.pl, the only way to format code blocks is to prefix
 each line with four spaces:
 
-``` markdown
+{lang=markdown}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #include <stdio.h>
     int main()
     {
         printf("hello, world\n");
         return 0;
     }
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To begin a new code block press `C-c C-s p` (`markdown-insert-pre`),
 where `p` refers to the HTML `<pre>` tag used to format such a block.
@@ -1225,7 +1226,8 @@ opening three backquotes, you may give an optional language
 identifier, possibly separated by a space.  These are referred to in
 Markdown simply as GFM code blocks:
 
-~~~~~~~~~~~~~~~~~~~ markdown
+{lang=markdown}
+~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 a one-line code block
 ```
@@ -1729,6 +1731,7 @@ recognized automatically.
     or before the next header (`header`).
 
     Example:
+
     ``` emacs-lisp
     (setq markdown-reference-location 'end)
     ```
@@ -1816,7 +1819,8 @@ between footnote markers and footnote definitions.
     (`subtree`), or before the next header (`header`).
 
     Example:
-    ```
+
+    ``` emacs-lisp
     (setq markdown-footnote-location 'subtree)
     ```
 
@@ -2200,6 +2204,7 @@ T> wrapper.
     are `utf-8` and `iso-latin-1`.
 
     Example:
+
     ``` emacs-lisp
     (setq markdown-coding-system "utf-8")
     ```
@@ -2269,7 +2274,11 @@ value.
     support can also be toggled using the function
     `markdown-toggle-wiki-links`.
 
-    Example: `(setq markdown-enable-wiki-links t)`
+    Example:
+
+    ``` emacs-lisp
+    (setq markdown-enable-wiki-links t)`
+    ```
 
 `markdown-wiki-link-alias-first`
 
