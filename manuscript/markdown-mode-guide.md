@@ -2903,11 +2903,12 @@ following tags for marking changes:
 *   Highlight `{==highlight==}{>>comment<<}`
 
 [`cm-mode`][ce] is a minor mode that provides support for CriticMarkup
-in Emacs.  First, it provides font-lock support for the markup tags
-above, and it defines the customizable faces used to highlight them.
-To customize the faces, see the `criticmarkup-faces` group.  Second,
-it provides keybindings for insert CriticMarkup tags to track changes
-in a file:
+in Emacs.  Like other packages described, it is available on [MELPA][ml]
+and [MELPA Stable][ms].  First, it provides font-lock support for the
+markup tags above, and it defines the customizable faces used to
+highlight them.  To customize the faces, see the `criticmarkup-faces`
+group.  Second, it provides keybindings for insert CriticMarkup tags
+to track changes in a file:
 
 *   `C-c * a` - add text
 *   `C-c * d` - delete text
