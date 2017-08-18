@@ -3180,6 +3180,75 @@ To install the package from [MELPA](https://melpa.org/#/markdown-mode) or [MELPA
 run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
 
+
+## Editing Markdown Tables with OrgTbl Mode
+
+Although there is no standard Markdown table syntax, several now
+widely accepted variations have emerged.  Unfortunately, Markdown
+Mode does not yet support table editing for any of these formats.
+Implementing a full-featured table editing mode, such as
+`orgtbl-mode` in Org Mode, would require tremendous effort.
+However, with a little work, and if one is brave enough, the
+`orgtbl-mode` can be adapted to help in editing basic tables.
+
+Here, we consider the pipe table syntax of PHP Markdown Extra
+because of its similarity to Org Mode tables.
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| First Header | Second Header |
+|--------------|---------------|
+| Content Cell | Content Cell  |
+| Content Cell | Content Cell  |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a rather simple table, but notably the only difference
+with the Org table counterpart is the point at which the lines
+cross in the middle.  Instead of `-|-`, Org uses `-+-`:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| First Header | Second Header |
+|--------------+---------------|
+| Content Cell | Content Cell  |
+| Content Cell | Content Cell  |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you toggle on `orgtbl-mode`, it will recognize either table,
+but when you re-align with `C-c C-c`, the result will be in the
+second (Org) format, which Markdown processors will not render
+correctly.  One way around this, which to be clear is a hack
+and not recommended for important work, is to _advise_ the
+`orgtbl-mode` alignment function so that at the end it converts
+the intersections back to Markdown pipe table form.
+
+The following function temporarily narrows the buffer to the
+table in question and replaces instances of `-+-` with `-|-`.  It
+only does so in `markdown-mode` or `gfm-mode`, so as not to
+disturb actual Org tables.
+
+``` emacs-lisp
+(defun markdown-org-table-align-advice ()
+  "Replace \"+\" sign with \"|\" in tables."
+  (when (member major-mode '(markdown-mode gfm-mode))
+    (save-excursion
+      (save-restriction
+        (narrow-to-region (org-table-begin) (org-table-end))
+        (goto-char (point-min))
+        (while (search-forward "-+-" nil t)
+          (replace-match "-|-"))))))
+
+(advice-add 'org-table-align :after
+            'markdown-org-table-align-advice)
+```
+
+With this code installed, when you run `org-table-align`, such as when
+pressing `C-c C-c`, the table will be automatically adjusted.
+
+W> This simple function does not handle the full syntax,
+W> such as indicators for table alignment, but it may be useful
+W> as a starting point for more robust versions.
+
 ------------------------------------------------------------------------------
 
 # Markdown Mode Development {#devel}
