@@ -2124,8 +2124,6 @@ current directory.  Sequential parent directory search can be enabled
 by setting `markdown-wiki-link-search-parent-directories` to a non-nil
 value.
 
-### Wiki Link Customization
-
 `markdown-enable-wiki-links`
 
 :   Boolean, default: `nil`.
