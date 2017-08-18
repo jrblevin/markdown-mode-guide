@@ -460,9 +460,10 @@ processor of choice.
 
 `markdown-command`
 
-:   The `markdown-command` variable contains the command used to run
-    Markdown.  The default is to look for an executable named
-    `markdown` in the Emacs `exec-path`.
+:   String, default: `markdown`.
+
+    The command used to convert Markdown to HTML.  The default is to
+    look for an executable named `markdown` in the Emacs `exec-path`.
 
 You can either provide the full path to the executable, or you can
 simply provide the name if the executable is in your Emacs
