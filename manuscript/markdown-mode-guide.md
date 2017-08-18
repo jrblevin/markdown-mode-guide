@@ -1696,15 +1696,21 @@ recognized automatically.
 
 `markdown-reference-location`
 
-:   Determines where to insert reference definitions (default:
-    `header`).  The possible locations are the end of the document
-    (`end`), after the current block (`immediately`), the end of the
-    current subtree (`subtree`), or before the next header (`header`).
+:   Symbol, default: `header`.
+
+    Determines where to insert reference definitions.  The possible
+    locations are the end of the document (`end`), after the current
+    block (`immediately`), the end of the current subtree (`subtree`),
+    or before the next header (`header`).
+
+    Example: `(setq markdown-reference-location 'end)`
 
 `markdown-uri-types`
 
-:   A list of protocol schemes (e.g., "http") for URIs that Markdown
-    Mode should highlight.
+:   List of strings.
+
+    A list of protocol schemes ("http", "ftp", etc.) for URIs that
+    Markdown Mode should highlight.
 
 ### Inline Image Display
 
@@ -1773,12 +1779,15 @@ between footnote markers and footnote definitions.
 
 `markdown-footnote-location`
 
-:   Determines where to insert footnote text (default: `end`).  The
-    set of location options is the same as for
-    `markdown-reference-location`: the possible locations are the end
-    of the document (`end`), after the current block (`immediately`),
-    the end of the current subtree (`subtree`), or before the next
-    header (`header`).
+:   Symbol, default: `end`.
+
+    Determines where to insert footnote text.  The set of location
+    options is the same as for `markdown-reference-location`: the
+    possible locations are the end of the document (`end`), after the
+    current block (`immediately`), the end of the current subtree
+    (`subtree`), or before the next header (`header`).
+
+    Example: `(setq markdown-footnote-location 'end)`
 
 ## Task List Items (Checkboxes)
 
@@ -1886,6 +1895,15 @@ point.  Depending on the context, it does the following:
 
 *   Toggles the completion status of GFM task list items (checkboxes).
 
+I> The Markdown Do function has a winding history.  It derives from a
+I> previous command named `markdown-jump`, which itself had `C-c C-j`
+I> (_j_ for jump) in Markdown Mode 2.1.  It was later moved to `C-c
+I> C-l` (_l_ for leap) in Markdown Mode 2.2, so as to allow using `C-c
+I> C-j` (in addition to `M-RET`) for inserting list items, as in
+I> AUCTeX mode.  Finally, it has been imbued with additional
+I> functionality, rebranded as `markdown-do`, and moved to `C-c C-d`
+I> to make way for the interactive link editing command `C-c C-l` in
+I> Markdown Mode 2.3.
 
 ## Markup Promotion & Demotion
 
@@ -1931,9 +1949,11 @@ the point, press `C-c C-]`.
 ## Markdown Maintenance Commands
 
 Markdown Mode provides some global maintenance commands under the `C-c
-C-c` prefix:
+C-c` prefix.
 
-*   `C-c C-c c` will check for undefined references.  If there are
+`C-c C-c c` (`markdown-check-refs`)
+
+:   Checks the buffer for undefined references.  If there are
     any, a small buffer will open with a list of undefined
     references and the line numbers on which they appear.  In Emacs
     22 and greater, selecting a reference from this list and
@@ -1941,11 +1961,18 @@ C-c` prefix:
     end of the buffer.  Similarly, selecting the line number will
     jump to the corresponding line.
 
-*   `C-c C-c n` renumbers any ordered lists in the buffer that are
-    out of sequence.
+`C-c C-c n` (`markdown-cleanup-list-numbers`)
 
-*   `C-c C-c ]` completes all headings and normalizes all horizontal
-    rules in the buffer.
+:   Renumbers any ordered lists in the buffer that are out of
+    sequence.  Note that the sequence is not important for rendering
+    HTML---a list with numbers `1.`, `1.`, …, `1.` is perfectly
+    fine---but this command is useful if you still prefer to have
+    accurate plain text numbering as well.
+
+`C-c C-c ]` (`markdown-complete-buffer`)
+
+:   Completes all heading markup and normalizes all horizontal rules
+    in the buffer.
 
 # Previewing & Exporting Files {#preview-export}
 
@@ -2090,10 +2117,12 @@ an available external previewer on your system.
 
 `markdown-open-command`
 
-:   The command used for calling a standalone Markdown previewer
-    capable of opening Markdown source files directly (default:
-    `nil`).  This command will be called with a single argument, the
-    file name of the current buffer.
+:   String, default: `nil`
+
+    The command used for calling a standalone Markdown previewer
+    capable of opening Markdown source files directly.  This command
+    will be called with a single argument, the file name of the
+    current buffer.
 
 T> As described in the Tips section, one popular viewer on macOS
 T> is [Marked 2][m2], which can easily be used as with Markdown Mode
@@ -2196,6 +2225,8 @@ value.
     support can also be toggled using the function
     `markdown-toggle-wiki-links`.
 
+    Example: `(setq markdown-enable-wiki-links t)`
+
 `markdown-wiki-link-alias-first`
 
 :   Boolean, default: `t`.
@@ -2213,12 +2244,28 @@ value.
     Markdown WikiLinks extension.  In GFM Mode, this is set to `"-"`
     to conform with GitHub wiki links.
 
+    Example: `(setq markdown-link-space-sub-char "-")`
+
+`markdown-wiki-link-fontify-missing`
+
+:   Boolean, default: `nil`.
+
+    When non-`nil`, change the wiki-link face according to the
+    existence of the target files.
+
+    This is expensive because it requires checking for the file each
+    time the buffer changes or the user switches windows.  It is
+    disabled by default because it may cause lag when typing on slower
+    machines.
+
+    Example: `(setq markdown-wiki-link-fontify-missing t)`
+
 `markdown-wiki-link-search-parent-directories`
 
 :   Boolean, default: `nil`.
 
     When non-nil, search for wiki link targets in parent directories.
-    This is the default search behavior of the Ikiwiki engine.
+    This is the default search behavior of the [Ikiwiki][ik] engine.
 
 
 ## Mathematical Expressions (LaTeX)
@@ -4178,6 +4225,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
+[ik]: https://ikiwiki.info
 [il]: https://github.com/bmag/imenu-list
 [is]: https://github.com/jrblevin/markdown-mode/issues
 [jb]: https://jblevins.org/
