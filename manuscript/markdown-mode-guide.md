@@ -1921,6 +1921,11 @@ between footnote markers and footnote definitions.
     (setq markdown-footnote-location 'subtree)
     ```
 
+T> Markdown Mode also includes basic font lock support for Pandoc's
+T> _inline footnotes_:
+T>
+T>     Here is an inline footnote.^[Footnote text here.]
+
 ## Definition Lists
 
 Several Markdown processors, such as PHP Markdown Extra, Pandoc,
