@@ -12,23 +12,23 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 ![Markdown Mode Screenshot](images/markdown-mode-2.3.png)
 
 This guide describes how to install, use, and customize
-[Markdown Mode][mm], a major mode for editing Markdown-formatted
-text files in [Emacs][em].  It is intended not to be a replacement
-for the online manual, but rather to supplement and extend the manual
-for users who want to learn to use Markdown Mode more extensively
-and efficiently and perhaps learn more about Emacs in the process.
+[Markdown Mode](https://jblevins.org/projects/markdown-mode/), a major mode for editing Markdown-formatted text
+files in [Emacs](https://www.gnu.org/software/emacs/).  It is intended not to be a replacement for the
+online manual, but rather to supplement and extend the manual for
+users who want to learn to use Markdown Mode more extensively and
+efficiently and perhaps learn more about Emacs in the process.
 
 This guide is based on **Markdown Mode version 2.3**.
-Markdown Mode and this guide were written by [Jason Blevins][jb].
-Markdown Mode is free software, licensed under
-the [GNU General Public License (GPL), version 2][gp], and it may be
-freely obtained from the [Markdown Mode homepage][mm].
+Markdown Mode and this guide were written by [Jason Blevins](https://jblevins.org/).
+Markdown Mode is free software, licensed under the
+[GNU General Public License (GPL), version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html),
+and it may be freely obtained from the [Markdown Mode homepage](https://jblevins.org/projects/markdown-mode/).
 
-Funds from [sales of this book][bk] help support development of both
+Funds from [sales of this book](https://leanpub.com/markdown-mode) help support development of both
 Markdown Mode and this Guide.  If you're reading this, then you're
 likely one of the many people who rely on Markdown Mode to get your
 work done.  If you haven't already, please consider supporting the
-project by [buying the complete Guide][bk].
+project by [buying the complete Guide](https://leanpub.com/markdown-mode).
 
 ## Quick Reference
 
@@ -140,10 +140,10 @@ If you are a seasoned Markdown Mode user, here is a quick reference table:
 
 ## Markdown
 
-[Markdown][md] is a lightweight markup language, originally created
-by [John Gruber][df] in 2004.  Markdown aims to be simultaneously easy
+[Markdown](http://daringfireball.net/projects/markdown/) is a lightweight markup language, originally created
+by [John Gruber](https://daringfireball.net) in 2004.  Markdown aims to be simultaneously easy
 to write and easy to read.  It takes many cues from previous, similar
-attempts (e.g., [atx][at] and [Setext][st]) as well as from existing
+attempts (e.g., [atx](http://www.aaronsw.com/2002/atx/) and [Setext](http://docutils.sourceforge.net/mirror/setext.html)) as well as from existing
 conventions for marking up plain text email.
 
 “Markdown” is also used to refer to the original Markdown processor,
@@ -161,7 +161,7 @@ languages.
 For reference, below is a plain-text summary of Markdown's syntax.
 Additional details about each type of element are explained in the
 course of describing the available Markdown Mode commands.  See the
-original [Markdown syntax page][sx] for more complete details.
+original [Markdown syntax page](http://daringfireball.net/projects/markdown/syntax) for more complete details.
 
 ``` markdown
 # First-Level Header
@@ -226,7 +226,7 @@ Mode does not explicitly support inline XHTML.
 For additional information on Markdown syntax, you can refer to the
 following links:
 
-*   [Markdown Syntax][sx] - the original syntax description by John Gruber
+*   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - the original syntax description by John Gruber
 *   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - an online converter by John Gruber using the
     original Markdown.pl
 *   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - includes several examples of syntax as well as
@@ -243,25 +243,25 @@ following links:
 <!-- FIXME: Update version number and release date. -->
 
 Markdown Mode was originally written and is still maintained
-by [Jason Blevins][jb].  The initial release, version 1.1, was created
+by [Jason Blevins](https://jblevins.org/).  The initial release, version 1.1, was created
 on May 24, 2007.  As of this writing, the latest stable version of
 Markdown Mode is version 2.3, released on **[RELEASE DATE]**.  For a
-complete list of changes, see the [version 2.3 release notes][v2.3]
+complete list of changes, see the [version 2.3 release notes](https://jblevins.org/projects/markdown-mode/rev-2-3)
 or those for previous versions:
 
-  * 2017-05-26: [Version 2.2][v2.2]
-  * 2016-01-09: [Version 2.1][v2.1]
-  * 2013-03-24: [Version 2.0][v2.0]
-  * 2013-01-25: [Version 1.9][v1.9]
-  * 2011-08-15: [Version 1.8.1][v1.8.1]
-  * 2011-08-12: [Version 1.8][v1.8]
-  * 2009-10-01: [Version 1.7][v1.7]
-  * 2008-06-04: [Version 1.6][v1.6]
-  * 2007-10-11: [Version 1.5][v1.5]
-  * 2007-06-29: [Version 1.4][v1.4]
-  * 2007-06-05: [Version 1.3][v1.3]
-  * 2007-05-25: [Version 1.2][v1.2]
-  * 2007-05-24: [Version 1.1][v1.1]
+  * 2017-05-26: [Version 2.2](https://jblevins.org/projects/markdown-mode/rev-2-2)
+  * 2016-01-09: [Version 2.1](https://jblevins.org/projects/markdown-mode/rev-2-1)
+  * 2013-03-24: [Version 2.0](https://jblevins.org/projects/markdown-mode/rev-2-0)
+  * 2013-01-25: [Version 1.9](https://jblevins.org/projects/markdown-mode/rev-1-9)
+  * 2011-08-15: [Version 1.8.1](https://jblevins.org/projects/markdown-mode/rev-1-8-1)
+  * 2011-08-12: [Version 1.8](https://jblevins.org/projects/markdown-mode/rev-1-8)
+  * 2009-10-01: [Version 1.7](https://jblevins.org/projects/markdown-mode/rev-1-7)
+  * 2008-06-04: [Version 1.6](https://jblevins.org/projects/markdown-mode/rev-1-6)
+  * 2007-10-11: [Version 1.5](https://jblevins.org/projects/markdown-mode/rev-1-5)
+  * 2007-06-29: [Version 1.4](https://jblevins.org/projects/markdown-mode/rev-1-4)
+  * 2007-06-05: [Version 1.3](https://jblevins.org/projects/markdown-mode/rev-1-3)
+  * 2007-05-25: [Version 1.2](https://jblevins.org/projects/markdown-mode/rev-1-2)
+  * 2007-05-24: [Version 1.1](https://jblevins.org/projects/markdown-mode/rev-1-1)
 
 Historically, version numbering began at 1.1 because the source code
 was originally stored in RCS (Revision Control System), which numbers
@@ -279,7 +279,7 @@ contributions!  Markdown Mode is much more robust and includes many
 additional features as a result of your efforts.  Below is a partial
 list of contributors (in alphabetical order) who sent substantial
 patches, test cases, bug reports, suggestions, helped with packaging,
-etc.  See the [GitHub contributors graph][cg] and the commit log for more
+etc.  See the [GitHub contributors graph](https://github.com/jrblevin/markdown-mode/graphs/contributors) and the commit log for more
 details.
 
 <!--
@@ -317,7 +317,7 @@ system-wide package manager.
 
 Markdown Mode is compatible with Emacs 24.3 and later, and it has few
 dependencies.  To enable editing of code blocks in indirect buffers
-using `C-c '`, you will need to install the [edit-indirect][ei]
+using `C-c '`, you will need to install the [edit-indirect](https://github.com/Fanael/edit-indirect/)
 package.
 
 *Note:* This chapter covers installing the stable version of Markdown
@@ -332,7 +332,7 @@ chapter at the end.
 The recommended way to install Markdown Mode is to use the built-in
 Emacs package manager, `package.el`, which has been included since
 Emacs 23.  Markdown Mode can be installed via the `markdown-mode`
-package in the [MELPA Stable repository][ms].[^MELPA]
+package in the [MELPA Stable repository](https://stable.melpa.org/#/markdown-mode).[^MELPA]
 
 First, you'll need to configure the package manager to use the MELPA
 Stable repository by adding the following to your `.emacs`, `init.el`,
@@ -351,7 +351,7 @@ When installed this way, the major modes `markdown-mode` and
 `gfm-mode` will be autoloaded and `markdown-mode` will be invoked
 automatically for file names ending in either `.md` or `.markdown`.
 
-Alternatively, if you manage loading packages with [use-package][up]
+Alternatively, if you manage loading packages with [use-package](https://github.com/jwiegley/use-package)
 (a practice I highly recommend for advanced users) then you can
 automatically install and configure `markdown-mode` by adding a
 declaration such as this one to your init file (as an example; adjust
@@ -368,7 +368,7 @@ settings as desired):
 Finally, if you prefer to install and use the development version of
 Markdown Mode, which may be unstable or possibly even unusable at
 times, you can install the `markdown-mode` package from the
-(unstable) [MELPA repository][ml] instead.  In this case, you might
+(unstable) [MELPA repository](https://melpa.org/#/markdown-mode) instead.  In this case, you might
 need to tell the package manager about the repository in your init
 file, like so:
 
@@ -390,7 +390,7 @@ still need to follow the manual installation instructions in the
 following section.
 
 **MacOS:** MacOS users who use Homebrew can install
-the [homebrew/emacs/markdown-mode][hb] formula, which in turn
+the [homebrew/emacs/markdown-mode](https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb) formula, which in turn
 obtains the latest stable version of Markdown Mode from GitHub.
 
 ``` text
@@ -405,14 +405,14 @@ you obtained Emacs, this directory may or may not be in your
 installation.
 
 If you are a MacPorts user, there does not seem to be an up to date
-port.  The existing [markdown-mode.el][mp] port currently points to a
-Git revision from 2014.  There is also a [pending][mt] ticket for a
+port.  The existing [markdown-mode.el](https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile) port currently points to a
+Git revision from 2014.  There is also a [pending](http://trac.macports.org/ticket/35716) ticket for a
 new port, but there has been no activity.  Rather than installing from
 MacPorts, I recommend using the Emacs package manager as described
 above.
 
 **Debian and Ubuntu Linux:** On Debian-based distributions, Markdown
-Mode can be installed via the [elpa-markdown-mode][dp] package.
+Mode can be installed via the [elpa-markdown-mode](https://packages.debian.org/sid/lisp/elpa-markdown-mode) package.
 
 ``` text
 sudo apt-get update
@@ -420,13 +420,13 @@ sudo apt-get install elpa-markdown-mode
 ```
 
 **FreeBSD:** FreeBSD users can install
-the [textproc/markdown-mode.el][fb] port, but note that the
+the [textproc/markdown-mode.el](http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el) port, but note that the
 installed files are not byte compiled.  Users who install this port
 will also need to edit their init files following the Manual
 installation instructions below, to load Markdown Mode.
 
 **NetBSD:** Markdown Mode is available in pkgsrc
-as [textproc/markdown-mode][nb], but (as of May 8 2017) it installs and
+as [textproc/markdown-mode](http://pkgsrc.se/textproc/markdown-mode), but (as of May 8 2017) it installs and
 byte-compiles an outdated version of Markdown Mode.  If you use this
 package, you'll also need to edit your init file following the Manual
 installation instructions below, to load Markdown Mode.  Rather than
@@ -440,7 +440,7 @@ pkg_add textproc/markdown-mode
 ### Manual Download
 
 Alternatively you can manually download and install Markdown Mode.
-First, download the [latest stable version][el] and save
+First, download the [latest stable version](https://jblevins.org/projects/markdown-mode/markdown-mode.el) and save
 the file where Emacs can find it (i.e., a directory in your
 `load-path`).  You can then configure `markdown-mode` and `gfm-mode`
 to load automatically by adding the following to your init file:
@@ -1219,7 +1219,7 @@ T> and so the region is already set appropriately.
 ### GFM Code Blocks
 
 The second type of code blocks supported by Markdown Mode are those
-used by [GitHub-Flavored Markdown (GFM)][gf].  These blocks begin
+used by [GitHub-Flavored Markdown (GFM)](http://github.github.com/github-flavored-markdown/).  These blocks begin
 with three backquotes and end with three backquotes.  After the
 opening three backquotes, you may give an optional language
 identifier, possibly separated by a space.  These are referred to in
@@ -1309,8 +1309,8 @@ preference for lowercase language identifiers with
 ### Tilde-Fenced Code Blocks
 
 The second type supported by Markdown Mode are tilde-fenced code blocks
-supported by Markdown processors such as [PHP Markdown Extra][ph]
-and [Pandoc][pd], among others.  The block opens with *at least three*
+supported by Markdown processors such as [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/)
+and [Pandoc](http://pandoc.org), among others.  The block opens with *at least three*
 tildes (`~`) and closes with at least as many tildes as it was opened
 with, but possibly more:
 
@@ -1856,8 +1856,8 @@ the context-specific command `C-c C-d` (`markdown-do`).
 
 ## Subscripts and Superscripts
 
-[Pandoc][pd] and [MultiMarkdown][mu]—two of the most popular Markdown
-processors—support subscript and superscript markup.  Markdown Mode
+Pandoc and MultiMarkdown---two of the most popular Markdown
+processors---support subscript and superscript markup.  Markdown Mode
 supports this syntax as well.  Superscripts may be written by placing
 carats (`^`) immediately before and after the text.  Similarly,
 subscripts may be written by placing tildes (`~`) immediately before
@@ -2156,7 +2156,7 @@ an available external previewer on your system.
     current buffer.
 
 T> As described in the Tips section, one popular viewer on macOS
-T> is [Marked 2][m2], which can easily be used as with Markdown Mode
+T> is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), which can easily be used as with Markdown Mode
 T> with a simple shell script acting as a `markdown-open-command`
 T> wrapper.
 
@@ -2309,7 +2309,7 @@ value.
 :   Boolean, default: `nil`.
 
     When non-nil, search for wiki link targets in parent directories.
-    This is the default search behavior of the [Ikiwiki][ik] engine.
+    This is the default search behavior of the [Ikiwiki](https://ikiwiki.info) engine.
 
 
 ## Mathematical Expressions (LaTeX)
@@ -2349,7 +2349,7 @@ should restart Emacs or call `markdown-reload-extensions`.
 
 ## GitHub Flavored Markdown (GFM) Mode {#gfm}
 
-A [GitHub Flavored Markdown][gf] mode, or GFM Mode, is also available
+A [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/) mode, or GFM Mode, is also available
 as `gfm-mode`.  The GitHub implementation of Markdown differs slightly
 from standard Markdown in that it supports things like different
 behavior for underscores inside of words, automatic linking of URLs,
@@ -2359,13 +2359,13 @@ here we address them collectively in relation to `gfm-mode`.
 
 On GitHub, the GFM-specific features above apply to `README.md` files,
 wiki pages, and other Markdown-formatted files in repositories on
-GitHub.  GitHub also enables [additional features][gc] for writing on
+GitHub.  GitHub also enables [additional features](https://help.github.com/articles/writing-on-github/) for writing on
 the site (for issues, pull requests, messages, etc.)  that are further
 extensions of GFM.  These features include task lists (checkboxes),
 newlines corresponding to hard line breaks, auto-linked references to
 issues and commits, wiki links, and so on.  To make matters more
-confusing, although task lists are not part of [GFM proper][gf],
-[since 2014][gd] they are rendered (in a read-only fashion) in all
+confusing, although task lists are not part of [GFM proper](http://github.github.com/github-flavored-markdown/),
+[since 2014](https://github.com/blog/1825-task-lists-in-all-markdown-documents) they are rendered (in a read-only fashion) in all
 Markdown documents in repositories on the site.  These additional
 extensions are supported to varying degrees by Markdown Mode and GFM
 Mode as described below.
@@ -2420,8 +2420,8 @@ Mode as described below.
   ```
 
 * **Preview:**  GFM-specific preview can be powered by setting
-  `markdown-command` to use [Docter][dr].  This may also be
-  configured to work with [Marked 2][m2] for `markdown-open-command`.
+  `markdown-command` to use [Docter](https://github.com/alampros/Docter).  This may also be
+  configured to work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
 
 
 # Tips & Tricks {#tips}
@@ -2526,7 +2526,7 @@ On the other hand, to use an existing URL use the following form:
 (setq markdown-css-paths '("http://mydomain.com/style.css"))
 ```
 
-As another example, the [Marked 2][m2] previewer contains several
+As another example, the [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) previewer contains several
 built-in stylesheets that users can choose between.  Conveniently,
 these stylesheets are stored on the filesystem as CSS files inside the
 application package and you can link to them locally.  To use the
@@ -2635,10 +2635,10 @@ function each time `markdown-mode` is loaded.  The second line asks
 `imenu` to keep the index up to date when files are modified, as
 sections may be added or removed.
 
-Another useful `imenu`-based package is [`imenu-list`][il], a
+Another useful `imenu`-based package is [`imenu-list`](https://github.com/bmag/imenu-list), a
 third-party package which shows the current buffer's `imenu` entries
 in a popup buffer.  You can install `imenu-list` from MELPA.
-With [use-package][up], you can configure it like so:
+With [use-package](https://github.com/jwiegley/use-package), you can configure it like so:
 
 ``` emacs-lisp
 (use-package imenu-list
@@ -2682,11 +2682,11 @@ automatically when Emacs is idle.
 
 ## File Local Variables {#file-local}
 
-Emacs allows one to [specify values for variables inside files
-themselves][fl].  For example, you can specify which mode Emacs should
-use to edit a particular file by setting a special `mode` variable.
-You can specify such file local variables at either the beginning or
-end of a file.
+Emacs allows one to specify values for
+[variables inside files themselves](https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html).
+For example, you can specify which mode Emacs should use to edit a
+particular file by setting a special `mode` variable.  You can specify
+such file local variables at either the beginning or end of a file.
 
 Perhaps you have seen lines like the following at the beginning of
 scripts.  This particular line tells Emacs that you'd like to open
@@ -2770,15 +2770,15 @@ End:
 
 ### References
 
-*   [GNU Emacs manual: Local Variables in Files][fl]
+*   [GNU Emacs manual: Local Variables in Files](https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html)
 
 
 ## Generating a Table of Contents
 
-A package called [`markdown-toc`][tc] allows users to generate and
-update a table of contents in Markdown files.  Like Markdown Mode
-itself, you can install it from [MELPA][ml] or [MELPA Stable][ms]:
-`M-x package-install RET markdown-toc`.
+A package called [`markdown-toc`](https://github.com/ardumont/markdown-toc)
+allows users to generate and update a table of contents in Markdown
+files.  Like Markdown Mode itself, you can install it from [MELPA](https://melpa.org/#/markdown-mode)
+or [MELPA Stable](https://stable.melpa.org/#/markdown-mode): `M-x package-install RET markdown-toc`.
 
 To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
@@ -2859,7 +2859,7 @@ With Markdown Mode, the Markdown processor given by the variable
 markdown-command` can be a pipeline, and so it can be used to pre- or
 post-process your Markdown files.
 
-As an example, one common Markdown post-processor is [SmartyPants][sp],
+As an example, one common Markdown post-processor is [SmartyPants](http://daringfireball.net/projects/smartypants/),
 which implements "smart typography" (curly quotation marks, en-dashes,
 em-dashes, and so on).  To use it, you'll need to first install
 SmartyPants.
@@ -2867,7 +2867,7 @@ SmartyPants.
 *   On Debian Linux, you can install `libtext-typography-perl`.
 *   On macOS with Homebrew, you can use `brew install smartypants`.
 *   Otherwise, you can install manually by downloading the
-    [SmartyPants zip file][sp], uncompressing it, and placing
+    [SmartyPants zip file](http://daringfireball.net/projects/smartypants/), uncompressing it, and placing
     `SmartyPants.pl` in your `PATH`.
 
 Once you have SmartyPants installed, note the path of the script.  For
@@ -2935,7 +2935,7 @@ for Markdown Mode previewing, you can achieve this by "advising" the
 
 This example changes the browse function to `browse-url-chromium` for
 the `markdown-preview` function only.  See the section called
-"[Advising Emacs Lisp Functions][ad]" in the Emacs Lisp Reference
+[Advising Emacs Lisp Functions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html) in the Emacs Lisp Reference
 Manual for additional details.
 
 
@@ -2946,7 +2946,7 @@ Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
 is `markdown-open-command`.
 
 On macOS, a representative program for opening Markdown files
-is [Marked 2][m2], a live-updating Markdown previewer.  Perhaps the
+is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), a live-updating Markdown previewer.  Perhaps the
 easiest way to set things up is to write a simple shell script to
 serve as a wrapper to open Marked 2 from the command line.[^m2]
 
@@ -2972,7 +2972,7 @@ Furthermore, once you install the `mark` script you can simply type
 {width=80%}
 ![CriticMarkup Mode and Markdown Mode](images/cm-mode.png)
 
-[CriticMarkup][cm] is a plain text markup language for tracking
+[CriticMarkup](http://criticmarkup.com) is a plain text markup language for tracking
 changes to Markdown and other compatible documents.  It defines the
 following tags for marking changes:
 
@@ -2982,9 +2982,10 @@ following tags for marking changes:
 *   Comment `{>>comment<<}`
 *   Highlight `{==highlight==}{>>comment<<}`
 
-[`cm-mode`][ce] is a minor mode that provides support for CriticMarkup
-in Emacs.  Like other packages described, it is available on [MELPA][ml]
-and [MELPA Stable][ms].  First, it provides font-lock support for the
+[`cm-mode`](https://github.com/joostkremers/criticmarkup-emacs)
+is a minor mode that provides support for CriticMarkup
+in Emacs.  Like other packages described, it is available on [MELPA](https://melpa.org/#/markdown-mode)
+and [MELPA Stable](https://stable.melpa.org/#/markdown-mode).  First, it provides font-lock support for the
 markup tags above, and it defines the customizable faces used to
 highlight them.  To customize the faces, see the `criticmarkup-faces`
 group.  Second, it provides keybindings for insert CriticMarkup tags
@@ -3008,13 +3009,13 @@ changed to, say, `C-c c` like so:
 
 ![HTML Mode and HTML as Markdown Mode](images/ham-mode.png)
 
-[HTML as Markdown Mode][hm], or [`ham-mode`][hm], allows you to edit
+[HTML as Markdown Mode](https://github.com/Malabarba/ham-mode), or `ham-mode`, allows you to edit
 HTML files as if they were Markdown files.  That is, it provides a
 transparent layer so that you can open an HTML file in Markdown Mode.
 It first converts the HTML to Markdown but any updates to the contents
 are converted back to HTML.
 
-To install the package from [MELPA][ml] or [MELPA Stable][ms], simply
+To install the package from [MELPA](https://melpa.org/#/markdown-mode) or [MELPA Stable](https://stable.melpa.org/#/markdown-mode), simply
 run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
 
@@ -3023,7 +3024,7 @@ an HTML file, run `M-x ham-mode`.
 # Markdown Mode Development {#devel}
 
 Markdown Mode is an open source project.  The primary repository for
-Markdown Mode is [on GitHub][gh].  Anyone can easily browse the
+Markdown Mode is [on GitHub](https://github.com/jrblevin/markdown-mode).  Anyone can easily browse the
 project files by visiting the project's GitHub page
 at <https://github.com/jrblevin/markdown-mode>.
 
@@ -3038,8 +3039,8 @@ repository using several protocols:
 ## Testing the Development Version
 
 To test the current development version, you may either download
-`markdown-mode.el` from the [GitHub repository][gh] or install the
-`markdown-mode` package from [MELPA][ml].
+`markdown-mode.el` from the [GitHub repository](https://github.com/jrblevin/markdown-mode) or install the
+`markdown-mode` package from [MELPA](https://melpa.org/#/markdown-mode).
 
 Note that by nature, the development version of Markdown Mode may be
 unstable or even unusable at times.  I do not recommend it for daily
@@ -3064,66 +3065,9 @@ persists.
 
 If you do find a bug in Markdown Mode, please construct a test
 case—and if possible a patch—and open a ticket on the
-[GitHub issue tracker][is].
+[GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues).
 
 
 
 [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
 [^m2]: See <https://jblevins.org/log/marked-2-command> for details.
-
-[at]: http://www.aaronsw.com/2002/atx/
-[ad]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html
-[bk]: https://leanpub.com/markdown-mode
-[ce]: https://github.com/joostkremers/criticmarkup-emacs
-[cg]: https://github.com/jrblevin/markdown-mode/graphs/contributors
-[cm]: http://criticmarkup.com
-[df]: https://daringfireball.net
-[dp]: https://packages.debian.org/sid/lisp/elpa-markdown-mode
-[dr]: https://github.com/alampros/Docter
-[du]: http://packages.ubuntu.com/search?keywords=elpa-markdown-mode
-[ei]: https://github.com/Fanael/edit-indirect/
-[el]: https://jblevins.org/projects/markdown-mode/markdown-mode.el
-[em]: https://www.gnu.org/software/emacs/
-[fb]: http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el
-[fl]: https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html
-[gc]: https://help.github.com/articles/writing-on-github/
-[gd]: https://github.com/blog/1825-task-lists-in-all-markdown-documents
-[gf]: http://github.github.com/github-flavored-markdown/
-[gh]: https://github.com/jrblevin/markdown-mode
-[gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-[hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
-[hm]: https://github.com/Malabarba/ham-mode
-[ik]: https://ikiwiki.info
-[il]: https://github.com/bmag/imenu-list
-[is]: https://github.com/jrblevin/markdown-mode/issues
-[jb]: https://jblevins.org/
-[m2]: https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs
-[md]: http://daringfireball.net/projects/markdown/
-[ml]: https://melpa.org/#/markdown-mode
-[mm]: https://jblevins.org/projects/markdown-mode/
-[mp]: https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile
-[ms]: https://stable.melpa.org/#/markdown-mode
-[mt]: http://trac.macports.org/ticket/35716
-[mu]: http://fletcherpenney.net/multimarkdown/
-[nb]: http://pkgsrc.se/textproc/markdown-mode
-[ph]: https://michelf.ca/projects/php-markdown/extra/
-[pd]: http://pandoc.org
-[st]: http://docutils.sourceforge.net/mirror/setext.html 
-[sp]: http://daringfireball.net/projects/smartypants/
-[sx]: http://daringfireball.net/projects/markdown/syntax
-[tc]: https://github.com/ardumont/markdown-toc
-[up]: https://github.com/jwiegley/use-package
-[v1.1]: https://jblevins.org/projects/markdown-mode/rev-1-1
-[v1.2]: https://jblevins.org/projects/markdown-mode/rev-1-2
-[v1.3]: https://jblevins.org/projects/markdown-mode/rev-1-3
-[v1.4]: https://jblevins.org/projects/markdown-mode/rev-1-4
-[v1.5]: https://jblevins.org/projects/markdown-mode/rev-1-5
-[v1.6]: https://jblevins.org/projects/markdown-mode/rev-1-6
-[v1.7]: https://jblevins.org/projects/markdown-mode/rev-1-7
-[v1.8.1]: https://jblevins.org/projects/markdown-mode/rev-1-8-1
-[v1.8]: https://jblevins.org/projects/markdown-mode/rev-1-8
-[v1.9]: https://jblevins.org/projects/markdown-mode/rev-1-9
-[v2.0]: https://jblevins.org/projects/markdown-mode/rev-2-0
-[v2.1]: https://jblevins.org/projects/markdown-mode/rev-2-1
-[v2.2]: https://jblevins.org/projects/markdown-mode/rev-2-2
-[v2.3]: https://jblevins.org/projects/markdown-mode/rev-2-3
