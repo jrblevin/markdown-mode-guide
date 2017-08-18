@@ -163,7 +163,7 @@ Additional details about each type of element are explained in the
 course of describing the available Markdown Mode commands.  See the
 original [Markdown syntax page][sx] for more complete details.
 
-```
+``` markdown
 # First-Level Header
 
 ## Second-Level Header
@@ -210,7 +210,7 @@ which are ordinarily interpreted by Markdown as formatting commands
 will instead be interpreted literally if preceded by a backslash.  For
 example, when you need to type a literal asterisk or underscore:
 
-```
+``` markdown
 This is *italic*, but this \*is not\*.
 ```
 
@@ -381,7 +381,7 @@ following section.
 the [homebrew/emacs/markdown-mode][hb] formula, which in turn
 obtains the latest stable version of Markdown Mode from GitHub.
 
-``` shell
+``` text
 brew update
 brew install dunn/emacs/markdown-mode
 ```
@@ -402,7 +402,7 @@ above.
 **Debian and Ubuntu Linux:** On Debian-based distributions, Markdown
 Mode can be installed via the [elpa-markdown-mode][dp] package.
 
-``` shell
+``` text
 sudo apt-get update
 sudo apt-get install elpa-markdown-mode
 ```
@@ -421,7 +421,7 @@ installation instructions below, to load Markdown Mode.  Rather than
 installing this package, use the Emacs package manager as described
 above.
 
-``` shell
+``` text
 pkg_add textproc/markdown-mode
 ```
 
@@ -504,7 +504,7 @@ both).  Below are some common error messages that indicate that either
 the `markdown` binary cannot be found or `markdown-command` should be
 customized to your system:
 
-```
+``` text
 /bin/bash: markdown: command not found
 zsh:1: command not found: markdown
 'markdown' is not recognized as an internal or external
@@ -532,7 +532,7 @@ Emacs can find it.  If you see `nil`, then it could not be found in
 If you use Homebrew, then you can install Markdown.pl or Pandoc by
 issuing one of the following commands:
 
-```
+``` text
 brew install markdown
 brew install pandoc
 ```
@@ -574,7 +574,7 @@ By default, Markdown Mode assumes that your Markdown processor accepts
 input via `stdin`.  That is, it assumes that if you were using it from
 the command line, you could *pipe* input to it like so:
 
-``` shell
+``` text
 cat document.md | markdown
 ```
 
@@ -685,7 +685,7 @@ being the least prominent (corresponding to the six levels of headings
 in HTML, `<h1>` through `<h6>`).  The heading text may optionally be
 followed by an equal number of hash marks.
 
-```
+``` markdown
 # First-level heading #
 
 First section text.  Here we close the header with a hash mark.
@@ -740,7 +740,7 @@ headers.  Instead of hash marks, you may use equals signs (`=`) or
 hyphens (`-`) to underline the heading text.  Headers of this form are
 called Setext headers:
 
-```
+``` markdown
 First-level header
 ==================
 
@@ -880,14 +880,14 @@ preference by setting the `markdown-asymmetric-header` variable.
     When `nil`, balanced markup will be inserted at the beginning and
     end of the line around the header title.
 
-    ```
+    ``` markdown
     ## Heading ##
     ```
 
     Set to a non-`nil` value to use asymmetric header styling, placing
     header markup only at the beginning of the line.
 
-    ```
+    ``` markdown
     ## Heading
     ```
 
@@ -905,7 +905,7 @@ A paragraph in Markdown is one or more consecutive lines of text
 separated by one or more blank lines.  Normal paragraphs should not be
 indented with spaces or tabs:
 
-```
+``` markdown
 This is a paragraph.  It has two sentences.
 
 This is another paragraph.  It also has two sentences.
@@ -998,7 +998,7 @@ To produce an unordered list (`<ul>` in HTML), prefix each line with a
 list marker.  Valid list marker characters are asterisks (`*`),
 hyphens (`-`), and plus signs (`+`):
 
-```
+``` markdown
 * An item in a bulleted (unordered) list
 * Another item in a bulleted list
 ```
@@ -1006,7 +1006,7 @@ hyphens (`-`), and plus signs (`+`):
 Ordered lists (`<ol>` in HTML) are created similarly, by prefixing
 each line with a number followed by a period:
 
-```
+``` markdown
 1. An item in an enumerated (ordered) list
 2. Another item in an enumerated list
 ```
@@ -1017,7 +1017,7 @@ for creating code blocks).  You may change list markers if you wish to
 add more visual distinction.  Note that it is the marker indentation
 that matters, not the whitespace following the marker.
 
-```
+``` markdown
 *   An item in a bulleted (unordered) list
 
     *   A sub-item in a nested list
@@ -1050,8 +1050,12 @@ details.
 
 ### List Customization
 
-  * `markdown-list-indent-width` - depth of indentation for lists
-    when inserting, promoting, and demoting list items (default: 4).
+`markdown-list-indent-width`
+
+:   Integer, default: `4`.
+
+    Depth of indentation for lists when inserting, promoting, and
+    demoting list items.
 
 ## Indentation
 
@@ -1176,7 +1180,7 @@ contained within, to assist with syntax highlighting and CSS styling.
 With Markdown.pl, the only way to format code blocks is to prefix
 each line with four spaces:
 
-```
+``` markdown
     #include <stdio.h>
     int main()
     {
@@ -1209,7 +1213,7 @@ opening three backquotes, you may give an optional language
 identifier, possibly separated by a space.  These are referred to in
 Markdown simply as GFM code blocks:
 
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~ markdown
 ```
 a one-line code block
 ```
@@ -1298,7 +1302,7 @@ and [Pandoc][pd], among others.  The block opens with *at least three*
 tildes (`~`) and closes with at least as many tildes as it was opened
 with, but possibly more:
 
-```
+``` markdown
 ~~~~~~~~~~~~~~~~~~~~~
 a one-line code block
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1309,7 +1313,7 @@ using attribute lists of various formats, as in the following
 examples.  Markdown Mode takes an inclusive approach to highlighting
 such blocks:
 
-```
+``` markdown
 ~~~~~~~~~~~~~~~~~~~ .html
 <p>hello, world</p>
 ~~~~~~~~~~~~~~~~~~~
@@ -1347,10 +1351,12 @@ default behavior by customizing the variable
 
 `markdown-fontify-code-blocks-natively`
 
-:   When non-nil, fontify code in code blocks using the native major
-    mode (default: `nil`).  This only works for fenced code blocks where
-    the language is specified and where Markdown Mode can
-    automatically determine the appropriate mode to use.
+:   Boolean, default: `nil`.
+
+    When non-`nil`, fontify code in code blocks using the native major
+    mode.  This only works for fenced code blocks where the language
+    is specified and where Markdown Mode can automatically determine
+    the appropriate mode to use.
 
 Additionally, if you have the [`edit-indirect`][ei] package installed
 Markdown Mode can open code blocks for editing in an "indirect" buffer
@@ -1375,7 +1381,9 @@ variable `markdown-code-lang-modes`.
 
 `markdown-code-lang-modes`
 
-:   An alist mapping languages to their major modes.  Keys are
+:   Association list.
+
+    An alist mapping languages to their major modes.  Keys are
     language names and values are major mode symbols.  For example,
     a default element of this alist is `("sqlite" . sql-mode)`,
     which instructs Markdown Mode to use `sql-mode` to highlight
@@ -1422,7 +1430,9 @@ redefining the variable `markdown-hr-strings`.
 
 `markdown-hr-strings`
 
-:   A list of strings to use when inserting horizontal rules.
+:   List of strings.
+
+    Strings to use when inserting horizontal rules.
 
 W> Different strings will not be distinguished when converted to
 W> HTML—they will all be converted to `<hr/>`—but they may add visual
@@ -1446,14 +1456,14 @@ I> your local configuration.
 To emphasize or _italicize_ text in Markdown, enclose it between
 asterisks or underscores:
 
-```
+``` markdown
 *emphasis* or _emphasis_
 ```
 
 Similarly, to produce **bold** text, enclose it between two asterisks
 or two underscores:
 
-```
+``` markdown
 **bold** or __bold__
 ```
 
@@ -1509,7 +1519,7 @@ promotion and demotion commands, `C-c C--` and `C-c C-=`
 To mark up inline source code, for command names, file names, etc.,
 place the text between backquotes (`` ` ``) like so:
 
-```
+``` markdown
 This is inline code: `printf("hello, world\n");`
 ```
 
@@ -1529,7 +1539,7 @@ T> `<kbd>` tags like inline code.
 To create simple links, you can simply place a URL or email address
 inside angle brackets, like so:
 
-```
+``` markdown
 <https://www.gnu.org/software/emacs/>
 <bug-gnu-emacs@gnu.org>
 ```
@@ -1537,14 +1547,14 @@ inside angle brackets, like so:
 To create hyperlinks with text, place the link text in square brackets
 followed by the URL in parentheses:
 
-```
+``` markdown
 [Link text](http://link.url/)
 ```
 
 Optionally, you can add title text to the link which will appear when
 the user hovers over the link, like so:
 
-```
+``` markdown
 [Link text](http://link.url/ "Title text")
 ```
 
@@ -1553,7 +1563,7 @@ before the square bracket.  There is no link text displayed for
 images, rather, the text in square brackets will be used for the "alt
 text":
 
-```
+``` markdown
 ![Alt text](http://image.url/file.jpg "Title text")
 ```
 
@@ -1562,7 +1572,7 @@ links" because the URL is written out in full inline in the Markdown
 text.  On the other hand, "reference links" allow you to keep the text
 clean and define the URLs later:
 
-```
+``` markdown
 You can define short reference link like this:
 [link text here][1]
 
@@ -1699,14 +1709,17 @@ recognized automatically.
 
 `markdown-reference-location`
 
-:   Symbol, default: `header`.
+:   `immediately`, `header`, `subtree`, or `end`, default: `header`.
 
     Determines where to insert reference definitions.  The possible
     locations are the end of the document (`end`), after the current
     block (`immediately`), the end of the current subtree (`subtree`),
     or before the next header (`header`).
 
-    Example: `(setq markdown-reference-location 'end)`
+    Example:
+    ``` emacs-lisp
+    (setq markdown-reference-location 'end)
+    ```
 
 `markdown-uri-types`
 
@@ -1782,7 +1795,7 @@ between footnote markers and footnote definitions.
 
 `markdown-footnote-location`
 
-:   Symbol, default: `end`.
+:   `immediately`, `header`, `subtree`, or `end`, default: `end`.
 
     Determines where to insert footnote text.  The set of location
     options is the same as for `markdown-reference-location`: the
@@ -1790,7 +1803,10 @@ between footnote markers and footnote definitions.
     current block (`immediately`), the end of the current subtree
     (`subtree`), or before the next header (`header`).
 
-    Example: `(setq markdown-footnote-location 'end)`
+    Example:
+    ```
+    (setq markdown-footnote-location 'subtree)
+    ```
 
 ## Task List Items (Checkboxes)
 
@@ -1798,7 +1814,7 @@ GitHub Flavored Markdown (GFM) defines a syntax for checkboxes, called
 task lists, which is a straightforward and backwards-compatible
 modification of Markdown's unordered list syntax.
 
-``` text
+``` markdown
 - [ ] Incomplete task
 - [x] Completed task
 ```
@@ -1835,7 +1851,7 @@ carats (`^`) immediately before and after the text.  Similarly,
 subscripts may be written by placing tildes (`~`) immediately before
 and after the text.
 
-```
+``` text
 H~2~O is a liquid.  2^10^ is 1024.
 ```
 
@@ -1868,7 +1884,7 @@ with a line of three hyphens (`---`) and end with either a line of
 three hyphens (`---`) or three dots (`...`).  Pandoc, GitHub, and
 Jekyll, among other systems, support YAML metadata.
 
-```
+``` yaml
 ---
 title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
@@ -1879,7 +1895,7 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 Some website generators, such as Hugo, also support TOML metadata.
 
-```
+``` toml
 ---
 title = "Guide to Markdown Mode for Emacs"
 author = "Jason R. Blevins"
@@ -2088,7 +2104,7 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
 
 `markdown-split-window-direction`
 
-:   Symbol, default: `any`.
+:   `any`, `right`, or `below`, default: `any`.
 
     Preference for splitting windows for static and live preview.  The
     default value is `any`, which instructs Emacs to use
@@ -2100,7 +2116,7 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
 
 `markdown-live-preview-delete-export`
 
-:   Symbol, default: `delete-on-destroy`.
+:   `nil`, `delete-on-export`, or `delete-on-destroy`, default: `delete-on-destroy`.
 
     Whether and when to delete the exported HTML file when using
     `markdown-live-preview-export`.  If set to `delete-on-export`,
@@ -2136,38 +2152,51 @@ T> wrapper.
 
 `markdown-xhtml-standalone-regexp`
 
-:   A regular expression which Markdown Mode uses to determine whether
+:   String, default: `"^\\(<\\?xml\\|<!DOCTYPE\\|<html\\)"`.
+
+    Regular expression which Markdown Mode uses to determine whether
     the output of `markdown-command` is a standalone XHTML document or
-    an XHTML fragment (default: `"^\\(<\\?xml\\|<!DOCTYPE\\|<html\\)"`).
-    If this regular expression not matched in the first five lines of
-    output, Markdown Mode assumes the output is a fragment and adds a
-    header and footer.
+    an XHTML fragment.  If this regular expression not matched in the
+    first five lines of output, Markdown Mode assumes the output is a
+    fragment and adds a header and footer.
 
 `markdown-css-paths`
 
-:   A list of CSS files to link to in the HTML output (default: `nil`).
+:   List of strings, default: `nil`.
+
+    A list of CSS files to link to in the HTML output.
 
 `markdown-content-type`
 
-:   When set to a nonempty string, an `http-equiv` attribute will be
-    included in the XHTML `<head>` block (default: `""`).  If needed,
-    the suggested values are `application/xhtml+xml` or `text/html`.
-    See also: `markdown-coding-system`.
+:   String, default: `""`.
+
+    When set to a nonempty string, an `http-equiv` attribute will be
+    included in the XHTML `<head>` block.  If needed, the suggested
+    values are `application/xhtml+xml` or `text/html`.  See also:
+    `markdown-coding-system`.
 
 `markdown-coding-system`
 
-:   Used for specifying the character set identifier in the
-    `http-equiv` attribute when included (default: `nil`).  See
+:   String, default: `nil`.
+
+    Used for specifying the character set identifier in the
+    `http-equiv` attribute when included.  See
     `markdown-content-type`, which must be set before this variable
     has any effect.  When set to `nil`, `buffer-file-coding-system`
     will be used to automatically determine the coding system string
     (falling back to `iso-8859-1` when unavailable).  Common settings
     are `utf-8` and `iso-latin-1`.
 
+    Example:
+    ``` emacs-lisp
+    (setq markdown-coding-system "utf-8")
+    ```
+
 `markdown-xhtml-header-content`
 
-:   Additional content to include in the XHTML `<head>` block
-    (default: `""`).
+:   String, default: `""`.
+
+    Additional content to include in the XHTML `<head>` block.
 
 `markdown-before-export-hook`
 
@@ -2743,7 +2772,7 @@ To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
 You will see a Markdown-formatted nested list like the following:
 
-```
+``` markdown
 <!-- markdown-toc start - Don't edit this section. 
      Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
