@@ -32,7 +32,8 @@ project by [buying the complete Guide](https://leanpub.com/markdown-mode).
 
 ## Quick Reference
 
-If you are a seasoned Markdown Mode user, here is a quick reference table:
+If you are a seasoned Markdown Mode user, here is a quick reference
+table including new version 2.3 features:
 
 | Action                                              | Keybinding        |
 |-----------------------------------------------------|-------------------|
