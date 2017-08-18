@@ -2382,6 +2382,41 @@ Mode as described below.
 
 # Tips & Tricks {#tips}
 
+## Using Markdown Mode with Other File Extensions
+
+Markdown Mode contains `autoload` statements to automatically
+associate itself with `.md` and `.markdown` files in
+`auto-mode-alist`.  If you use another file extension for your
+Markdown files, say `.text`, then you can also ask Emacs to load
+`markdown-mode` automatically for `.text` files by adding the
+following to your init file:
+
+``` emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+```
+
+Alternatively, if you load packages with `use-package`, you can
+achieve the same thing using the `:mode` keyword, like so:
+
+``` emacs-lisp
+(use-package markdown-mode
+  :mode (("\\.text\\'" . markdown-mode)))
+```
+
+T> Expanding this macro (e.g., with `pp-macroexpand-last-sexp`), we can
+T> see that it is equivalent to auto-loading `markdown-mode` and updating
+T> `auto-mode-alist`:
+T> 
+T> ``` emacs-lisp
+T> (progn
+T>   (unless
+T>       (fboundp 'markdown-mode)
+T>     (autoload #'markdown-mode "markdown-mode" nil t))
+T>   (ignore
+T>    (add-to-list 'auto-mode-alist
+T>                 '("\\.text\\'" . markdown-mode))))
+T> ```
+
 ## Switching and Toggling Markup
 
 There are a couple of ways to quickly switch or toggle markup in
