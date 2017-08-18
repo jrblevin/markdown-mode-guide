@@ -2923,6 +2923,21 @@ changed to, say, `C-c c` like so:
 (define-key cm-mode-map (kbd "C-c c") cm-prefix-map)
 ```
 
+
+## Editing HTML as Markdown
+
+![HTML Mode and HTML as Markdown Mode](images/ham-mode.png)
+
+[HTML as Markdown Mode][hm], or [`ham-mode`][hm], allows you to edit
+HTML files as if they were Markdown files.  That is, it provides a
+transparent layer so that you can open an HTML file in Markdown Mode.
+It first converts the HTML to Markdown but any updates to the contents
+are converted back to HTML.
+
+To install the package from [MELPA][ml] or [MELPA Stable][ms], simply
+run `M-x package-install RET ham-mode`.  To activate it while visiting
+an HTML file, run `M-x ham-mode`.
+
 ------------------------------------------------------------------------------
 
 # Markdown Mode Development {#devel}
@@ -4272,6 +4287,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [gh]: https://github.com/jrblevin/markdown-mode
 [gp]: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 [hb]: https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb
+[hm]: https://github.com/Malabarba/ham-mode
 [ik]: https://ikiwiki.info
 [il]: https://github.com/bmag/imenu-list
 [is]: https://github.com/jrblevin/markdown-mode/issues

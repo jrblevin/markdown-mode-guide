@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Malabarba/ham-mode: HTML as Markdown</title>
+</head>
+<body>
+<h3 id="seamlessly-edit-an-html-file-using-markdown.">Seamlessly edit an html file using markdown.</h3>
+<p><strong>H</strong>TML <strong>a</strong>s <strong>M</strong>arkdown.</p>
+<p>This package defines a major-mode, <code>ham-mode</code>, which allows you to edit HTML files exactly as if they were Markdown files. Activate it while visiting an HTML file. The buffer will be converted to Markdown, but the file will still be kept in HTML format behind the scenes. Each time you save the Markdown buffer, the file will be updated with the HTML.</p>
+<p><strong>Why?</strong> This is mainly designed to be used with web interfaces which take HTML text (such as some email clients) but whose editors pale in comparison to Emacs (obviously).</p>
+<p>This major mode will allow you edit your email (or whatever else you’re writing) with the full power of <code>markdown-mode</code>. In fact, you will usually be able to write richer structures than the client’s web interface would normally allow you to (lists within lists, for instance). Just check out <code>C-h C-f markdown-mode RET</code> to see the full range of commands available for editing.</p>
+<h2 id="instructions">Instructions</h2>
+<p>To use this package, simply:</p>
+<ol style="list-style-type: decimal">
+<li>Install it from Melpa (<code>M-x package-install RET ham-mode</code>) and the <code>ham-mode</code> command will be autoloaded.</li>
+<li>Activate it inside any HTML files you’d like to edit as Markdown. You can manually invoke <code>M-x ham-mode</code>, or add it to <code>auto-mode-alist</code> so that it can load automatically.<br />
+For instance, the following snippet will activate <code>ham-mode</code> in any <code>.htm</code> file containing the word <em>email</em>.</li>
+</ol>
+<pre><code>(add-to-list &#39;auto-mode-alist &#39;(&quot;.*email.*\\.html?\\&#39;&quot; . ham-mode))</code></pre>
+</body>
+</html>

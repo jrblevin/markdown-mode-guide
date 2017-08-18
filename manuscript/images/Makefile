@@ -13,6 +13,9 @@ title_page.png: title_page.tex
 markup-hiding.png: markup-hiding-off.png markup-hiding-on.png
 	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
 
+ham-mode.png: ham-mode-html.png ham-mode-markdown.png
+	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
+
 url-hiding.png: url-hiding-off.png url-hiding-on.png
 	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
 
