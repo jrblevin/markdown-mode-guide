@@ -542,17 +542,19 @@ Emacs can find it.  If you see `nil`, then it could not be found in
 
 #### Configuring Markdown on macOS with Homebrew
 
-If you use Homebrew, then you can install Markdown.pl or Pandoc by
-issuing one of the following commands:
+If you use Homebrew, then you can install Markdown.pl, Pandoc, or
+MultiMarkdown by issuing one of the following commands:
 
 ``` text
 brew install markdown
 brew install pandoc
+brew install multimarkdown
 ```
 
 Then, in Emacs, type `M-x customize-mode RET markdown-mode` and set
 'Markdown Command' to the path of the executable you just installed:
-`/usr/local/bin/markdown` or `/usr/local/bin/pandoc` for Pandoc.
+`/usr/local/bin/markdown`, `/usr/local/bin/pandoc`, or
+`/usr/local/bin/multimarkdown`.
 
 #### Configuring Markdown on Windows
 
@@ -580,8 +582,20 @@ MultiMarkdown to enable smart typography and footnotes, you can define
 `markdown-command` as follows:
 
 ``` emacs-lisp
-(setq markdown-command "multimarkdown --smart")
+(setq markdown-command "multimarkdown --smart --notes")
 ```
+
+If you use Pandoc, you may want to configure it as follows.  These arguments
+ask Pandoc to convert Markdown to HTML, to produce a standalone HTML document
+rather than a snippet, to enable MathJax (to render LaTeX as MathML)
+and to use Pygments for syntax highlighting of code blocks:
+
+``` emacs-lisp
+(setq markdown-command
+      "pandoc -f markdown -t html -s --mathjax --highlight-style=pygments")
+```
+
+#### Passing a File Name to Markdown
 
 By default, Markdown Mode assumes that your Markdown processor accepts
 input via `stdin`.  That is, it assumes that if you were using it from
@@ -590,8 +604,6 @@ the command line, you could *pipe* input to it like so:
 ``` text
 cat document.md | markdown
 ```
-
-#### Passing a File Name to Markdown
 
 If your Markdown processor needs to be passed a file name, you'll need
 to set another variable: `markdown-command-needs-filename`.  Set this
