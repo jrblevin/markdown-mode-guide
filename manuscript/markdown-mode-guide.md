@@ -2698,7 +2698,8 @@ End:
 
 A package called [`markdown-toc`][tc] allows users to generate and
 update a table of contents in Markdown files.  Like Markdown Mode
-itself, you can install it from [MELPA][ml] or [MELPA Stable][ms].
+itself, you can install it from [MELPA][ml] or [MELPA Stable][ms]:
+`M-x package-install RET markdown-toc`.
 
 To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
