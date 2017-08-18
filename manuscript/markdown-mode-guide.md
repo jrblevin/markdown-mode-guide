@@ -2418,9 +2418,9 @@ Mode as described below.
   `markdown-make-gfm-checkboxes-buttons` is set to a non-nil value
   (and this variable is `t` by default).  These checkboxes can be
   toggled by clicking `mouse-1`, pressing `RET` over the button, or by
-  pressing either `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) or
-  `C-c C-d` (`markdown-do`) with the point anywhere in the task list
-  item.
+  pressing `C-c C-d` (`markdown-do`) with the point anywhere in the
+  task list item.  Alternatively, you can use the dedicated function
+  `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) directly.
 
 * **Wiki links:**  Generic wiki links are supported in
   Markdown Mode, but in GFM Mode specifically they will be
