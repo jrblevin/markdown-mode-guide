@@ -1309,6 +1309,18 @@ You can also _toggle_ between asterisks and underscores using the
 promotion and demotion commands, `C-c C--` and `C-c C-=`
 (`markdown-promote` and `markdown-demote`).
 
+W> Markdown processors differ as to how they handle inter-word
+W> underscores.  When Markdown.pl encounters _dis_functional, it
+W> assumes you intend to italicize "dis".  However, if you are writing
+W> technical documentation, perhaps you have a variable named
+W> `state_space_dimension`.  Unless you format that as inline code
+W> everywhere, `space` would become italicized.  GitHub Flavored
+W> Markdown re-defines this behavior so that inter-word underscores do
+W> not trigger italics.  Markdown Mode includes a special
+W> mode, [GitHub Flavored Markdown Mode](#gfm-mode) or `gfm-mode`, discussed
+W> as an extension below.  Among other differences, it uses the GitHub
+W> convention for underscores.
+
 `markdown-italic-underscore`
 
 :   Boolean, default: `nil`.
