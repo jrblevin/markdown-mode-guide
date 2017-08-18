@@ -1436,9 +1436,9 @@ The URL or `[reference]` label, link text, and optional title are
 entered through a series of prompts.  The type of link is determined
 by which values are provided:
 
-*   If both a URL and link text are given, insert an inline link:
+*   If a URL and link text are given, insert an inline link:
     `[text](url)`.
-*   If both a reference label and text are given, insert
+*   If a reference label and text are given, insert
     a reference link: `[text][reference]`.
 *   If only link text is given, insert an implicit reference link:
     `[text][]`.
@@ -1450,9 +1450,9 @@ inserting or editing image markup interactively.  As with the link
 insertion command, through a series interactive prompts you can insert
 either an inline or reference image:
 
-*   If both a URL and alt text are given, insert an inline
+*   If a URL and alt text are given, insert an inline
     image: `![alt text](url)`.
-*   If both a reference label and alt text are given,
+*   If a reference label and alt text are given,
     insert a reference image: `![alt text][reference]`.
 
 If there is an existing link or image at the point, these command will
