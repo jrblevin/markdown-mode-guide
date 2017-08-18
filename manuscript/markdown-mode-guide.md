@@ -1438,7 +1438,7 @@ by which values are provided:
 
 *   If both a URL and link text are given, insert an inline link:
     `[text](url)`.
-*   If both a `[reference]` label and link text are given, insert
+*   If both a reference label and text are given, insert
     a reference link: `[text][reference]`.
 *   If only link text is given, insert an implicit reference link:
     `[text][]`.
@@ -1452,8 +1452,8 @@ either an inline or reference image:
 
 *   If both a URL and alt text are given, insert an inline
     image: `![alt text](url)`.
-*   If both a `[reference]` label and alt text are given,
-    insert a reference link: `![alt text][reference]`.
+*   If both a reference label and alt text are given,
+    insert a reference image: `![alt text][reference]`.
 
 If there is an existing link or image at the point, these command will
 edit the existing markup rather than inserting new markup.  Otherwise,
