@@ -2944,6 +2944,22 @@ file:
 ```
 
 
+## Using Flyspell with Markdown Mode
+
+Flyspell Mode enables on-the-fly spell checking in Emacs.  If you want
+to always enable `flyspell-mode` when Markdown Mode is loaded, you can add
+the following to your init file:
+
+``` emacs-lisp
+(add-hook 'markdown-mode-hook 'flyspell-mode)
+```
+
+Starting with version 2.3, Markdown Mode defines a
+`flyspell-generic-check-word-predicate` function which lets Flyspell
+know that it should ignore code blocks, inline code, and comments,
+reference labels, Markdown markup, and URLs.
+
+
 ## Using Pre- and Post-Processors
 
 A Unix "pipeline" is a sequence of processes connected through
