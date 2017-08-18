@@ -3110,10 +3110,15 @@ Some examples of settings Pandoc Mode can manage for you are:
 These are but a few of the available options.  Pandoc Mode also adds
 font lock support for Pandoc citations and numbered example lists.
 
+With Pandoc Mode you can create multiple output profiles for a single
+input file.  You might have a Markdown file that you want to translate
+to HTML for publishing on your website and also convert to PDF for
+printing.
+
 You can change the output settings from the `pandoc-mode` menus, or
 you can store them in a settings files on a per-project or global
-basis.  For example, if your file is `article.md` then the settings
-file for HTML output would be `.article.md.html.pandoc`.
+basis.  If your main file name is `article.md` then the settings file
+for HTML output would be `.article.md.html.pandoc`.
 
 If you use Pandoc Mode often, you can add a hook to load it
 automatically with Markdown Mode whenever a `pandoc-mode` settings
