@@ -3141,7 +3141,7 @@ following tags for marking changes:
 
 *   Addition `{++added++}`
 *   Deletion `{--removed--}`
-*   Substitution `{~~old~>new~~}
+*   Substitution `{~~old~>new~~}`
 *   Comment `{>>comment<<}`
 *   Highlight `{==highlight==}{>>comment<<}`
 
