@@ -2694,6 +2694,51 @@ End:
 *   [GNU Emacs manual: Local Variables in Files][fl]
 
 
+## Generating a Table of Contents
+
+A package called [`markdown-toc`][tc] allows users to generate and
+update a table of contents in Markdown files.  Like Markdown Mode
+itself, you can install it from [MELPA][ml] or [MELPA Stable][ms].
+
+To insert the table of contents initially, place the point where you
+would like it to appear and issue `M-x markdown-toc-generate-toc`.
+You will see a Markdown-formatted nested list like the following:
+
+```
+<!-- markdown-toc start - Don't edit this section. 
+     Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [Introduction](#introduction)
+    - [Quick Reference](#quick-reference)
+    - [Markdown](#markdown)
+        - [Markdown Syntax Reference](#markdown-syntax-reference)
+        - [Additional Information](#additional-information)
+    ...
+
+<!-- markdown-toc end -->
+```
+
+After it has been inserted, you can update the table of of contents with
+`M-x markdown-toc-refresh-toc`.  Alternatively, you can use the combined
+generate or refresh command `M-x markdown-toc-generate-or-refresh-toc`.
+Finally, to remove it run `M-x markdown-toc-delete-toc`.
+
+Notice that `markdown-toc` generates anchors (e.g., `#quick-reference`)
+automatically.  You'll need to make sure that your Markdown processor
+of choice also geneqrates these in the resulting HTML and that it
+follows the same format (i.e., replacing spaces with hyphens).  This is
+the format used by MultiMarkdown, for example.
+
+You can also customize the title and the start and end comments:
+
+``` emacs-lisp
+(custom-set-variables
+ '(markdown-toc-header-toc-start "<!-- customized start-->")
+ '(markdown-toc-header-toc-title "**customized title**")
+ '(markdown-toc-header-toc-end "<!-- customized end -->"))
+```
+
 ## Displaying and Preserving Whitespace
 
 Whitespace is an important part of Markdown.  For example, two spaces
@@ -4243,6 +4288,7 @@ syntax highlighting and element insertion commands for Markdown files.
 [st]: http://docutils.sourceforge.net/mirror/setext.html 
 [sp]: http://daringfireball.net/projects/smartypants/
 [sx]: http://daringfireball.net/projects/markdown/syntax
+[tc]: https://github.com/ardumont/markdown-toc
 [up]: https://github.com/jwiegley/use-package
 [v1.1]: https://jblevins.org/projects/markdown-mode/rev-1-1
 [v1.2]: https://jblevins.org/projects/markdown-mode/rev-1-2
