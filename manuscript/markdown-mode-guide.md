@@ -11,14 +11,18 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 ![Markdown Mode Screenshot](images/markdown-mode-2.3.png)
 
-This guide describes how to install, use, and customize [Markdown
-Mode][mm], a major mode for editing Markdown-formatted text files
-in [Emacs][em].  This guide is based on **Markdown Mode version 2.3**.
+This guide describes how to install, use, and customize
+[Markdown Mode][mm], a major mode for editing Markdown-formatted
+text files in [Emacs][em].  It is intended not to be a replacement
+for the online manual, but rather to supplement and extend the manual
+for users who want to learn to use Markdown Mode more extensively
+and efficiently and perhaps learn more about Emacs in the process.
 
+This guide is based on **Markdown Mode version 2.3**.
 Markdown Mode and this guide were written by [Jason Blevins][jb].
-Markdown Mode is free software, licensed under the [GNU General
-Public License (GPL), version 2][gp], and it may be freely obtained
-from the [Markdown Mode homepage][mm].
+Markdown Mode is free software, licensed under
+the [GNU General Public License (GPL), version 2][gp], and it may be
+freely obtained from the [Markdown Mode homepage][mm].
 
 Funds from [sales of this book][bk] help support development of both
 Markdown Mode and this Guide.  If you're reading this, then you're
