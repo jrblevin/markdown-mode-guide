@@ -2861,10 +2861,10 @@ SmartyPants.
 Once you have SmartyPants installed, note the path of the script.  For
 example, suppose it is installed in your Emacs `exec-path` path as
 `smartypants`.  Then to use SmartyPants when previewing and exporting
-from Markdown Mode, you would set `markdown-command` to be
-`"markdown | smartypants"`.  You can do this either by using
-`M-x customize-group RET markdown` or by placing the following in your
-init file:
+from Markdown Mode, you would set `markdown-command` so that the
+`markdown` output is piped to `smartypants`.  You can do this either
+by using `M-x customize-group RET markdown` or by placing the
+following in your init file:
 
 ``` emacs-lisp
 (setq markdown-command "markdown | smartypants")
@@ -2876,9 +2876,9 @@ init file:
 To open a browser, Markdown Mode calls the function specified in
 `browse-url-browser-function`.  You can use `M-x describe-variable RET
 browse-url-browser-function` to determine what value is currently set
-in your own Emacs.  To choose a different browser, simply customize
-`browse-url-browser-function` using `M-x customize-option` and answer
-the questions presented.
+in your own Emacs.  To choose a different browser, simply customize the
+`browse-url-browser-function` variable using `M-x customize-option`
+and then answer the questions presented.
 
 ![Customizing `browse-url-browser-function`](images/browse-url-browser-function.png)
 
@@ -2957,6 +2957,7 @@ Furthermore, once you install the `mark` script you can simply type
 
 ## Tracking Changes with CriticMarkup Mode
 
+{width=80%}
 ![CriticMarkup Mode and Markdown Mode](images/cm-mode.png)
 
 [CriticMarkup][cm] is a plain text markup language for tracking
