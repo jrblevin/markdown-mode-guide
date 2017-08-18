@@ -2871,11 +2871,6 @@ End:
 -->
 ```
 
-### References
-
-*   [GNU Emacs manual: Local Variables in Files](https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html)
-
-
 ## Generating a Table of Contents
 
 A package called [`markdown-toc`](https://github.com/ardumont/markdown-toc)
