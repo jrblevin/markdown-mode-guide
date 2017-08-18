@@ -1193,7 +1193,7 @@ contained within, to assist with syntax highlighting and CSS styling.
 With Markdown.pl, the only way to format code blocks is to prefix
 each line with four spaces:
 
-{lang=markdown}
+{lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #include <stdio.h>
     int main()
@@ -1227,7 +1227,7 @@ opening three backquotes, you may give an optional language
 identifier, possibly separated by a space.  These are referred to in
 Markdown simply as GFM code blocks:
 
-{lang=markdown}
+{lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 a one-line code block
@@ -1282,11 +1282,9 @@ preference for lowercase language identifiers with
     from those predefined in `markdown-gfm-recognized-languages`, when
     inserting GFM code blocks.  Language strings must have be trimmed
     of whitespace and not contain curly braces.  They may be of
-    arbitrary capitalization.
+    arbitrary capitalization.  _Example:_
 
-    Example:
-
-    ```
+    ``` emacs-lisp
     (setq markdown-gfm-additional-languages '("Texinfo" "Zimbu"))
     ```
 
@@ -1301,11 +1299,9 @@ preference for lowercase language identifiers with
 :   Integer, default: `1`.
 
     Number of space characters to insert between code fences
-    and programming language name.
+    and programming language name.  _Example:_
 
-    Example:
-
-    ```
+    ``` emacs-lisp
     (setq markdown-spaces-after-code-fence 0)
     ```
 
@@ -1317,18 +1313,20 @@ and [Pandoc](http://pandoc.org), among others.  The block opens with *at least t
 tildes (`~`) and closes with at least as many tildes as it was opened
 with, but possibly more:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~
 a one-line code block
 ~~~~~~~~~~~~~~~~~~~~~
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some processors allow you to specify the language of the source code
 using attribute lists of various formats, as in the following
 examples.  Markdown Mode takes an inclusive approach to highlighting
 such blocks:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~ .html
 <p>hello, world</p>
 ~~~~~~~~~~~~~~~~~~~
@@ -1346,7 +1344,7 @@ program main
   print *, 'hello, world'
 end program main
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I> Markdown Mode supports font-lock and indirect editing of
 I> tilde-fenced code blocks, but it does not currently have a
@@ -1425,12 +1423,13 @@ asterisks, or underscores on a line by themselves.  You may use spaces
 between the hyphens or asterisks.  Each of the following lines will
 produce a horizontal rule:
 
-```
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * * *
 ***
 - - -
 ---------------------------------------
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To insert a horizontal rule, press `C-c C-s -`.  Markdown Mode allows
 you to define several horizontal rules of decreasing prominence in a
@@ -1471,16 +1470,16 @@ I> your local configuration.
 To emphasize or _italicize_ text in Markdown, enclose it between
 asterisks or underscores:
 
-``` markdown
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *emphasis* or _emphasis_
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Similarly, to produce **bold** text, enclose it between two asterisks
 or two underscores:
 
-``` markdown
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **bold** or __bold__
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Markdown Mode, `C-c C-s i` (`markdown-insert-italic`) inserts
 markup to make the region or a word italic.  Like other commands, it
@@ -1508,9 +1507,7 @@ promotion and demotion commands, `C-c C--` and `C-c C-=`
 :   Boolean, default: `nil`.
 
     Set to a non-`nil` value to use underscores instead of astersisk
-    when inserting markup for italic text.
-
-    Example:
+    when inserting markup for italic text.  _Example:_
 
     ``` emacs-lisp
     (setq markdown-italic-underscore t)
@@ -1521,9 +1518,7 @@ promotion and demotion commands, `C-c C--` and `C-c C-=`
 :   Boolean, default: `nil`.
 
     Set to a non-`nil` value to use two underscores instead of two
-    asterisks when inserting markup for bold text.
-
-    Example:
+    asterisks when inserting markup for bold text.  _Example:_
 
     ``` emacs-lisp
     (setq markdown-italic-underscore t)
@@ -1534,9 +1529,10 @@ promotion and demotion commands, `C-c C--` and `C-c C-=`
 To mark up inline source code, for command names, file names, etc.,
 place the text between backquotes (`` ` ``) like so:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This is inline code: `printf("hello, world\n");`
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To insert inline code in Markdown Mode, use `C-c C-s c`
 (`markdown-insert-code`).  This command works for both insertion and
@@ -1554,56 +1550,62 @@ T> `<kbd>` tags like inline code.
 To create simple links, you can simply place a URL or email address
 inside angle brackets, like so:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <https://www.gnu.org/software/emacs/>
 <bug-gnu-emacs@gnu.org>
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create hyperlinks with text, place the link text in square brackets
 followed by the URL in parentheses:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Link text](http://link.url/)
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Optionally, you can add title text to the link which will appear when
 the user hovers over the link, like so:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Link text](http://link.url/ "Title text")
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 A similar syntax is used for images.  Add an exclamation point (`!`)
 before the square bracket.  There is no link text displayed for
 images, rather, the text in square brackets will be used for the "alt
 text":
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ![Alt text](http://image.url/file.jpg "Title text")
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Markdown Mode, links of the above form are referred to as "inline
 links" because the URL is written out in full inline in the Markdown
 text.  On the other hand, "reference links" allow you to keep the text
 clean and define the URLs later:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can define short reference link like this:
 [link text here][1]
 
-   [1]: http://link.url/
+[1]: http://link.url/
 
 You can still include a title, like this:
 [link text here][2]
 
-   [2]: http://link.url/ "Title text"
+[2]: http://link.url/ "Title text"
 
 Finally, you can use implicitly defined reference links
 where the reference tag is the same as the link text:
 [link text][]
 
-   [link text]: http://link.url/
-```
+[link text]: http://link.url/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Inserting Links & Images
 
@@ -1729,9 +1731,7 @@ recognized automatically.
     Determines where to insert reference definitions.  The possible
     locations are the end of the document (`end`), after the current
     block (`immediately`), the end of the current subtree (`subtree`),
-    or before the next header (`header`).
-
-    Example:
+    or before the next header (`header`).  _Example:_
 
     ``` emacs-lisp
     (setq markdown-reference-location 'end)
@@ -1817,9 +1817,7 @@ between footnote markers and footnote definitions.
     options is the same as for `markdown-reference-location`: the
     possible locations are the end of the document (`end`), after the
     current block (`immediately`), the end of the current subtree
-    (`subtree`), or before the next header (`header`).
-
-    Example:
+    (`subtree`), or before the next header (`header`).  _Example:_
 
     ``` emacs-lisp
     (setq markdown-footnote-location 'subtree)
@@ -1831,10 +1829,11 @@ GitHub Flavored Markdown (GFM) defines a syntax for checkboxes, called
 task lists, which is a straightforward and backwards-compatible
 modification of Markdown's unordered list syntax.
 
-``` markdown
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - [ ] Incomplete task
 - [x] Completed task
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, Markdown Mode activates these checkboxes so that they can
 be clicked using the mouse, or by pressing `RET` when the point is at
@@ -1868,9 +1867,10 @@ carats (`^`) immediately before and after the text.  Similarly,
 subscripts may be written by placing tildes (`~`) immediately before
 and after the text.
 
-``` text
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 H~2~O is a liquid.  2^10^ is 1024.
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Metadata
 
@@ -1881,19 +1881,21 @@ One of the simplest forms is email-style metadata that must appear at
 the beginning of the file.  This metadata format is supported by
 MultiMarkdown and some blog generation systems.
 
-``` text
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Markdown Mode also supports Pandoc metadata, which also must appear at
 the beginning of a file and is indicated by percent signs:
 
-``` text
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % title
 % author(s) (separated by semicolons)
 % date
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Finally, Markdown Mode supports YAML and TOML metadata blocks that can
 occur anywhere in the document.  YAML and TOML metadata blocks begin
@@ -1901,23 +1903,26 @@ with a line of three hyphens (`---`) and end with either a line of
 three hyphens (`---`) or three dots (`...`).  Pandoc, GitHub, and
 Jekyll, among other systems, support YAML metadata.
 
-``` yaml
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ---
 title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
 date: August 2017
 tags: Emacs, markdown, markdown-mode, writing, plain text
 ---
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Some website generators, such as Hugo, also support TOML metadata.
 
-``` toml
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ---
 title = "Guide to Markdown Mode for Emacs"
 author = "Jason R. Blevins"
 ---
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Markdown Do
 
@@ -2130,6 +2135,11 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
     `split-height-threshold` and the available windows.  To force
     vertically split windows (left and right), set this to `right`.
     To force horizontally split windows, set this to `below`.
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-split-window-direction 'right)
+    ```
 
 `markdown-live-preview-delete-export`
 
@@ -2158,7 +2168,11 @@ an available external previewer on your system.
     The command used for calling a standalone Markdown previewer
     capable of opening Markdown source files directly.  This command
     will be called with a single argument, the file name of the
-    current buffer.
+    current buffer.  _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-open-command "/usr/local/bin/mark")
+    ```
 
 T> As described in the Tips section, one popular viewer on macOS
 T> is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), which can easily be used as with Markdown Mode
@@ -2202,9 +2216,7 @@ T> wrapper.
     has any effect.  When set to `nil`, `buffer-file-coding-system`
     will be used to automatically determine the coding system string
     (falling back to `iso-8859-1` when unavailable).  Common settings
-    are `utf-8` and `iso-latin-1`.
-
-    Example:
+    are `utf-8` and `iso-latin-1`.  _Example:_
 
     ``` emacs-lisp
     (setq markdown-coding-system "utf-8")
@@ -2273,9 +2285,7 @@ value.
     Enable or disable syntax highlighting for wiki links.  Set this to
     a non-`nil` value to enable wiki link support.  Wiki link
     support can also be toggled using the function
-    `markdown-toggle-wiki-links`.
-
-    Example:
+    `markdown-toggle-wiki-links`.  _Example:_
 
     ``` emacs-lisp
     (setq markdown-enable-wiki-links t)`
@@ -2296,23 +2306,27 @@ value.
     Character to replace spaces when mapping wiki links to filenames.
     For example, use an underscore for compatibility with the Python
     Markdown WikiLinks extension.  In GFM Mode, this is set to `"-"`
-    to conform with GitHub wiki links.
+    to conform with GitHub wiki links.  _Example:_
 
-    Example: `(setq markdown-link-space-sub-char "-")`
+    ``` emacs-lisp
+    (setq markdown-link-space-sub-char "-")
+    ```
 
 `markdown-wiki-link-fontify-missing`
 
 :   Boolean, default: `nil`.
 
     When non-`nil`, change the wiki-link face according to the
-    existence of the target files.
+    existence of the target files.  _Example:_
 
-    This is expensive because it requires checking for the file each
-    time the buffer changes or the user switches windows.  It is
-    disabled by default because it may cause lag when typing on slower
-    machines.
+    ``` emacs-lisp
+    (setq markdown-wiki-link-fontify-missing t)
+    ```
 
-    Example: `(setq markdown-wiki-link-fontify-missing t)`
+    Note that this is expensive because it requires checking each
+    linked file every time the buffer changes or the user switches
+    windows.  It is disabled by default because it may cause lag when
+    typing on slower machines.
 
 `markdown-wiki-link-search-parent-directories`
 
@@ -2333,7 +2347,8 @@ the final `e` is for _equation_.  Imporantly, this is _not_ full
 LaTeX support.  It only involves font lock and only expressions
 delimited by `$..$`, `$$..$$`, or `\[..\]` are supported.
 
-``` text
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A simple equation for a line in $\mathbb{R}^2$:
 
 \[ y = mx + b \]
@@ -2341,7 +2356,7 @@ A simple equation for a line in $\mathbb{R}^2$:
 Again, but with dollar signs:
 
 $$ y = mx + b $$
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Alternatively, you can enable this by default by setting
 `markdown-enable-math` to a non-`nil` value.  You can do this on a
@@ -2594,14 +2609,15 @@ it in your init file:
 Note that Markdown Mode defines separate heading faces for each
 heading level:
 
-``` text
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 markdown-header-face-1
 markdown-header-face-2
 markdown-header-face-3
 markdown-header-face-4
 markdown-header-face-5
 markdown-header-face-6
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each of these inherits from the common `markdown-header-face`.  So, to
 change all faces (e.g., a common font family or color) you can
@@ -2726,13 +2742,13 @@ file you could add the following to the first line (which would result
 in Emacs loading the file in `gfm-mode` instead of, say,
 `markdown-mode`):
 
-``` markdown
+``` html
 <!-- -*- mode: gfm -*- -->
 ```
 
 To specify multiple variables, separate them by semicolons:
 
-``` markdown
+``` html
 <!-- -*- mode: markdown; coding: utf-8 -*- -->
 ```
 
@@ -2740,7 +2756,7 @@ Alternatively, you can insert a local variable block at the _end_ of a
 file.  Such a block opens with a `Local Variables:` declaration and
 closes with `End:`, like so:
 
-``` markdown
+``` html
 <!-- Local Variables: -->
 <!-- markdown-enable-math: t -->
 <!-- End: -->
@@ -2750,7 +2766,7 @@ It's not necessary that each line is a self-contained comment, so the
 following also works and it is a personal preference which form you
 use:
 
-``` markdown
+``` html
 <!--
 Local Variables:
 markdown-enable-math: t
@@ -2769,7 +2785,7 @@ Other example uses are setting the `fill-column` in a particular file,
 or declaring that spaces should be used for indentation instead of
 tabs:
 
-``` markdown
+``` html
 <!--
 Local Variables:
 fill-column: 70
@@ -2794,7 +2810,8 @@ To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
 You will see a Markdown-formatted nested list like the following:
 
-``` markdown
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <!-- markdown-toc start - Don't edit this section. 
      Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
@@ -2807,7 +2824,7 @@ You will see a Markdown-formatted nested list like the following:
     ...
 
 <!-- markdown-toc end -->
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After it has been inserted, you can update the table of of contents with
 `M-x markdown-toc-refresh-toc`.  Alternatively, you can use the combined
@@ -2858,12 +2875,10 @@ standard input of the following one.
 
 X> To give a generic example of pipes, the following command lists all
 X> running processes, filters out those with `markdown` in the name,
-X> removes the `grep markdown` process itself, extracts the process ID
-X> of each remaining process using `awk`, and then kills these
-X> processes by mapping their process IDs to the `kill` command using
-X> xargs:
+X> removes the `grep markdown` process itself, extracts the process IDs
+X> using `awk`:
 X>
-X>     ps aux | grep markdown | grep -v grep | awk '{print $2}' | xargs kill
+X>     ps aux | grep markdown | grep -v grep | awk '{print $2}'
 
 With Markdown Mode, the Markdown processor given by the variable
 markdown-command` can be a pipeline, and so it can be used to pre- or
@@ -2913,7 +2928,8 @@ simply add something like the following:
 
 For reference, here is a selection of the available functions in Emacs 25.2:
 
-``` text
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 browse-url-chrome                   browse-url-epiphany
 browse-url-chromium                 browse-url-firefox
 browse-url-conkeror                 browse-url-galeon
@@ -2922,7 +2938,7 @@ browse-url-default-macosx-browser   browse-url-gnome-moz
 browse-url-default-windows-browser  browse-url-kde
 browse-url-elinks                   browse-url-mozilla
 browse-url-elinks-new-window        browse-url-w3
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If your browser is not supported, choose `browse-url-generic` and set
 `browse-url-generic-program` to the path of your browser's executable.
