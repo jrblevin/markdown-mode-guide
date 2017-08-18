@@ -2288,7 +2288,7 @@ value.
     `markdown-toggle-wiki-links`.  _Example:_
 
     ``` emacs-lisp
-    (setq markdown-enable-wiki-links t)`
+    (setq markdown-enable-wiki-links t)
     ```
 
 `markdown-wiki-link-alias-first`
