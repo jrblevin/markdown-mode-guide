@@ -3086,6 +3086,50 @@ Furthermore, once you install the `mark` script you can simply type
 `mark post.md` from the terminal to open a Markdown file.
 
 
+## Pandoc Mode
+
+Pandoc, in addition to being a Markdown-to-HTML processor, can convert
+multiple input formats to each of several output formats.  For
+example, it can convert Markdown to LaTeX or Org.
+
+[Pandoc Mode](https://joostkremers.github.io/pandoc-mode/) is an Emacs interface to Pandoc, implemented as a
+minor mode.  You can install it from MELPA or MELPA Stable and
+activate it by typing `M-x pandoc-mode`.  The documentation summarizes
+Pandoc Mode as follows:
+
+> `pandoc-mode` uses the `hydra` package to create a keyboard-driven
+> menu interface to all options and settings.  The main menu is called
+> by pressing `C-c /`.  After that, everything should be
+> self-explanatory.  From the main menu, you can run `pandoc` on the
+> buffer, view the output buffer and the current settings, set the
+> input and output formats, and you can go to the options menu.
+
+Some examples of settings Pandoc Mode can manage for you are:
+
+*   produce standalone output or a snippet,
+*   use a template file,
+*   generate a table of contents,
+*   include a header or footer,
+*   set the syntax highlighting style,
+*   render mathematical equations,
+*   link to a CSS stylesheet.
+
+These are but a few of the available options.  Pandoc Mode also adds
+font lock support for Pandoc citations and numbered example lists.
+
+You can change the output settings from the `pandoc-mode` menus, or
+you can store them in a settings files on a per-project or global
+basis.  For example, if your file is `article.md` then the settings
+file for HTML output would be `.article.md.html.pandoc`.
+
+If you use Pandoc Mode often, you can add a hook to load it
+automatically with Markdown Mode whenever a `pandoc-mode` settings
+file is detected:
+
+``` emacs-lisp
+(add-hook 'markdown-mode-hook 'conditionally-turn-on-pandoc)
+```
+
 ## Tracking Changes with CriticMarkup Mode
 
 {width=80%}
