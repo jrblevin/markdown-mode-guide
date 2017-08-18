@@ -1897,6 +1897,50 @@ between footnote markers and footnote definitions.
     (setq markdown-footnote-location 'subtree)
     ```
 
+## Definition Lists
+
+Several Markdown processors, such as PHP Markdown Extra, Pandoc,
+MultiMarkdown, and Python Markdown, support an extension called
+_definition lists_, which correspond to `<dl>` tags in HTML.  A simple
+definition list begins with a term followed by a newline and a colon
+at the beginning of the next line, which separates the definition:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Term
+:   Definition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In HTML, this becomes:
+
+``` html
+<dl>
+<dt>Term</dt>
+<dd><p>Definition</p></dd>
+</dl>
+```
+
+Like a dictionary, you can have multiple definitions per term.
+To borrow an example from the PHP Markdown Extra documentation:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Apple
+:	Pomaceous fruit of plants of the genus Malus in
+	the family Rosaceae.
+:	An American computer company.
+
+Orange
+:	The fruit of an evergreen tree of the genus Citrus.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Markdown Mode provides basic syntax highlighting and filling for
+definition lists, and some of the list-related commands also work for
+definition lists.  For example, you can move items up and down with
+`C-c <up>` (`markdown-move-up`) and `C-c <down>`
+(`markdown-move-down`).  However, Markdown Mode does not yet provide
+specific commands for manipulating definition lists otherwise.
+
 ## Comments
 
 Although there is no official syntax for comments in Markdown, since
