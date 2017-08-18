@@ -2911,11 +2911,11 @@ following in your init file:
 ## Using a Custom Web Browser
 
 To open a browser, Markdown Mode calls the function specified in
-`browse-url-browser-function`.  You can use `M-x describe-variable RET
-browse-url-browser-function` to determine what value is currently set
-in your own Emacs.  To choose a different browser, simply customize the
-`browse-url-browser-function` variable using `M-x customize-option`
-and then answer the questions presented.
+`browse-url-browser-function`.  To determine what value is currently
+used in your own Emacs, you can use `M-x describe-variable RET
+browse-url-browser-function` .  To use a different browser, customize the
+variable with `M-x customize-option RET browse-url-browser-function`
+and answer the questions presented.
 
 ![Customizing `browse-url-browser-function`](images/browse-url-browser-function.png)
 
