@@ -2093,7 +2093,7 @@ author = "Jason R. Blevins"
 ---
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## Wiki Links
+## Wiki Links {#wiki-links}
 
 Besides supporting the basic Markdown syntax, Markdown Mode also
 supports syntax highlighting for `[[Wiki Links]]`.  Note that wiki
@@ -2951,6 +2951,26 @@ Starting with version 2.3, Markdown Mode defines a
 `flyspell-generic-check-word-predicate` function which lets Flyspell
 know that it should ignore code blocks, inline code, and comments,
 reference labels, Markdown markup, and URLs.
+
+
+## Creating a Local Wiki
+
+![Local Wiki Files in Markdown Mode](images/local-wiki.png)
+
+Markdown Mode supports wiki links, so you can use it keep notes in a
+local wiki.  You can create `[[wiki links]`` to other files and open
+them by moving the point to the link and pressing `C-c C-o`.  If a
+file doesn't exist, it will be created.  You can move quickly between
+links with `M-n` (`markdown-next-link`) and `M-p`
+(`markdown-previous-link`).
+
+As discussed in the section on [Wiki Links](#wiki-links), there are several
+settings you may want to customize.  When following wiki links,
+Markdown Mode looks for a file with the same extension as the current
+one.  The variable `markdown-link-space-sub-char` determines how
+spaces are handled when transforming the link text to a file name.
+Finally, if you want to highlight missing links as in the screenshot
+above, set `markdown-wiki-link-fontify-missing` to `t`.
 
 
 ## Using Pre- and Post-Processors
