@@ -162,7 +162,7 @@ languages.
 For reference, below is a plain-text summary of Markdown's syntax.
 Additional details about each type of element are explained in the
 course of describing the available Markdown Mode commands.  See the
-original [Markdown syntax page](http://daringfireball.net/projects/markdown/syntax) for more complete details.
+original [Markdown syntax page](http://daringfireball.net/projects/markdown/syntax) for complete details.
 
 ``` markdown
 # First-Level Header
@@ -427,7 +427,7 @@ will also need to edit their init files following the Manual
 installation instructions below, to load Markdown Mode.
 
 **NetBSD:** Markdown Mode is available in pkgsrc
-as [textproc/markdown-mode](http://pkgsrc.se/textproc/markdown-mode), but (as of May 8 2017) it installs and
+as [textproc/markdown-mode](http://pkgsrc.se/textproc/markdown-mode), but (as of May 8, 2017) it installs and
 byte-compiles an outdated version of Markdown Mode.  If you use this
 package, you'll also need to edit your init file following the Manual
 installation instructions below, to load Markdown Mode.  Rather than
@@ -440,7 +440,7 @@ pkg_add textproc/markdown-mode
 
 ### Manual Download
 
-Alternatively you can manually download and install Markdown Mode.
+Alternatively, you can manually download and install Markdown Mode.
 First, download the [latest stable version](https://jblevins.org/projects/markdown-mode/markdown-mode.el) and save
 the file where Emacs can find it (i.e., a directory in your
 `load-path`).  You can then configure `markdown-mode` and `gfm-mode`
@@ -688,7 +688,7 @@ italics) or the current line (e.g., for headings).
 
 There are also some parallel commands that act specifically on the
 region, even when `transient-mark-mode` is disabled.  These commands
-have the same keybinding as their standard counterparts, but use an
+have the same keybinding as their standard counterparts but use an
 uppercase letter instead.  For example, `markdown-insert-blockquote`
 is bound to `C-c C-s q` and only acts on the region in
 `transient-mark-mode` while `markdown-blockquote-region` is bound to
@@ -703,7 +703,7 @@ T> `C-SPC C-SPC`.
 Headings in Markdown can be defined using either of two formats:
 atx and setext.
 
-Atx-style headings are lines beginning with one to six hashmarks
+Atx-style headings are lines beginning with one to six hash marks (`#`)
 followed by the heading text.  The number of hash marks corresponds to
 the level of the heading, with one being the most prominent and six
 being the least prominent (corresponding to the six levels of headings
@@ -733,7 +733,7 @@ specific level directly, simply use `C-c C-s #` where `#` is a number
 `1` through `6`.
 
 For automatic heading insertion use `C-c C-s h`.  The type and level
-are determined based on the previous heading.  By default the new
+are determined based on the previous heading.  By default, the new
 heading will be a sibling (same level).  A `C-u` prefix can be added
 to insert a heading _promoted_ (lower number) by one level or a `C-u
 C-u` prefix can be given to insert a heading _demoted_ (higher number)
@@ -799,7 +799,7 @@ Markdown Mode defines keys for hierarchical navigation in headings and
 lists.  When the point is in a list, they move between list items.
 Otherwise, they move between headings.
 
-*   Use `C-c C-n` and `C-c C-p` to move between the next and previous
+*   Use `C-c C-n` and `C-c C-p` to move to the next and previous
     visible headings or list items of any level.
 *   Similarly, `C-c C-f` and `C-c C-b` move to the next and previous
     visible headings or list items _at the same level_ as the one at the
@@ -872,7 +872,7 @@ subtree:
 Entire subtrees of ATX headings can be promoted and demoted with
 `C-c <left>` and `C-c <right>` (`markdown-promote` and
 `markdown-demote`).  Conveniently, these are the same keybindings used
-for promotion and demotion of list items.  If the point is in a list
+for promotion and demotion of list items.  If the point is at a list
 item, they operate on the list item.  Otherwise, they operate on the
 current heading subtree.  Similarly, subtrees can be moved up and down
 with `C-c <up>` and `C-c <down>` (`markdown-move-up` and
@@ -884,7 +884,7 @@ W> headings in the region.
 Note the following "boundary" behavior for promotion and demotion.
 Any level-six headings will not be demoted further (i.e., they remain
 at level six, since Markdown and HTML do not define more than six
-levels of headings) and any level-one headings will promoted away
+levels of headings) and any level-one headings will be promoted away
 entirely (i.e., heading markup will be removed, since a level-zero
 heading is not defined).
 
@@ -1101,7 +1101,7 @@ and so on.
 ```
 
 The numbers in the block above represent the indentation positions
-that are cycled through following a nested list, when the point is at
+that are cycled through following a nested list when the point is at
 the block as shown.  In order, these positions would be appropriate
 for 1) starting a new nested list item, 2) continuing the nested list
 item with indentation past the marker, 3) starting a list item with a
@@ -1325,7 +1325,7 @@ W> convention for underscores.
 
 :   Boolean, default: `nil`.
 
-    Set to a non-`nil` value to use underscores instead of astersisk
+    Set to a non-`nil` value to use underscores instead of asterisks
     when inserting markup for italic text.  _Example:_
 
     ``` emacs-lisp
@@ -1447,7 +1447,7 @@ by which values are provided:
 
 Similarly, `C-c C-i` (`markdown-insert-image`) is a general command for
 inserting or editing image markup interactively.  As with the link
-insertion command, through a series interactive prompts you can insert
+insertion command, through a series of interactive prompts you can insert
 either an inline or reference image:
 
 *   If a URL and alt text are given, insert an inline
@@ -1455,8 +1455,8 @@ either an inline or reference image:
 *   If a reference label and alt text are given,
     insert a reference image: `![alt text][reference]`.
 
-If there is an existing link or image at the point, these command will
-edit the existing markup rather than inserting new markup.  Otherwise,
+If there is an existing link or image at the point, these commands will
+edit the existing markup rather than insert new markup.  Otherwise,
 if `transient-mark-mode` is on and there is an active region, these
 commands use the region as either the default URL (if it seems to be a
 URL) or link text value otherwise.  In that case, the region will be
@@ -1575,7 +1575,7 @@ this again will remove inline images.
 In Markdown, whitespace at the end of a line is meaningful.  Adding
 two trailing spaces at the end of a line creates a hard line break.
 Markdown Mode highlights these spaces to draw attention to them, in
-case the whitespace was suprious.  Markdown Mode also respects hard
+case the whitespace was spurious.  Markdown Mode also respects hard
 line breaks when filling paragraphs.
 
 W> Line break behavior is different in GitHub Flavored Markdown, where
@@ -1586,7 +1586,7 @@ W> all newlines correspond to hard line breaks.
 Press `C-c C-k` (`markdown-kill-thing-at-point`) to kill the thing at
 point and add the most important text, without markup, to the kill
 ring.  Possible things to kill include (roughly in order of
-precedece): inline code, headings, horizonal rules, links (adds the
+precedence): inline code, headings, horizontal rules, links (adds the
 link text to kill ring), images (adds the alt text to kill ring),
 plain URLs, email addresses, bold, italics, reference definitions
 (adds URL to kill ring), footnote markers and text (kills both the
@@ -1626,10 +1626,10 @@ Headings, horizontal rules, and list items can be promoted and
 demoted, as well as bold and italic text.  For headings,
 "promotion" means _decreasing_ the level (i.e., moving from
 `<h2>` to `<h1>`) while "demotion" means _increasing_ the
-level.  For horizontal rules, promotion and demotion means
+level.  For horizontal rules, promotion and demotion mean
 moving backward or forward through the list of rule strings in
 `markdown-hr-strings`.  For bold and italic text, promotion and
-demotion means changing the markup from underscores to asterisks.
+demotion mean changing the markup from underscores to asterisks.
 
 I> To promote or demote any markup at the point, use `C-c C--` and `C-c C-=`.
 
