@@ -1956,7 +1956,7 @@ To borrow an example from the PHP Markdown Extra documentation:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Apple
 :	Pomaceous fruit of plants of the genus Malus in
-	the family Rosaceae.
+    the family Rosaceae.
 :	An American computer company.
 
 Orange
