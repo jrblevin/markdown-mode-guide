@@ -3277,7 +3277,7 @@ run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
 
 
-## Editing Markdown Tables with OrgTbl Mode
+## Editing Markdown Tables with Org Table Mode
 
 Although there is no standard Markdown table syntax, several now
 widely accepted variations have emerged.  Unfortunately, Markdown
@@ -3324,6 +3324,8 @@ only does so in `markdown-mode` or `gfm-mode`, so as not to
 disturb actual Org tables.
 
 ``` emacs-lisp
+(require 'org-table)
+
 (defun markdown-org-table-align-advice ()
   "Replace \"+\" sign with \"|\" in tables."
   (when (member major-mode '(markdown-mode gfm-mode))
