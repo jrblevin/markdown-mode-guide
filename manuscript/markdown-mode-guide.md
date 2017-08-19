@@ -2973,6 +2973,48 @@ Finally, if you want to highlight missing links as in the screenshot
 above, set `markdown-wiki-link-fontify-missing` to `t`.
 
 
+## Integration with Deft Mode
+
+![Deft Mode with Notes in Markdown Format](images/deft.png)
+
+[Deft](https://jblevins.org/projects/deft/) is an Emacs mode for quickly browsing, filtering, and
+editing directories of plain text notes, inspired by Notational
+Velocity.  It was designed for increased productivity when writing and
+taking notes by making it fast and simple to find the right file at
+the right time and by automating many of the usual tasks such as
+creating new files and saving files.
+
+If you keep notes in Markdown format (perhaps in wiki form, as in the
+previous section), then you might find Deft to be useful.  You don't
+have to use Markdown---Deft works with LaTeX files, Org files,
+etc.---but it has some Markdown-specific features.  For example, it
+automatically strips Markdown heading markup when displaying note
+titles.  It also allows you to customzie the Markdown heading level of
+new notes.
+
+Below is a simplified version of my own Deft configuration, which I
+mostly use with Markdown files.  This binds Deft to `<f8>`, enables
+recursive subdirectory search for notes, configures several file
+extensions I use for notes, and customizes some of the file naming and
+titling options.
+
+``` emacs-lisp
+(use-package deft
+  :bind (("<f8>" . deft))
+  :commands (deft deft-open-file deft-new-file-named)
+  :config
+  (setq deft-directory "~/notes/"
+        deft-recursive t
+        deft-extensions '("md" "txt" "org" "tex")
+        deft-use-filter-string-for-filename nil
+        deft-use-filename-as-title nil
+        deft-markdown-mode-title-level 1
+        deft-file-naming-rules '((noslash . "-")
+                                 (nospace . "-")
+                                 (case-fn . downcase)))
+```
+
+
 ## Using Pre- and Post-Processors
 
 A Unix "pipeline" is a sequence of processes connected through
