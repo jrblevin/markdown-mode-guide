@@ -2182,7 +2182,7 @@ value.
     This is the default search behavior of the [Ikiwiki](https://ikiwiki.info) engine.
 
 
-## Mathematical Expressions (LaTeX)
+## Mathematical Expressions (LaTeX) {#math}
 
 {width=60%}
 ![LaTeX Math in Markdown Mode](images/math.png)
@@ -3013,6 +3013,40 @@ titling options.
                                  (nospace . "-")
                                  (case-fn . downcase)))
 ```
+
+
+## MathJax Integration
+
+![Markdown with Math Mode and MathJax Preview](images/mathjax.png)
+
+If you want to include mathematical expressions in LaTeX form in your
+Markdown files, Markdown Mode assists you with [Math Mode](#math) for
+editing.  For viewing or publishing, you'll need some way to the LaTeX
+in a readable form.  One option is to use [MathJax](https://www.mathjax.org), a cross-browser
+JavaScript package for rendering mathematics in LaTeX and MathML form.
+
+Even if you don't use MathJax in your publication workflow, it can be
+useful for previewing Markdown files containing mathematics.  To do
+this, you can ask Markdown Mode to add the necessary JavaScript tags
+to the `<head>` block of your HTML preview output using the
+`markdown-xhtml-header-content` variable:
+
+``` emacs-lisp
+(setq markdown-xhtml-header-content
+      "<script type=\"text/javascript\" async
+        src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML\">
+</script>")
+```
+
+W> The `TeX-MML-AM_CHTML` configuration in the example above very
+W> general, and therefore larger, than other configurations.  It is
+W> useful as a default to get started, but you'll most likely want to
+W> use a more appropriate, specific configuration for production use,
+W> for better performance.
+
+W> You'll need to make sure that your Markdown processor is generating
+W> HTML fragments, rather than standalone documents, so that Markdown
+W> Mode can add a header and footer with your custom `<script>` tag.
 
 
 ## Using Pre- and Post-Processors
