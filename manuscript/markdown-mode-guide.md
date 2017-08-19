@@ -2958,7 +2958,7 @@ reference labels, Markdown markup, and URLs.
 ![Local Wiki Files in Markdown Mode](images/local-wiki.png)
 
 Markdown Mode supports wiki links, so you can use it keep notes in a
-local wiki.  You can create `[[wiki links]`` to other files and open
+local wiki.  You can create `[[wiki links]` to other files and open
 them by moving the point to the link and pressing `C-c C-o`.  If a
 file doesn't exist, it will be created.  You can move quickly between
 links with `M-n` (`markdown-next-link`) and `M-p`
