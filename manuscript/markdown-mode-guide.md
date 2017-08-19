@@ -2953,7 +2953,7 @@ know that it should ignore code blocks, inline code, and comments,
 reference labels, Markdown markup, and URLs.
 
 
-## Creating a Local Wiki
+## Keeping Notes in a Local Wiki
 
 ![Local Wiki Files in Markdown Mode](images/local-wiki.png)
 
