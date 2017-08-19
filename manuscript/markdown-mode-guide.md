@@ -3224,6 +3224,44 @@ file is detected:
 (add-hook 'markdown-mode-hook 'conditionally-turn-on-pandoc)
 ```
 
+## R Markdown
+
+[R Markdown](http://rmarkdown.rstudio.com) is a Markdown dialect created by RStudio specifically
+for creating reports from the R statistical package.  For example, it
+supports evaluation of R code blocks, with the output of the code
+included in the document.  R Markdown supports a variety of output
+formats, including HTML, PDF, and Word.
+
+R Markdown files have the `.Rmd` extension, so at the very least
+you'll want to use `markdown-mode` for those files.  For example:
+
+``` emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . markdown-mode))
+```
+
+The basic Markdown syntax is the same in R Markdown.  Fenced code
+blocks with braces around the language name are used to format R
+code blocks:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```{r}
+summary(cars$dist)
+summary(cars$speed)
+```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also provide options in the code block info string:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```{r, eval=FALSE}
+summary(cars)
+```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Markdown Mode can will `r-mode` for syntax highlighting in these code
+blocks if you enable native font lock.  To do so, use
+`markdown-toggle-fontify-code-blocks-natively` or `C-c C-x C-f`.
+
 ## Tracking Changes with CriticMarkup Mode
 
 {width=80%}
