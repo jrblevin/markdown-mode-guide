@@ -3442,3 +3442,53 @@ persists.
 If you do find a bug in Markdown Mode, please construct a test
 case—and if possible a patch—and open a ticket on the
 [GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues).
+
+------------------------------------------------------------------------------
+
+# Conclusion
+
+## Looking Back and Looking Ahead
+
+When I wrote the first version of `markdown-mode.el` over ten years
+ago, I never imagined it would reach as many people as it has.  This
+was before GitHub was founded and around the same time `package.el`
+was initially being developed.[^ELPA] Emacs 21.4 was the latest
+release.
+
+Markdown Mode development continues and my goals for upcoming releases
+are to improve performance, streamline the code base, build a more
+robust Markdown parsing engine, and make it easier for users to choose
+feature sets to match their preferred Markdown dialects.
+
+Many parts of Emacs are designed around a dichotomous view of files as
+either source code for some programming language or free form text
+modes.  Markdown is in a strange place somewhere in between these two,
+and sometimes the best route for some features is not clear.  As
+Markdown Mode and my own understanding of the subtleties of Emacs and
+Elisp grow, I hope that Markdown integration in Emacs can become even
+more seamless.
+
+## Further Reading
+
+To keep up with Markdown Mode news, you can follow my blog at
+<https://jblevins.org/log/> or follow the project on GitHub at
+<https://github.com/jrblevin/markdown-mode>.  For Emacs news more
+generally, there is the [Planet Emacsen](http://www.planet.emacsen.org), a feed aggregator, and
+[Sacha Chua’s weekly Emacs News](http://sachachua.com/blog/).
+
+I also highly recommend [_Mastering Emacs_](https://www.masteringemacs.org/) by Mickey Petersen for
+all Emacs users.  Few could read this book and not learn _something_
+new about our favorite text editor. _Mastering Emacs_ was a large part
+of my inspiration for writing this _Guide_.
+
+There are also active Emacs communities on the [EmacsWiki](https://www.emacswiki.org/), the
+[Emacs StackExchange](https://emacs.stackexchange.com), and on Reddit at the [/r/emacs](https://www.reddit.com/r/emacs/)
+subreddit.
+
+Finally, every Emacs user should practice getting help from within
+Emacs itself, which is often the most detailed and up to date.  A few
+of the most useful commands are `C-h k` (`describe-key`), `C-h m`
+(`describe-mode`), `C-h f` (`describe-function`), and `C-h v`
+(`describe-variable`), and `C-h a` (`apropos-command`).
+
+[^ELPA]:  I didn’t find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
