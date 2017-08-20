@@ -309,6 +309,8 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 > Visher, Ben Voui, Sebastian Wiesner, Peter Williams, Tianxiang
 > Xiong, Ian Yang, Syohei Yoshida, and Google, Inc.
 
+------------------------------------------------------------------------------
+
 # Installation & Configuration {#install}
 
 There are many ways to load packages in Emacs, but here I will cover
@@ -379,6 +381,8 @@ file, like so:
     '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 ```
+
+[^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
 
 ### OS Package Manager
 
@@ -637,6 +641,8 @@ markdown-faces` or by using the "Markdown Faces" link at the
 bottom of the mode customization screen.
 
 ![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
+
+------------------------------------------------------------------------------
 
 # Movement & Editing {#editing}
 
@@ -1684,6 +1690,7 @@ C-c` prefix.
 :   Completes all heading markup and normalizes all horizontal rules
     in the buffer.
 
+------------------------------------------------------------------------------
 
 # Extensions {#extensions}
 
@@ -2294,6 +2301,7 @@ Mode as described below.
   `markdown-command` to use [Docter](https://github.com/alampros/Docter).  This may also be
   configured to work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
 
+------------------------------------------------------------------------------
 
 # Previewing & Exporting Files {#preview-export}
 
@@ -2523,6 +2531,7 @@ T> wrapper.
     Hook run after HTML output has been saved.  Any changes to the
     output buffer made by this hook will be saved.
 
+------------------------------------------------------------------------------
 
 # Tips & Tricks {#tips}
 
@@ -3174,6 +3183,7 @@ current file by setting `markdown-open-command`:
 Furthermore, once you install the `mark` script you can simply type
 `mark post.md` from the terminal to open a Markdown file.
 
+[^m2]: See <https://jblevins.org/log/marked-2-command> for details.
 
 ## Pandoc Mode
 
@@ -3432,8 +3442,3 @@ persists.
 If you do find a bug in Markdown Mode, please construct a test
 case—and if possible a patch—and open a ticket on the
 [GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues).
-
-
-
-[^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
-[^m2]: See <https://jblevins.org/log/marked-2-command> for details.
