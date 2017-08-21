@@ -148,7 +148,7 @@ attempts such as [atx](http://www.aaronsw.com/2002/atx/), by Aaron Swartz,[^aaro
 [Setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
 as well as from existing conventions for marking up plain text email.
 
-“Markdown” is also used to refer to the original Markdown processor,
+"Markdown" is also used to refer to the original Markdown processor,
 also written by Gruber, which is a Perl script that converts plain
 Markdown-formatted text input to XHTML output.  It is distributed
 under a BSD-style license and is included with, or available as a
@@ -218,7 +218,7 @@ example, when you need to type a literal asterisk or underscore:
 This is *italic*, but this \*is not\*.
 ```
 
-Markdown.pl also does not transform any text within “raw” block-level
+Markdown.pl also does not transform any text within "raw" block-level
 XHTML elements (although some other processors do).  Thus it is
 possible to include sections of XHTML within a Markdown source
 document by wrapping them in block-level XHTML tags.  However, with a
@@ -1274,7 +1274,7 @@ redefining the variable `markdown-hr-strings`.
     Strings to use when inserting horizontal rules.
 
 W> Different strings will not be distinguished when converted to
-W> HTML—they will all be converted to `<hr/>`—but they may add visual
+W> HTML---they will all be converted to `<hr/>`---but they may add visual
 W> distinction and style to plain text documents.  To maintain notions
 W> of promotion and demotion, these should be ordered from largest to
 W> smallest.
@@ -3462,7 +3462,7 @@ please update to a more recent version first to see if the issue
 persists.
 
 If you do find a bug in Markdown Mode, please construct a test
-case—and if possible a patch—and open a ticket on the
+case---and if possible a patch---and open a ticket on the
 [GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues).
 
 ------------------------------------------------------------------------------
