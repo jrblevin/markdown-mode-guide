@@ -144,8 +144,9 @@ table including new version 2.3 features:
 [Markdown](http://daringfireball.net/projects/markdown/) is a lightweight markup language, originally created
 by [John Gruber](https://daringfireball.net) in 2004.  Markdown aims to be simultaneously easy
 to write and easy to read.  It takes many cues from previous, similar
-attempts (e.g., [atx](http://www.aaronsw.com/2002/atx/) and [Setext](http://docutils.sourceforge.net/mirror/setext.html)) as well as from existing
-conventions for marking up plain text email.
+attempts such as [atx](http://www.aaronsw.com/2002/atx/), by Aaron Swartz,[^aaronsw]
+[Setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
+as well as from existing conventions for marking up plain text email.
 
 “Markdown” is also used to refer to the original Markdown processor,
 also written by Gruber, which is a Perl script that converts plain
@@ -156,6 +157,8 @@ will refer to the processor by its filename, Markdown.pl, to
 distinguish the two.  After the original Perl implementation, Markdown
 processors have been implemented by others in a variety of programming
 languages.
+
+[^aaronsw]: Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter writtenu in Python.
 
 ### Markdown Syntax Reference
 
@@ -618,6 +621,15 @@ using standard input (`stdin`).  When set to `t`, Markdown Mode will
 pass the name of the file as the final command line argument to
 `markdown-command`.  Note that in the latter case, you will only be
 able to run `markdown-command` from buffers which are visiting a file.
+
+`markdown-command-needs-filename`
+
+:   Boolean, default: `nil`.
+
+    Set to `t` if the program specified as `markdown-command`
+    needs the filename to be soecified as a command line argument,
+    rather than reading the content from the standard input (`stdin`).
+
 
 ## Customization
 
@@ -2227,8 +2239,11 @@ should restart Emacs or call `markdown-reload-extensions`.
 
 ## GitHub Flavored Markdown (GFM) Mode {#gfm}
 
-A [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/) mode, or GFM Mode, is also available
-as `gfm-mode`.  The GitHub implementation of Markdown differs slightly
+[GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/) is a dialect of Markdown developed for use on GitHub.
+A GitHub Flavored Markdown Mode for Emacs, is also available
+as `gfm-mode`, part of the Markdown Mode package.
+
+The GitHub implementation of Markdown differs slightly
 from standard Markdown in that it supports things like different
 behavior for underscores inside of words, automatic linking of URLs,
 strikethrough text, and fenced code blocks with an optional language
