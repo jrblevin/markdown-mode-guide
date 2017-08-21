@@ -2391,32 +2391,39 @@ I> print.
 
 ## Compiling to a Temporary Buffer or Kill Ring
 
-_Compiling_ (i.e., running Markdown) with `C-c C-c m` will send the
+_Compiling_ (i.e., running Markdown) with `C-c C-c m`
+(`markdown-other-window`) will send the
 contents of the current buffer to `markdown-command` and show the
 output in a temporary `*markdown-output*` buffer.
 
 As an alternative, rather than displaying the output in another
 buffer you can save the output directly to the kill ring with
-`C-c C-c w`.
+`C-c C-c w` (`markdown-kill-ring-save`).
 
 ## Static HTML Preview
 
-_Previewing_ the current buffer with `C-c C-c p` runs Markdown on the
-current buffer, stores the output in a temporary file, and opens or
-"previews" the file in the default browser.
+_Previewing_ the current buffer with `C-c C-c p` (`markdown-preview`)
+runs Markdown on the current buffer, stores the output in a temporary
+file, and opens or "previews" the file in the default browser.
 
 T> See the [Tips](#tips) section for details on how to configure the
 T> default browser in Emacs.
 
+
+C-c C-c l 
+
+C-c C-c o (`markdown-open`)
+
+
 ## Static HTML Export & View
 
-_Exporting_ with `C-c C-c e` will run Markdown on the current buffer and
-save the result in the file `<basename>.html`, where `<basename>` is
-the name of the Markdown file visited by the current buffer, with the
-extension removed.
+_Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown on the current buffer and save the result in the file `<basename>.html`,
+where `<basename>` is the name of the Markdown file visited by the
+current buffer, with the extension removed.
 
-Similarly _viewing_ with `C-c C-c v` is the same as _exporting_ the
-file and opening it in the default browser.
+Similarly _viewing_ with `C-c C-c v` (`markdown-export-and-preview`)
+is the same as _exporting_ the file and opening it in the default
+browser.
 
 ## Live Preview Mode
 
