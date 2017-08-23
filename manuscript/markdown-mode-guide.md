@@ -717,9 +717,10 @@ on---and many of these commands behave differently depending on
 whether `transient-mark-mode` is enabled or not.  When it makes sense,
 if `transient-mark-mode` is on and there is an active region, the
 command applies to the text in the region.  For example, `C-c C-s b`
-would make the region bold.  When this is not the case, many commands
-then proceed to work with either the word at the point (e.g., for
-italics) or the current line (e.g., for headings).
+(`markdown-insert-bold`) would make the region bold.  When this is not
+the case, many commands then proceed to work with either the word at
+the point (e.g., for italics) or the current line (e.g., for
+headings).
 
 There are also some parallel commands that act specifically on the
 region, even when `transient-mark-mode` is disabled.  These commands
@@ -765,10 +766,12 @@ There are two options for inserting or replacing headings: You can
 either insert a heading of a specific level directly or let Markdown
 Mode determine the level and type for you.  To insert a heading of a
 specific level directly, simply use `C-c C-s #` where `#` is a number
-`1` through `6`.
+`1` through `6` (`markdown-insert-header-atx-1`, …,
+`markdown-insert-header-atx-6`).
 
-For automatic heading insertion use `C-c C-s h`.  The type and level
-are determined based on the previous heading.  By default, the new
+For automatic heading insertion use `C-c C-s h`
+(`markdown-insert-header-dwim`).  The type and level are determined
+based on the previous heading.  By default, the new
 heading will be a sibling (same level).  A `C-u` prefix can be added
 to insert a heading _promoted_ (lower number) by one level or a `C-u
 C-u` prefix can be given to insert a heading _demoted_ (higher number)
@@ -778,9 +781,9 @@ not what you intended, the level can be quickly promoted or demoted
 
 If the point is at a heading, these commands will replace the existing
 markup in order to update the level and/or type of the heading.  To
-remove the markup of the heading at the point, press `C-c C-k` to kill
-the heading and press `C-y` to yank the heading text back into the
-buffer.
+remove the markup of the heading at the point, press `C-c C-k`
+(`markdown-kill-thing-at-point`) to kill the heading and press `C-y`
+to yank the heading text back into the buffer.
 
 As with several other markup commands, if the region is active and
 `transient-mark-mode` is on, the heading insertion commands use the
@@ -808,13 +811,16 @@ Second-level header
 -------------------
 ```
 
-To automatically insert setext-style headings, use `C-c C-s H`.  This
-command behaves like `C-c C-c h` in that the level is calculated
-automatically and it can accept the same prefix arguments, but it uses
-setext (underlined) headings whenever possible (only for levels one
-and two).  To insert setext headings directly, use `C-c C-s !` for
-level one or `C-c C-s @` or level two.  Noting that `!` is `S-1` and
-`@` is `S-2` may make these commands easier to remember.
+To automatically insert setext-style headings, use `C-c C-s H`
+(`markdown-insert-header-setext-dwim`).  This command behaves
+like `C-c C-c h` (`markdown-insert-header-dwim`) in that the level is
+calculated automatically and it can accept the same prefix arguments,
+but it uses setext (underlined) headings whenever possible (only for
+levels one and two).  To insert setext headings directly, use
+`C-c C-s !` (`markdown-insert-header-setext-1`) for level one
+or `C-c C-s @` (`markdown-insert-header-setext-2`) or level two.
+Noting that `!` is `S-1` and `@` is `S-2` may make these commands
+easier to remember.
 
 As with the atx heading commands, when the region is active and
 `transient-mark-mode` is enabled, the setext heading insertion
@@ -834,13 +840,15 @@ Markdown Mode defines keys for hierarchical navigation in headings and
 lists.  When the point is in a list, they move between list items.
 Otherwise, they move between headings.
 
-*   Use `C-c C-n` and `C-c C-p` to move to the next and previous
+*   Use `C-c C-n` (`markdown-outline-next`) and `C-c C-p`
+    (`markdown-outline-previous`) to move to the next and previous
     visible headings or list items of any level.
-*   Similarly, `C-c C-f` and `C-c C-b` move to the next and previous
-    visible headings or list items _at the same level_ as the one at the
-    point.
-*   Finally, `C-c C-u` will move up to the parent heading or list
-    item.
+*   Similarly, `C-c C-f` (`markdown-outline-next-same-level`) and
+    `C-c C-b` (`markdown-outline-previous-same-level`) move to the
+    next and previous visible headings or list items _at the same level_
+    as the one at the point.
+*   Finally, `C-c C-u` (`markdown-outline-up`) will move up to the
+    parent heading or list item.
 
 T> The outline navigation commands in `markdown-mode`---`C-c C-n`,
 T> `C-c C-p`, `C-c C-f`, `C-c C-b`, and `C-c C-u`---are the same as in
@@ -850,9 +858,10 @@ T> `org-mode`.
 
 The usual Emacs commands can be used to move by defuns (top-level
 major definitions), but in Markdown Mode, **a defun is a section.** As
-usual, `C-M-a` will move the point to the beginning of the current or
-preceding defun, `C-M-e` will move to the end of the current or
-following defun, and `C-M-h` will mark the entire defun.  To narrow
+usual, `C-M-a` (`beginning-of-defun`) will move the point to the
+beginning of the current or preceding defun, `C-M-e` (`end-of-defun`)
+will move to the end of the current or following defun, and `C-M-h`
+(`mark-defun`) will mark the entire defun.  To narrow
 the buffer to show only the current section, use `C-x n d`
 (`narrow-to-defun`) and to widen again, use `C-x n w` (`widen`) as
 usual.
@@ -886,7 +895,8 @@ Markdown Mode supports `org-mode`-style visibility cycling for
 headings and sections.  There are two types of visibility cycling:
 global and local.
 
-Pressing `S-TAB` cycles _globally_ between three levels of visibility:
+Pressing `S-TAB` (`markdown-shifttab`) cycles _globally_ between three
+levels of visibility:
 
 1. table of contents view (headings only),
 2. outline view (top-level headings only),
@@ -894,9 +904,9 @@ Pressing `S-TAB` cycles _globally_ between three levels of visibility:
 
 ![Global Visibility Cycling](images/global-visibility.png)
 
-On the other hand, pressing `TAB` while the point is at a heading will
-cycle through three levels of visibility _locally_ for the current
-subtree:
+On the other hand, pressing `TAB` (`markdown-cycle`) while the point
+is at a heading will cycle through three levels of visibility
+_locally_ for the current subtree:
 
 1. all subsections and subheadings completely folded,
 2. child headings visible,
@@ -976,13 +986,13 @@ in Markdown Mode include not only regular paragraphs as described
 above, but also paragraphs inside blockquotes, individual list items,
 headings, etc.
 
-To move the point from one "paragraph" to another, use `M-{` and
-`M-}`.  These keys are usually bound to `forward-paragraph` and
-`backward-paragraph`, but the built-in Emacs functions are based on
-simple regular expressions that fail in Markdown files.  Instead, they
-are bound to `markdown-forward-paragraph` and
-`markdown-backward-paragraph`.  To mark a paragraph, you can use `M-h`
-(`markdown-mark-paragraph`).
+To move the point from one "paragraph" to another, use
+`M-{` (`markdown-backward-paragraph`) and
+`M-}` (`markdown-forward-paragraph`).  These keys are usually bound to
+`forward-paragraph` and `backward-paragraph`, but the built-in Emacs
+functions are based on simple regular expressions that fail in
+Markdown files.  To mark a paragraph, you can use
+`M-h` (`markdown-mark-paragraph`).
 
 Markdown Mode also defines "block" movement commands, which are larger
 in scope and may contain multiple "paragraphs" in some cases.  Blocks
@@ -1122,11 +1132,11 @@ details.
 ### The Tab Key
 
 Markdown Mode attempts to be flexible in how it handles indentation.
-When you press `TAB` repeatedly, the point will cycle through several
-possible indentation levels corresponding to locations you might have
-in mind.  For example, you may want to start a new list item, continue
-a list item with hanging indentation, indent for a nested pre block,
-and so on.
+When you press `TAB` (`markdown-cycle`) repeatedly, the point will
+cycle through several possible indentation levels corresponding to
+locations you might have in mind.  For example, you may want to start
+a new list item, continue a list item with hanging indentation, indent
+for a nested pre block, and so on.
 
 ``` markdown
 - list item
@@ -1142,8 +1152,9 @@ for 1) starting a new nested list item, 2) continuing the nested list
 item with indentation past the marker, 3) starting a list item with a
 deeper level of nesting, and 4) adding a nested indented code block.
 
-Outdenting is handled similarly when `DEL` (backspace) is pressed at
-the beginning of the non-whitespace portion of a line.
+Outdenting is handled similarly when `DEL` or backspace
+(`markdown-outdent-or-delete`) is pressed at the beginning of the
+non-whitespace portion of a line.
 
 If you so desire, you can fully customize this behavior by writing
 your own indentation function and setting the variable
@@ -1158,8 +1169,8 @@ your own indentation function and setting the variable
 ### The Return Key
 
 When the point is at the end of a (potentially nested) list item, code
-block, etc. and you press `RET`, what happens next depends on the
-value of `markdown-indent-on-enter`.
+block, etc. and you press `RET` (`markdown-enter-key`), what happens
+next depends on the value of `markdown-indent-on-enter`.
 
 ``` markdown
 - list item
@@ -1273,7 +1284,8 @@ produce a horizontal rule:
 ---------------------------------------
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To insert a horizontal rule, press `C-c C-s -`.  Markdown Mode allows
+To insert a horizontal rule, press `C-c C-s -` (`markdown-insert-hr`).
+Markdown Mode allows
 you to define several horizontal rules of decreasing prominence in a
 list variable named `markdown-hr-strings`.  By default, this insertion
 command inserts the first string in `markdown-hr-strings`, which
@@ -1531,9 +1543,11 @@ hidden, the URL and optional title text can still be viewed either in a
 tooltip when hovering your mouse pointer over a link or in the minibuffer,
 by placing the point on the link.
 
-To follow a link using the keyboard, press `C-c C-o` when the point is
-on an inline or reference link to open the URL in a browser.  Use `M-p` and
-`M-n` to quickly jump to the previous or next link of any type.
+To follow a link using the keyboard, press `C-c C-o`
+(`markdown-follow-thing-at-point`) when the point is on an inline or
+reference link to open the URL in a browser.  Use `M-p` and `M-n`
+(`markdown-previous-link` and `markdown-next-link`) to quickly jump to
+the previous or next link of any type.
 
 ### URL Hiding {#url-hiding}
 
@@ -1601,9 +1615,10 @@ recognized automatically.
 ### Inline Image Display
 
 Local images associated with image links may be displayed inline in
-the buffer by pressing `C-c C-x C-i` or `M-x
-markdown-toggle-inline-images`.  This is a toggle command, so pressing
-this again will remove inline images.
+the buffer by pressing
+`C-c C-x C-i` or `M-x markdown-toggle-inline-images`.
+This is a toggle command, so pressing this again will remove inline
+images.
 
 ## Line Breaks
 
@@ -1654,8 +1669,9 @@ I> Markdown Mode 2.3.
 
 Markdown Mode allows certain markup (headings, for example) to be
 _promoted_ and _demoted_.  Press `C-c C--` or `C-c <left>` to promote
-the element at the point if possible.  Similarly, `C-c C-=` or
-`C-c <right>` to demote the element at the point.
+the element at the point if possible (`markdown-promote`).  Similarly,
+`C-c C-=` or `C-c <right>` to demote the element at the point
+(`markdown-demote`).
 
 Headings, horizontal rules, and list items can be promoted and
 demoted, as well as bold and italic text.  For headings,
@@ -1666,7 +1682,8 @@ moving backward or forward through the list of rule strings in
 `markdown-hr-strings`.  For bold and italic text, promotion and
 demotion mean changing the markup from underscores to asterisks.
 
-I> To promote or demote any markup at the point, use `C-c C--` and `C-c C-=`.
+I> To promote or demote markup at the point, where applicable, use
+I> `C-c C--` and `C-c C-=`.
 
 To remember the promotion and demotion commands, note that `-` is for
 decreasing the level (promoting), and `=` (on the same key as `+`) is
@@ -1689,12 +1706,12 @@ for example, that the underline portion of a setext header is the same
 length as the heading text, or that the number of leading and trailing
 hash marks of an atx header are equal and that there is no extra
 whitespace in the header text.  To complete any incomplete markup at
-the point, press `C-c C-]`.
+the point, press `C-c C-]` (`markdown-complete`).
 
 ## Markdown Maintenance Commands
 
-Markdown Mode provides some global maintenance commands under the `C-c
-C-c` prefix.
+Markdown Mode provides some global maintenance commands under the
+`C-c C-c` prefix.
 
 `C-c C-c c` (`markdown-check-refs`)
 
@@ -1933,9 +1950,9 @@ for indirect editing of the code block.
 ## Footnotes
 
 To insert a footnote, using an extension to the original Markdown syntax, press
-`C-c C-s f`.  This inserts a footnote marker such as `[^1]` at the point,
-inserts a footnote definition below, and positions the point for inserting
-the footnote text.
+`C-c C-s f` (`markdown-insert-footnote`).  This inserts a footnote
+marker such as `[^1]` at the point, inserts a footnote definition
+below, and positions the point for inserting the footnote text.
 
 W> Footnotes are an extension to Markdown and are not supported by all
 W> processors.
@@ -2435,7 +2452,8 @@ C-c C-c o (`markdown-open`)
 
 ## Static HTML Export & View
 
-_Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown on the current buffer and save the result in the file `<basename>.html`,
+_Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown on
+the current buffer and save the result in the file `<basename>.html`,
 where `<basename>` is the name of the Markdown file visited by the
 current buffer, with the extension removed.
 
@@ -2799,9 +2817,9 @@ With [use-package](https://github.com/jwiegley/use-package), you can configure i
         imenu-list-auto-resize nil))
 ```
 
-This binds `C-'` so that when pressing it a window appears on
-the right side showing the heading hierarchy in the `*Ilist*` buffer.
-Pressing `C-'` again hides the window.
+This binds `C-'` (`imenu-list-smart-toggle`) so that when pressing it
+a window appears on the right side showing the heading hierarchy in
+the `*Ilist*` buffer.  Pressing `C-'` again hides the window.
 
 ![`imenu-list` with Markdown Mode](images/imenu-list.png)
 
