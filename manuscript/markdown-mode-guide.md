@@ -684,7 +684,7 @@ commands in each group will be described in detail below.  You can
 obtain a list of all keybindings by pressing `C-c C-h` or `C-h m`.  To
 see commands under a specific prefix, then add `C-h` to the end of the
 prefix.  For example, press `C-c C-s C-h` to list all commands under
-`C-c C-s`
+`C-c C-s`.
 
 | Prefix    | Function               |
 |-----------|------------------------|
