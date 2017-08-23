@@ -1207,10 +1207,10 @@ to insert a literal newline you can use `C-q C-j`.)
 
 `markdown-indent-on-enter`
 
-:   `nil`, `t`, or `` `indent-and-new-item ``, default: `t`.
+:   `nil`, `t`, or `'indent-and-new-item`, default: `t`.
 
     When non-`nil`, automatically indent new lines when the enter key
-    is pressed.  When set to `` `indent-and-new-item ``, additionally
+    is pressed.  When set to `'indent-and-new-item`, additionally
     insert a new list item marker if the point was in a list item.
 
 ### Shifting the Region
