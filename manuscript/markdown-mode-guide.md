@@ -323,8 +323,8 @@ system-wide package manager.
 
 Markdown Mode is compatible with Emacs 24.3 and later, and it has few
 dependencies.  To enable editing of code blocks in indirect buffers
-using `C-c '`, you will need to install the [edit-indirect](https://github.com/Fanael/edit-indirect/)
-package.
+using `C-c '` (`markdown-edit-code-block`), you will need to install
+the [`edit-indirect`](https://github.com/Fanael/edit-indirect/) package.
 
 *Note:* This chapter covers installing the stable version of Markdown
 Mode, but installing the development version is similar.  If you'd
@@ -1867,16 +1867,17 @@ default behavior by customizing the variable
     is specified and where Markdown Mode can automatically determine
     the appropriate mode to use.
 
-Additionally, if you have the [`edit-indirect`][ei] package installed
+Additionally, if you have the [`edit-indirect`](https://github.com/Fanael/edit-indirect/)
+package installed
 Markdown Mode can open code blocks for editing in an "indirect" buffer
 with the native major mode enabled.  To do this, press `C-c '`
 (`markdown-edit-code-block`).  A new window will open with the
 contents of the code block and with the guessed major mode enabled.
 The code block in the Markdown buffer will be highlighted to indicate
 that it is being edited elsewhere.  When you are finished editing in
-the indirect buffer, press `C-c C-c` to "commit" any changes and
-update the Markdown buffer or press `C-c C-k` to cancel and ignore any
-changes.
+the indirect buffer, press `C-c C-c` (`edit-indirect-commit`)
+to "commit" any changes and update the Markdown buffer or press
+`C-c C-k` (`edit-indirect-abort`) to cancel and ignore any changes.
 
 ![Indirect Editing of a Fenced Code Block](images/edit-indirect.png)
 
