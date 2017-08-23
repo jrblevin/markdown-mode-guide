@@ -2739,14 +2739,28 @@ For more advanced customization, there are two export hooks available:
 
 ## Customizing the Heading Faces
 
-Markdown Mode has the ability to scale the font sizes
-used for headings in proportion to their importance (as in AUCTeX, for
+Markdown Mode has the ability to scale the font sizes used for
+headings in proportion to their importance (as in AUCTeX, for
 example).  To enable this, customize `markdown-header-scaling` or set
-it in your init file:
+it in your init file.
 
-``` emacs-lisp
-(setq markdown-header-scaling t)
-```
+`markdown-header-scaling`
+
+:   Boolean, default: `nil`.
+
+    Determines whether Markdown Mode uses variable-height faces for
+    headers or not.  Set to a non-`nil` value to inherit from the
+    `variable-pitch` for headings with font sizes that correspond to
+    the levels of headings.  The sizes are determined by the scaling
+    values in the list `markdown-header-scaling-values`.
+
+`markdown-header-scaling-values`
+
+:   List of floats, default: `(2.0 1.7 1.4 1.1 1.0 1.0)`.
+
+    List of six scaling values, relative to baseline, to use for
+    headings of levels one through six.  Only used when
+    `markdown-header-scaling` is non-`nil`.
 
 Note that Markdown Mode defines separate heading faces for each
 heading level:
