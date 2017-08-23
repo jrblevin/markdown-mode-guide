@@ -670,8 +670,9 @@ Markdown Mode keybindings are grouped by prefixes based on their
 function.  Like other major modes, most commands begin with `C-c`, the
 `mode-specific-command-prefix`.  Commands are then grouped by category
 under a second-level prefix.  For example, the commands for styling
-text are grouped under `C-c C-s`.  Similarly, commands for running
-Markdown and performing maintenance tasks reside under `C-c C-c`.
+text are grouped under `C-c C-s` (`markdown-mode-style-map`).
+Similarly, commands for running Markdown and performing maintenance
+tasks reside under `C-c C-c` (`markdown-mode-command-map`).
 
 Movement and shifting commands tend to be associated with paired
 delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.  If you are
@@ -693,6 +694,22 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 | `C-c C-i` | *I*mages               |
 | `C-c C-c` | *C*ommands             |
 | `C-c C-x` | Toggles                |
+
+When you use the `C-c C-s` or `C-c C-c` prefixes, prompts will
+appear in the minibuffer that provide hints for a few of the most
+commonly used commands.  You can control this by setting
+
+`markdown-enable-prefix-prompts`
+
+:   Boolean, default: `t`.
+
+    When non-`nil`, display prompts when certain prefix keys are
+    pressed.  Set to `nil` to disable these prompts.
+
+T> There are several Emacs packages for providing keybinding hints,
+T> such as `which-key` and `guide-key`.  If you use one of these,
+T> you can disable Markdown Mode's prefix prompts by setting
+T> `markdown-enable-prefix-prompts` to `nil`.
 
 The following sections describe many commands for inserting
 markup---for headings, blockquotes, lists, source code, and so
