@@ -2803,6 +2803,18 @@ function each time `markdown-mode` is loaded.  The second line asks
 `imenu` to keep the index up to date when files are modified, as
 sections may be added or removed.
 
+By default, the `imenu` menu is nested.  If you prefer a flat menu,
+you can customize `markdown-nested-imenu-heading-index`.
+
+`markdown-nested-imenu-header-index`
+
+:   Boolean, default: `t`.
+
+    Use nested imenu heading index when non-`nil` and a flat menu
+    otherwise.  A nested index may provide more natural browsing from
+    the menu bar, but a flat list may allow for faster keyboard
+    navigation via tab completion.
+
 Another useful `imenu`-based package is [`imenu-list`](https://github.com/bmag/imenu-list), a
 third-party package which shows the current buffer's `imenu` entries
 in a popup buffer.  You can install `imenu-list` from MELPA.
