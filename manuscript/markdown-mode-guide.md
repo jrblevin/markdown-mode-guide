@@ -677,6 +677,10 @@ under a second-level prefix.  For example, the commands for styling
 text are grouped under `C-c C-s` (`markdown-mode-style-map`).
 Similarly, commands for running Markdown and performing maintenance
 tasks reside under `C-c C-c` (`markdown-mode-command-map`).
+If you have `menu-bar-mode` on, you can also access these commands
+from the Markdown menu.
+
+![Markdown Menu in Emacs on macOS](images/menu-bar.png)
 
 Movement and shifting commands tend to be associated with paired
 delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.  If you are
