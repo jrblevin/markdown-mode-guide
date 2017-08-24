@@ -3540,8 +3540,8 @@ case---and if possible a patch---and open a ticket on the
 When I wrote the first version of `markdown-mode.el` over ten years
 ago, I never imagined it would reach as many people as it has.  This
 was before GitHub was founded and around the same time `package.el`
-was initially being developed.[^ELPA] Emacs 21.4 was the latest
-release.
+was initially being developed.[^ELPA]  Emacs 21.4 was the latest
+release and Markdown was three years old.
 
 Markdown Mode development continues and my goals for upcoming releases
 are to improve performance, streamline the code base, build a more
