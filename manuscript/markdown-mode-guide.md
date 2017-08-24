@@ -2470,12 +2470,6 @@ file, and opens or "previews" the file in the default browser.
 T> See the [Tips](#tips) section for details on how to configure the
 T> default browser in Emacs.
 
-
-C-c C-c l 
-
-C-c C-c o (`markdown-open`)
-
-
 ## Static HTML Export & View
 
 _Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown on
@@ -2530,9 +2524,9 @@ T>  in a browser other than `eww`.
 ## Opening in a Standalone Markdown Previewer
 
 A final option for previewing files is to use an external previewer
-with `C-c C-c o`.  The program used to preview files is specified by
-the `markdown-open-command` variable, which must be customized to use
-an available external previewer on your system.
+with `C-c C-c o` (`markdown-open`).  The program used to preview files
+is specified by the `markdown-open-command` variable, which must be
+customized to use an available external previewer on your system.
 
 `markdown-open-command`
 
