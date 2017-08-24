@@ -2205,7 +2205,7 @@ value.
 
 `markdown-link-space-sub-char`
 
-:   String, default: "_".
+:   String, default: `"_"`.
 
     Character to replace spaces when mapping wiki links to filenames.
     For example, use an underscore for compatibility with the Python
