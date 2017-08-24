@@ -1381,7 +1381,8 @@ W> convention for underscores.
 :   Boolean, default: `nil`.
 
     Set to a non-`nil` value to use underscores instead of asterisks
-    when inserting markup for italic text.  _Example:_
+    when inserting markup for italic text.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-italic-underscore t)
@@ -1392,7 +1393,8 @@ W> convention for underscores.
 :   Boolean, default: `nil`.
 
     Set to a non-`nil` value to use two underscores instead of two
-    asterisks when inserting markup for bold text.  _Example:_
+    asterisks when inserting markup for bold text.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-italic-underscore t)
@@ -1607,7 +1609,8 @@ recognized automatically.
     Determines where to insert reference definitions.  The possible
     locations are the end of the document (`end`), after the current
     block (`immediately`), the end of the current subtree (`subtree`),
-    or before the next header (`header`).  _Example:_
+    or before the next header (`header`).  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-reference-location 'end)
@@ -1820,7 +1823,8 @@ preference for lowercase language identifiers with
     from those predefined in `markdown-gfm-recognized-languages`, when
     inserting GFM code blocks.  Language strings must have be trimmed
     of whitespace and not contain curly braces.  They may be of
-    arbitrary capitalization.  _Example:_
+    arbitrary capitalization.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-gfm-additional-languages '("Texinfo" "Zimbu"))
@@ -1837,7 +1841,8 @@ preference for lowercase language identifiers with
 :   Integer, default: `1`.
 
     Number of space characters to insert between code fences
-    and programming language name.  _Example:_
+    and programming language name.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-spaces-after-code-fence 0)
@@ -1977,7 +1982,8 @@ between footnote markers and footnote definitions.
     options is the same as for `markdown-reference-location`: the
     possible locations are the end of the document (`end`), after the
     current block (`immediately`), the end of the current subtree
-    (`subtree`), or before the next header (`header`).  _Example:_
+    (`subtree`), or before the next header (`header`).  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-footnote-location 'subtree)
@@ -2193,7 +2199,8 @@ value.
     Enable or disable syntax highlighting for wiki links.  Set this to
     a non-`nil` value to enable wiki link support.  Wiki link
     support can also be toggled using the function
-    `markdown-toggle-wiki-links`.  _Example:_
+    `markdown-toggle-wiki-links`.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-enable-wiki-links t)
@@ -2214,7 +2221,8 @@ value.
     Character to replace spaces when mapping wiki links to filenames.
     For example, use an underscore for compatibility with the Python
     Markdown WikiLinks extension.  In GFM Mode, this is set to `"-"`
-    to conform with GitHub wiki links.  _Example:_
+    to conform with GitHub wiki links.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-link-space-sub-char "-")
@@ -2225,7 +2233,8 @@ value.
 :   Boolean, default: `nil`.
 
     When non-`nil`, change the wiki-link face according to the
-    existence of the target files.  _Example:_
+    existence of the target files.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-wiki-link-fontify-missing t)
@@ -2488,7 +2497,7 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
     windows based on the values of `split-width-threshold` and
     `split-height-threshold` and the available windows.  To force
     vertically split windows (left and right), set this to `right`.
-    To force horizontally split windows, set this to `below`.
+    To force horizontally split windows, set this to `below`.  
     _Example:_
 
     ``` emacs-lisp
@@ -2522,7 +2531,8 @@ an available external previewer on your system.
     The command used for calling a standalone Markdown previewer
     capable of opening Markdown source files directly.  This command
     will be called with a single argument, the file name of the
-    current buffer.  _Example:_
+    current buffer.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-open-command "/usr/local/bin/mark")
@@ -2570,7 +2580,8 @@ T> wrapper.
     has any effect.  When set to `nil`, `buffer-file-coding-system`
     will be used to automatically determine the coding system string
     (falling back to `iso-8859-1` when unavailable).  Common settings
-    are `utf-8` and `iso-latin-1`.  _Example:_
+    are `utf-8` and `iso-latin-1`.  
+    _Example:_
 
     ``` emacs-lisp
     (setq markdown-coding-system "utf-8")
