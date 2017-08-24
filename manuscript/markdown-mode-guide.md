@@ -2510,11 +2510,12 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
 
 `markdown-live-preview-delete-export`
 
-:   `nil`, `delete-on-export`, or `delete-on-destroy`, default: `delete-on-destroy`.
+:   `nil`, `'delete-on-export`, or `'delete-on-destroy`,
+    default: `'delete-on-destroy`.
 
     Whether and when to delete the exported HTML file when using
-    `markdown-live-preview-export`.  If set to `delete-on-export`,
-    delete on every export.  When set to `delete-on-destroy`, delete
+    `markdown-live-preview-export`.  If set to `'delete-on-export`,
+    delete on every export.  When set to `'delete-on-destroy`, delete
     when quitting `markdown-live-preview-mode`.  If set to `nil`,
     never delete
 
