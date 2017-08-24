@@ -249,7 +249,7 @@ following links:
 Markdown Mode was originally written and is still maintained
 by [Jason Blevins](https://jblevins.org/).  The initial release, version 1.1, was created
 on May 24, 2007.  As of this writing, the latest stable version of
-Markdown Mode is version 2.3, released on **[RELEASE DATE]**.  For a
+Markdown Mode is version 2.3, released on August 29, 2017.  For a
 complete list of changes, see the [version 2.3 release notes](https://jblevins.org/projects/markdown-mode/rev-2-3)
 or those for previous versions:
 
