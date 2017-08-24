@@ -336,8 +336,8 @@ chapter at the end.
 ### Emacs Package Manager
 
 The recommended way to install Markdown Mode is to use the built-in
-Emacs package manager, `package.el`, which has been included since
-Emacs 23.  Markdown Mode can be installed via the `markdown-mode`
+Emacs package manager, `package.el`, which has been included in Emacs
+since version 23.  Markdown Mode can be installed via the `markdown-mode`
 package in the [MELPA Stable repository](https://stable.melpa.org/#/markdown-mode).[^MELPA]
 
 First, you'll need to configure the package manager to use the MELPA
@@ -353,7 +353,7 @@ or equivalent init file:
 
 Then, after restarting Emacs or evaluating the above statements, issue
 the following command: `M-x package-install RET markdown-mode RET`.
-When installed this way, the major modes `markdown-mode` and
+When installing this way, the major modes `markdown-mode` and
 `gfm-mode` will be autoloaded and `markdown-mode` will be invoked
 automatically for file names ending in either `.md` or `.markdown`.
 
@@ -471,7 +471,7 @@ to load automatically by adding the following to your init file:
 
 Although strictly speaking no configuration is *necessary*, there are
 a few settings that users should usually customize.  The most important
-is the `markdown-command` variable, which tells Markdown Mode where to
+setting is the `markdown-command` variable, which tells Markdown Mode where to
 find an external program for converting Markdown to HTML on your system.
 
 ### Markdown Command
@@ -515,8 +515,8 @@ You can always set `markdown-command` to be the full path to the
 executable, but a better solution is to set your `exec-path` properly.
 A simple way to do this is to use the `exec-path-from-shell` package,
 which sets the Emacs `exec-path` using your system `$PATH` variable,
-allowing Emacs to find any commands you can also use from the command
-line.
+allowing Emacs to find any commands you can also execute from the
+command line without providing the full path.
 
 If you attempt to preview or export your buffer and you see an error
 regarding the `markdown` command, then most likely you need to check
@@ -547,6 +547,11 @@ you can issue `M-: (executable-find "pandoc")`.  The return value will
 be displayed in the minibuffer.  If you see the path to `pandoc`, then
 Emacs can find it.  If you see `nil`, then it could not be found in
 `exec-path`.
+
+T> If you're having trouble setting your `exec-path`, the
+T> [`exec-path-from-shell`](https://github.com/purcell/exec-path-from-shell)
+T> package might be useful.  It's purpose is to ensure that environment
+T> variables in Emacs are the same as in your shell.
 
 #### Configuring Markdown on macOS with Homebrew
 
@@ -697,10 +702,10 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 
 | Prefix    | Function               |
 |-----------|------------------------|
-| `C-c C-s` | *S*tyles               |
-| `C-c C-l` | *L*inks                |
-| `C-c C-i` | *I*mages               |
-| `C-c C-c` | *C*ommands             |
+| `C-c C-s` | **S**tyles               |
+| `C-c C-l` | **L**inks                |
+| `C-c C-i` | **I**mages               |
+| `C-c C-c` | **C**ommands             |
 | `C-c C-x` | Toggles                |
 
 When you use the `C-c C-s` or `C-c C-c` prefixes, prompts will
@@ -916,9 +921,9 @@ On the other hand, pressing `TAB` (`markdown-cycle`) while the point
 is at a heading will cycle through three levels of visibility
 _locally_ for the current subtree:
 
-1. all subsections and subheadings completely folded,
+1. all subsections and sub-headings completely folded,
 2. child headings visible,
-3. all subsections and subheadings fully visible.
+3. all subsections and sub-headings fully visible.
 
 ### Subtree Editing
 
@@ -938,8 +943,8 @@ Note the following "boundary" behavior for promotion and demotion.
 Any level-six headings will not be demoted further (i.e., they remain
 at level six, since Markdown and HTML do not define more than six
 levels of headings) and any level-one headings will be promoted away
-entirely (i.e., heading markup will be removed, since a level-zero
-heading is not defined).
+entirely (i.e., the heading markup will be removed, since level-zero
+headings are undefined).
 
 ### Header Customization
 
@@ -1716,7 +1721,7 @@ T>    (of any level) with a level-four heading.
 ## Markup Completion {#completion}
 
 _Complete markup_ refers to markup in normalized form.  This means,
-for example, that the underline portion of a setext header is the same
+for example, that the underlined portion of a setext header is the same
 length as the heading text, or that the number of leading and trailing
 hash marks of an atx header are equal and that there is no extra
 whitespace in the header text.  To complete any incomplete markup at
@@ -1789,7 +1794,7 @@ puts("hello, world")
 To insert a GFM code block interactively in Markdown Mode, press
 `C-c C-s C` (`markdown-insert-gfm-code-block`).  You will be greeted
 with a minibuffer prompt asking for the programming language name.
-Markdown Mode includes a large list of know languages to select from.
+Markdown Mode includes a large list of known languages to select from.
 The default value will be the most recently used language.
 
 The GFM programming language prompt uses `completing-read`, which has
@@ -1803,7 +1808,7 @@ T> will also work with `ido`, `ivy`, and `helm`.
 Another way to insert a GFM code block is to use the _electric
 backquote_ feature, which is enabled by default.  When this setting is
 enabled, pressing `` ` `` three times triggers
-`markdown-insert-gfm-code-block` automatically.  Currently this
+`markdown-insert-gfm-code-block` automatically.  Currently, this
 only happens when in `gfm-mode`.
 
 `markdown-gfm-use-electric-backquote`
@@ -1824,7 +1829,7 @@ preference for lowercase language identifiers with
 
     This variable contains additional languages to make available, aside
     from those predefined in `markdown-gfm-recognized-languages`, when
-    inserting GFM code blocks.  Language strings must have be trimmed
+    inserting GFM code blocks.  Language strings must be trimmed
     of whitespace and not contain curly braces.  They may be of
     arbitrary capitalization.
 
@@ -1935,8 +1940,8 @@ to "commit" any changes and update the Markdown buffer or press
 
 Both native font lock and indirect editing require Markdown Mode to
 try to determine the appropriate mode to use for each language identifier.
-Sometimes this is straightforward, for example `shell` and `shell-mode`,
-or `emacs-lisp` and `emacs-lisp-mode`, but in other cases the language
+Sometimes this is straightforward.  For example, `shell` maps to `shell-mode`
+and `emacs-lisp` maps to `emacs-lisp-mode`.  In other cases, the language
 and mode names may not agree or a different mode may be desired.
 This language-to-mode mapping may be customized as needed by setting the
 variable `markdown-code-lang-modes`.
@@ -1951,7 +1956,7 @@ variable `markdown-code-lang-modes`.
     which instructs Markdown Mode to use `sql-mode` to highlight
     and edit `sqlite` code blocks.
 
-In practice the language-to-mode mapping is handled by the
+In practice, the language-to-mode mapping is handled by the
 `markdown-get-lang-mode` function, which looks for a defined function
 satisfying one of the following forms, in order, where `<lang>`
 represents the language keyword specified for the code block:
@@ -1960,7 +1965,7 @@ represents the language keyword specified for the code block:
 2. A function named `<lang>-mode`.
 
 As an example, suppose we have a code block with language name `matlab`.
-By default there is no element of `markdown-code-lang-modes` with
+By default, there is no element of `markdown-code-lang-modes` with
 key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
 If so, it will be used for syntax highlighting of the code block and also
 for indirect editing of the code block.
@@ -2053,23 +2058,23 @@ in Markdown Mode for commenting and uncommenting:
 
 `M-;` (`comment-dwim`)
 
-:   Insert or align comment on current line.  If `transient-mark-mode`
+:   Insert or align comment on the current line.  If `transient-mark-mode`
     is on and the region is active, invoke `comment-region` instead
     (unless the region is a block comments, in which case invoke
     `uncomment-region`).
 
 `C-x C-;` (`comment-line`)
 
-:   Comment or uncomment current line.
+:   Comment or uncomment the current line.
 
 `C-u M-;` (`comment-kill`)
 
-:   Kill comment on current line.
+:   Kill comment on the current line.
 
 ## Task List Items (Checkboxes)
 
 GitHub Flavored Markdown (GFM) defines a syntax for checkboxes, called
-task lists, which is a straightforward and backwards-compatible
+task lists, which is a straightforward and backward-compatible
 modification of Markdown's unordered list syntax.
 
 {lang=text}
@@ -2106,7 +2111,7 @@ the context-specific command `C-c C-d` (`markdown-do`).
 Pandoc and MultiMarkdown---two of the most popular Markdown
 processors---support subscript and superscript markup.  Markdown Mode
 supports this syntax as well.  Superscripts may be written by placing
-carats (`^`) immediately before and after the text.  Similarly,
+carets (`^`) immediately before and after the text.  Similarly,
 subscripts may be written by placing tildes (`~`) immediately before
 and after the text.
 
@@ -2144,14 +2149,13 @@ Finally, Markdown Mode supports YAML and TOML metadata blocks that can
 occur anywhere in the document.  YAML and TOML metadata blocks begin
 with a line of three hyphens (`---`) and end with either a line of
 three hyphens (`---`) or three dots (`...`).  Pandoc, GitHub, and
-Jekyll, among other systems, support YAML metadata.
+Jekyll all support YAML metadata.
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ---
 title: Guide to Markdown Mode for Emacs
 author: Jason R. Blevins
-date: August 2017
 tags: Emacs, markdown, markdown-mode, writing, plain text
 ---
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2186,7 +2190,7 @@ Wiki links may be followed by pressing `C-c C-o` when the point is at
 a wiki link.  This will find the corresponding file in the current
 window, by default, or in another window with the `C-u` prefix.  As
 with regular links, you can use `M-p` and `M-n` to quickly jump to the
-previous and next links (including links of other types).
+previous and next links (including other kinds of links).
 
 Aliased or piped wiki links of the form `[[link text|PageName]]` are
 also supported.  Since some wikis reverse these components, set
@@ -2288,7 +2292,7 @@ Alternatively, you can enable this by default by setting
 `markdown-enable-math` to a non-`nil` value.  You can do this on a
 file-by-file basis using [File Local Variables](#file-local).  Or you can enable
 this setting globally, via `M-x customize` or by placing `(setq
-markdown-enable-math t)` in your startup file.  In that case you
+markdown-enable-math t)` in your startup file.  In that case, you
 should restart Emacs or call `markdown-reload-extensions`.
 
 `markdown-enable-math`
@@ -2301,8 +2305,8 @@ should restart Emacs or call `markdown-reload-extensions`.
 ## GitHub Flavored Markdown (GFM) Mode {#gfm}
 
 [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/) is a dialect of Markdown developed for use on GitHub.
-A GitHub Flavored Markdown Mode for Emacs, is also available
-as `gfm-mode`, part of the Markdown Mode package.
+A GitHub Flavored Markdown Mode for Emacs is also available
+as `gfm-mode` and is part of the Markdown Mode package.
 
 The GitHub implementation of Markdown differs slightly
 from standard Markdown in that it supports things like different
@@ -2358,7 +2362,7 @@ Mode as described below.
   capitalized.  For example, `[[wiki link]]` will map to a file
   named `Wiki-link` with the same extension as the current file.
 
-* **Newlines:**  Neither Markdown Mode nor GFM Mode do anything
+* **Newlines:**  Neither Markdown Mode nor GFM Mode does anything
   specifically with respect to newline behavior.  If you use
   GFM Mode mostly to write text _for comments or issues_ on the
   GitHub site---where newlines are indeed significant and correspond
@@ -2385,7 +2389,7 @@ There are a variety of ways to preview and export files in Markdown
 Mode.  Perhaps the simplest way to "preview" what your Markdown will
 look like on the web or elsewhere is to hide the markup in the buffer
 itself.  Several other options are available, such as previewing in a
-browsers, which use an external Markdown processor (e.g., Markdown.pl,
+browser, which use an external Markdown processor (e.g., Markdown.pl,
 Pandoc, or MultiMarkdown).  The various methods for previewing and
 exporting are summarized in the following table and described in more
 detail in the sections that follow.
@@ -2447,7 +2451,7 @@ I> in cases where alternative glyphs are used (e.g., list bullets).
 I> *This does not, however, affect printing or other output.*
 I> Functions such as `htmlfontify-buffer` and `ps-print-buffer` will
 I> not honor these text properties.  For printing, it would be better
-I> to convert to HTML or PDF first (e.g,. using Pandoc) and then
+I> to convert to HTML or PDF first (e.g., using Pandoc) and then
 I> print.
 
 ## Compiling to a Temporary Buffer or Kill Ring
@@ -2929,7 +2933,7 @@ the `mode:` declaration can even be omitted:
 #!/usr/bin/perl       -*-cperl-*-
 ```
 
-File variable definitions should appear in a comment, and the comment
+File variable definitions should appear in a comment and the comment
 syntax used by Markdown Mode is the same as for HTML comments: `<!--
 comment -->`.  So, to specify a local variable at the beginning of a
 file you could add the following to the first line (which would result
@@ -3015,7 +3019,7 @@ You will see a Markdown-formatted nested list like the following:
 <!-- markdown-toc end -->
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After it has been inserted, you can update the table of of contents with
+After it has been inserted, you can update the table of contents with
 `M-x markdown-toc-refresh-toc`.  Alternatively, you can use the combined
 generate or refresh command `M-x markdown-toc-generate-or-refresh-toc`.
 Finally, to remove it run `M-x markdown-toc-delete-toc`.
@@ -3158,7 +3162,7 @@ to the `<head>` block of your HTML preview output using the
 ```
 
 W> The `TeX-MML-AM_CHTML` configuration in the example above very
-W> general, and therefore larger, than other configurations.  It is
+W> general, and therefore larger than other configurations.  It is
 W> useful as a default to get started, but you'll most likely want to
 W> use a more appropriate, specific configuration for production use,
 W> for better performance.
@@ -3244,7 +3248,7 @@ browse-url-elinks-new-window        browse-url-w3
 If your browser is not supported, choose `browse-url-generic` and set
 `browse-url-generic-program` to the path of your browser's executable.
 The downside of using a generic browser is that you lose remote
-control and as a result a new process will be spawned for every URL
+control and as a result, a new process will be spawned for every URL
 you open.
 
 The above options change the browser for Emacs _globally_.  On the other
@@ -3378,7 +3382,7 @@ summary(cars)
 ```
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Markdown Mode can will `r-mode` for syntax highlighting in these code
+Markdown Mode will use `r-mode` for syntax highlighting in these code
 blocks if you enable native font lock.  To do so, use
 `markdown-toggle-fontify-code-blocks-natively` or `C-c C-x C-f`.
 
