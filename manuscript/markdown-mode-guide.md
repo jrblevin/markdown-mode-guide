@@ -158,7 +158,7 @@ distinguish the two.  After the original Perl implementation, Markdown
 processors have been implemented by others in a variety of programming
 languages.
 
-[^aaronsw]: Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter writtenu in Python.
+[^aaronsw]: Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter written in Python.
 
 ### Markdown Syntax Reference
 
@@ -631,7 +631,7 @@ able to run `markdown-command` from buffers which are visiting a file.
 :   Boolean, default: `nil`.
 
     Set to `t` if the program specified as `markdown-command`
-    needs the filename to be soecified as a command line argument,
+    needs the filename to be specified as a command line argument,
     rather than reading the content from the standard input (`stdin`).
 
 
@@ -1140,7 +1140,7 @@ When you press `TAB` (`markdown-cycle`) repeatedly, the point will
 cycle through several possible indentation levels corresponding to
 locations you might have in mind.  For example, you may want to start
 a new list item, continue a list item with hanging indentation, indent
-for a nested pre block, and so on.
+for a nested `<pre>` block, and so on.
 
 ``` markdown
 - list item
@@ -1794,7 +1794,7 @@ Another way to insert a GFM code block is to use the _electric
 backquote_ feature, which is enabled by default.  When this setting is
 enabled, pressing `` ` `` three times triggers
 `markdown-insert-gfm-code-block` automatically.  Currently this
-ony happens when in `gfm-mode`.
+only happens when in `gfm-mode`.
 
 `markdown-gfm-use-electric-backquote`
 
@@ -2199,7 +2199,7 @@ value.
 
 :   Boolean, default: `t`.
 
-    Set to a non-nil value tomtreat aliased wiki links like
+    Set to a non-nil value to treat aliased wiki links like
     `[[link text|PageName]]`.  When set to `nil`,
     they will be treated as `[[PageName|link text]]`.
 
@@ -2247,7 +2247,7 @@ value.
 
 Syntax highlighting for mathematical expressions written in LaTeX can
 be toggling with `C-c C-x C-e` (`markdown-toggle-math`), where
-the final `e` is for _equation_.  Imporantly, this is _not_ full
+the final `e` is for _equation_.  Importantly, this is _not_ full
 LaTeX support.  It only involves font lock and only expressions
 delimited by `$..$`, `$$..$$`, or `\[..\]` are supported.
 
@@ -2302,7 +2302,7 @@ Markdown documents in repositories on the site.  These additional
 extensions are supported to varying degrees by Markdown Mode and GFM
 Mode as described below.
 
-* **URL autolinking:**  Both Markdown Mode and GFM Mode support
+* **URL auto-linking:**  Both Markdown Mode and GFM Mode support
   highlighting of URLs without angle brackets.
 
 * **Underscores inside words:**  You must enable GFM Mode to
@@ -3000,7 +3000,7 @@ Finally, to remove it run `M-x markdown-toc-delete-toc`.
 
 Notice that `markdown-toc` generates anchors (e.g., `#quick-reference`)
 automatically.  You'll need to make sure that your Markdown processor
-of choice also geneqrates these in the resulting HTML and that it
+of choice also generates these in the resulting HTML and that it
 follows the same format (i.e., replacing spaces with hyphens).  This is
 the format used by MultiMarkdown, for example.
 
@@ -3086,7 +3086,7 @@ previous section), then you might find Deft to be useful.  You don't
 have to use Markdown---Deft works with LaTeX files, Org files,
 etc.---but it has some Markdown-specific features.  For example, it
 automatically strips Markdown heading markup when displaying note
-titles.  It also allows you to customzie the Markdown heading level of
+titles.  It also allows you to customize the Markdown heading level of
 new notes.
 
 Below is a simplified version of my own Deft configuration, which I
@@ -3579,4 +3579,4 @@ of the most useful commands are `C-h k` (`describe-key`), `C-h m`
 (`describe-mode`), `C-h f` (`describe-function`), and `C-h v`
 (`describe-variable`), and `C-h a` (`apropos-command`).
 
-[^ELPA]:  I didn’t find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
+[^ELPA]:  I didn't find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
