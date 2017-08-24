@@ -484,10 +484,11 @@ processor of choice.
 
 `markdown-command`
 
-:   String, default: `markdown`.
+:   String, default: `"markdown"`.
 
-    The command used to convert Markdown to HTML.  The default is to
-    look for an executable named `markdown` in the Emacs `exec-path`.
+    The command used to convert Markdown to HTML, along with any
+    necessary command-line options.  The default is to look for an
+    executable named `markdown` in the Emacs `exec-path`.
 
 You can either provide the full path to the executable, or you can
 simply provide the name if the executable is in your Emacs
@@ -599,7 +600,10 @@ and to use Pygments for syntax highlighting of code blocks:
 
 ``` emacs-lisp
 (setq markdown-command
-      "pandoc -f markdown -t html -s --mathjax --highlight-style=pygments")
+      (concat
+       "/usr/local/bin/pandoc"
+       " --from=markdown --to=html"
+       "--standalone --mathjax --highlight-style=pygments"))
 ```
 
 #### Passing a File Name to Markdown
