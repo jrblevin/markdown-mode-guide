@@ -98,13 +98,14 @@ table including new version 2.3 features:
 | **Movement by Block**                               |                   |
 | Backward block                                      | `C-M-{`           |
 | Forward block                                       | `C-M-}`           |
-| Mark paragraph                                      | `C-c M-h`         |
+| Mark block                                          | `C-c M-h`         |
 | Narrow to block                                     | `C-x n b`         |
 | Widen                                               | `C-x n w`         |
 | **Movement by Section (Defun)**                     |                   |
 | Beginning of current section                        | `C-M-a`           |
 | End of current section                              | `C-M-e`           |
 | Mark current section                                | `C-M-h`           |
+| Mark current subtree                                | `C-c C-M-h`       |
 | Narrow to current section                           | `C-x n d`         |
 | Narrow to current subtree                           | `C-x n s`         |
 | Widen                                               | `C-x n w`         |
