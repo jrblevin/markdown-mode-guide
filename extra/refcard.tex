@@ -1,0 +1,238 @@
+\documentclass[10pt]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+
+% Page geometry
+\geometry{
+  paperwidth=5.5in,
+  paperheight=8.5in,
+  top=0.25in,
+  bottom=0.25in,
+  left=0.1in,
+  right=0.1in
+}
+
+% Metadata
+\hypersetup{
+  pdftitle={Markdown Mode for Emacs Reference Card},
+  pdfauthor={Jason R. Blevins},
+  pdfsubject={Markdown Mode 2.3}
+}
+
+% Fonts
+\defaultfontfeatures{Kerning=Uppercase, Scale=MatchLowercase, Mapping=tex-text}
+\setmainfont[Color=222222]{Gill Sans Std Light}
+\setsansfont[Color=222222]{Gill Sans Std Light}
+\setmonofont[Color=222222]{Source Code Pro}
+\newfontfamily\headingfontfamily[Color=000000]{Adobe Caslon Pro} % 001A57 or 660000
+\newfontfamily\keyfontfamily[Color=000000]{Source Code Pro}
+\newfontfamily\decorfontfamily[Color=000000]{Adobe Caslon Pro}
+\newfontfamily\flourishfontfamily[Color=000000]{Arno Pro}
+\newcommand{\keyfont}{\keyfontfamily}
+\newcommand{\decorfont}{\decorfontfamily}
+\newcommand{\titlefont}{\Large\headingfontfamily\bfseries}
+\newcommand{\sectionfont}{\normalsize\headingfontfamily\bfseries}
+\newcommand{\flourishfont}{\large\flourishfontfamily}
+
+% Keybindings
+\newcommand{\key}[1]{{\keyfont #1}}
+\newcommand{\desc}[1]{#1}
+\newcommand{\command}[1]{}
+\newcommand{\arrow}{$\to$}
+
+% Sectioning
+\renewcommand{\title}[1]{%
+  \centerline{%
+    %{\decorfont \#}%
+    \leftflourish{}%
+    \hspace{1em}%
+    {\titlefont #1}%
+    \hspace{1em}%
+    \rightflourish{}%
+    %{\decorfont \#}%
+  }%
+  \smallskip}
+\renewcommand{\section}[1]{%
+  \medskip%
+  \centerline{%
+    %{\decorfont \#\#}%
+    \ruleflourish{}%
+    \hspace{1ex}%
+    {\sectionfont #1}%
+    \hspace{1ex}%
+    %{\decorfont \#\#}%
+    \ruleflourish{}%
+  }%
+  \medskip}
+
+% Flourishes
+\newcommand{\amper}{\textit{\&}}
+\newcommand{\ruleflourish}{\flourishfont\XeTeXglyph405}
+\newcommand{\rightflourish}{\flourishfont\XeTeXglyph367}
+\newcommand{\leftflourish}{\reflectbox{\rightflourish}}
+
+% Layout
+\pagestyle{empty}
+
+% Simulate cardstock color
+% \definecolor{ivory}{HTML}{FDF9E0}
+% \pagecolor{ivory}
+
+\begin{document}
+
+\title{Markdown Mode for Emacs}
+
+\smallskip
+%\centerline{Quick reference for \texttt{markdown-mode} v2.3}
+
+%%---------------------------------------------------------------------------%%
+
+\section{Markup Insertion \amper{} Replacement}
+
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabular}[t]{ll}
+\key{C-c C-s b}    & \desc{bold}                  \\
+\key{C-c C-s i}    & \desc{italic}                \\
+\key{C-c C-s c}    & \desc{code}                  \\
+\key{C-c C-s C}    & \desc{code block (GFM)}      \\
+\key{C-c C-s q}    & \desc{blockquote}            \\
+%\key{C-c C-s C-q} & \desc{blockquote (region)}   \\
+\key{C-c C-s p}    & \desc{preformatted}          \\
+%\key{C-c C-s C-P} & \desc{preformatted (region)} \\
+\key{C-c C-l}      & \desc{link}                  \\
+\key{C-c C-i}      & \desc{image}                 \\
+\key{C-c C-k}      & \desc{kill thing at point}   \\
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabular}[t]{rll}
+\key{C-c C-s h}    & \desc{heading}               \\
+\key{C-c C-s H}    & \desc{heading (setext)}      \\
+\key{C-c C-s \#}   & \desc{heading \# = 1, 2, $\dots$, 6} \\
+\key{C-c C-s !}    & \desc{heading 1 (setext)}    \\
+\key{C-c C-s @}    & \desc{heading 2 (setext)}    \\
+\key{C-c C-s -}    & \desc{horizontal rule}       \\
+\key{C-c C-s f}    & \desc{footnote}              \\
+\key{C-c C-s w}    & \desc{wiki link}             \\
+\end{tabular}
+\end{minipage}
+
+%%---------------------------------------------------------------------------%%
+
+\begin{minipage}[t]{0.5\textwidth}
+
+\section{Lists \amper{} Indentation}
+
+\begin{tabular}[t]{lll}
+\key{M-<return>} & \desc{new list item}       \\
+\key{C-c <up>}     & \desc{move list item up}   \\
+\key{C-c <down>}   & \desc{move list item down} \\
+\key{C-c <right>}  & \desc{indent list item}    \\
+\key{C-c <left>}   & \desc{exdent list item}    \\
+\key{C-c >}      & \desc{indent region}       \\
+\key{C-c <}      & \desc{outdent region}      \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{0.5\textwidth}
+
+\section{Cycling \amper{} Completion}
+
+\begin{tabular}[t]{lll}
+\key{C-c C-{}-} & \desc{promote element}          \\
+\key{C-c C-=}   & \desc{demote element}           \\
+\key{C-c C-]}   & \desc{complete markup}          \\
+\key{<tab>}     & \desc{cycle subtree visibility} \\
+\key{S-<tab>}   & \desc{cycle global visibility}  \\
+\end{tabular}
+\end{minipage}
+
+%%---------------------------------------------------------------------------%%
+
+\section{Navigation \amper{} Movement}
+
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabular}[t]{lll}
+\key{C-c C-n}  & \desc{next visible heading}           \\
+\key{C-c C-p}  & \desc{previous visible heading}       \\
+\key{C-c C-f}  & \desc{forward to same level heading}  \\
+\key{C-c C-b}  & \desc{backward to same level heading} \\
+\key{C-c C-u}  & \desc{move to higher level heading}   \\
+\key{M-n}      & \desc{next link}                      \\
+\key{M-p}      & \desc{previous link}                  \\
+\key{C-c C-o}  & \desc{follow link at point}           \\
+\end{tabular}
+\end{minipage}
+%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabular}[t]{lll}
+\key{M-\{}     & \desc{backward paragraph}             \\
+\key{M-\}}     & \desc{forward paragraph}              \\
+\key{M-h}      & \desc{mark paragraph}                 \\
+\key{C-M-\{}   & \desc{backward block}                 \\
+\key{C-M-\}}   & \desc{forward block}                  \\
+\key{C-c M-h}  & \desc{mark block}                     \\
+\key{C-c C-d}  & \desc{\texttt{markdown-do}}           \\
+\end{tabular}
+\end{minipage}
+
+%%---------------------------------------------------------------------------%%
+
+\section{Utility Commands \amper{} Toggles}
+
+Run \texttt{markdown-command} on file \texttt{basename.text}
+and do various things with the output:
+
+\begin{tabular}{lll}
+\key{C-c C-c m}                                                                       & 
+\desc{\textit{Markdown:} show output in other window}                                 & 
+\command{markdown-other-window}       \\
+\key{C-c C-c p}                                                                       & 
+\desc{\textit{Preview:} save to temporary file and open in browser}                   & 
+\command{markdown-preview}            \\
+\key{C-c C-c e}                                                                       & 
+\desc{\textit{Export:} export to \texttt{basename.xhtml}}                             & 
+\command{markdown-export}             \\
+\key{C-c C-c v}                                                                       & 
+\desc{\textit{View:} export to \texttt{basename.xhtml} and open in browser}           & 
+\command{markdown-export-and-preview} \\
+\key{C-c C-c w}                                                                       & 
+\desc{\textit{Kill ring save:} copy output to clipboard}                              & 
+\command{markdown-kill-ring-save}     \\
+\key{C-c C-c o}                                                                       & 
+\desc{\textit{Open:} open \texttt{basename.text} with \texttt{markdown-open-command}} & 
+\command{markdown-open}               \\
+\end{tabular}
+
+\smallskip
+These commands operate on the entire buffer:
+
+\begin{tabular}{lll}
+\key{C-c C-c ]} & \desc{complete headings and horizontal rules} & \command{markdown-complete-buffer}      \\
+\key{C-c C-c c} & \desc{check for undefined references}         & \command{markdown-check-refs}           \\
+\key{C-c C-c n} & \desc{renumber ordered lists}                 & \command{markdown-cleanup-list-numbers} \\
+\end{tabular}
+
+\smallskip
+Toggle commands are located under the \key{C-c C-x} prefix:
+
+\begin{tabular}{llll}
+\key{C-c C-x C-m} & \desc{Markup hiding}         & \key{C-c C-x C-e} & \desc{Math support}  \\
+\key{C-c C-x C-l} & \desc{URL hiding}            & \key{C-c C-x C-i} & \desc{Inline images} \\
+\key{C-c C-x C-f} & \desc{Native code block font lock}  & \key{C-c C-x C-x} & \desc{GFM checkbox}  \\
+\end{tabular}
+
+%%---------------------------------------------------------------------------%%
+
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% End:
