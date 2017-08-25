@@ -11,24 +11,34 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 ![Markdown Mode Screenshot](images/markdown-mode-2.3.png)
 
-This guide describes how to install, use, and customize
+This Guide describes how to install, use, and customize
 [Markdown Mode](https://jblevins.org/projects/markdown-mode/), a major mode for editing Markdown-formatted text
-files in [Emacs](https://www.gnu.org/software/emacs/).  It is intended not to be a replacement for the
+files in [Emacs](https://www.gnu.org/software/emacs/).  It is not intended to be a replacement for the
 online manual, but rather to supplement and extend the manual for
-users who want to learn to use Markdown Mode more extensively and
-efficiently and perhaps learn more about Emacs in the process.
+users who want to learn to use Markdown Mode more effectively.
+
+The goal of this book is to make writing and publishing with Markdown
+in Emacs more enjoyable and efficient.  The hope is that through
+examples and detailed descriptions of the various commands and
+customizable variables, users can learn more about Emacs itself and
+also improve their Markdown writing workflows.
+
+This book covers the usual basic information about obtaining,
+installing and configuring Markdown Mode, but it also addresses
+advanced usage such as subtree and structure editing, defun and page
+movement, marking, narrowing, region manipulation, etc.  It goes
+beyond the basic documentation by also discussing interaction with
+other packages and systems such as Flyspell mode, CriticMarkup mode,
+Pandoc mode, Deft, HTML as Markdown mode, and MathJax.  Finally, it
+also contains tips and tricks for custom configuration options such as
+custom CSS stylesheets, using pre- and post-processors, customizing
+faces, keeping notes in a local wiki, etc.
 
 This guide is based on **Markdown Mode version 2.3**.
 Markdown Mode and this guide were written by [Jason Blevins](https://jblevins.org/).
 Markdown Mode is free software, licensed under the
 [GNU General Public License (GPL), version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html),
 and it may be freely obtained from the [Markdown Mode homepage](https://jblevins.org/projects/markdown-mode/).
-
-Funds from [sales of this book](https://leanpub.com/markdown-mode) help support development of both
-Markdown Mode and this Guide.  If you're reading this, then you're
-likely one of the many people who rely on Markdown Mode to get your
-work done.  If you haven't already, please consider supporting the
-project by [buying the complete Guide](https://leanpub.com/markdown-mode).
 
 ## Quick Reference
 
