@@ -37,7 +37,7 @@ faces, keeping notes in a local wiki, etc.
 This guide is based on **Markdown Mode version 2.3**.
 Markdown Mode and this guide were written by [Jason Blevins](https://jblevins.org/).
 Markdown Mode is free software, licensed under the
-[GNU General Public License (GPL), version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html),
+GNU General Public License (GPL) version 3 or later,
 and it may be freely obtained from the [Markdown Mode homepage](https://jblevins.org/projects/markdown-mode/).
 
 ## Quick Reference
