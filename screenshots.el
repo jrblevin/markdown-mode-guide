@@ -89,6 +89,24 @@
   (setq markdown-command "multimarkdown --snippet --smart --notes"
         markdown-open-command "mark"))
 
+;; Deft
+(use-package deft
+  :init
+  (setq deft-directory "~/Documents/Deft/demo/"
+	deft-auto-save-interval 0
+	deft-recursive nil
+	deft-extensions '("txt" "text" "tex" "org")
+	deft-use-filter-string-for-filename t
+	deft-markdown-mode-title-level 1
+        deft-strip-summary-regexp
+        (concat "\\("
+                "[\n\t]" ; blank
+                "\\|^#.*$" ; Markdown headings
+                "\\)")
+	deft-file-naming-rules '((noslash . "-")
+				 (nospace . "-")
+				 (case-fn . downcase))))
+
 ;; Screenshots
 (defconst markdown-guide-images-dir "~/work/markdown-mode-guide/manuscript/images/")
 
