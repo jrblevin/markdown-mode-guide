@@ -3245,6 +3245,9 @@ Manual for additional details.
 
 ## Using Marked 2 as a Standalone Previewer
 
+{width=60%}
+![Marked 2 Preview of this Book](images/marked-2.png)
+
 You can customize the program used to "open" Markdown files from
 Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
 is `markdown-open-command`.
