@@ -189,9 +189,10 @@ which are ordinarily interpreted by Markdown as formatting commands
 will instead be interpreted literally if preceded by a backslash.  For
 example, when you need to type a literal asterisk or underscore:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This is *italic*, but this \*is not\*.
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Markdown.pl also does not transform any text within raw block-level
 HTML elements (although some other processors do).  Thus it is
@@ -623,7 +624,9 @@ described first: headings, paragraphs, blockquotes, lists, code blocks,
 and horizontal rules.  Then, commands for editing span elements are
 described: emphasis, code, links, images, and comments.  Finally,
 miscellaneous editing commands are described for markup completion,
-markup cycling, indentation, etc.
+markup cycling, indentation, etc.  Extensions, such as footnotes,
+fenced code blocks, wiki links, definition lists, and checkboxes
+are described in the [Extensions](#extensions) chapter that follows.
 
 Markdown Mode keybindings are grouped by prefixes based on their
 function.  Like other major modes, most commands begin with `C-c`, the
@@ -661,6 +664,7 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 When you use the `C-c C-s` or `C-c C-c` prefixes, prompts will
 appear in the minibuffer that provide hints for a few of the most
 commonly used commands.  You can control this by setting
+`markdown-enable-prefix-prompts`.
 
 `markdown-enable-prefix-prompts`
 
@@ -680,18 +684,19 @@ on---and many of these commands behave differently depending on
 whether `transient-mark-mode` is enabled or not.  When it makes sense,
 if `transient-mark-mode` is on and there is an active region, the
 command applies to the text in the region.  For example, `C-c C-s b`
-(`markdown-insert-bold`) would make the region bold.  When this is not
-the case, many commands then proceed to work with either the word at
-the point (e.g., for italics) or the current line (e.g., for
-headings).
+(`markdown-insert-bold`) would make the region bold.  When
+`transient-mark-mode` is off or there is no active region, many
+commands then proceed to work with either the word at the point (e.g.,
+for italics) or the current line (e.g., for headings).
 
 There are also some parallel commands that act specifically on the
 region, even when `transient-mark-mode` is disabled.  These commands
-have the same keybinding as their standard counterparts but use an
+have the same keybindings as their standard counterparts but use an
 uppercase letter instead.  For example, `markdown-insert-blockquote`
-is bound to `C-c C-s q` and only acts on the region in
-`transient-mark-mode` while `markdown-blockquote-region` is bound to
-`C-c C-s Q` and always applies to the region.
+is bound to `C-c C-s q` while `markdown-blockquote-region` is bound to
+`C-c C-s Q`.  The latter _always_ applies to the region while the former
+only acts on the region when `transient-mark-mode` is on and the region
+is active.
 
 T> For users who prefer to work _without_ `transient-mark-mode`,
 T> conveniently since Emacs 22 it can be enabled temporarily by pressing
@@ -709,38 +714,110 @@ being the least prominent (corresponding to the six levels of headings
 in HTML, `<h1>` through `<h6>`).  The heading text may optionally be
 followed by an equal number of hash marks.
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # First-level heading #
 
 First section text.  Here we close the heading with a hash mark.
 
 ## Second-level heading
 
-Second section text.  No closing hash mark here.
+Second section text.  No closing hash marks here.
 
 ### Third-level heading ###
 
 Third section text.
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There is also an alternative syntax for the first two levels of
+headings.  Instead of hash marks, you may use equals signs (`=`) or
+hyphens (`-`) to underline the heading text.  Headings of this form are
+called setext headings:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+First-level heading
+==================
+
+Second-level heading
+-------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Inserting & Replacing Headings
 
 There are two options for inserting or replacing headings: You can
-either insert a heading of a specific level directly or let Markdown
+either insert a heading of a specific level and type or let Markdown
 Mode determine the level and type for you.  To insert a heading of a
 specific level directly, simply use `C-c C-s #` where `#` is a number
 `1` through `6` (`markdown-insert-header-atx-1`, …,
 `markdown-insert-header-atx-6`).
 
+To insert setext headings directly, use
+`C-c C-s !` (`markdown-insert-header-setext-1`) for level one
+or `C-c C-s @` (`markdown-insert-header-setext-2`) or level two.
+Noting that `!` is `S-1` and `@` is `S-2` may make these commands
+easier to remember.
+
 For automatic heading insertion use `C-c C-s h`
 (`markdown-insert-header-dwim`).  The type and level are determined
-based on the previous heading.  By default, the new
-heading will be a sibling (same level).  A `C-u` prefix can be added
-to insert a heading _promoted_ (lower number) by one level or a `C-u
-C-u` prefix can be given to insert a heading _demoted_ (higher number)
-by one level.  In cases where the automatically-determined level is
-not what you intended, the level can be quickly promoted or demoted
-(as described below).
+based on the previous heading.  By default, the new heading will be a
+sibling (same level).  A `C-u` prefix can be added to insert a heading
+that is _promoted_ (lower number) by one level or a `C-u C-u` prefix
+can be given to insert a heading that is _demoted_ (higher number) by
+one level.  In cases where the automatically-determined level is not
+what you intended, the level can be quickly replaced, promoted, or
+demoted as described below.
+
+X> Suppose you are currently writing in a level-two section, as in the
+X> following example, and want to start a new section.
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> ## Heading ##
+X>
+X> Body text.
+X> █
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X>
+X> Pressing `C-c C-s h`, for automatic heading insertion, creates a
+X> new level-two sibling heading:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> ## Heading ##
+X> 
+X> Body text.
+X> 
+X> ## █##
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X>
+X> Using the universal prefix, as in `C-u C-c C-s h`, creates a
+X> new level-one parent heading:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> # █#
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X>
+X> Using the universal prefix twice, as in `C-u C-u C-c C-s h`, creates a
+X> new level-three child heading instead:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> ### █###
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To automatically insert setext-style headings, use `C-c C-s H`
+(`markdown-insert-header-setext-dwim`).  This command behaves
+like `C-c C-c h` (`markdown-insert-header-dwim`) in that the level is
+calculated automatically and it can accept the same prefix arguments,
+but it uses setext (underlined) headings for levels one and two.
+
+As with several other markup commands, if the region is active and
+`transient-mark-mode` is on, the heading insertion commands use the
+text in the region as the heading text.  Next, if the current line is
+not blank, they use the text on the current line.  Otherwise, the user
+is prompted to provide the heading text.
 
 If the point is at a heading, these commands will replace the existing
 markup in order to update the level and/or type of the heading.  To
@@ -748,10 +825,21 @@ remove the markup of the heading at the point, press `C-c C-k`
 (`markdown-kill-thing-at-point`) to kill the heading and press `C-y`
 to yank the heading text back into the buffer.
 
-As with several other markup commands, if the region is active and
-`transient-mark-mode` is on, the heading insertion commands use the
-text in the region as the heading text.  Otherwise, if the current
-line is not blank, they use the text on the current line.
+X> Suppose you mistakenly insert a level-two heading and want to
+X> replace it, as in the following example, where `█` indicates the
+X> point:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> ## Heading█##
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X>
+X> Pressing `C-c C-s 1` replaces the heading with a level-one heading:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> # Heading█#
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I> Markdown.pl and several other processors allow one to omit the
 I> whitespace between the hash mark and the heading text, but some
@@ -761,41 +849,10 @@ I> requires whitespace.  This has other advantages, for example, it
 I> allows one to use #hashtags that might wrap to the beginning of the
 I> line.
 
-There is also an alternative syntax for the first two levels of
-headings.  Instead of hash marks, you may use equals signs (`=`) or
-hyphens (`-`) to underline the heading text.  Headings of this form are
-called setext headings:
-
-``` markdown
-First-level heading
-==================
-
-Second-level heading
--------------------
-```
-
-To automatically insert setext-style headings, use `C-c C-s H`
-(`markdown-insert-header-setext-dwim`).  This command behaves
-like `C-c C-c h` (`markdown-insert-header-dwim`) in that the level is
-calculated automatically and it can accept the same prefix arguments,
-but it uses setext (underlined) headings whenever possible (only for
-levels one and two).  To insert setext headings directly, use
-`C-c C-s !` (`markdown-insert-header-setext-1`) for level one
-or `C-c C-s @` (`markdown-insert-header-setext-2`) or level two.
-Noting that `!` is `S-1` and `@` is `S-2` may make these commands
-easier to remember.
-
-As with the atx heading commands, when the region is active and
-`transient-mark-mode` is enabled, the setext heading insertion
-commands will use the region as the heading text.  Next, if the
-line is not blank, the current line is transformed into a heading.
-Otherwise, the user is prompted to provide the heading text.
-
 T> If the alignment of the underline characters is not exactly right,
-T> as in the above examples, you can still keep things tidy.
-T> Markdown Mode can "complete" markup for you after the fact.  See
-T> the [Markup Completion](#completion) section of this chapter for
-T> more details.
+T> Markdown Mode can help keep things tidy by "completing" the markup
+T> for you after the fact.  See the [Markup Completion](#completion) section of
+T> this chapter for more details.
 
 ### Outline Navigation {#outline}
 
@@ -803,19 +860,19 @@ Markdown Mode defines keys for hierarchical navigation in headings and
 lists.  When the point is in a list, they move between list items.
 Otherwise, they move between headings.
 
-*   Use `C-c C-n` (`markdown-outline-next`) and `C-c C-p`
-    (`markdown-outline-previous`) to move to the next and previous
-    visible headings or list items of any level.
-*   Similarly, `C-c C-f` (`markdown-outline-next-same-level`) and
-    `C-c C-b` (`markdown-outline-previous-same-level`) move to the
-    next and previous visible headings or list items _at the same level_
-    as the one at the point.
+*   Use `C-c C-n` and `C-c C-p` (`markdown-outline-previous` and
+    `markdown-outline-next`) move to the next and previous visible
+    headings or list items of any level.
+*   Similarly, `C-c C-f` and `C-c C-b`
+    (`markdown-outline-previous-same-level` and `markdown-outline-next-same-level`)
+    move to the next and previous visible headings or list items
+    _at the same level_ as the one at the point.
 *   Finally, `C-c C-u` (`markdown-outline-up`) will move up to the
     parent heading or list item.
 
-T> The outline navigation commands in `markdown-mode`---`C-c C-n`,
-T> `C-c C-p`, `C-c C-f`, `C-c C-b`, and `C-c C-u`---are the same as in
-T> `org-mode`.
+T> The outline navigation commands in `markdown-mode` (`C-c C-n`,
+T> `C-c C-p`, `C-c C-f`, `C-c C-b`, and `C-c C-u`) are the same as in
+T> `org-mode`, which are in turn based on those in `outline-minor-mode`.
 
 ### Movement by Defun
 
@@ -829,9 +886,12 @@ the buffer to show only the current section, use `C-x n d`
 (`narrow-to-defun`) and to widen again, use `C-x n w` (`widen`) as
 usual.
 
-T> The defun movement and marking commands in
-T> `markdown-mode`---`C-M-a`, `C-M-e`, and `C-M-h`---are the same as
-T> in Emacs more generally in programming modes.
+T> Defuns in Emacs are major top-level definitions.  The name derives
+T> from the Emacs Lisp `defun` macro for defining functions.  The
+T> defun movement and marking commands in Markdown Mode (`C-M-a`,
+T> `C-M-e`, and `C-M-h`) are the same as in Emacs more generally.
+T> Since Markdown has no functions, Markdown Mode considers section
+T> headings to be defuns.
 
 To include the entire subtree when marking and narrowing, Markdown
 Mode also defines `C-c C-M-h` (`markdown-mark-subtree`) and `C-x n s`
@@ -845,8 +905,8 @@ Elsewhere in Emacs, pages are defined by a regular expression given in
 the `page-delimiter` variable, usually `^L` (control-L, the page break
 control code).  Markdown Mode redefines a page to be a complete
 top-level subtree, so you can navigate between top-level headings
-using the standard Emacs page movement keys: `C-x ]`
-(`markdown-forward-page`) and `C-x [` (`markdown-backward-page`).  To
+using the standard Emacs page movement keys: `C-x [` and `C-x ]`
+(`markdown-backward-page` and `markdown-forward-page`).  To
 mark the current top-level subtree, use `C-x C-p`
 (`markdown-mark-page`).  To narrow the buffer to show only the current
 top-level subtree, use `C-x n p` (`markdown-narrow-to-page`) and to
@@ -859,11 +919,11 @@ headings and sections.  There are two types of visibility cycling:
 global and local.
 
 Pressing `S-TAB` (`markdown-shifttab`) cycles _globally_ between three
-levels of visibility:
+levels of visibility, as shown in the screenshot below:
 
-1. table of contents view (headings only),
-2. outline view (top-level headings only),
-3. full document view (all sections visible).
+1. headings only (overview),
+2. top-level headings only (contents),
+3. all sections visible (show all).
 
 ![Global Visibility Cycling](images/global-visibility.png)
 
@@ -886,8 +946,9 @@ current heading subtree.  Similarly, subtrees can be moved up and down
 with `C-c <up>` and `C-c <down>` (`markdown-move-up` and
 `markdown-move-down`).
 
-W> These commands currently do not work properly if there are setext
-W> headings in the region.
+W> These commands are based on functions from `outline.el` that are
+W> regular-expression-based, and so they currently do not work
+W> properly if there are setext headings in the region.
 
 Note the following "boundary" behavior for promotion and demotion.
 Any level-six headings will not be demoted further (i.e., they remain
@@ -901,8 +962,9 @@ headings are undefined).
 Markdown Mode distinguishes between *symmetric* and *asymmetric* atx
 heading markup.  Symmetric headings have an equal number of hash marks
 at the beginning and end of the line.  Asymmetric headings have only
-leading hash marks.  You can customize Markdown Mode to fit your
-preference by setting the `markdown-asymmetric-header` variable.
+leading hash marks.  Both are valid, so this is an aesthetic choice.
+You can customize Markdown Mode to fit your preference by setting the
+`markdown-asymmetric-header` variable.
 
 `markdown-asymmetric-header`
 
@@ -913,24 +975,70 @@ preference by setting the `markdown-asymmetric-header` variable.
     When `nil`, balanced markup will be inserted at the beginning and
     end of the line around the heading title.
 
-    ``` markdown
+    {lang="text}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Heading ##
-    ```
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Set to a non-`nil` value to use asymmetric heading styling, placing
     heading markup only at the beginning of the line.
 
-    ``` markdown
+    {lang="text}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Heading
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-asymmetric-header t)
     ```
 
-The default is to use symmetric atx headings, but if you prefer the
-asymmetric styling then you can either change this variable in the
-customize interface or set it in your init file, like so:
+Markdown Mode also has the ability to scale the font sizes used for
+headings in proportion to their importance (as in AUCTeX, for
+example).  To enable this, customize `markdown-header-scaling` or set
+it in your init file.
 
-``` emacs-lisp
-(setq markdown-asymmetric-header t)
-```
+`markdown-header-scaling`
+
+:   Boolean, default: `nil`.
+
+    Determines whether Markdown Mode uses different font sizes for
+    headings of different levels.  Set to a non-`nil` value to inherit
+    from the `variable-pitch` for headings with font sizes that
+    correspond to the scaling factors in the
+    `markdown-header-scaling-values` list.
+
+`markdown-header-scaling-values`
+
+:   List of floats, default: `(2.0 1.7 1.4 1.1 1.0 1.0)`.
+
+    List of six scaling values, relative to baseline, to use for
+    headings of levels one through six.  Only used when
+    `markdown-header-scaling` is non-`nil`.
+
+For finer control over the heading faces, Markdown Mode defines
+separate heading faces for each heading level:
+
+{lang=text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+markdown-header-face-1    markdown-header-face-4
+markdown-header-face-2    markdown-header-face-5
+markdown-header-face-3    markdown-header-face-6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each of these inherits from the common `markdown-header-face`.  So, to
+change all faces (e.g., a common font family or color) you can
+customize `markdown-header-face` directly.  To change the face used
+for a specific heading level, customize that face individually.
+
+T> `markdown-header-face` inherits from `variable-pitch` by default,
+T> for contrast with the `default` face, which is a fixed width font by
+T> default.  If you don't like the appearance of headings on your
+T> system, first ensure that you're setting the family of
+T> `variable-pitch` to something that pairs well with your `default`
+T> font.
+
 
 ## Paragraphs
 
@@ -938,92 +1046,60 @@ A paragraph in Markdown is one or more consecutive lines of text
 separated by one or more blank lines.  Normal paragraphs should not be
 indented with spaces or tabs:
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This is a paragraph.  It has two sentences.
 
 This is another paragraph.  It also has two sentences.
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For the purposes of defining movement and marking commands, paragraphs
-in Markdown Mode include not only regular paragraphs as described
-above, but also paragraphs inside blockquotes, individual list items,
-headings, etc.
-
-To move the point from one "paragraph" to another, use
-`M-{` (`markdown-backward-paragraph`) and
-`M-}` (`markdown-forward-paragraph`).  These keys are usually bound to
-`forward-paragraph` and `backward-paragraph`, but the built-in Emacs
-functions are based on simple regular expressions that fail in
-Markdown files.  To mark a paragraph, you can use
-`M-h` (`markdown-mark-paragraph`).
-
-Markdown Mode also defines "block" movement commands, which are larger
-in scope and may contain multiple "paragraphs" in some cases.  Blocks
-are considered to be entire lists, entire code blocks, and entire
-blockquotes.  To move backward one block use `C-M-{`
-(`markdown-beginning-block`) and to move forward use `C-M-}`
-(`markdown-end-of-block`).  To mark a block, use `C-c M-h`
-(`markdown-mark-block`).
-
-To compare paragraph and block movement, consider some specific
-examples.  In terms of list items, paragraph movement moves
-item-by-item, regardless of the list item level.  On the other hand,
-block movement moves across the entire list.  Consider a blockquote
-with multiple paragraphs as another example.  Paragraph movement stops
-at individual paragraphs in a blockquote while the block movement
-commands move over the entire blockquote.
 
 ## Blockquotes
 
 To produce a blockquote (`<blockquote>` in HTML), prefix each line
 with a right angle bracket (`>`), just as when quoting an email:
 
-``` markdown
-> This text will be enclosed in an HTML blockquote element.
-```
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> This text will be enclosed in an HTML `<blockquote>` element.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Blockquotes may be nested, like so:
 
-``` markdown
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 > Blockquote
 >
 > > Nested blockquote
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To insert markup for a blockquote in Markdown Mode, use `C-c C-s q`
 (`markdown-insert-blockquote`).  When `transient-mark-mode` is
-enabled, this command adds blockquote markup to the entire region,
+enabled, this command adds blockquote markup to the region,
 when active.  Otherwise, it simply inserts markup for an empty
 blockquote and positions the point appropriately.  The appropriate
 amount of indentation, if any, is calculated automatically given the
 surrounding context, but may be adjusted later using the region
-indentation commands.
+indentation commands described in the [Indentation](#indentation)
+section below.
 
 If you want to specifically operate on the region, whether or not
 `transient-mark-mode` and the region is active, you can use the
 region-specific command `C-c C-s Q` (`markdown-blockquote-region`).
 
-I> Notice that the keybinding for this command is similar, but the `Q`
-I> is uppercase.  This pattern is also used with other paired commands
-I> in Markdown Mode.
+I> Notice that the keybinding for this command, `C-c C-s Q`, is
+I> similar to `C-c C-s q` but the `Q` is uppercase.  This pattern is
+I> also used with other paired or otherwise related commands in
+I> Markdown Mode, such as atx and setext heading insertion.
 
 T> The region-specific functions such as `markdown-blockquote-region`
 T> are useful in some less obvious cases.  For example, yanking text
 T> from the kill ring sets the mark at the beginning of the yanked
-T> text and leaves the point to the end.  Therefore, even though the
+T> text and leaves the point at the end.  Therefore, even though the
 T> region is not active (i.e., it is not highlighted) the region does
 T> contain the yanked text and so `C-c C-s Q` will format it as a
 T> blockquote.
 
-When [Markup Hiding](#markup-hiding) is enabled, the `>` prefix will
-be displayed as a special block character.  To customize this
-character, you can set `markdown-blockquote-display-char`.
-
-`markdown-blockquote-display-char`
-
-: String, default: 0x258C (left half block)
-
-    Character displayed when hiding blockquote markup.
 
 ## Lists
 
@@ -1031,18 +1107,20 @@ To produce an unordered list (`<ul>` in HTML), prefix each line with a
 list marker.  Valid list marker characters are asterisks (`*`),
 hyphens (`-`), and plus signs (`+`):
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * An item in a bulleted (unordered) list
 * Another item in a bulleted list
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ordered lists (`<ol>` in HTML) are created similarly, by prefixing
 each line with a number followed by a period:
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 1. An item in an enumerated (ordered) list
 2. Another item in an enumerated list
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create a _nested list_, use four spaces to indent the markers of
 subordinate items (and this four-space convention will show up again,
@@ -1050,11 +1128,12 @@ for creating code blocks).  You may change list markers if you wish to
 add more visual distinction.  Note that it is the marker indentation
 that matters, not the whitespace following the marker.
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *   An item in a bulleted (unordered) list
 
     *   A sub-item in a nested list
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Creating and Editing Lists
 
@@ -1090,7 +1169,69 @@ details.
     Depth of indentation for lists when inserting, promoting, and
     demoting list items.
 
-## Indentation
+
+## Paragraph & Block Movement
+
+For the purposes of defining movement and marking commands, "paragraphs"
+in Markdown Mode include not only regular paragraphs as described
+above, but also paragraphs inside blockquotes, individual list items,
+headings, etc.
+
+To move the point from one paragraph to another, use
+`M-{` and `M-}` (`markdown-backward-paragraph` and
+`markdown-forward-paragraph`).  These keys are usually bound to
+`forward-paragraph` and `backward-paragraph`, but the built-in Emacs
+functions are based on simple regular expressions that fail in
+Markdown files.  To mark a paragraph, you can use
+`M-h` (`markdown-mark-paragraph`).
+
+Markdown Mode also defines "block" movement commands, which are larger
+in scope and may contain multiple "paragraphs" in some cases.  Blocks
+are considered to be entire lists, entire code blocks, and entire
+blockquotes.  To move backward or forward by one block use
+`C-M-{` and `C-M-}` (`markdown-beginning-block` and
+`markdown-end-of-block`).  To mark a block, use `C-c M-h`
+(`markdown-mark-block`).  To narrow the buffer to the current
+block, use `C-x n b` (`markdown-narrow-to-block`) and to
+widen agan use `C-x n w` (`widen`).
+
+To compare paragraph and block movement, consider some specific
+examples.  In terms of list items, paragraph movement moves
+item-by-item, regardless of the list item level.  On the other hand,
+block movement moves across the entire list.  So, with the point
+as in the following example, moving backwards by "paragraph"
+with `M-{` first moves the point back to the marker for item 3, then
+back to the marker for item 2, and so on.  Moving backwards by one
+"block" with `C-M-{`, on the other hand, moves the point immediately
+to the marker for item 1.
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Paragraph
+
+- item 1
+- item 2
+- item 3
+█
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Next, consider a blockquote with multiple paragraphs as in the following
+example.  Moving backward by one paragraph leaves the point at the `>`
+before blockquote paragraph 2 while moving backward by one block moves over the
+entire blockquote and leaves the point at the `>` before blockquote paragraph 1.
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Regular paragraph
+
+> blockquote paragraph 1
+>
+> blockquote paragraph 2.
+█
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+## Indentation {#indentation}
 
 ### The Tab Key
 
@@ -1101,12 +1242,13 @@ locations you might have in mind.  For example, you may want to start
 a new list item, continue a list item with hanging indentation, indent
 for a nested `<pre>` block, and so on.
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item
 █
 5   1 2 3   4
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The numbers in the block above represent the indentation positions
 that are cycled through following a nested list when the point is at
@@ -1135,49 +1277,54 @@ When the point is at the end of a (potentially nested) list item, code
 block, etc. and you press `RET` (`markdown-enter-key`), what happens
 next depends on the value of `markdown-indent-on-enter`.
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item█
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When `markdown-indent-on-enter` is `nil`, the point will move to
 column 0 of the following line:
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item
 █
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When `markdown-indent-on-enter` is set to `t`, the point will be
 positioned for continuing your nested list.
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item
     █
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this scenario, if you wanted to continue your existing (now
 line-wrapped) list item with hanging indentation, simply press `TAB`
 to indent to the next logical position.
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item
       █
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Finally, when `markdown-indent-on-enter` is set to
 `indent-and-new-item`, Markdown Mode will automatically
 insert a new list item.  (With this setting, if you wanted
 to insert a literal newline you can use `C-q C-j`.)
 
-``` markdown
+{lang="text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - list item
     - nested list item
     - █
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `markdown-indent-on-enter`
 
@@ -2398,6 +2545,17 @@ markup hiding, the URL and surrounding markup is hidden entirely,
 while with URL hiding, only the URL itself is replaced by a
 composition character.
 
+When [Markup Hiding](#markup-hiding) is enabled, the `>` prefix for blockquotes will
+be displayed as a special Unicode block character.  To customize this
+character, you can set `markdown-blockquote-display-char`.
+
+`markdown-blockquote-display-char`
+
+: String, default: 0x258C (left half block)
+
+    Character displayed when hiding blockquote markup.
+
+
 I> Markup hiding works by adding text properties to positions in the
 I> buffer---either the `invisible` property or the `display` property
 I> in cases where alternative glyphs are used (e.g., list bullets).
@@ -2720,57 +2878,6 @@ a:hover { text-decoration: underline; }
 
 For more advanced customization, there are two export hooks available:
 `markdown-before-export-hook` and `markdown-after-export-hook`.
-
-
-## Customizing the Heading Faces
-
-Markdown Mode has the ability to scale the font sizes used for
-headings in proportion to their importance (as in AUCTeX, for
-example).  To enable this, customize `markdown-header-scaling` or set
-it in your init file.
-
-`markdown-header-scaling`
-
-:   Boolean, default: `nil`.
-
-    Determines whether Markdown Mode uses variable-height faces for
-    headings or not.  Set to a non-`nil` value to inherit from the
-    `variable-pitch` for headings with font sizes that correspond to
-    the levels of headings.  The sizes are determined by the scaling
-    values in the list `markdown-header-scaling-values`.
-
-`markdown-header-scaling-values`
-
-:   List of floats, default: `(2.0 1.7 1.4 1.1 1.0 1.0)`.
-
-    List of six scaling values, relative to baseline, to use for
-    headings of levels one through six.  Only used when
-    `markdown-header-scaling` is non-`nil`.
-
-Note that Markdown Mode defines separate heading faces for each
-heading level:
-
-{lang=text}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-markdown-header-face-1
-markdown-header-face-2
-markdown-header-face-3
-markdown-header-face-4
-markdown-header-face-5
-markdown-header-face-6
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Each of these inherits from the common `markdown-header-face`.  So, to
-change all faces (e.g., a common font family or color) you can
-customize `markdown-header-face` directly.  To change the face used
-for a specific heading level, customize that face individually.
-
-I> `markdown-header-face` inherits from `variable-pitch` by default,
-I> for contrast with `default`, which is a fixed width font by
-I> default.  If you don't like the appearance of headings on your
-I> system, first ensure that you're setting the family of
-I> `variable-pitch` to something that pairs well with your `default`
-I> font.
 
 
 ## Imenu and Imenu-List
