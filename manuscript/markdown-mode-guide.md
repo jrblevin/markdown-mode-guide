@@ -49,10 +49,10 @@ table including new version 2.3 features:
 |-----------------------------------------------------|-------------------|
 | **Headings**                                        |                   |
 | Insert heading depending on context                 | `C-c C-s h`       |
-| Insert heading, prefer Setext                       | `C-c C-s H`       |
+| Insert heading, prefer setext                       | `C-c C-s H`       |
 | Insert atx heading of level # = 1, 2, … 6           | `C-c C-s #`       |
-| Insert Setext heading of level 1                    | `C-c C-s !`       |
-| Insert Setext heading of level 2                    | `C-c C-s @`       |
+| Insert setext heading of level 1                    | `C-c C-s !`       |
+| Insert setext heading of level 2                    | `C-c C-s @`       |
 | **Inline Elements**                                 |                   |
 | Bold                                                | `C-c C-s b`       |
 | Italics                                             | `C-c C-s i`       |
@@ -156,7 +156,7 @@ table including new version 2.3 features:
 by [John Gruber](https://daringfireball.net) in 2004.  Markdown aims to be simultaneously easy
 to write and easy to read.  It takes many cues from previous, similar
 attempts such as [atx](http://www.aaronsw.com/2002/atx/), by Aaron Swartz,[^aaronsw]
-[Setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
+[setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
 as well as from existing conventions for marking up plain text email.
 
 "Markdown" is also used to refer to the original Markdown processor,
@@ -785,7 +785,7 @@ I> line.
 There is also an alternative syntax for the first two levels of
 headings.  Instead of hash marks, you may use equals signs (`=`) or
 hyphens (`-`) to underline the heading text.  Headings of this form are
-called Setext headings:
+called setext headings:
 
 ``` markdown
 First-level heading
