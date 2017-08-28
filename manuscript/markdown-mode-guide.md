@@ -2432,6 +2432,8 @@ _Compiling_ (i.e., running Markdown) with `C-c C-c m`
 contents of the current buffer to `markdown-command` and show the
 output in a temporary `*markdown-output*` buffer.
 
+![Markdown Output in a Separate Window](images/markdown-output.png)
+
 As an alternative, rather than displaying the output in another
 buffer you can save the output directly to the kill ring with
 `C-c C-c w` (`markdown-kill-ring-save`).
