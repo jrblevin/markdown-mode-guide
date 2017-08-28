@@ -1604,6 +1604,8 @@ recognized automatically.
 
 ### Inline Image Display
 
+![Inline Image Display in Markdown Mode](images/inline-images.png)
+
 Local images associated with image links may be displayed inline in
 the buffer by pressing
 `C-c C-x C-i` or `M-x markdown-toggle-inline-images`.

@@ -27,6 +27,8 @@ Ordered list:
 
 Inline [link](https://jblevins.org/).
 
+![Image alt text](emacs.svg)
+
 Reference [link][tag].
 
 [tag]: https://jblevins.org/

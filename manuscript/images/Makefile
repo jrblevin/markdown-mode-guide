@@ -22,5 +22,8 @@ url-hiding.png: url-hiding-off.png url-hiding-on.png
 mathjax.png: mathjax-markdown.png mathjax-preview.png
 	convert $^ -background transparent -splice 0x10+0+0 -append -chop 0x10+0+0 $@
 
+inline-images.png: inline-images-off.png inline-images-on.png
+	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
+
 clean:
 	rm $(TARGETS)
