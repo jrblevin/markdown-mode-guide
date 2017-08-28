@@ -640,7 +640,7 @@ bottom of the mode customization screen.
 
 This section describes the movement, insertion, and editing commands
 provided by Markdown Mode.  Commands pertaining to block elements are
-described first: headers, paragraphs, blockquotes, lists, code blocks,
+described first: headings, paragraphs, blockquotes, lists, code blocks,
 and horizontal rules.  Then, commands for editing span elements are
 described: emphasis, code, links, images, and comments.  Finally,
 miscellaneous editing commands are described for markup completion,
@@ -733,7 +733,7 @@ followed by an equal number of hash marks.
 ``` markdown
 # First-level heading #
 
-First section text.  Here we close the header with a hash mark.
+First section text.  Here we close the heading with a hash mark.
 
 ## Second-level heading
 
@@ -775,7 +775,7 @@ text in the region as the heading text.  Otherwise, if the current
 line is not blank, they use the text on the current line.
 
 I> Markdown.pl and several other processors allow one to omit the
-I> whitespace between the hash mark and the header text, but some
+I> whitespace between the hash mark and the heading text, but some
 I> processors and specifications such as CommonMark do require the
 I> whitespace.  To help guarantee compatibility, Markdown Mode also
 I> requires whitespace.  This has other advantages, for example, it
@@ -783,15 +783,15 @@ I> allows one to use #hashtags that might wrap to the beginning of the
 I> line.
 
 There is also an alternative syntax for the first two levels of
-headers.  Instead of hash marks, you may use equals signs (`=`) or
-hyphens (`-`) to underline the heading text.  Headers of this form are
-called Setext headers:
+headings.  Instead of hash marks, you may use equals signs (`=`) or
+hyphens (`-`) to underline the heading text.  Headings of this form are
+called Setext headings:
 
 ``` markdown
-First-level header
+First-level heading
 ==================
 
-Second-level header
+Second-level heading
 -------------------
 ```
 
@@ -917,11 +917,11 @@ levels of headings) and any level-one headings will be promoted away
 entirely (i.e., the heading markup will be removed, since level-zero
 headings are undefined).
 
-### Header Customization
+### Heading Customization
 
 Markdown Mode distinguishes between *symmetric* and *asymmetric* atx
-header markup.  Symmetric headers have an equal number of hash marks
-at the beginning and end of the line.  Asymmetric headers have only
+heading markup.  Symmetric headings have an equal number of hash marks
+at the beginning and end of the line.  Asymmetric headings have only
 leading hash marks.  You can customize Markdown Mode to fit your
 preference by setting the `markdown-asymmetric-header` variable.
 
@@ -929,23 +929,23 @@ preference by setting the `markdown-asymmetric-header` variable.
 
 :   `nil` or `t`, default: `nil`.
 
-    Determines if atx header style will be asymmetric.
+    Determines if atx heading style will be asymmetric.
 
     When `nil`, balanced markup will be inserted at the beginning and
-    end of the line around the header title.
+    end of the line around the heading title.
 
     ``` markdown
     ## Heading ##
     ```
 
-    Set to a non-`nil` value to use asymmetric header styling, placing
-    header markup only at the beginning of the line.
+    Set to a non-`nil` value to use asymmetric heading styling, placing
+    heading markup only at the beginning of the line.
 
     ``` markdown
     ## Heading
     ```
 
-The default is to use symmetric atx headers, but if you prefer the
+The default is to use symmetric atx headings, but if you prefer the
 asymmetric styling then you can either change this variable in the
 customize interface or set it in your init file, like so:
 
@@ -1587,7 +1587,7 @@ recognized automatically.
     Determines where to insert reference definitions.  The possible
     locations are the end of the document (`end`), after the current
     block (`immediately`), the end of the current subtree (`subtree`),
-    or before the next header (`header`).
+    or before the next heading (`header`).
 
     _Example:_
 
@@ -1694,10 +1694,10 @@ T>    (of any level) with a level-four heading.
 ## Markup Completion {#completion}
 
 _Complete markup_ refers to markup in normalized form.  This means,
-for example, that the underlined portion of a setext header is the same
+for example, that the underlined portion of a setext heading is the same
 length as the heading text, or that the number of leading and trailing
-hash marks of an atx header are equal and that there is no extra
-whitespace in the header text.  To complete any incomplete markup at
+hash marks of an atx heading are equal and that there is no extra
+whitespace in the heading text.  To complete any incomplete markup at
 the point, press `C-c C-]` (`markdown-complete`).
 
 ## Markdown Maintenance Commands
@@ -1965,7 +1965,7 @@ between footnote markers and footnote definitions.
     options is the same as for `markdown-reference-location`: the
     possible locations are the end of the document (`end`), after the
     current block (`immediately`), the end of the current subtree
-    (`subtree`), or before the next header (`header`).
+    (`subtree`), or before the next heading (`header`).
 
     _Example:_
 
@@ -2754,7 +2754,7 @@ it in your init file.
 :   Boolean, default: `nil`.
 
     Determines whether Markdown Mode uses variable-height faces for
-    headers or not.  Set to a non-`nil` value to inherit from the
+    headings or not.  Set to a non-`nil` value to inherit from the
     `variable-pitch` for headings with font sizes that correspond to
     the levels of headings.  The sizes are determined by the scaling
     values in the list `markdown-header-scaling-values`.
