@@ -152,12 +152,12 @@ table including new version 2.3 features:
 
 ## Markdown
 
-[Markdown](http://daringfireball.net/projects/markdown/) is a lightweight markup language, originally created
-by [John Gruber](https://daringfireball.net) in 2004.  Markdown aims to be simultaneously easy
-to write and easy to read.  It takes many cues from previous, similar
-attempts such as [atx](http://www.aaronsw.com/2002/atx/), by [Aaron Swartz](http://www.aaronsw.com),[^aaronsw]
-[setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
-as well as from existing conventions for marking up plain text email.
+[Markdown](http://daringfireball.net/projects/markdown/) is a lightweight markup language, originally created by
+[John Gruber](https://daringfireball.net) in late 2003 and released in 2004.  Markdown aims to be
+simultaneously easy to write and easy to read.  It takes many cues from
+previous, similar attempts such as [atx](http://www.aaronsw.com/2002/atx/), by [Aaron Swartz](http://www.aaronsw.com),[^aaronsw]
+[setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman, as well as from existing conventions for
+marking up plain text email.
 
 "Markdown" is also used to refer to the original Markdown processor,
 also written by Gruber, which is a Perl script that converts plain
