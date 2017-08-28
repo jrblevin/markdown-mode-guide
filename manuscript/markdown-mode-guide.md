@@ -155,7 +155,7 @@ table including new version 2.3 features:
 [Markdown](http://daringfireball.net/projects/markdown/) is a lightweight markup language, originally created
 by [John Gruber](https://daringfireball.net) in 2004.  Markdown aims to be simultaneously easy
 to write and easy to read.  It takes many cues from previous, similar
-attempts such as [atx](http://www.aaronsw.com/2002/atx/), by Aaron Swartz,[^aaronsw]
+attempts such as [atx](http://www.aaronsw.com/2002/atx/), by [Aaron Swartz](http://www.aaronsw.com),[^aaronsw]
 [setext](http://docutils.sourceforge.net/mirror/setext.html), by Ian Feldman,
 as well as from existing conventions for marking up plain text email.
 
@@ -169,7 +169,7 @@ distinguish the two.  After the original Perl implementation, Markdown
 processors have been implemented by others in a variety of programming
 languages.
 
-[^aaronsw]: Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter written in Python.
+[^aaronsw]: John Gruber described Aaron Swartz as his "muse" while developing Markdown, due to his early enthusiasm for and feedback on the project.  Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter written in Python.
 
 ### Markdown Syntax Reference
 
