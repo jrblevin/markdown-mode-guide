@@ -15,9 +15,9 @@ Horizontal rules:
 
 Unordered list:
 
-  * Item
-  * Item
-  * Item
+  * red
+  * yellow
+  * blue
 
 Ordered list:
 
@@ -36,6 +36,3 @@ Reference [link][tag].
 Implicit reference [link][].
 
 [link]: https://jblevins.org/projects/markdown-mode/
-
-Use two spaces at the end of a line  
-to create a hard line break.

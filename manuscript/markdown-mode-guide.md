@@ -102,21 +102,21 @@ table including new version 2.3 features:
 | Narrow to block                                     | `C-x n b`         |
 | Widen                                               | `C-x n w`         |
 | **Movement by Section (Defun)**                     |                   |
-| Beginning of current section                        | `C-M-a`           |
-| End of current section                              | `C-M-e`           |
-| Mark current section                                | `C-M-h`           |
-| Mark current subtree                                | `C-c C-M-h`       |
-| Narrow to current section                           | `C-x n d`         |
-| Narrow to current subtree                           | `C-x n s`         |
+| Beginning of section                                | `C-M-a`           |
+| End of section                                      | `C-M-e`           |
+| Mark section                                        | `C-M-h`           |
+| Mark subtree                                        | `C-c C-M-h`       |
+| Narrow to section                                   | `C-x n d`         |
+| Narrow to subtree                                   | `C-x n s`         |
 | Widen                                               | `C-x n w`         |
-| **Outline/List Movement**                           |                   |
-| Next heading/list item (any level)                  | `C-c C-n`         |
-| Previous heading/list item (any level)              | `C-c C-p`         |
-| Next heading/list item at same level                | `C-c C-f`         |
-| Previous heading/list item at same level            | `C-c C-b`         |
-| Move up to parent heading/list item                 | `C-c C-u`         |
+| **Outline & List Movement**                         |                   |
+| Next heading or list item                           | `C-c C-n`         |
+| Previous heading or list item                       | `C-c C-p`         |
+| Next heading or list item (same level)              | `C-c C-f`         |
+| Previous heading or list item (same level)          | `C-c C-b`         |
+| Move up to parent heading or list item              | `C-c C-u`         |
 | **Outline Visibility Cycling**                      |                   |
-| Cycle visibility: top-level only, all headings, all | `S-TAB`           |
+| Cycle visibility globally                           | `S-TAB`           |
 | Cycle visibility of heading at point                | `TAB`             |
 | **Outline Subtree Editing**                         |                   |
 | Move subtree up                                     | `C-c <up>`        |
@@ -127,17 +127,17 @@ table including new version 2.3 features:
 | Indent region                                       | `C-c >`           |
 | Exdent region                                       | `C-c <`           |
 | **Promotion and Demotion**                          |                   |
-| Promote element (heading, list item, etc.) at point | `C-c -`           |
-| Demote element (heading, list item, etc.) at point  | `C-c =`           |
+| Promote element at point                            | `C-c -`           |
+| Demote element at point                             | `C-c =`           |
 | **Markup Completion**                               |                   |
 | Complete markup at point or in region               | `C-c C-]`         |
 | Complete markup in buffer                           | `C-c C-c ]`       |
 | **Markdown & Utility Commands**                     |                   |
 | Run Markdown, output to temporary buffer            | `C-c C-c m`       |
 | Run Markdown, export to file                        | `C-c C-c e`       |
-| Run Markdown and preview                            | `C-c C-c p`       |
+| Run Markdown, preview in browser                    | `C-c C-c p`       |
 | Run Markdown, export, and preview                   | `C-c C-c v`       |
-| Run Markdown and save to kill ring                  | `C-c C-c w`       |
+| Run Markdown, save to kill ring                     | `C-c C-c w`       |
 | Toggle live preview mode                            | `C-c C-c l`       |
 | Open external previewer                             | `C-c C-c o`       |
 | Check references in buffer                          | `C-c C-c c`       |
@@ -160,14 +160,18 @@ previous, similar attempts such as [atx](http://www.aaronsw.com/2002/atx/), by [
 marking up plain text email.
 
 "Markdown" is also used to refer to the original Markdown processor,
-also written by Gruber, which is a Perl script that converts plain
-Markdown-formatted text input to XHTML output.  It is distributed
+also written by John Gruber, which is a Perl script that converts plain
+Markdown-formatted text input to HTML output.  It is distributed
 under a BSD-style license and is included with, or available as a
 plugin for, several content management systems.  In the remainder I
 will refer to the processor by its filename, Markdown.pl, to
-distinguish the two.  After the original Perl implementation, Markdown
-processors have been implemented by others in a variety of programming
-languages.
+distinguish between the Markdown syntax and the Perl script.  After
+the original Perl implementation, Markdown processors have been
+implemented by others in a variety of programming languages.
+Some examples are, in no particular order, PHP Markdown Extra, Python
+Markdown, MultiMarkdown (Perl and C), Pandoc (Haskell), Discount (C),
+Maruku (Ruby), RedCarpet (Ruby), Kramdown (Ruby), Showdown
+(JavaScript), and CommonMark (C and Javascript).
 
 [^aaronsw]: John Gruber described Aaron Swartz as his "muse" while developing Markdown, due to his early enthusiasm for and feedback on the project.  Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter written in Python.
 
@@ -175,7 +179,7 @@ languages.
 
 For reference, below is a plain-text summary of Markdown's syntax.
 Additional details about each type of element are explained in the
-course of describing the available Markdown Mode commands.  See the
+course of describing the Markdown Mode editing commands.  See the
 original [Markdown syntax page](http://daringfireball.net/projects/markdown/syntax) for complete details.
 
 <<(examples/markdown.md)
@@ -189,28 +193,25 @@ example, when you need to type a literal asterisk or underscore:
 This is *italic*, but this \*is not\*.
 ```
 
-Markdown.pl also does not transform any text within "raw" block-level
-XHTML elements (although some other processors do).  Thus it is
-possible to include sections of XHTML within a Markdown source
-document by wrapping them in block-level XHTML tags.  However, with a
+Markdown.pl also does not transform any text within raw block-level
+HTML elements (although some other processors do).  Thus it is
+possible to include sections of HTML within a Markdown source
+document by wrapping them in block-level HTML tags.  However, with a
 small number of exceptions (e.g., comments and `kbd` tags) Markdown
-Mode does not explicitly support inline XHTML.
+Mode does not explicitly support inline HTML.
 
 ### Additional Information
 
 For additional information on Markdown syntax, you can refer to the
 following links:
 
-*   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - the original syntax description by John Gruber
-*   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - an online converter by John Gruber using the
-    original Markdown.pl
-*   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - includes several examples of syntax as well as
-    some background information on Markdown
-*   [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - a guide to Markdown and GFM by GitHub
-*   [Pandoc User's Guide](http://pandoc.org/MANUAL.html) - covers basic Markdown syntax as well as
-    extensions supported by Pandoc
-*   [PHP Markdown Reference](https://michelf.ca/projects/php-markdown/reference/) - covers basic Markdown syntax and PHP
-    Markdown Extra extensions
+*   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - original syntax description by John Gruber
+*   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - online converter using Markdown.pl
+*   [Babelmark 2](https://johnmacfarlane.net/babelmark2/) - online converter comparing many Markdown processors
+*   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - background information on Markdown with syntax examples
+*   [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - guide to Markdown and extensions by GitHub
+*   [Pandoc User's Guide](http://pandoc.org/MANUAL.html) - Markdown and Pandoc extensions
+*   [PHP Markdown Reference](https://michelf.ca/projects/php-markdown/reference/) - Markdown and PHP Markdown Extra extensions
 *   [Write better Markdown](http://brettterpstra.com/2015/08/24/write-better-markdown/) - a style guide by Brett Terpstra
 
 ## History
@@ -220,7 +221,7 @@ following links:
 Markdown Mode was originally written and is still maintained
 by [Jason Blevins](https://jblevins.org/).  The initial release, version 1.1, was created
 on May 24, 2007.  As of this writing, the latest stable version of
-Markdown Mode is version 2.3, released on August 29, 2017.  For a
+Markdown Mode is version 2.3, released on **TBD**.  For a
 complete list of changes, see the [version 2.3 release notes](https://jblevins.org/projects/markdown-mode/rev-2-3)
 or those for previous versions:
 
@@ -242,8 +243,8 @@ Historically, version numbering began at 1.1 because the source code
 was originally stored in RCS (Revision Control System), which numbers
 revisions starting at 1.1 by default.  After version 1.5, the source
 was moved to Git, where it still resides today.  See the chapter
-on [Markdown Mode Development](#devel) for instructions to obtain the source
-code.
+on [Markdown Mode Development](#devel) for instructions on how to obtain
+the source code.
 
 ## Acknowledgments
 
@@ -252,10 +253,8 @@ volunteers who have sent patches, test cases, bug reports,
 suggestions, helped with packaging, etc.  Thank you for your
 contributions!  Markdown Mode is much more robust and includes many
 additional features as a result of your efforts.  Below is a partial
-list of contributors (in alphabetical order) who sent substantial
-patches, test cases, bug reports, suggestions, helped with packaging,
-etc.  See the [GitHub contributors graph](https://github.com/jrblevin/markdown-mode/graphs/contributors) and the commit log for more
-details.
+list of contributors (in alphabetical order).  See the
+[GitHub contributors graph](https://github.com/jrblevin/markdown-mode/graphs/contributors) and the commit log for more details.
 
 <!--
 git shortlog -s -n | awk '{ $1=""; print $0 }'
@@ -277,29 +276,31 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 > Mountjoy, Akinori Musha, Pierre Neidhardt, Spanti Nicola, Theresa
 > O'Connor, George Ogata, Paul W. Rankin, Jose A. Ortega Ruiz, Max
 > Penet, Nicolas Petton, Jorge Israel Peña, Scott Pfister, Kevin
-> Porter, Steve Purcell, Alec Resnick, Christophe Rhodes, Dale
-> Sedivec, Ankit Solanki, Tyler Smith, Michael Sperber, Mike Sperber,
-> Vitalie Spinu, Philipp Stephani, Moogen Tian, Vegard Vesterheim, Tim
-> Visher, Ben Voui, Sebastian Wiesner, Peter Williams, Tianxiang
-> Xiong, Ian Yang, Syohei Yoshida, and Google, Inc.
+> Porter, Steve Purcell, Alec Resnick, Christophe Rhodes, Enrico
+> Scholz, Dale Sedivec, Ankit Solanki, Tyler Smith, Michael Sperber,
+> Mike Sperber, Vitalie Spinu, Philipp Stephani, Moogen Tian, Vegard
+> Vesterheim, Tim Visher, Ben Voui, Sebastian Wiesner, Peter Williams,
+> Tianxiang Xiong, Ian Yang, Syohei Yoshida, and Google, Inc.
 
 ------------------------------------------------------------------------------
 
 # Installation & Configuration {#install}
 
-There are many ways to load packages in Emacs, but here I will cover
-three: installation using the built-in Emacs package manager
-(recommended), manual installation, and installation using a
-system-wide package manager.
+There are many ways to load packages in Emacs, and the following three
+are covered in this section: installation using the built-in Emacs
+package manager (recommended), manual installation, and installation
+using a system-wide package manager.
 
 Markdown Mode is compatible with Emacs 24.3 and later, and it has few
-dependencies.  To enable editing of code blocks in indirect buffers
+dependencies.  To preview files and export to HTML, you will need to
+install and configure a Markdown processor (e.g., Markdown.pl).
+Also, to enable editing of code blocks in indirect buffers
 using `C-c '` (`markdown-edit-code-block`), you will need to install
 the [`edit-indirect`](https://github.com/Fanael/edit-indirect/) package.
 
 *Note:* This chapter covers installing the stable version of Markdown
 Mode, but installing the development version is similar.  If you'd
-like to test the development version see the [Development](#devel)
+like to test the development version see the [Markdown Mode Development](#devel)
 chapter at the end.
 
 ## Installation Methods
@@ -323,16 +324,16 @@ or equivalent init file:
 ```
 
 Then, after restarting Emacs or evaluating the above statements, issue
-the following command: `M-x package-install RET markdown-mode RET`.
+the following command: `M-x package-install RET markdown-mode`.
 When installing this way, the major modes `markdown-mode` and
 `gfm-mode` will be autoloaded and `markdown-mode` will be invoked
-automatically for file names ending in either `.md` or `.markdown`.
+automatically for file names ending in either `.md` or `.markdown`.[^extensions]
 
 Alternatively, if you manage loading packages with [use-package](https://github.com/jwiegley/use-package)
-(a practice I highly recommend for advanced users) then you can
+(a practice I highly recommend) then you can
 automatically install and configure `markdown-mode` by adding a
-declaration such as this one to your init file (as an example; adjust
-settings as desired):
+declaration such as the one below to your init file (this is an example,
+so adjust the settings as needed):
 
 ``` emacs-lisp
 (use-package markdown-mode
@@ -342,21 +343,9 @@ settings as desired):
   :init (setq markdown-command "multimarkdown"))
 ```
 
-Finally, if you prefer to install and use the development version of
-Markdown Mode, which may be unstable or possibly even unusable at
-times, you can install the `markdown-mode` package from the
-(unstable) [MELPA repository](https://melpa.org/#/markdown-mode) instead.  In this case, you might
-need to tell the package manager about the repository in your init
-file, like so:
-
-``` emacs-lisp
-(require 'package)
-(add-to-list 'package-archives
-    '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
-```
-
 [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
+
+[^extensions]: See the tip on [Using Markdown Mode with Other File Extensions](#extensions) for how to configure Emacs to use `markdown-mode` with file extensions other than `.md` and `.markdown`.
 
 ### OS Package Manager
 
@@ -366,35 +355,34 @@ contains the latest stable version (and please notify the package
 maintainer if not).  These packages also typically do not byte compile
 the source files or configure them to load automatically, so you may
 still need to follow the manual installation instructions in the
-following section.
+next section.
 
-**MacOS:** MacOS users who use Homebrew can install
-the [homebrew/emacs/markdown-mode](https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb) formula, which in turn
-obtains the latest stable version of Markdown Mode from GitHub.
+**MacOS:** MacOS users who use Homebrew can install the
+[markdown-mode formula](https://github.com/dunn/homebrew-emacs/blob/master/Formula/markdown-mode.rb), which in turn obtains the latest
+stable version of Markdown Mode from GitHub.
 
 ``` text
-brew update
+brew tap dunn/emacs
 brew install dunn/emacs/markdown-mode
 ```
 
 This will install files in
 `/usr/local/share/emacs/site-lisp/markdown-mode`.  Depending on where
 you obtained Emacs, this directory may or may not be in your
-`load-path`, so you may need to add it as described below for manual
-installation.
+`load-path`, so you may need to add it as described in the
+Manual Installation section that follows.
 
-If you are a MacPorts user, there does not seem to be an up to date
-port.  The existing [markdown-mode.el](https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile) port currently points to a
-Git revision from 2014.  There is also a [pending](http://trac.macports.org/ticket/35716) ticket for a
-new port, but there has been no activity.  Rather than installing from
-MacPorts, I recommend using the Emacs package manager as described
-above.
+W> If you are a MacPorts user, unfortunately there does not seem to be
+W> an up-to-date port.  The existing [markdown-mode.el](https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile) port
+W> currently points to a Git revision from 2014.  There is also a
+W> [pending](http://trac.macports.org/ticket/35716) ticket for a new port, but there has been no activity.
+W> Rather than installing from MacPorts, I recommend using the Emacs
+W> package manager as described above.
 
 **Debian and Ubuntu Linux:** On Debian-based distributions, Markdown
 Mode can be installed via the [elpa-markdown-mode](https://packages.debian.org/sid/lisp/elpa-markdown-mode) package.
 
 ``` text
-sudo apt-get update
 sudo apt-get install elpa-markdown-mode
 ```
 
@@ -402,13 +390,13 @@ sudo apt-get install elpa-markdown-mode
 the [textproc/markdown-mode.el](http://svnweb.freebsd.org/ports/head/textproc/markdown-mode.el) port, but note that the
 installed files are not byte compiled.  Users who install this port
 will also need to edit their init files following the Manual
-installation instructions below, to load Markdown Mode.
+Installation instructions in the next section to load Markdown Mode.
 
 **NetBSD:** Markdown Mode is available in pkgsrc
 as [textproc/markdown-mode](http://pkgsrc.se/textproc/markdown-mode), but (as of May 8, 2017) it installs and
 byte-compiles an outdated version of Markdown Mode.  If you use this
 package, you'll also need to edit your init file following the Manual
-installation instructions below, to load Markdown Mode.  Rather than
+Installation instructions below, to load Markdown Mode.  Rather than
 installing this package, use the Emacs package manager as described
 above.
 
@@ -419,39 +407,32 @@ pkg_add textproc/markdown-mode
 ### Manual Download
 
 Alternatively, you can manually download and install Markdown Mode.
-First, download the [latest stable version](https://jblevins.org/projects/markdown-mode/markdown-mode.el) and save
+First, download the [latest stable version](https://jblevins.org/projects/markdown-mode/markdown-mode.el)[^stable] and save
 the file where Emacs can find it (i.e., a directory in your
 `load-path`).  You can then configure `markdown-mode` and `gfm-mode`
 to load automatically by adding the following to your init file:
 
 ``` emacs-lisp
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist
-    '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist
-    '("\\.md\\'" . markdown-mode))
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (autoload 'gfm-mode "markdown-mode"
    "Major mode for GitHub Flavored Markdown files" t)
-(add-to-list 'auto-mode-alist
-    '("README\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 ```
 
-## Configuration {#configuration}
+[^stable]: The latest stable version is available at <https://jblevins.org/projects/markdown-mode/markdown-mode.el>.
+
+## Configuring Markdown  {#configuring-markdown}
 
 Although strictly speaking no configuration is *necessary*, there are
-a few settings that users should usually customize.  The most important
-setting is the `markdown-command` variable, which tells Markdown Mode where to
-find an external program for converting Markdown to HTML on your system.
-
-### Markdown Command
-
-The main variable you'll most likely need to customize is
-`markdown-command`.  Markdown Mode expects that a Markdown binary is
-available, determined by the value of `markdown-command`.  You should
-customize this variable so that Markdown Mode uses your Markdown
-processor of choice.
+a few settings that most users will want to customize.  The most
+important of these is the `markdown-command` variable, which tells
+Markdown Mode where to find an external program on your system for
+converting Markdown to HTML.  You should customize this variable so
+that Markdown Mode uses your Markdown processor of choice.
 
 `markdown-command`
 
@@ -461,17 +442,12 @@ processor of choice.
     necessary command-line options.  The default is to look for an
     executable named `markdown` in the Emacs `exec-path`.
 
-You can either provide the full path to the executable, or you can
-simply provide the name if the executable is in your Emacs
-`exec-path`.  See below for details on determining and configuring
-your `exec-path`.
-
 If you are using the customize interface, you simply need to type the
 path to your Markdown script or binary in the "Markdown Command" field
 in the customize interface (e.g., `/usr/local/bin/multimarkdown`).  If
-you know the name of the executable, but you're not sure where it is
-located, and you are using macOS or Linux, you can find it by typing
-`which multimarkdown` at the command line.
+you know the name of the executable, say `multimarkdown`, but you're
+not sure where it is located, and you are using macOS or Linux, you
+can find it by typing `which multimarkdown` at the command line.
 
 To set this variable in your init file, add a line such as the
 following:
@@ -480,51 +456,7 @@ following:
 (setq markdown-command "/usr/local/bin/multimarkdown")
 ```
 
-#### Markdown Command and `exec-path`
-
-You can always set `markdown-command` to be the full path to the
-executable, but a better solution is to set your `exec-path` properly.
-A simple way to do this is to use the `exec-path-from-shell` package,
-which sets the Emacs `exec-path` using your system `$PATH` variable,
-allowing Emacs to find any commands you can also execute from the
-command line without providing the full path.
-
-If you attempt to preview or export your buffer and you see an error
-regarding the `markdown` command, then most likely you need to check
-your `markdown-command` setting or install a Markdown processor (or
-both).  Below are some common error messages that indicate that either
-the `markdown` binary cannot be found or `markdown-command` should be
-customized to your system:
-
-``` text
-/bin/bash: markdown: command not found
-zsh:1: command not found: markdown
-'markdown' is not recognized as an internal or external
-    command, operable program or batch file.
-```
-
-If your Markdown executable is in your Emacs `exec-path`, then Emacs
-can find it without the full path.  You can check this in two ways.
-First, to see the value of `exec-path`, issue `M-x describe-variable
-RET exec-path`.  If you see the directory containing your Markdown
-executable in the path, then the name of the program by itself should
-suffice without the path (e.g., `multimarkdown`).
-
-Second, you can also check to see if Emacs can find your executable by
-using the `executable-find` command.  This isn't an interactive
-command, but you can run it using `eval-expression` via `M-:`.  For
-example, to check whether Emacs can find an executable named `pandoc`,
-you can issue `M-: (executable-find "pandoc")`.  The return value will
-be displayed in the minibuffer.  If you see the path to `pandoc`, then
-Emacs can find it.  If you see `nil`, then it could not be found in
-`exec-path`.
-
-T> If you're having trouble setting your `exec-path`, the
-T> [`exec-path-from-shell`](https://github.com/purcell/exec-path-from-shell)
-T> package might be useful.  It's purpose is to ensure that environment
-T> variables in Emacs are the same as in your shell.
-
-#### Configuring Markdown on macOS with Homebrew
+### Configuring Markdown on macOS with Homebrew
 
 If you use Homebrew, then you can install Markdown.pl, Pandoc, or
 MultiMarkdown by issuing one of the following commands:
@@ -536,15 +468,15 @@ brew install multimarkdown
 ```
 
 Then, in Emacs, type `M-x customize-mode RET markdown-mode` and set
-'Markdown Command' to the path of the executable you just installed:
+"Markdown Command" to the path of the executable you just installed:
 `/usr/local/bin/markdown`, `/usr/local/bin/pandoc`, or
 `/usr/local/bin/multimarkdown`.
 
-#### Configuring Markdown on Windows
+### Configuring Markdown on Windows
 
 On Windows, you'll need to use the full path including the drive
 letter.  For example, if you installed Pandoc in `C:\Utils\Console`,
-then you'd set `markdown-command like this:
+then you'd set `markdown-command` like this:
 
 ``` emacs-lisp
 (setq markdown-command "c:/Utils/Console/pandoc.exe")
@@ -558,7 +490,7 @@ Perl (both need to be installed), something like this should suffice:
 (setq markdown-command "c:/path/to/perl.exe c:/path/to/Markdown.pl")
 ```
 
-#### Passing Command Line Options to Markdown
+### Passing Command Line Options to Markdown
 
 You can also customize this variable to pass any necessary
 command line options to your Markdown processor.  For example, to ask
@@ -566,38 +498,40 @@ MultiMarkdown to enable smart typography and footnotes, you can define
 `markdown-command` as follows:
 
 ``` emacs-lisp
-(setq markdown-command "multimarkdown --smart --notes")
+(setq markdown-command "/usr/local/bin/multimarkdown --smart --notes")
 ```
 
-If you use Pandoc, you may want to configure it as follows.  These arguments
-ask Pandoc to convert Markdown to HTML, to produce a standalone HTML document
-rather than a snippet, to enable MathJax (to render LaTeX as MathML)
-and to use Pygments for syntax highlighting of code blocks:
+If you use Pandoc, you may want to configure it as follows:
 
 ``` emacs-lisp
 (setq markdown-command
       (concat
        "/usr/local/bin/pandoc"
        " --from=markdown --to=html"
-       "--standalone --mathjax --highlight-style=pygments"))
+       " --standalone --mathjax --highlight-style=pygments"))
 ```
 
-#### Passing a File Name to Markdown
+The command-line arguments ask Pandoc to convert Markdown to HTML, to
+produce a standalone HTML document rather than a snippet, to enable
+MathJax (to render LaTeX as MathML), and to use Pygments for syntax
+highlighting of code blocks.
+
+### Passing a File Name to Markdown
 
 By default, Markdown Mode assumes that your Markdown processor accepts
-input via `stdin`.  That is, it assumes that if you were using it from
-the command line, you could *pipe* input to it like so:
+input via the standard input, or `stdin`.  That is, it assumes that if
+you were using it from the command line, you could *pipe* input to it
+like so:
 
 ``` text
 cat document.md | markdown
 ```
 
 If your Markdown processor needs to be passed a file name, you'll need
-to set another variable: `markdown-command-needs-filename`.  Set this
-variable to `t` if `markdown-command` does not accept standard input.
-The default value is `nil`.  When this variable is `nil`,
+to set another variable: `markdown-command-needs-filename`.
+The default value is `nil`.  When this variable is `nil` (the default),
 Markdown Mode will pass the Markdown content to `markdown-command`
-using standard input (`stdin`).  When set to `t`, Markdown Mode will
+using `stdin`.  When set to `t`, Markdown Mode will
 pass the name of the file as the final command line argument to
 `markdown-command`.  Note that in the latter case, you will only be
 able to run `markdown-command` from buffers which are visiting a file.
@@ -610,16 +544,60 @@ able to run `markdown-command` from buffers which are visiting a file.
     needs the filename to be specified as a command line argument,
     rather than reading the content from the standard input (`stdin`).
 
+### Markdown Command and `exec-path`
+
+You can set `markdown-command` to be the full path to the executable,
+as in previous examples, but a better solution is to set your
+`exec-path` properly so that Emacs can find it without the full path.
+You can check this in two ways.  First, to see the value of
+`exec-path`, issue `M-x describe-variable RET exec-path`.  If you see
+the directory containing your Markdown executable in the path, then
+the name of the program by itself should suffice without the path
+(e.g., `multimarkdown`).
+
+Second, you can also use the `executable-find` command to see if Emacs
+can find your Markdown processor.  This isn't an interactive command,
+but you can run it using `eval-expression` via `M-:`.  For example, to
+check whether Emacs can find an executable named `pandoc`, you can
+issue `M-: (executable-find "pandoc")`.  The return value will be
+displayed in the minibuffer.  If you see the path to `pandoc`, then
+Emacs can find it.  If you see `nil`, then `pandoc` could not be found
+in `exec-path`.
+
+E> If you attempt to preview or export your buffer and you see an error
+E> regarding the `markdown` command, then most likely you need to check
+E> your `markdown-command` setting or install a Markdown processor (or
+E> both).  Below are some common error messages that indicate that either
+E> the `markdown` binary cannot be found or `markdown-command` should be
+E> customized to your system:
+E>
+E> {lang="text"}
+E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E> /bin/bash: markdown: command not found
+E> zsh:1: command not found: markdown
+E> 'markdown' is not recognized as an internal or external
+E>     command, operable program or batch file.
+E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+T> If you're having trouble setting your `exec-path`, a simple way to
+T> configure it is to install the
+T> [`exec-path-from-shell`](https://github.com/purcell/exec-path-from-shell)
+T> package.  It's purpose is to ensure that environment variables in
+T> Emacs are the same as in your shell.  This allows Emacs to find any
+T> commands you can also execute from the command line without
+T> specifying the full path.
+
 
 ## Customization
 
 When in Markdown Mode, the `M-x customize-mode` command provides an
-interface to all of the possible customizations.  If you are currently
+interface to all of the available customizations.  If you are
 using a different mode, then you'll need to be more specific: `M-x
 customize-mode RET markdown-mode`.  Alternatively, you can customize
 variables using `M-x customize-group RET markdown` (i.e., by
 customizing the _group_ rather than the _mode_).
 
+{width=80%}
 ![Markdown Customize Group](images/customize-group-markdown.png)
 
 T> If you use this built-in customize interface, be sure to save your
@@ -632,6 +610,7 @@ size, and so on---by issuing `M-x customize-group RET
 markdown-faces` or by using the "Markdown Faces" link at the
 bottom of the mode customization screen.
 
+{width=80%}
 ![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 ------------------------------------------------------------------------------
@@ -2384,7 +2363,8 @@ of sending the contents of the buffer to an external processor
 
 I> To use Compile and other command commands that make use of an
 I> external Markdown processor, `markdown-command` must be configured
-I> as described in the [Configuration](#configuration) section.
+I> as described in the [Configuring Markdown](#configuring-markdown)
+I> section.
 
 The Preview and Export commands are similar and worthy of discussion.
 The difference is that when _previewing_, the output is written to a
@@ -2535,8 +2515,8 @@ T> wrapper.
 :   String, default: `"^\\(<\\?xml\\|<!DOCTYPE\\|<html\\)"`.
 
     Regular expression which Markdown Mode uses to determine whether
-    the output of `markdown-command` is a standalone XHTML document or
-    an XHTML fragment.  If this regular expression not matched in the
+    the output of `markdown-command` is a standalone HTML document or
+    an HTML fragment.  If this regular expression not matched in the
     first five lines of output, Markdown Mode assumes the output is a
     fragment and adds a header and footer.
 
@@ -2551,7 +2531,7 @@ T> wrapper.
 :   String, default: `""`.
 
     When set to a nonempty string, an `http-equiv` attribute will be
-    included in the XHTML `<head>` block.  If needed, the suggested
+    included in the HTML `<head>` block.  If needed, the suggested
     values are `application/xhtml+xml` or `text/html`.  See also:
     `markdown-coding-system`.
 
@@ -2577,7 +2557,7 @@ T> wrapper.
 
 :   String, default: `""`.
 
-    Additional content to include in the XHTML `<head>` block.
+    Additional content to include in the HTML `<head>` block.
 
 `markdown-before-export-hook`
 
@@ -2598,7 +2578,7 @@ T> wrapper.
 
 # Tips & Tricks {#tips}
 
-## Using Markdown Mode with Other File Extensions
+## Using Markdown Mode with Other File Extensions {#extensions}
 
 Markdown Mode contains `autoload` statements to automatically
 associate itself with `.md` and `.markdown` files in
@@ -3523,6 +3503,18 @@ file:
 ``` emacs-lisp
 (add-to-list 'load-path "/path/to/markdown-mode/")
 ```
+
+Alternatively, you can install the `markdown-mode` package from the
+(unstable) [MELPA repository](https://melpa.org/#/markdown-mode).  In
+this case, you might need to tell the package manager about the
+repository in your init file, like so:
+
+``` emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+```
+
 
 ## Reporting Bugs and Issues
 
