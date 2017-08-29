@@ -2422,7 +2422,7 @@ also supported.  Since some wiki engines reverse these components, set
 
 By default, Markdown Mode only searches for target files in the
 current directory.  Sequential subdirectory search can be enabled by
-setting ``markdown-wiki-link-search-subdirectories` to a non-`nil`
+setting `markdown-wiki-link-search-subdirectories` to a non-`nil`
 value.  Similarly, sequential parent directory search can be enabled
 by setting `markdown-wiki-link-search-parent-directories` to a
 non-`nil` value.
