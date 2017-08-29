@@ -1114,7 +1114,7 @@ hyphens (`-`), and plus signs (`+`):
 * Another item in a bulleted list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ordered lists (`<ol>` in HTML) are created similarly, by prefixing
+Ordered lists (`<ol>` in HTML) are created by prefixing
 each line with a number followed by a period:
 
 {lang="text}
@@ -1124,8 +1124,7 @@ each line with a number followed by a period:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create a _nested list_, use four spaces to indent the markers of
-subordinate items (and this four-space convention will show up again,
-for creating code blocks).  You may change list markers if you wish to
+subordinate items.  You may change list markers if you wish to
 add more visual distinction.  Note that it is the marker indentation
 that matters, not the whitespace following the marker.
 
@@ -1134,7 +1133,25 @@ that matters, not the whitespace following the marker.
 *   An item in a bulleted (unordered) list
 
     *   A sub-item in a nested list
+
+1234567890
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+T> The four-space convention will show up again, for creating code
+T> blocks.  For the broadest Markdown processor compatibility, it is
+T> recommended to always use four spaces for indenting and nesting
+T> elements.
+
+I> [John Gruber conducted a Twitter Poll](https://daringfireball.net/2017/07/unordered_lists_in_markdown) in July 2017 to ask which
+I> list markers were most popular among Markdown users.  Out of 4,545
+I> responses, the results were:
+I> 
+I> *   Asterisk (`*`): 42%
+I> *   Hyphen (`-`): 54%
+I> *   Plus (`+`): 4%
+I>
+I> Gruber noted that he uses all three at times, and that different
+I> characters can be used for different levels of nesting.
 
 ### Creating and Editing Lists
 
@@ -1143,7 +1160,7 @@ New list items can be inserted with `M-RET` or `C-c C-j`
 appropriate marker (one of the possible unordered list markers or the
 next number in sequence for an ordered list) and indentation level by
 examining nearby list items.  If there is no list before or after the
-point, start a new list.
+point, it starts a new list.
 
 As with heading insertion, you may prefix `markdown-insert-list-item`
 by `C-u` to decrease the indentation by one level.  Prefix this
@@ -1157,11 +1174,28 @@ with `C-c <right>` and `C-c <left>` (`markdown-demote` and
 
 ### List Navigation
 
-The same keys used for heading outline navigation also work inside
-nested lists.  See the [Outline Navigation](#outline) section for
-details.
+The same keys used for heading outline navigation (`C-c C-n`,
+`C-c C-p`, `C-c C-f`, `C-c C-b`, and `C-c C-u`) also work inside
+nested lists.  See the [Outline Navigation](#outline) section for details.
 
 ### List Customization
+
+You can customize the default unordered list item marker and spacing
+by setting the variable `markdown-unordered-list-item-prefix`.  Also,
+although it is not recommended to do so, if needed you can change the
+default indentation amount by setting `markdown-list-indent-width`.
+
+`markdown-unordered-list-item-prefix`
+
+:   String, default: `"  * "`.
+
+    String to be inserted to create an unordered list item.
+
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-unordered-list-item-prefix "*   ")
+    ```
 
 `markdown-list-indent-width`
 
@@ -1253,14 +1287,10 @@ for a nested `<pre>` block, and so on.
 
 The numbers in the block above represent the indentation positions
 that are cycled through following a nested list when the point is at
-the block as shown.  In order, these positions would be appropriate
+the block above position 5.  In order, these positions would be appropriate
 for 1) starting a new nested list item, 2) continuing the nested list
 item with indentation past the marker, 3) starting a list item with a
 deeper level of nesting, and 4) adding a nested indented code block.
-
-Outdenting is handled similarly when `DEL` or backspace
-(`markdown-outdent-or-delete`) is pressed at the beginning of the
-non-whitespace portion of a line.
 
 If you so desire, you can fully customize this behavior by writing
 your own indentation function and setting the variable
@@ -1272,11 +1302,18 @@ your own indentation function and setting the variable
 
     Function to use for automatic indentation.
 
+### The Backspace Key
+
+When `DEL` or `<backspace>` (`markdown-outdent-or-delete`) is pressed
+at the beginning of the non-whitespace portion of a line, text will be
+outdented similarly, but in the opposite direction as indentation.
+
 ### The Return Key
 
 When the point is at the end of a (potentially nested) list item, code
 block, etc. and you press `RET` (`markdown-enter-key`), what happens
-next depends on the value of `markdown-indent-on-enter`.
+next depends on the value of `markdown-indent-on-enter`.  As an example,
+consider the following nested list.
 
 {lang="text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1337,23 +1374,19 @@ to insert a literal newline you can use `C-q C-j`.)
 
 ### Shifting the Region
 
-Text in the region can be indented or outdented as a group using
-`C-c >` (`markdown-indent-region`) to indent to the next indentation
-point calculated in the current context, as discussed above), and
-`C-c <` (`markdown-outdent-region`) to outdent to the previous
-indentation point.
+Text in the region can be outdented or indented as a single block using
+`C-c <` and `C-c >`
+(`markdown-outdent-region` and `markdown-indent-region`).
+Text in the region will be shifted to the next indentation point
+calculated in the current context, as discussed above.
 
-T> These keybindings are the same as those for the corresponding
-T> commands in `python-mode`.
+T> The region indent and outdent keybindings are the same as those for
+T> the corresponding commands in `python-mode`.
 
 ## Code Blocks
 
-With Markdown.pl, code blocks are formatted by prefixing each
-line with four spaces.  Markdown Mode supports these indented code
-blocks (pre blocks) as well as also several variations referred to as
-fenced code blocks, which are instead surrounded above and below by
-strings of characters (tildes or backquotes).  We will discuss the
-latter in the [Extensions](#extensions) section below.
+Code blocks in Markdown are formatted by prefixing each line with four
+spaces:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1363,46 +1396,55 @@ latter in the [Extensions](#extensions) section below.
         printf("hello, world\n");
         return 0;
     }
+
+1234567890
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To begin a new code block press `C-c C-s p` (`markdown-insert-pre`),
 where `p` refers to the HTML `<pre>` tag used to format such a block.
 When `transient-mark-mode` is enabled, this command also works on the
-active region or inserts an empty code block otherwise.
+region, when active, or begins a new code block otherwise.
 
 If you want to specifically operate on the region, whether it is
-highlighted with `transient-mark-mode` or not, you can also format it
-as a code block using the separate region command `C-c C-s P`
-(`markdown-pre-region`).
+highlighted with `transient-mark-mode` or not, you can use the
+region-specific command `C-c C-s P` (`markdown-pre-region`).
+So, as with other commands, the lowercase and uppercase keybindings
+are related.
 
 T> Region-specific commands such as this one are useful when you have
 T> just yanked some text and want to format it, say, as a code block.
 T> Upon yanking, the mark moved to the beginning of the yanked text
 T> and so the region is already set appropriately.
 
+I> In addition to indented code blocks, or pre blocks, Markdown Mode
+I> also supports several variations referred to as fenced code blocks.
+I> Rather than being indented, fenced code blocks are surrounded above
+I> and below by strings of tildes or backquotes.  We will return to
+I> fenced code blocks later in the [Extensions](#extensions) section.
+
 ## Horizontal Rules
 
-Horizontal rules are created by placing three or more hyphens,
-asterisks, or underscores on a line by themselves.  You may use spaces
-between the hyphens or asterisks.  Each of the following lines will
-produce a horizontal rule:
+Horizontal rules, corresponding to `<hr>` tags in HTML, are created in
+Markdown by placing three or more hyphens, asterisks, or underscores
+on a line by themselves.  You may use spaces between the characters if
+you prefer, but the characters cannot be mixed.  Each of the following
+lines will produce a horizontal rule:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* * *
-***
+---
 - - -
----------------------------------------
+* * *
+________________________________________
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To insert a horizontal rule, press `C-c C-s -` (`markdown-insert-hr`).
 Markdown Mode allows
 you to define several horizontal rules of decreasing prominence in a
 list variable named `markdown-hr-strings`.  By default, this insertion
-command inserts the first string in `markdown-hr-strings`, which
-should be the most prominent rule.  With a `C-u` prefix, insert the
-last string.  With a numeric prefix `N`, insert the string in position
-`N` (counting from 1).
+command inserts the first string in `markdown-hr-strings`---the most
+prominent one.  With a `C-u` prefix, insert the last string.  With a
+numeric prefix `N`, insert the string in position `N` (starting at 1).
 
 The list of strings inserted by Markdown Mode can be customized by
 redefining the variable `markdown-hr-strings`.
@@ -1414,7 +1456,7 @@ redefining the variable `markdown-hr-strings`.
     Strings to use when inserting horizontal rules.
 
 W> Different strings will not be distinguished when converted to
-W> HTML---they will all be converted to `<hr/>`---but they may add visual
+W> HTML---they will all be converted to `<hr>` tags---but they may add visual
 W> distinction and style to plain text documents.  To maintain notions
 W> of promotion and demotion, these should be ordered from largest to
 W> smallest.
@@ -1423,37 +1465,36 @@ T> To insert a specific horizontal rule from the `markdown-hr-strings`
 T> list, use a prefix argument to `C-c C-s -`, as in `C-# C-c C-s -`
 T> where `#` is the index of the string in the list.
 
-I> The longest two strings in `markdown-hr-strings` are 79 characters
-I> long, rather than 80 characters long.  This is to prevent seeing a
-I> line wrap indicator in the right fringe when the window is exactly
-I> 80 characters wide.  However, this is fully customizable, so if you
-I> prefer an 80-character-wide string, you can set this variable in
-I> your local configuration.
+I> In the default `markdown-hr-strings` list, the longest two strings
+I> are 79 characters long, rather than 80 characters long, to prevent
+I> a line wrap indicator from appearing in the right fringe when the
+I> window is exactly 80 characters wide.  However, the list is fully
+I> customizable and if you prefer an 80-character-wide string you can
+I> set this variable in your local configuration.
 
-## Emphasis: Bold & Italic
+## Emphasis: Italic & Bold
 
-To emphasize or _italicize_ text in Markdown, enclose it between
-asterisks or underscores:
+To emphasize text in Markdown, surround it with asterisks or
+underscores.  For _italics_, use single asterisks or underscores:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*emphasis* or _emphasis_
+*italic* or _italic_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Similarly, to produce **bold** text, enclose it between two asterisks
-or two underscores:
+Similarly, enclose **bold** text between two asterisks or two
+underscores:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **bold** or __bold__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Markdown Mode, `C-c C-s i` (`markdown-insert-italic`) inserts
-markup to make the region or a word italic.  Like other commands, it
-works as follows.  If `transient-mark-mode` is on and there is an
-active region, it wraps the region in italic markers (asterisks by
-default, or optionally underscores).  Else, if the point is at a
-non-italic word, make the word italic, or if the point is at an italic
-word or phrase, remove (toggle) the markup.  Otherwise, simply insert
-italic markup and place the point in between them.
+markup to make the region or a word italic.  If `transient-mark-mode`
+is on and there is an active region, it wraps the region in italic
+markup.  Else, if the point is at a non-italic word, make the word
+italic, or if the point is at an italic word or phrase, remove
+(toggle) the markup.  Otherwise, simply insert italic markup and place
+the point in the middle.
 
 Similarly, use `C-c C-s b` (`markdown-insert-bold`) for bold text.
 This command works in exactly the same way as
@@ -1462,22 +1503,24 @@ This command works in exactly the same way as
 Like the three possible list markers, the use of asterisks or
 underscores for italic or bold text is a personal preference in
 Markdown.  Markdown Mode lets you customize the default choice
-for inserting new markup, via the two variables described below.
-You can also _toggle_ between asterisks and underscores using the
-promotion and demotion commands, `C-c C--` and `C-c C-=`
-(`markdown-promote` and `markdown-demote`).
+for inserting new markup via two variables described below.
+
+T> You can also _toggle_ between asterisks and underscores using the
+T> promotion and demotion commands, `C-c C--` and `C-c C-=`
+T> (`markdown-promote` and `markdown-demote`).
 
 W> Markdown processors differ as to how they handle inter-word
 W> underscores.  When Markdown.pl encounters _dis_functional, it
 W> assumes you intend to italicize "dis".  However, if you are writing
 W> technical documentation, perhaps you have a variable named
-W> `state_space_dimension`.  Unless you format that as inline code
-W> everywhere, `space` would become italicized.  GitHub Flavored
+W> `state_space_dimension`.  Unless you format that as inline code,
+W> then the middle word---`space`---would become italicized.  GitHub Flavored
 W> Markdown re-defines this behavior so that inter-word underscores do
 W> not trigger italics.  Markdown Mode includes a special
-W> mode, [GitHub Flavored Markdown Mode](#gfm-mode) or `gfm-mode`, discussed
-W> as an extension below.  Among other differences, it uses the GitHub
-W> convention for underscores.
+W> mode, [GitHub Flavored Markdown Mode](#gfm-mode) or `gfm-mode`, and among
+W> other differences, it uses the GitHub convention for underscores.
+W> This mode is described in the section on [GitHub Flavored Markdown](#gfm)
+W> in the [Extensions](#extensions) chapter.
 
 `markdown-italic-underscore`
 
@@ -1518,18 +1561,19 @@ This is inline code: `printf("hello, world\n");`
 To insert inline code in Markdown Mode, use `C-c C-s c`
 (`markdown-insert-code`).  This command works for both insertion and
 toggling and it uses the region when appropriate, just like the
-commands for bold and italics describe above.
+bold and italic commands.
 
 T> Because Markdown is often used for technical documentation (e.g.,
 T> README files on GitHub), Markdown Mode also provides `C-c C-s k`
 T> (`markdown-insert-kbd`) for inserting HTML `<kbd>` tags, for which
-T> there is no Markdown equivalent.  In terms of font lock, it treats
-T> `<kbd>` tags like inline code.
+T> there is no Markdown equivalent.  In terms of font lock, `<kbd>`
+T> tags are treated like inline code but of course they may be styled
+T> differently on websites and elsewhere.
 
 ## Links & Images
 
 To create simple links, you can simply place a URL or email address
-inside angle brackets, like so:
+inside angle brackets:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1537,31 +1581,30 @@ inside angle brackets, like so:
 <bug-gnu-emacs@gnu.org>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To create hyperlinks with text, place the link text in square brackets
-followed by the URL in parentheses:
+To create hyperlinks---text with an associated URL---place the link
+text in square brackets followed by the URL in parentheses:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Link text](http://link.url/)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Optionally, you can add title text to the link which will appear when
-the user hovers over the link, like so:
+Optionally, you can add "title text" (for the HTML `title` attribute)
+to the link which will appear when the user hovers over the link:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Link text](http://link.url/ "Title text")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-A similar syntax is used for images.  Add an exclamation point (`!`)
+A similar syntax is used for images: just add an exclamation point (`!`)
 before the square bracket.  There is no link text displayed for
 images, rather, the text in square brackets will be used for the "alt
-text":
+text" (for the HTML `alt` attribute):
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-![Alt text](http://image.url/file.jpg "Title text")
+![Alt text](http://link.url/image.jpg "Title text")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Markdown Mode, links of the above form are referred to as "inline
@@ -1594,17 +1637,17 @@ For links, `C-c C-l` (`markdown-insert-link`) is the general command
 for inserting new link markup or editing existing link markup
 interactively.  This command can be used to insert links of any form:
 either inline links, reference links, or plain URLs in angle brackets.
-The URL or `[reference]` label, link text, and optional title are
-entered through a series of prompts.  The type of link is determined
+The URL or reference label, link text, and optional title are
+provided through a series of prompts.  The type of link is determined
 by which values are provided:
 
-*   If a URL and link text are given, insert an inline link:
+*   Given a URL and link text, insert an inline link:
     `[text](url)`.
-*   If a reference label and text are given, insert
+*   Given a `[reference]` and link text, insert
     a reference link: `[text][reference]`.
-*   If only link text is given, insert an implicit reference link:
+*   Given only link text, insert an implicit reference link:
     `[text][]`.
-*   If only a URL is given, insert a plain URL link:
+*   Given only a URL, insert a plain URL:
     `<url>`.
 
 Similarly, `C-c C-i` (`markdown-insert-image`) is a general command for
@@ -1612,83 +1655,79 @@ inserting or editing image markup interactively.  As with the link
 insertion command, through a series of interactive prompts you can insert
 either an inline or reference image:
 
-*   If a URL and alt text are given, insert an inline
-    image: `![alt text](url)`.
-*   If a reference label and alt text are given,
-    insert a reference image: `![alt text][reference]`.
+*   Given a URL and alt text, insert an inline image:
+    `![alt text](url)`.
+*   Given a `[reference]` and alt text, insert a reference image:
+    `![alt text][reference]`.
 
 If there is an existing link or image at the point, these commands will
 edit the existing markup rather than insert new markup.  Otherwise,
 if `transient-mark-mode` is on and there is an active region, these
 commands use the region as either the default URL (if it seems to be a
 URL) or link text value otherwise.  In that case, the region will be
-deleted and replaced by the link.
+replaced by the link.
 
 If a reference label is given that is not yet defined, you
 will be prompted for the URL and optional title and the
-reference will be inserted according to the value of
+reference definition will be inserted according to the value of
 `markdown-reference-location`.  If a title is given, it will be
 added to the end of the reference definition and will be used
-to populate the title attribute when converted to HTML.
+to populate the HTML `title` attribute when exported.
 
 You can use `C-c C-d` (`markdown-do`) to jump between reference labels
 and reference definitions.  If more than one link uses the same
-reference label, a window will be shown containing clickable buttons
+reference label, a window will be shown with clickable buttons
 for jumping to each link.  Pressing `TAB` or `S-TAB` cycles between
 buttons in this window.
 
-T> Note that these interactive functions can be used to convert links
-T> and images from one type to another (inline, reference, or plain
-T> URL) by selectively adding or removing properties via the
-T> interactive prompts.
-T>
-T> For example, suppose you have an inline link of the form
-T> `[text](url)` and want to convert it to a plain URL link as in
-T> `<url>`.  If you press `C-c C-l` and leave the URL when prompted
-T> but delete the link text, then a plain URL, as in `<url>`, will be
-T> inserted in place of the inline link.  If you removed the URL
-T> instead, then you will be prompted for a reference tag.
+T> Note that interactive functions `C-c C-l` and `C-c C-i` can be used
+T> to convert links and images from one type to another (inline,
+T> reference, or plain URL) by selectively adding or removing
+T> properties via the interactive prompts.
+
+X> As an example, suppose you have an inline link of the form
+X> `[text](url)` and want to convert it to a plain URL link as in
+X> `<url>`.  If you press `C-c C-l` and leave the URL as is when prompted
+X> but remove the link text, then a plain URL, as in `<url>`, will be
+X> inserted in place of the inline link.  If you removed the URL
+X> instead, then you would be prompted for a reference tag.
 
 ### Following Links
 
-Links in Markdown Mode are clickable and doing so will open the URL in
-the default browser.  URLs can also be hidden, and this can be toggled
-with `C-c C-x C-l` or `M-x markdown-toggle-url-hiding`.  When URLs are
-hidden, the URL and optional title text can still be viewed either in a
-tooltip when hovering your mouse pointer over a link or in the minibuffer,
-by placing the point on the link.
-
-To follow a link using the keyboard, press `C-c C-o`
+Links in Markdown Mode are clickable and clicking one will open the URL in
+the default browser.  To follow a link using the keyboard, press `C-c C-o`
 (`markdown-follow-thing-at-point`) when the point is on an inline or
-reference link to open the URL in a browser.  Use `M-p` and `M-n`
+reference link.  Use `M-p` and `M-n`
 (`markdown-previous-link` and `markdown-next-link`) to quickly jump to
 the previous or next link of any type.
 
 ### URL Hiding {#url-hiding}
 
-It is possible to hide URLs for inline and reference links while
-keeping other markup visible.  When URL hiding is enabled, the URL
-portion of links will be displayed as a single, customizable character
-(`∞` by default).  That is, URLs will appear as `[link](∞)` instead of
-`[link](long/url)`.  This feature can be toggled as needed using `C-c
-C-x C-l` (`markdown-toggle-url-hiding`) or from the Markdown menu.
-To change the placeholder (composition) character used, set the
-variable `markdown-url-compose-char`.
+Markdown Mode makes it possible to hide URLs for inline and reference
+links, which can make your text more readable.  This feature can be
+toggled as needed using `C-c C-x C-l` (`markdown-toggle-url-hiding`)
+or from the Markdown menu.  When URL hiding is enabled, the URL
+components of links will be displayed as a single, customizable
+character (`∞` by default).  That is, URLs will appear as `[link](∞)`
+instead of `[link](long/url)`.  To change the placeholder
+(composition) character used, set the variable
+`markdown-url-compose-char`.
 
-URL hiding is accomplished using _composition_, so the URLs are still
-part of the buffer.  When URL hiding is enabled, the link properties
-will be displayed in the minibuffer along with a hint to use `C-c C-l`
-for editing the link.  You can also edit URLs directly, for example,
-by deleting the final parenthesis, which removes the composition
-property.  Finally, you can also hover your mouse pointer over the
-link text to see the URL.
+URL hiding is accomplished in Emacs using _composition_, so the URLs
+are still part of the buffer.  When URL hiding is enabled, the link
+properties will be displayed in the minibuffer along with a hint to
+use `C-c C-l` for editing the link.  You can also edit a URL directly
+by deleting the final parenthesis, which disables fontification of the
+link and thus removes the composition property.  Finally, you can also
+hover your mouse pointer over the link text to see the URL.
 
 `markdown-hide-urls`
 
 :   Boolean, default: `nil`.
 
     Determines whether URL and reference labels are hidden for inline
-    and reference links.
+    and reference links.  This can be toggled interactively using
+    `C-c C-x C-l` (`markdown-toggle-url-hiding`).
 
 `markdown-url-compose-char`
 
@@ -1697,15 +1736,15 @@ link text to see the URL.
     Placeholder character for hidden URLs.  Depending on your font,
     some other good choices are `…` and `#`.
 
-T> The interactive link and image commands (`C-c C-l` and `C-c C-i`)
+T> The interactive link and image commands `C-c C-l` and `C-c C-i`
 T> are especially useful when markup or URL hiding is enabled, in
-T> which case URLs can't easily be edited directly.
+T> which case it is more difficult to edit URLs.
 
 ### Link & Image Customizations
 
 Certain aspects of link and image insertion can be customized, such as
-the default location of reference links and the type of URLs
-recognized automatically.
+the default location of reference links and the protocol schemes of URLs
+that should be recognized automatically.
 
 `markdown-reference-location`
 
@@ -1726,7 +1765,7 @@ recognized automatically.
 
 :   List of strings.
 
-    A list of protocol schemes ("http", "ftp", etc.) for URIs that
+    A list of protocol schemes ("http", "ftp", etc.) for URLs that
     Markdown Mode should highlight.
 
 ### Inline Image Display
@@ -1743,9 +1782,9 @@ images.
 
 In Markdown, whitespace at the end of a line is meaningful.  Adding
 two trailing spaces at the end of a line creates a hard line break.
-Markdown Mode highlights these spaces to draw attention to them, in
-case the whitespace was spurious.  Markdown Mode also respects hard
-line breaks when filling paragraphs.
+Markdown Mode highlights these spaces to draw attention to possibly
+spurious whitespace.  Markdown Mode also respects hard line breaks
+when filling paragraphs.
 
 W> Line break behavior is different in GitHub Flavored Markdown, where
 W> all newlines correspond to hard line breaks.
@@ -1754,19 +1793,34 @@ W> all newlines correspond to hard line breaks.
 
 Press `C-c C-k` (`markdown-kill-thing-at-point`) to kill the thing at
 point and add the most important text, without markup, to the kill
-ring.  Possible things to kill include (roughly in order of
+ring.  Possible entities to kill include (roughly in order of
 precedence): inline code, headings, horizontal rules, links (adds the
 link text to kill ring), images (adds the alt text to kill ring),
 plain URLs, email addresses, bold, italics, reference definitions
 (adds URL to kill ring), footnote markers and text (kills both the
 marker and text, adds text to kill ring), and list items.
 
+| Killed Entity              | Kill Ring   |
+|----------------------------|-------------|
+| `` `code` ``               | "code"      |
+| `# Heading`                | "Heading"   |
+| `-----`                    | `nil`       |
+| `[text](url)`              | "text"      |
+| `[text][ref]`              | "text"      |
+| `![alt](url)`              | "alt"       |
+| `![alt][ref]`              | "alt"       |
+| `<url>`                    | "url"       |
+| `_text_`                   | "text"      |
+| `**text**`                 | "text"      |
+| `[ref]: url`               | "url"       |
+| `[^fn]`, `[^fn]: footnote`  | "footnote"  |
+| `* List item`              | "List item" |
 
 ## Markdown Do
 
-Inspired by Org Mode, Markdown Mode has a command---`C-c C-d`
-(`markdown-do`)---for doing something sensible with the object at the
-point.  Depending on the context, it does the following:
+Inspired by Org Mode, Markdown Mode defines `C-c C-d` (`markdown-do`),
+a command for doing something sensible with the object at the point.
+Depending on the context, it does the following:
 
 *   Jumps between reference links and reference definitions.
 
@@ -1774,46 +1828,46 @@ point.  Depending on the context, it does the following:
 
 *   Toggles the completion status of GFM task list items (checkboxes).
 
-I> The Markdown Do function has a winding history.  It derives from a
-I> previous command named `markdown-jump`, which itself had `C-c C-j`
-I> (_j_ for jump) in Markdown Mode 2.1.  It was later moved to `C-c
-I> C-l` (_l_ for leap) in Markdown Mode 2.2, so as to allow using `C-c
-I> C-j` (in addition to `M-RET`) for inserting list items, as in
-I> AUCTeX mode.  Finally, it has been imbued with additional
+I> The Markdown Do command has evolved over the past three versionf of
+I> Markdown Mode.  It derives from a previous command named
+I> `markdown-jump`, which was previously bound to `C-c C-j` in
+I> Markdown Mode 2.1.  It was later moved to `C-c C-l`
+I> in Markdown Mode 2.2 to allow using `C-c C-j` (in addition
+I> to `M-RET`) for inserting list items, as in AUCTeX mode.
+I> In Markdown Mode 2.3, this command has been imbued with additional
 I> functionality, rebranded as `markdown-do`, and moved to `C-c C-d`
-I> to make way for the interactive link editing command `C-c C-l` in
-I> Markdown Mode 2.3.
+I> to make way for the new interactive link editing command `C-c C-l`.
 
 ## Markup Promotion & Demotion
 
 Markdown Mode allows certain markup (headings, for example) to be
-_promoted_ and _demoted_.  Press `C-c C--` or `C-c <left>` to promote
-the element at the point if possible (`markdown-promote`).  Similarly,
-`C-c C-=` or `C-c <right>` to demote the element at the point
-(`markdown-demote`).
+_promoted_ and _demoted_.  Press `C-c C--` or `C-c <left>`
+(`markdown-promote`) to promote the element at the point if possible.
+Similarly, `C-c C-=` or `C-c <right>` (`markdown-demote`) to demote
+the element at the point.
 
 Headings, horizontal rules, and list items can be promoted and
-demoted, as well as bold and italic text.  For headings,
-"promotion" means _decreasing_ the level (i.e., moving from
-`<h2>` to `<h1>`) while "demotion" means _increasing_ the
-level.  For horizontal rules, promotion and demotion mean
-moving backward or forward through the list of rule strings in
-`markdown-hr-strings`.  For bold and italic text, promotion and
-demotion mean changing the markup from underscores to asterisks.
+demoted, as well as bold and italic text.  For headings, promotion
+means _decreasing_ the level (i.e., from `<h2>` to `<h1>`) while
+demotion means _increasing_ the level (i.e., from `<h2>` to `<h3>`).
+For horizontal rules, promotion and demotion mean moving backward or
+forward through the `markdown-hr-strings` list.  For bold and italic
+text, promotion and demotion mean switching the markup from underscores
+to asterisks and back.
 
 I> To promote or demote markup at the point, where applicable, use
 I> `C-c C--` and `C-c C-=`.
 
-To remember the promotion and demotion commands, note that `-` is for
-decreasing the level (promoting), and `=` (on the same key as `+`) is
-for increasing the level (demoting).  Similarly, the left and right
-arrow keys indicate the direction in which the atx heading markup will
-moving when promoting or demoting.
+T> To remember the promotion and demotion commands, note that `-` is
+T> for decreasing the level, and `=` (on the same key as `+`) is for
+T> increasing the level.  Similarly, the left and right arrow keys
+T> indicate the direction in which the atx heading markup will move
+T> when promoting or demoting.
 
 T> You can change the level of a heading level two ways:
 T>
 T> 1. Using markup cycling, with either `C-c C--` and `C-c C-=` or the
-T>    alternatives `C-c <left>’ and `C-c <right>’.
+T>    alternatives `C-c <left>` and `C-c <right>`.
 T> 2. By re-issuing a heading insertion command when the point is at a
 T>    heading.  For example, `C-c C-s 4` will replace the current heading
 T>    (of any level) with a level-four heading.
@@ -1824,33 +1878,53 @@ _Complete markup_ refers to markup in normalized form.  This means,
 for example, that the underlined portion of a setext heading is the same
 length as the heading text, or that the number of leading and trailing
 hash marks of an atx heading are equal and that there is no extra
-whitespace in the heading text.  To complete any incomplete markup at
-the point, press `C-c C-]` (`markdown-complete`).
+whitespace.  To complete any incomplete markup at the point, press
+`C-c C-]` (`markdown-complete`).
+
+X> Suppose a buffer contains the following headings:
+X>
+X> {lang="text"}
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> Heading 1
+X> ===
+X>
+X> ##  Heading 2 #
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X>
+X> Markup completion via `C-c C-]` will adjust them as follows:
+X>
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+X> Heading 1
+X> =========
+X>
+X> ## Heading 2 ##
+X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Markdown Maintenance Commands
 
-Markdown Mode provides some global maintenance commands under the
-`C-c C-c` prefix.
+Markdown Mode also provides some global maintenance commands under the
+`C-c C-c` prefix for checking references, cleaning up list numbers,
+and completing markup in the buffer.
 
-`C-c C-c c` (`markdown-check-refs`)
+`C-c C-c c (markdown-check-refs)`
 
-:   Checks the buffer for undefined references.  If there are
-    any, a small buffer will open with a list of undefined
-    references and the line numbers on which they appear.  In Emacs
-    22 and greater, selecting a reference from this list and
-    pressing `RET` will insert an empty reference definition at the
-    end of the buffer.  Similarly, selecting the line number will
-    jump to the corresponding line.
+:   Checks the buffer for undefined references.  If there are any, a
+    small buffer will open with a list of undefined references and the
+    line numbers on which they appear.  Selecting a reference from
+    this list and pressing `RET` will insert an empty reference
+    definition at the end of the buffer.  Selecting the line number
+    instead will move the point to the location of the undefined
+    reference.
 
-`C-c C-c n` (`markdown-cleanup-list-numbers`)
+`C-c C-c n (markdown-cleanup-list-numbers)`
 
 :   Renumbers any ordered lists in the buffer that are out of
     sequence.  Note that the sequence is not important for rendering
     HTML---a list with numbers `1.`, `1.`, …, `1.` is perfectly
-    fine---but this command is useful if you still prefer to have
-    accurate plain text numbering as well.
+    fine---but this command is useful if you prefer to also have
+    accurate plain text numbering.
 
-`C-c C-c ]` (`markdown-complete-buffer`)
+`C-c C-c ] (markdown-complete-buffer)`
 
 :   Completes all heading markup and normalizes all horizontal rules
     in the buffer.
@@ -2200,7 +2274,7 @@ the context-specific command `C-c C-d` (`markdown-do`).
 
 `markdown-gfm-uppercase-checkbox`
 
-:   Boolean, default: `nil`
+:   Boolean, default: `nil`.
 
     When non-nil, complete GFM task list items with `[X]` instead of
     `[x]`.  This is useful for compatibility with Org Mode, which
@@ -2552,7 +2626,7 @@ character, you can set `markdown-blockquote-display-char`.
 
 `markdown-blockquote-display-char`
 
-: String, default: 0x258C (left half block)
+: String, default: 0x258C (left half block).
 
     Character displayed when hiding blockquote markup.
 
@@ -2649,7 +2723,7 @@ customized to use an available external previewer on your system.
 
 `markdown-open-command`
 
-:   String, default: `nil`
+:   String, default: `nil`.
 
     The command used for calling a standalone Markdown previewer
     capable of opening Markdown source files directly.  This command
