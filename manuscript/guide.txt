@@ -2895,9 +2895,13 @@ T> wrapper.
 
     Additional content to include in the HTML `<head>` block.
 
+    _Example:_
+
     ``` emacs-lisp
     (setq markdown-xhtml-header-content
-          "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/png\"/>")
+          (concat "<link rel=\"shortcut icon\""
+                  " href=\"/favicon.ico\""
+                  " type=\"image/png\"/>"))
     ```
 
 `markdown-before-export-hook`
