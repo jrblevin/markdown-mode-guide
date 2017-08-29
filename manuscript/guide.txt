@@ -3868,3 +3868,11 @@ of the most useful commands are `C-h k` (`describe-key`), `C-h m`
 (`describe-variable`), and `C-h a` (`apropos-command`).
 
 [^ELPA]:  I didn't find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
+
+<!--
+Local Variables:
+mode: markdown
+coding: utf-8
+markdown-hide-urls: t
+End:
+-->
