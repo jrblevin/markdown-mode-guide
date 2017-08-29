@@ -1354,8 +1354,8 @@ to indent to the next logical position.
 
 Finally, when `markdown-indent-on-enter` is set to
 `indent-and-new-item`, Markdown Mode will automatically
-insert a new list item.  (With this setting, if you wanted
-to insert a literal newline you can use `C-q C-j`.)
+insert a new list item.  (With this setting, if you want
+to insert a literal newline, you will need to use `C-q C-j`.)
 
 {lang="text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1451,7 +1451,16 @@ redefining the variable `markdown-hr-strings`.
 
 `markdown-hr-strings`
 
-:   List of strings.
+:   List of strings, default:
+
+    ``` emacs-lisp
+    '("-------------------------------------------------------------------------------"
+      "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
+      "---------------------------------------"
+      "* * * * * * * * * * * * * * * * * * * *"
+      "---------"
+      "* * * * *")
+    ```
 
     Strings to use when inserting horizontal rules.
 
@@ -1625,7 +1634,7 @@ You can still include a title, like this:
 [2]: http://link.url/ "Title text"
 
 Finally, you can use implicitly defined reference links
-where the reference tag is the same as the link text:
+where the reference label is the same as the link text:
 [link text][]
 
 [link text]: http://link.url/
@@ -1656,9 +1665,9 @@ insertion command, through a series of interactive prompts you can insert
 either an inline or reference image:
 
 *   Given a URL and alt text, insert an inline image:
-    `![alt text](url)`.
+    `![alt](url)`.
 *   Given a `[reference]` and alt text, insert a reference image:
-    `![alt text][reference]`.
+    `![alt][reference]`.
 
 If there is an existing link or image at the point, these commands will
 edit the existing markup rather than insert new markup.  Otherwise,
@@ -1690,7 +1699,7 @@ X> `[text](url)` and want to convert it to a plain URL link as in
 X> `<url>`.  If you press `C-c C-l` and leave the URL as is when prompted
 X> but remove the link text, then a plain URL, as in `<url>`, will be
 X> inserted in place of the inline link.  If you removed the URL
-X> instead, then you would be prompted for a reference tag.
+X> instead, then you would be prompted for a reference label.
 
 ### Following Links
 
@@ -1770,6 +1779,7 @@ that should be recognized automatically.
 
 ### Inline Image Display
 
+{width=80%}
 ![Inline Image Display in Markdown Mode](images/inline-images.png)
 
 Local images associated with image links may be displayed inline in
@@ -1798,7 +1808,8 @@ precedence): inline code, headings, horizontal rules, links (adds the
 link text to kill ring), images (adds the alt text to kill ring),
 plain URLs, email addresses, bold, italics, reference definitions
 (adds URL to kill ring), footnote markers and text (kills both the
-marker and text, adds text to kill ring), and list items.
+marker and text, adds text to kill ring), and list items.  See the
+following table for a summary.
 
 | Killed Entity              | Kill Ring   |
 |----------------------------|-------------|
@@ -1828,7 +1839,7 @@ Depending on the context, it does the following:
 
 *   Toggles the completion status of GFM task list items (checkboxes).
 
-I> The Markdown Do command has evolved over the past three versionf of
+I> The Markdown Do command has evolved over the past three versions of
 I> Markdown Mode.  It derives from a previous command named
 I> `markdown-jump`, which was previously bound to `C-c C-j` in
 I> Markdown Mode 2.1.  It was later moved to `C-c C-l`
@@ -1893,6 +1904,7 @@ X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 X>
 X> Markup completion via `C-c C-]` will adjust them as follows:
 X>
+X> {lang="text"}
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 X> Heading 1
 X> =========
@@ -1921,7 +1933,7 @@ and completing markup in the buffer.
 :   Renumbers any ordered lists in the buffer that are out of
     sequence.  Note that the sequence is not important for rendering
     HTML---a list with numbers `1.`, `1.`, …, `1.` is perfectly
-    fine---but this command is useful if you prefer to also have
+    fine---but this command is useful if you prefer to also maintain
     accurate plain text numbering.
 
 `C-c C-c ] (markdown-complete-buffer)`
