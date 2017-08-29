@@ -3837,7 +3837,48 @@ persists.
 
 If you do find a bug in Markdown Mode, please construct a test
 case---and if possible a patch---and open a ticket on the
-[GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues).
+[GitHub issue tracker](https://github.com/jrblevin/markdown-mode/issues)
+at <https://github.com/jrblevin/markdown-mode/issues>.  Before
+reporting an issue, please try to reproduce the issue with a minimal
+Emacs configuration, for example, by starting Emacs without your usual
+local init file (e.g., starting with `emacs --no-init`) and then
+loading `markdown-mode` with `M-x load-file`.
+
+
+## Submitting Patches or GitHub Pull Requests
+
+Below are some guidelines for submitting patches.  Ideally, these
+should be submitted in the form of GitHub pull requests, but email
+patches are also fine if that is more convenient.  For pull requests,
+it is recommended to create a new feature branch (e.g.,
+`feat/my-new-feature`) and submit the pull request from that branch.
+If you add commits to the `master` branch in your own repository, it's
+more difficult to get back in sync if changes are required to the
+patch.
+
+*   Markdown mode contributions should adhere to both the
+    [GNU Emacs Lisp coding conventions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Coding-Conventions.html) and the
+    [Major Mode Conventions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Major-Mode-Conventions.html#Major-Mode-Conventions).
+
+*   Test cases are needed for significant changes.  Markdown Mode uses
+    the `ert` (Emacs Lisp Regression Testing) library.  If you're not
+    familiar with writing tests, there are hundreds of examples in
+    `markdown-test.el` that you can use as a starting point for new
+    tests.
+
+*   You can confirm that your tests pass by either typing `make test`
+    from the command line or by issuing a GitHub pull request and
+    letting the Travis CI integration on GitHub run the tests for you.
+
+*   Please be sure to update the documentation at the top of
+    `markdown-mode.el` and the docstrings for related variables or
+    functions.
+
+*   If your patch involves changes to the documentation, you can
+    update the `README.md` file by running the `webpage.sh` script.
+
+*   Finally, it's also helpful if you update the `CHANGES.md` file to
+    reflect the bug you fixed or the feature you added or improved.
 
 ------------------------------------------------------------------------------
 
@@ -3849,7 +3890,7 @@ When I wrote the first version of `markdown-mode.el` over ten years
 ago, I never imagined it would reach as many people as it has.  This
 was before GitHub was founded and around the same time `package.el`
 was initially being developed.[^ELPA]  Emacs 21.4 was the latest
-release and Markdown was three years old.
+release and Markdown itself was three years old.
 
 Markdown Mode development continues and my goals for upcoming releases
 are to improve performance, streamline the code base, build a more
@@ -3857,35 +3898,39 @@ robust Markdown parsing engine, and make it easier for users to choose
 feature sets to match their preferred Markdown dialects.
 
 Many parts of Emacs are designed around a dichotomous view of files as
-either source code for some programming language or free form text
-modes.  Markdown is in a strange place somewhere in between these two,
-and sometimes the best route for some features is not clear.  As
-Markdown Mode and my own understanding of the subtleties of Emacs and
-Elisp grow, I hope that Markdown integration in Emacs can become even
-more seamless.
+either source code for a programming language or free form text.
+Markdown lies somewhere in between these two extremes, and sometimes
+the best route for implementing new features in Emacs is not obvious.
+As Markdown Mode and my own understanding of the subtleties of Emacs
+Lisp grow, I hope that Markdown integration in Emacs can become
+even faster, more seamless, and more robust.
 
 ## Further Reading
 
 To keep up with Markdown Mode news, you can follow my blog at
 <https://jblevins.org/log/> or follow the project on GitHub at
-<https://github.com/jrblevin/markdown-mode>.  For Emacs news more
-generally, there is the [Planet Emacsen](http://www.planet.emacsen.org), a feed aggregator, and
-[Sacha Chua’s weekly Emacs News](http://sachachua.com/blog/).
+<https://github.com/jrblevin/markdown-mode/>.  For Emacs news more
+generally, there is [Planet Emacsen](http://planet.emacsen.org), a feed aggregator at
+<http://planet.emacsen.org/>, and [Sacha Chua's weekly Emacs News](http://sachachua.com/blog/)
+at <http://sachachua.com/blog/>.
 
-I also highly recommend [_Mastering Emacs_](https://www.masteringemacs.org/) by Mickey Petersen for
+I also highly recommend [_Mastering Emacs_](https://masteringemacs.org/) by Mickey Petersen for
 all Emacs users.  Few could read this book and not learn _something_
-new about our favorite text editor. _Mastering Emacs_ was a large part
-of my inspiration for writing this _Guide_.
+new about our favorite text editor. _Mastering Emacs_ was a primary
+source of inspiration for me in writing this _Guide_.  It is available
+at <https://masteringemacs.org/>.
 
-There are also active Emacs communities on the [EmacsWiki](https://www.emacswiki.org/), the
-[Emacs StackExchange](https://emacs.stackexchange.com), and on Reddit at the [/r/emacs](https://www.reddit.com/r/emacs/)
-subreddit.
+There are also active Emacs communities on the [EmacsWiki](https://www.emacswiki.org/) at
+<https://www.emacswiki.org/>, the [Emacs StackExchange](https://emacs.stackexchange.com) at
+<https://emacs.stackexchange.com>, and on Reddit at
+<https://www.reddit.com/r/emacs/>.
 
 Finally, every Emacs user should practice getting help from within
-Emacs itself, which is often the most detailed and up to date.  A few
-of the most useful commands are `C-h k` (`describe-key`), `C-h m`
-(`describe-mode`), `C-h f` (`describe-function`), and `C-h v`
-(`describe-variable`), and `C-h a` (`apropos-command`).
+Emacs itself, which is often the most detailed and up to date source
+and certainly the most convenient.  A few of the most useful commands
+are `C-h k` (`describe-key`), `C-h m` (`describe-mode`), `C-h f`
+(`describe-function`), and `C-h v` (`describe-variable`), and `C-h a`
+(`apropos-command`).
 
 [^ELPA]:  I didn't find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
 
