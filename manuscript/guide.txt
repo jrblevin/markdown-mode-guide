@@ -1952,15 +1952,17 @@ _fenced code blocks_.  Although fenced code blocks are not universally
 supported by all Markdown processors, a primary advantage is that they
 allow authors to indicate the name of the language of the source code
 contained within, to assist with syntax highlighting and CSS styling.
+They also remove the need to maintain the four-space leading
+indentation, which can make editing a code block more difficult.
 
 ### GFM Code Blocks
 
-The second type of code blocks supported by Markdown Mode are those
-used by [GitHub-Flavored Markdown (GFM)](http://github.github.com/github-flavored-markdown/).  These blocks begin
-with three backquotes and end with three backquotes.  After the
+The first type of fenced code blocks supported by Markdown Mode are those
+used by [GitHub-Flavored Markdown (GFM)](http://github.github.com/github-flavored-markdown/).  These blocks begin and end
+with three consecutive backquotes on separate lines.  After the
 opening three backquotes, you may give an optional language
-identifier, possibly separated by a space.  These are referred to in
-Markdown simply as GFM code blocks:
+identifier, optionally separated by whitespace.  These are referred to in
+Markdown Mode simply as GFM code blocks:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1978,8 +1980,8 @@ puts("hello, world")
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 To insert a GFM code block interactively in Markdown Mode, press
-`C-c C-s C` (`markdown-insert-gfm-code-block`).  You will be greeted
-with a minibuffer prompt asking for the programming language name.
+`C-c C-s C` (`markdown-insert-gfm-code-block`).  You will be presented
+with a minibuffer prompt asking for an optional programming language name.
 Markdown Mode includes a large list of known languages to select from.
 The default value will be the most recently used language.
 
@@ -1993,16 +1995,16 @@ T> will also work with `ido`, `ivy`, and `helm`.
 
 Another way to insert a GFM code block is to use the _electric
 backquote_ feature, which is enabled by default.  When this setting is
-enabled, pressing `` ` `` three times triggers
-`markdown-insert-gfm-code-block` automatically.  Currently, this
-only happens when in `gfm-mode`.
+enabled, pressing the backquote key (`` ` ``) three times triggers
+`markdown-insert-gfm-code-block` automatically.  At present, this
+feature is only enabled in `gfm-mode`.
 
 `markdown-gfm-use-electric-backquote`
 
 :   Boolean, default: `t`.
 
-    When non-nil, trigger interactive insertion of GFM code blocks
-    when backquote is pressed three times.
+    When non-`nil`, trigger interactive insertion of GFM code blocks
+    when the backquote key is pressed three times.
 
 Additionally, you can augment the list of known language names by
 setting `markdown-gfm-additional-languages` and you can indicate a
@@ -2029,14 +2031,15 @@ preference for lowercase language identifiers with
 
 :   Boolean, default: `t`.
 
-    When non-`nil`, `downcase` suggested programming language names.
+    When non-`nil`, apply `downcase` to suggested programming language
+    names to convert them to lowercase.
 
 `markdown-spaces-after-code-fence`
 
 :   Integer, default: `1`.
 
-    Number of space characters to insert between code fences
-    and programming language name.
+    Number of space characters to insert between an opening code fence
+    and the optional programming language name.
 
     _Example:_
 
@@ -2046,11 +2049,12 @@ preference for lowercase language identifiers with
 
 ### Tilde-Fenced Code Blocks
 
-The second type supported by Markdown Mode are tilde-fenced code blocks
-supported by Markdown processors such as [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/)
-and [Pandoc](http://pandoc.org), among others.  The block opens with *at least three*
+The second type of fenced code blocks supported by Markdown Mode are
+tilde-fenced code blocks.  Markdown processors supporting this
+extension include [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/), [Pandoc](http://pandoc.org), and
+[Leanpub](https://leanpub.com/help/manual) among others.  The block opens with _at least three_
 tildes (`~`) and closes with at least as many tildes as it was opened
-with, but possibly more:
+with (but possibly more):
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2062,7 +2066,8 @@ a one-line code block
 Some processors allow you to specify the language of the source code
 using attribute lists of various formats, as in the following
 examples.  Markdown Mode takes an inclusive approach to highlighting
-such blocks:
+such blocks by allowing optional braces, periods, `lang` attributes,
+and so on:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2086,12 +2091,13 @@ end program main
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 I> Markdown Mode supports font-lock and indirect editing of
-I> tilde-fenced code blocks, but it does not currently have a
+I> tilde-fenced code blocks, but it does not yet include a
 I> dedicated command for inserting them.
 
 ### Native Font Lock and Indirect Editing
 
-![Native Font Lock](images/native-font-lock.png)
+{width=80%}
+![Native Font Lock for a JavaScript Code Block](images/native-font-lock.png)
 
 Markdown Mode can also optionally perform native syntax highlighting
 of source code in fenced code blocks.  This works for GFM or
@@ -2122,25 +2128,26 @@ the indirect buffer, press `C-c C-c` (`edit-indirect-commit`)
 to "commit" any changes and update the Markdown buffer or press
 `C-c C-k` (`edit-indirect-abort`) to cancel and ignore any changes.
 
-![Indirect Editing of a Fenced Code Block](images/edit-indirect.png)
+{width=80%}
+![Editing a GFM Code Block in an Indirect Buffer](images/edit-indirect.png)
 
 Both native font lock and indirect editing require Markdown Mode to
 try to determine the appropriate mode to use for each language identifier.
 Sometimes this is straightforward.  For example, `shell` maps to `shell-mode`
 and `emacs-lisp` maps to `emacs-lisp-mode`.  In other cases, the language
 and mode names may not agree or a different mode may be desired.
-This language-to-mode mapping may be customized as needed by setting the
+The language-to-mode mapping may be customized as needed by setting the
 variable `markdown-code-lang-modes`.
 
 `markdown-code-lang-modes`
 
 :   Association list.
 
-    An alist mapping languages to their major modes.  Keys are
-    language names and values are major mode symbols.  For example,
-    a default element of this alist is `("sqlite" . sql-mode)`,
-    which instructs Markdown Mode to use `sql-mode` to highlight
-    and edit `sqlite` code blocks.
+    An alist mapping languages to their major modes.  Keys are strings
+    representing language names and values are major mode symbols.
+    For example, a default element of this alist is `("sqlite"
+    . sql-mode)`, which instructs Markdown Mode to use `sql-mode` to
+    highlight and edit `sqlite` code blocks.
 
 In practice, the language-to-mode mapping is handled by the
 `markdown-get-lang-mode` function, which looks for a defined function
@@ -2150,7 +2157,7 @@ represents the language keyword specified for the code block:
 1. An entry with key `<lang>` specified in `markdown-code-lang-modes`.
 2. A function named `<lang>-mode`.
 
-As an example, suppose we have a code block with language name `matlab`.
+As an example, suppose you have a code block with language name `matlab`.
 By default, there is no element of `markdown-code-lang-modes` with
 key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
 If so, it will be used for syntax highlighting of the code block and also
@@ -2158,10 +2165,22 @@ for indirect editing of the code block.
 
 ## Footnotes
 
-To insert a footnote, using an extension to the original Markdown syntax, press
-`C-c C-s f` (`markdown-insert-footnote`).  This inserts a footnote
-marker such as `[^1]` at the point, inserts a footnote definition
-below, and positions the point for inserting the footnote text.
+Footnotes are another common and reasonably standardized extension to
+Markdown.  Footnotes consist of an inline marker, such as `[^fn]` and
+a definition, where the footnote text is given:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Paragraph text.[^fn]
+
+[^fn]: Footnote text.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To insert a footnote in Markdown Mode press `C-c C-s f`
+(`markdown-insert-footnote`).  This inserts a footnote marker such as
+`[^1]` at the point, inserts a footnote definition below, and
+positions the point for typing the footnote text.  Footnotes inserted
+this way are numbered, and the counter advances automatically.
 
 W> Footnotes are an extension to Markdown and are not supported by all
 W> processors.
@@ -2189,7 +2208,12 @@ between footnote markers and footnote definitions.
 T> Markdown Mode also includes basic font lock support for Pandoc's
 T> _inline footnotes_:
 T>
-T>     Here is an inline footnote.^[Footnote text here.]
+T> {lang="text"}
+T> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T> Here is an inline footnote.^[Footnote text here.]
+T> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+T>
+T> This is, however, a processor-specific extension.
 
 ## Definition Lists
 
@@ -2214,26 +2238,28 @@ In HTML, this becomes:
 </dl>
 ```
 
-Like a dictionary, you can have multiple definitions per term.
-To borrow an example from the PHP Markdown Extra documentation:
+As with many words in a typical dictionary, you can specify multiple
+definitions per term.  To borrow an example from the PHP Markdown
+Extra documentation:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Apple
-:	Pomaceous fruit of plants of the genus Malus in
+:   Pomaceous fruit of plants of the genus Malus in
     the family Rosaceae.
-:	An American computer company.
+:   An American computer company.
 
 Orange
-:	The fruit of an evergreen tree of the genus Citrus.
+:   The fruit of an evergreen tree of the genus Citrus.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Markdown Mode provides basic syntax highlighting and filling for
-definition lists, and some of the list-related commands also work for
-definition lists.  For example, you can move items up and down with
-`C-c <up>` (`markdown-move-up`) and `C-c <down>`
+definition lists, and some of the list-related commands previously
+described also work for definition lists.  For example, you can move
+items up and down with `C-c <up>` (`markdown-move-up`) and `C-c <down>`
 (`markdown-move-down`).  However, Markdown Mode does not yet provide
-specific commands for manipulating definition lists otherwise.
+dedicated commands for inserting or otherwise manipulating definition
+lists.
 
 ## Comments
 
@@ -2242,25 +2268,25 @@ it is most often converted to HTML the most natural comment syntax is that
 used in HTML: `<!-- comment -->`.  You can use the usual Emacs commands
 in Markdown Mode for commenting and uncommenting:
 
-`M-;` (`comment-dwim`)
+`M-; (comment-dwim)`
 
 :   Insert or align comment on the current line.  If `transient-mark-mode`
     is on and the region is active, invoke `comment-region` instead
-    (unless the region is a block comments, in which case invoke
+    (unless the region is a block of comments, in which case invoke
     `uncomment-region`).
 
-`C-x C-;` (`comment-line`)
+`C-x C-; (comment-line)`
 
 :   Comment or uncomment the current line.
 
-`C-u M-;` (`comment-kill`)
+`C-u M-; (comment-kill)`
 
-:   Kill comment on the current line.
+:   Kill a comment on the current line.
 
 ## Task List Items (Checkboxes)
 
-GitHub Flavored Markdown (GFM) defines a syntax for checkboxes, called
-task lists, which is a straightforward and backward-compatible
+GitHub Flavored Markdown (GFM) defines a syntax for task lists (i.e.,
+checkboxes) which is a straightforward and backward-compatible
 modification of Markdown's unordered list syntax.
 
 {lang=text}
@@ -2279,27 +2305,28 @@ the context-specific command `C-c C-d` (`markdown-do`).
 
 :   Boolean, default: `t`.
 
-    Whether GitHub Flavored Markdown style task lists (checkboxes)
-    should be turned into buttons that can be toggled with `mouse-1`
-    or `RET`.  When non-`nil`, then buttons are enabled.  This works
-    in `markdown-mode` as well as `gfm-mode`.
+    Determines whether GitHub Flavored Markdown style task lists
+    (checkboxes) should be turned into buttons that can be toggled
+    with `mouse-1` or `RET`.  When non-`nil`, buttons are enabled.
+    This works both in `markdown-mode` and `gfm-mode`.
 
 `markdown-gfm-uppercase-checkbox`
 
 :   Boolean, default: `nil`.
 
-    When non-nil, complete GFM task list items with `[X]` instead of
-    `[x]`.  This is useful for compatibility with Org Mode, which
-    doesn't recognize the lowercase form.
+    When non-`nil`, complete GFM task list items with the uppercase
+    `[X]` instead of the lowercase `[x]`.  This is primarily useful
+    for compatibility with Org Mode, which doesn't recognize the
+    lowercase form.  GFM, however, supports both forms.
 
 ## Subscripts and Superscripts
 
-Pandoc and MultiMarkdown---two of the most popular Markdown
-processors---support subscript and superscript markup.  Markdown Mode
-supports this syntax as well.  Superscripts may be written by placing
-carets (`^`) immediately before and after the text.  Similarly,
-subscripts may be written by placing tildes (`~`) immediately before
-and after the text.
+Pandoc and MultiMarkdown, among other Markdown processors, support
+extensions for subscripts and superscripts.  Markdown Mode supports
+this syntax as well.  Superscripts may be written by placing carets
+(`^`) immediately before and after the text.  Similarly, subscripts
+may be written by placing tildes (`~`) immediately before and after
+the text.
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2331,11 +2358,11 @@ the beginning of a file and is indicated by percent signs:
 % date
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Finally, Markdown Mode supports YAML and TOML metadata blocks that can
-occur anywhere in the document.  YAML and TOML metadata blocks begin
-with a line of three hyphens (`---`) and end with either a line of
-three hyphens (`---`) or three dots (`...`).  Pandoc, GitHub, and
-Jekyll all support YAML metadata.
+Finally, Markdown Mode optionally supports YAML and TOML metadata
+blocks.  YAML and TOML metadata blocks begin with a line of three
+hyphens (`---`) and end with either a line of three hyphens (`---`) or
+three dots (`...`).  Pandoc, GitHub, and Jekyll all support YAML
+metadata.
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2345,7 +2372,6 @@ author: Jason R. Blevins
 tags: Emacs, markdown, markdown-mode, writing, plain text
 ---
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Some website generators, such as Hugo, also support TOML metadata.
 
@@ -2357,44 +2383,57 @@ author = "Jason R. Blevins"
 ---
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Optionally, Markdown Mode allows YAML and TOML metadata to occur
+anywhere in the document.  This is disabled by default, for
+performance reasons, but you can customize
+`markdown-use-pandoc-style-yaml-metadata` to enable it.
+
+`markdown-use-pandoc-style-yaml-metadata`
+
+:   Boolean, default: `nil`.
+
+    When non-`nil`, allow YAML and TOML metadata anywhere in the
+    document.
+
 ## Wiki Links {#wiki-links}
 
-Besides supporting the basic Markdown syntax, Markdown Mode also
-supports syntax highlighting for `[[Wiki Links]]`.  Note that wiki
-links are an extension to Markdown and are not supported by all
-processors, so this support is disabled by default.  Support can be
-toggled with `M-x markdown-toggle-wiki-links` or by setting
-`markdown-enable-wiki-links`.
+Markdown Mode also supports syntax highlighting for `[[Wiki Links]]`.
+Note that wiki links are an extension to Markdown and are not
+supported by all processors, so this support is disabled by default.
+Support can be toggled with `M-x markdown-toggle-wiki-links` or by
+setting `markdown-enable-wiki-links`.
 
 To insert a wiki link, use `C-c C-s w` (`markdown-insert-wiki-link`).
 If `transient-mark-mode` is on and there is an active region, this
 command will use the region as the link text.  If the point is at a
 word, use the word as the link text.  If there is no active region and
-the point is not at word, it will simply insert empty link markup.
+the point is not at word, it will simply insert empty wiki link brackets.
 
 Wiki links may be followed by pressing `C-c C-o` when the point is at
 a wiki link.  This will find the corresponding file in the current
-window, by default, or in another window with the `C-u` prefix.  As
-with regular links, you can use `M-p` and `M-n` to quickly jump to the
-previous and next links (including other kinds of links).
+window, by default, or in another window when the `C-u` prefix is
+given.  As with regular links, you can use `M-p` and `M-n` to quickly
+jump to the previous and next links (including other kinds of links).
 
 Aliased or piped wiki links of the form `[[link text|PageName]]` are
-also supported.  Since some wikis reverse these components, set
+also supported.  Since some wiki engines reverse these components, set
 `markdown-wiki-link-alias-first` to nil to treat them as
-`[[PageName|link text]]`.
+`[[PageName|link text]]` instead.
 
 By default, Markdown Mode only searches for target files in the
-current directory.  Sequential parent directory search can be enabled
-by setting `markdown-wiki-link-search-parent-directories` to a non-nil
-value.
+current directory.  Sequential subdirectory search can be enabled by
+setting ``markdown-wiki-link-search-subdirectories` to a non-`nil`
+value.  Similarly, sequential parent directory search can be enabled
+by setting `markdown-wiki-link-search-parent-directories` to a
+non-`nil` value.
 
 `markdown-enable-wiki-links`
 
 :   Boolean, default: `nil`.
 
-    Enable or disable syntax highlighting for wiki links.  Set this to
-    a non-`nil` value to enable wiki link support.  Wiki link
-    support can also be toggled using the function
+    Enable or disable syntax highlighting for wiki links.  Set this
+    variable to a non-`nil` value to enable wiki link support.  Wiki
+    link support can also be toggled interactively using the function
     `markdown-toggle-wiki-links`.
 
     _Example:_
@@ -2407,18 +2446,18 @@ value.
 
 :   Boolean, default: `t`.
 
-    Set to a non-nil value to treat aliased wiki links like
+    Set to a non-`nil` value to treat aliased wiki links like
     `[[link text|PageName]]`.  When set to `nil`,
     they will be treated as `[[PageName|link text]]`.
 
 `markdown-link-space-sub-char`
 
-:   String, default: `"_"`.
+:   String, default: `"_"` in `markdown-mode` and `"-"` in `gfm-mode`.
 
     Character to replace spaces when mapping wiki links to filenames.
     For example, use an underscore for compatibility with the Python
     Markdown WikiLinks extension.  In GFM Mode, this is set to `"-"`
-    to conform with GitHub wiki links.
+    to conform with the GitHub wiki link conventions.
 
     _Example:_
 
@@ -2430,8 +2469,8 @@ value.
 
 :   Boolean, default: `nil`.
 
-    When non-`nil`, change the wiki-link face according to the
-    existence of the target files.
+    When non-`nil`, set wiki link faces according to the
+    existence or absence of target files.
 
     _Example:_
 
@@ -2439,16 +2478,24 @@ value.
     (setq markdown-wiki-link-fontify-missing t)
     ```
 
-    Note that this is expensive because it requires checking each
-    linked file every time the buffer changes or the user switches
-    windows.  It is disabled by default because it may cause lag when
-    typing on slower machines.
+    W> Note that this is expensive because it requires checking each
+    W> linked file every time the buffer changes or the user switches
+    W> windows.  It is disabled by default because it may cause lag when
+    W> typing on slower machines.
+
+`markdown-wiki-link-search-subdirectories`
+
+:   Boolean, default: `nil`.
+
+    When non-`nil`, search for wiki link targets in subdirectories.
+    This is the default search behavior for GitHub, so this variable
+    is automatically set to `t` in `gfm-mode`.
 
 `markdown-wiki-link-search-parent-directories`
 
 :   Boolean, default: `nil`.
 
-    When non-nil, search for wiki link targets in parent directories.
+    When non-`nil`, search for wiki link targets in parent directories.
     This is the default search behavior of the [Ikiwiki](https://ikiwiki.info) engine.
 
 
@@ -2460,8 +2507,10 @@ value.
 Syntax highlighting for mathematical expressions written in LaTeX can
 be toggling with `C-c C-x C-e` (`markdown-toggle-math`), where
 the final `e` is for _equation_.  Importantly, this is _not_ full
-LaTeX support.  It only involves font lock and only expressions
-delimited by `$..$`, `$$..$$`, or `\[..\]` are supported.
+LaTeX support.  It only involves font lock and only for expressions
+delimited by `$..$`, `$$..$$`, or `\[..\]` are supported; this does
+not yet include dedicated commands for inserting or otherwise
+manipulating mathematical markup.
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2498,7 +2547,7 @@ The GitHub implementation of Markdown differs slightly
 from standard Markdown in that it supports things like different
 behavior for underscores inside of words, automatic linking of URLs,
 strikethrough text, and fenced code blocks with an optional language
-keyword.  Many of these extensions have been discussed above, but
+keyword.  Many of these extensions have been discussed already, but
 here we address them collectively in relation to `gfm-mode`.
 
 On GitHub, the GFM-specific features above apply to `README.md` files,
@@ -2515,14 +2564,14 @@ extensions are supported to varying degrees by Markdown Mode and GFM
 Mode as described below.
 
 * **URL auto-linking:**  Both Markdown Mode and GFM Mode support
-  highlighting of URLs without angle brackets.
+  highlighting of URLs even without angle brackets.
 
 * **Underscores inside words:**  You must enable GFM Mode to
   toggle support for underscores inside of words. In this mode
   variable names such as `a_test_variable` will not trigger
-  emphasis (italics).
+  italics.
 
-* **Fenced code blocks:**  Code blocks between backquotes (`` ` ``),
+* **Fenced code blocks:**  Code blocks between backquotes (`` ``` ``),
   with optional programming language keywords, are highlighted in both
   Markdown Mode and GFM Mode.  They can be inserted with `C-c C-s C`
   (`markdown-insert-gfm-code-block`) or by typing three backquotes
@@ -2532,12 +2581,12 @@ Mode as described below.
   and can be inserted (and toggled) using `C-c C-s s`
   (`markdown-insert-strike-through`).
 
-* **Task lists:**  GFM task lists will be rendered as checkboxes (Emacs
-  buttons) in both Markdown Mode and GFM Mode when
-  `markdown-make-gfm-checkboxes-buttons` is set to a non-nil value
-  (and this variable is `t` by default).  These checkboxes can be
-  toggled by clicking `mouse-1`, pressing `RET` over the button, or by
-  pressing `C-c C-d` (`markdown-do`) with the point anywhere in the
+* **Task lists:** GFM task lists will be rendered as checkboxes,
+  implemented using Emacs buttons, in both Markdown Mode and GFM Mode
+  when `markdown-make-gfm-checkboxes-buttons` is set to a non-`nil`
+  value (and this variable is `t` by default).  These checkboxes can
+  be toggled by clicking `mouse-1`, pressing `RET` over the button, or
+  by pressing `C-c C-d` (`markdown-do`) with the point anywhere in the
   task list item.  Alternatively, you can use the dedicated function
   `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) directly.
 
@@ -2563,9 +2612,10 @@ Mode as described below.
   (add-hook 'gfm-mode-hook 'my-gfm-mode-hook)
   ```
 
-* **Preview:**  GFM-specific preview can be powered by setting
-  `markdown-command` to use [Docter](https://github.com/alampros/Docter).  This may also be
-  configured to work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
+* **Preview:** GFM-specific preview can be powered by setting
+  `markdown-command` to use [Docter](https://github.com/alampros/Docter) (which, as of this writing is
+  unfortunately no longer maintained).  This may also be configured to
+  work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
 
 ------------------------------------------------------------------------------
 
