@@ -346,7 +346,7 @@ so adjust the settings as needed):
 
 [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
 
-[^extensions]: See the tip on [Using Markdown Mode with Other File Extensions](#extensions) for how to configure Emacs to use `markdown-mode` with file extensions other than `.md` and `.markdown`.
+[^extensions]: See the tip on [Using Markdown Mode with Other File Extensions](#file-extensions) for how to configure Emacs to use `markdown-mode` with file extensions other than `.md` and `.markdown`.
 
 ### OS Package Manager
 
@@ -583,7 +583,7 @@ E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 T> If you're having trouble setting your `exec-path`, a simple way to
 T> configure it is to install the
 T> [`exec-path-from-shell`](https://github.com/purcell/exec-path-from-shell)
-T> package.  It's purpose is to ensure that environment variables in
+T> package.  Its purpose is to ensure that environment variables in
 T> Emacs are the same as in your shell.  This allows Emacs to find any
 T> commands you can also execute from the command line without
 T> specifying the full path.
@@ -1420,7 +1420,7 @@ I> In addition to indented code blocks, or pre blocks, Markdown Mode
 I> also supports several variations referred to as fenced code blocks.
 I> Rather than being indented, fenced code blocks are surrounded above
 I> and below by strings of tildes or backquotes.  We will return to
-I> fenced code blocks later in the [Extensions](#extensions) section.
+I> fenced code blocks later in the [Extensions](#extensions) chapter.
 
 ## Horizontal Rules
 
@@ -2753,7 +2753,8 @@ runs Markdown on the current buffer, stores the output in a temporary
 file, and opens or "previews" the file in the default browser.
 
 T> See the [Tips](#tips) chapter for details on how to configure the
-T> default browser in Emacs.
+T> default browser in Emacs, and how to link to or include a custom
+T> stylesheet.
 
 ## Static HTML Export & View
 
@@ -2923,9 +2924,10 @@ T> wrapper.
 
 # Tips {#tips}
 
-This chapter
+This chapter contains additional tips about using Markdown Mode and
+integration with other third-party packages.
 
-## Using Markdown Mode with Other File Extensions {#extensions}
+## Using Markdown Mode with Other File Extensions {#file-extensions}
 
 Markdown Mode contains `autoload` statements to automatically
 associate itself with `.md` and `.markdown` files in
@@ -2946,9 +2948,9 @@ achieve the same thing using the `:mode` keyword, like so:
   :mode (("\\.text\\'" . markdown-mode)))
 ```
 
-T> Expanding this macro (e.g., with `pp-macroexpand-last-sexp`), we can
-T> see that it is equivalent to auto-loading `markdown-mode` and updating
-T> `auto-mode-alist`:
+T> This is a macro and after expanding it with
+T> `pp-macroexpand-last-sexp` we see that it is equivalent to
+T> auto-loading `markdown-mode` and updating `auto-mode-alist`:
 T> 
 T> ``` emacs-lisp
 T> (progn
@@ -2963,32 +2965,34 @@ T> ```
 ## Switching and Toggling Markup
 
 There are a couple of ways to quickly switch or toggle markup in
-Markdown Mode (e.g., from bold to italics).  As an example, suppose
-you type `**italics**` and want to change it to `*italics*`.  You can
+Markdown Mode (e.g., from bold to italic).  As an example, suppose
+you type `**italic**` and want to change it to `*italic*`.  You can
 quickly fix the mistake in at least two ways.
 
-1. *Using the kill ring:* Move the point to the bold phrase and press
-   `C-c C-k` to execute `markdown-kill-thing-at-point`.  This removes
-   the bold span and the text and adds "italics", without the
-   asterisks, to the kill ring.  Then press `C-c C-s e` to insert an
-   empty italic span and yank in the "italics" text with `C-y`.
+1. **Using the kill ring:**  Move the point to the erroneously bold
+   word and press `C-c C-k` (`markdown-kill-thing-at-point`).  This
+   removes the bold text and adds "italic", without the asterisks, to
+   the kill ring.  Then press `C-c C-s e` to insert an empty italic
+   span and yank in the "italic" text with `C-y`.
 
-2. *Using markup toggling:*  Markdown Mode allows you to "toggle"
-   certain markup, including, bold, italics, and inline code, by
-   repeating the insertion command.  Returning to the example, you can
-   press `C-c C-s b` to first remove (toggle) the bold asterisks,
-   leaving "italics" behind.  Then, pressing `C-c C-s i` adds single
-   asterisks the italic markup to the word.
+2. **Using markup toggling:**  Markdown Mode allows you to "toggle"
+   certain markup, including that for bold, italic, and inline code,
+   by repeating the insertion command.  Returning to the example, you
+   can press `C-c C-s b` to first remove (toggle) the bold asterisks,
+   leaving only "italic" behind.  Then, pressing `C-c C-s i` surrounds
+   the word with single asterisks.
 
 These methods also apply to other forms of markup such as inline code
 and even links.
 
-Suppose instead that you have `__bold__` in the buffer and want to use
+You can also toggle between asterisks and underscores as needed.
+Suppose that you have `__bold__` in the buffer and want to use
 asterisks instead.  Both will render in HTML as bold, but you might
 have a preference for the latter in plain text.  You can use the
 Markdown Mode cycling commands to switch between underscores and
 asterisks in bold and italic phrases by pressing either `C-c C--` or
 `C-c C-=` (`markdown-promote` or `markdown-demote`).
+
 
 ## Linking to or Including Custom CSS
 
@@ -3011,7 +3015,6 @@ a line like the following will be included in the HTML output:
 <link rel="stylesheet" type="text/css" media="all" href="URL" />
 ```
 
-The most obvious way to use this is to link to an existing stylesheet.
 Noting that the variable is a list, one can specify a single CSS path
 on the local filesystem like so:
 
@@ -3019,7 +3022,8 @@ on the local filesystem like so:
 (setq markdown-css-paths '("/path/to/custom.css"))
 ```
 
-On the other hand, to use an existing URL use the following form:
+On the other hand, to link to an existing URL you can use the
+following form:
 
 ``` emacs-lisp
 (setq markdown-css-paths '("http://mydomain.com/style.css"))
@@ -3047,32 +3051,31 @@ such repositories on GitHub:
 
 ### Embedding a Custom Stylesheet
 
-As an alternative (or in addition to) linking to an external
-stylesheet, you can also include inline style information in output
-files by using the `markdown-xhtml-header-content` variable.  This
-variable specifies a string to add to the `<head>` block of the
-resulting HTML output.
+As an alternative to linking to an external stylesheet, you can also
+include inline style information in output files by using the
+`markdown-xhtml-header-content` variable.  This variable specifies a
+string to add to the `<head>` block of the HTML output.
 
-For example, to remove the underline from links, but underline links
-when hovering, you can add the following `<style>` block to
-`markdown-xhtml-header-content`:
+X> For example, to remove the default underline property from links,
+X> but temporarily underline links when hovering, you can include the
+X> following `<style>` block via `markdown-xhtml-header-content`:
+X>
+X> ``` emacs-lisp
+X> (setq markdown-xhtml-header-content
+X>       "<style type='text/css'>
+X> a { text-decoration: none; }
+X> a:hover { text-decoration: underline; }
+X> </style>")
+X> ```
 
-``` emacs-lisp
-(setq markdown-xhtml-header-content
-      "<style type='text/css'>
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
-</style>")
-```
-
-For more advanced customization, there are two export hooks available:
-`markdown-before-export-hook` and `markdown-after-export-hook`.
+T> For more advanced customization, there are two export hooks available:
+T> `markdown-before-export-hook` and `markdown-after-export-hook`.
 
 
 ## Imenu and Imenu-List
 
 Markdown Mode includes support for `imenu`, an interface for quickly
-navigating to different sections within a buffer.  To try imenu with
+navigating to different sections within a buffer.  To try `imenu` with
 Markdown Mode, simply run `M-x imenu-add-menubar-index`.  An "Index"
 menu will appear in the menubar.  Clicking a heading moves the point
 to that heading.  Alternatively, when invoking `M-x imenu` using the
@@ -3081,9 +3084,10 @@ minibuffer.
 
 ![`imenu` Index Menu](images/imenu-index.png)
 
-Markdown Mode adds a "." to the top of each sub-menu.  Clicking this
-dot takes you to the parent section.  Otherwise, there is no way to
-jump directly to headings that are not "leaf nodes."
+Markdown Mode adds a single period (`.`) to the top of each sub-menu.
+Clicking it takes you to the parent section.  Otherwise, there is no
+way to jump directly to headings that are not leaf nodes in the
+heading tree.
 
 To automatically load `imenu` when `markdown-mode` is loaded, you can
 add the following to your `.emacs` or `init.el` file:
@@ -3096,7 +3100,7 @@ add the following to your `.emacs` or `init.el` file:
 The first line asks Emacs to run the `imenu-add-menubar-index`
 function each time `markdown-mode` is loaded.  The second line asks
 `imenu` to keep the index up to date when files are modified, as
-sections may be added or removed.
+sections are added or removed.
 
 By default, the `imenu` menu is nested.  If you prefer a flat menu,
 you can customize `markdown-nested-imenu-heading-index`.
@@ -3105,7 +3109,7 @@ you can customize `markdown-nested-imenu-heading-index`.
 
 :   Boolean, default: `t`.
 
-    Use nested imenu heading index when non-`nil` and a flat menu
+    Use nested `imenu` heading index when non-`nil` and a flat menu
     otherwise.  A nested index may provide more natural browsing from
     the menu bar, but a flat list may allow for faster keyboard
     navigation via tab completion.
@@ -3128,20 +3132,20 @@ This binds `C-'` (`imenu-list-smart-toggle`) so that when pressing it
 a window appears on the right side showing the heading hierarchy in
 the `*Ilist*` buffer.  Pressing `C-'` again hides the window.
 
-![`imenu-list` with Markdown Mode](images/imenu-list.png)
+![Markdown Mode with `imenu-list`](images/imenu-list.png)
 
 By default, the point stays in the original window and so the
 `*Ilist*` window is not focused.  Setting the variable
 `imenu-list-focus-after-activation` to a non-`nil` value, as above,
 changes the focus to the new window so that you can immediately issue
-commands.
+commands there.
 
 The `*Ilist*` buffer is periodically refreshed.  If you want the width
 of the window containing it to adjust automatically each time it is
 refreshed, then set the variable `imenu-list-auto-resize` to `t`
 instead.
 
-Of course, there are several keybindings in the `*Ilist*` buffer for
+There are several keybindings in the `*Ilist*` buffer for
 navigating between sections:
 
 * `RET` or mouse click - visit heading at point
@@ -3152,7 +3156,7 @@ navigating between sections:
 * `q` - quit window and disable `imenu-list-minor-mode`
 
 Unlike the `imenu` Index menu, the `*Ilist*` buffer is updated
-automatically when Emacs is idle.
+automatically.
 
 
 ## File Local Variables {#file-local}
@@ -3160,8 +3164,9 @@ automatically when Emacs is idle.
 Emacs allows one to specify values for
 [variables inside files themselves](https://www.gnu.org/software/emacs/manual/html_node/emacs/File-Variables.html).
 For example, you can specify which mode Emacs should use to edit a
-particular file by setting a special `mode` variable.  You can specify
-such file local variables at either the beginning or end of a file.
+particular file by setting a special variable named `mode`.  You can
+specify such file local variables at either the beginning or end of a
+file.
 
 Perhaps you have seen lines like the following at the beginning of
 scripts.  This particular line tells Emacs that you'd like to open
@@ -3171,7 +3176,7 @@ this file using `cperl-mode`:
 #!/usr/bin/perl       -*- mode: cperl -*-
 ```
 
-The `mode` variable is special; it's not an actual variable name in
+The `mode` variable is special; it is not an actual variable name in
 Emacs.  Another special variable is `coding`, which specifies the
 character coding system for this file (e.g., `utf-8` or `latin-1`).  A
 third special variable is `eval`, which specifies a Lisp expression to
@@ -3211,7 +3216,7 @@ closes with `End:`, like so:
 <!-- End: -->
 ```
 
-It's not necessary that each line is a self-contained comment, so the
+It is not necessary that each line is a self-contained comment, so the
 following also works and it is a personal preference which form you
 use:
 
@@ -3225,7 +3230,7 @@ End:
 
 One useful scenario for using file local variables with Markdown files
 include toggling special modes, like setting `markdown-enable-math` in
-the previous example.  If you mostly have math mode disabled (so that
+the previous example.  If you mostly leave math mode disabled (so that
 `$` is not a special character), but sometimes want to enable it,
 using a file-local variable as above is a great way to handle this
 case.
@@ -3252,7 +3257,8 @@ or [MELPA Stable](https://stable.melpa.org/#/markdown-toc): `M-x package-install
 
 To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
-You will see a Markdown-formatted nested list like the following:
+You will see a header comment, a title, a Markdown-formatted nested
+list of headings, and a footer comment, as in the following example:
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3271,15 +3277,15 @@ You will see a Markdown-formatted nested list like the following:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After it has been inserted, you can update the table of contents with
-`M-x markdown-toc-refresh-toc`.  Alternatively, you can use the combined
-generate or refresh command `M-x markdown-toc-generate-or-refresh-toc`.
+`M-x markdown-toc-refresh-toc`.  As an alternative, you can use the combined
+generate-or-refresh command `M-x markdown-toc-generate-or-refresh-toc`.
 Finally, to remove it run `M-x markdown-toc-delete-toc`.
 
-Notice that `markdown-toc` generates anchors (e.g., `#quick-reference`)
-automatically.  You'll need to make sure that your Markdown processor
-of choice also generates these in the resulting HTML and that it
-follows the same format (i.e., replacing spaces with hyphens).  This is
-the format used by MultiMarkdown, for example.
+W> Notice that `markdown-toc` generates anchors (e.g., `#quick-reference`)
+W> automatically.  You'll need to make sure that your Markdown processor
+W> of choice also generates these in the resulting HTML and that it
+W> follows the same format (i.e., replacing spaces with hyphens).  This is
+W> the format used by MultiMarkdown, for example.
 
 You can also customize the title and the start and end comments:
 
@@ -3293,7 +3299,7 @@ You can also customize the title and the start and end comments:
 ## Displaying and Preserving Whitespace
 
 Whitespace is an important part of Markdown.  For example, two spaces
-at the end of a line produce a hard line break.  Blocks indented by
+at the end of a line produce a hard line break and blocks indented by
 four spaces become code blocks.
 
 If you want to temporarily display whitespace in a file, you can
@@ -3349,6 +3355,7 @@ above, set `markdown-wiki-link-fontify-missing` to `t`.
 
 ## Integration with Deft Mode
 
+{width=80%}
 ![Deft Mode with Notes in Markdown Format](images/deft.png)
 
 [Deft](https://jblevins.org/projects/deft/) is an Emacs mode for quickly browsing, filtering, and
@@ -3359,7 +3366,7 @@ the right time and by automating many of the usual tasks such as
 creating new files and saving files.
 
 If you keep notes in Markdown format (perhaps in wiki form, as in the
-previous section), then you might find Deft to be useful.  You don't
+previous section), then you might also enjoy Deft.  You don't
 have to use Markdown---Deft works with LaTeX files, Org files,
 etc.---but it has some Markdown-specific features.  For example, it
 automatically strips Markdown heading markup when displaying note
@@ -3391,13 +3398,15 @@ titling options.
 
 ## MathJax Integration
 
+{width=80%}
 ![Markdown with Math Mode and MathJax Preview](images/mathjax.png)
 
 If you want to include mathematical expressions in LaTeX form in your
 Markdown files, Markdown Mode assists you with [Math Mode](#math) for
-editing.  For viewing or publishing, you'll need some way to the LaTeX
-in a readable form.  One option is to use [MathJax](https://www.mathjax.org), a cross-browser
-JavaScript package for rendering mathematics in LaTeX and MathML form.
+editing (see the [Extensions](#extensions) chapter for details).  For viewing or
+publishing, you'll need some way to view the LaTeX in a readable form.
+One option is to use [MathJax](https://www.mathjax.org), a cross-browser JavaScript package
+for rendering mathematics in LaTeX and MathML form.
 
 Even if you don't use MathJax in your publication workflow, it can be
 useful for previewing Markdown files containing mathematics.  To do
@@ -3407,9 +3416,10 @@ to the `<head>` block of your HTML preview output using the
 
 ``` emacs-lisp
 (setq markdown-xhtml-header-content
-      "<script type=\"text/javascript\" async
-        src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML\">
-</script>")
+      (concat "<script type=\"text/javascript\" async"
+              " src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/"
+              "2.7.1/MathJax.js?config=TeX-MML-AM_CHTML\">"
+              "</script>"))
 ```
 
 W> The `TeX-MML-AM_CHTML` configuration in the example above very
@@ -3430,15 +3440,15 @@ A Unix "pipeline" is a sequence of processes connected through
 standard input of the following one.
 
 X> To give a generic example of pipes, the following command lists all
-X> running processes, filters out those with `markdown` in the name,
+X> running processes, filters out those without `markdown` in the name,
 X> removes the `grep markdown` process itself, extracts the process IDs
 X> using `awk`:
 X>
 X>     ps aux | grep markdown | grep -v grep | awk '{print $2}'
 
 With Markdown Mode, the Markdown processor given by the variable
-markdown-command` can be a pipeline, and so it can be used to pre- or
-post-process your Markdown files.
+`markdown-command` can be a pipeline, and so it can be used to apply
+pre- or post-processors to your Markdown files.
 
 As an example, one common Markdown post-processor is [SmartyPants](http://daringfireball.net/projects/smartypants/),
 which implements "smart typography" (curly quotation marks, en-dashes,
@@ -3447,7 +3457,7 @@ SmartyPants.
 
 *   On Debian Linux, you can install `libtext-typography-perl`.
 *   On macOS with Homebrew, you can use `brew install smartypants`.
-*   Otherwise, you can install manually by downloading the
+*   Otherwise, you can install it manually by downloading the
     [SmartyPants zip file](http://daringfireball.net/projects/smartypants/), uncompressing it, and placing
     `SmartyPants.pl` in your `PATH`.
 
@@ -3469,10 +3479,11 @@ following in your init file:
 To open a browser, Markdown Mode calls the function specified in
 `browse-url-browser-function`.  To determine what value is currently
 used in your own Emacs, you can use `M-x describe-variable RET
-browse-url-browser-function` .  To use a different browser, customize the
+browse-url-browser-function`.  To use a different browser, customize the
 variable with `M-x customize-option RET browse-url-browser-function`
 and answer the questions presented.
 
+{width=80%}
 ![Customizing `browse-url-browser-function`](images/browse-url-browser-function.png)
 
 If you want to change the setting in your init file instead, you can
@@ -3482,7 +3493,8 @@ simply add something like the following:
 (setq browse-url-browser-function 'browse-url-chrome)
 ```
 
-For reference, here is a selection of the available functions in Emacs 25.2:
+For reference, here is a selection of the available `browse-url`
+functions in Emacs 25.2:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3498,14 +3510,14 @@ browse-url-elinks-new-window        browse-url-w3
 
 If your browser is not supported, choose `browse-url-generic` and set
 `browse-url-generic-program` to the path of your browser's executable.
-The downside of using a generic browser is that you lose remote
-control and as a result, a new process will be spawned for every URL
+The downside of using a generic browser is that you lose "remote
+control" and as a result, a new process will be spawned for every URL
 you open.
 
-The above options change the browser for Emacs _globally_.  On the other
-hand, if for some reason you only wanted to change the browser used
-for Markdown Mode previewing, you can achieve this by "advising" the
-`markdown-preview` function:
+The above options change the browser for Emacs _globally_.  On the
+other hand, if for some reason you only wanted to change the browser
+used for Markdown Mode previewing specifically, you can achieve this
+by "advising" the `markdown-preview` function:
 
 ``` emacs-lisp
 (advice-add 'markdown-preview :around
@@ -3530,10 +3542,11 @@ You can customize the program used to "open" Markdown files from
 Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
 is `markdown-open-command`.
 
-On macOS, a representative program for opening Markdown files
-is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), a live-updating Markdown previewer.  Perhaps the
-easiest way to set things up is to write a simple shell script to
-serve as a wrapper to open Marked 2 from the command line.[^m2]
+On macOS, a popular application for opening Markdown files is
+[Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), a live-updating Markdown previewer.  Perhaps the
+easiest way to configure Markdown Mode to use it is to write a simple
+shell script to serve as a wrapper to open Marked 2 from the command
+line.[^m2]
 
 Below is an example script named `mark`.  Be sure to place it
 somewhere in your path (e.g., `/usr/local/bin`) and use `chmod +x` to
@@ -3549,7 +3562,7 @@ current file by setting `markdown-open-command`:
 ```
 
 Furthermore, once you install the `mark` script you can simply type
-`mark post.md` from the terminal to open a Markdown file.
+`mark <filename>` in a terminal to open a Markdown file.
 
 [^m2]: See <https://jblevins.org/log/marked-2-command> for details.
 
@@ -3557,19 +3570,19 @@ Furthermore, once you install the `mark` script you can simply type
 
 Pandoc, in addition to being a Markdown-to-HTML processor, can convert
 multiple input formats to each of several output formats.  For
-example, it can convert Markdown to LaTeX or Org.
+example, it can also convert Markdown to LaTeX or Org format.
 
-[Pandoc Mode](https://joostkremers.github.io/pandoc-mode/) is an Emacs interface to Pandoc, implemented as a
+[Pandoc Mode](https://joostkremers.github.io/pandoc-mode/) is an Emacs interface for Pandoc, implemented as a
 minor mode.  You can install it from MELPA or MELPA Stable and
 activate it by typing `M-x pandoc-mode`.  The documentation summarizes
 Pandoc Mode as follows:
 
 > `pandoc-mode` uses the `hydra` package to create a keyboard-driven
-> menu interface to all options and settings.  The main menu is called
-> by pressing `C-c /`.  After that, everything should be
-> self-explanatory.  From the main menu, you can run `pandoc` on the
-> buffer, view the output buffer and the current settings, set the
-> input and output formats, and you can go to the options menu.
+> menu interface to all options and settings.  Pressing `C-c /` calls
+> the main menu.  After that, everything should be self-explanatory.
+> From the main menu, you can run `pandoc` on the buffer, view the
+> output buffer and the current settings, set the input and output
+> formats, and you can go to the options menu.
 
 Some examples of settings Pandoc Mode can manage for you are:
 
@@ -3590,7 +3603,7 @@ to HTML for publishing on your website and also convert to PDF for
 printing.
 
 You can change the output settings from the `pandoc-mode` menus, or
-you can store them in a settings files on a per-project or global
+you can store them in settings files on a per-project or global
 basis.  If your main file name is `article.md` then the settings file
 for HTML output would be `.article.md.html.pandoc`.
 
@@ -3605,7 +3618,7 @@ file is detected:
 ## R Markdown
 
 [R Markdown](http://rmarkdown.rstudio.com) is a Markdown dialect created by RStudio specifically
-for creating reports from the R statistical package.  For example, it
+for producing reports from the R statistical package.  For example, it
 supports evaluation of R code blocks, with the output of the code
 included in the document.  R Markdown supports a variety of output
 formats, including HTML, PDF, and Word.
@@ -3617,9 +3630,9 @@ you'll want to use `markdown-mode` for those files.  For example:
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . markdown-mode))
 ```
 
-The basic Markdown syntax is the same in R Markdown.  Fenced code
-blocks with braces around the language name are used to format R
-code blocks:
+The basic Markdown syntax is unchanged in R Markdown, but it supports
+several extensions.  Fenced code blocks with braces around the
+language name are used to format R code blocks:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```{r}
@@ -3649,11 +3662,11 @@ blocks if you enable native font lock.  To do so, use
 changes to Markdown and other compatible documents.  It defines the
 following tags for marking changes:
 
-*   Addition `{++added++}`
-*   Deletion `{--removed--}`
-*   Substitution `{~~old~>new~~}`
-*   Comment `{>>comment<<}`
-*   Highlight `{==highlight==}{>>comment<<}`
+*   Addition: `{++added++}`
+*   Deletion: `{--removed--}`
+*   Substitution: `{~~old~>new~~}`
+*   Comment: `{>>comment<<}`
+*   Highlight: `{==highlight==}{>>comment<<}`
 
 [`cm-mode`](https://github.com/joostkremers/criticmarkup-emacs)
 is a minor mode that provides support for CriticMarkup
@@ -3669,7 +3682,7 @@ to track changes in a file:
 *   `C-c * s` - substitute text
 *   `C-c * c` - insert a comment (possibly with highlight)
 
-By default, `cm-mode` uses `C-c *` as a prefix, but this can easily be
+`cm-mode` uses `C-c *` as a prefix, but this can easily be
 changed to, say, `C-c c` like so:
 
 ``` emacs-lisp
@@ -3684,7 +3697,7 @@ changed to, say, `C-c c` like so:
 
 [HTML as Markdown Mode](https://github.com/Malabarba/ham-mode), or `ham-mode`, allows you to edit
 HTML files as if they were Markdown files.  That is, it provides a
-transparent layer so that you can open an HTML file in Markdown Mode.
+transparent layer so that you can edit an HTML file using Markdown Mode.
 It first converts the HTML to Markdown but any updates to the contents
 are converted back to HTML.
 
@@ -3696,12 +3709,12 @@ an HTML file, run `M-x ham-mode`.
 ## Editing Markdown Tables with Org Table Mode
 
 Although there is no standard Markdown table syntax, several now
-widely accepted variations have emerged.  Unfortunately, Markdown
-Mode does not yet support table editing for any of these formats.
-Implementing a full-featured table editing mode, such as
-`orgtbl-mode` in Org Mode, would require tremendous effort.
-However, with a little work, and if one is brave enough, the
-`orgtbl-mode` can be adapted to help in editing basic tables.
+widely accepted variations have emerged.  Implementing a full-featured
+table editing mode, such as `orgtbl-mode` in Org Mode, would require
+tremendous effort, and so unfortunately Markdown Mode does not yet
+support table editing.  However, with a little work, and if one is
+brave enough, `orgtbl-mode` can be adapted to help in editing basic
+Markdown tables.
 
 Here, we consider the pipe table syntax of PHP Markdown Extra
 because of its similarity to Org Mode tables.
@@ -3726,13 +3739,13 @@ cross in the middle.  Instead of `-|-`, Org uses `-+-`:
 | Content Cell | Content Cell  |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you toggle on `orgtbl-mode`, it will recognize either table,
-but when you re-align with `C-c C-c`, the result will be in the
-second (Org) format, which Markdown processors will not render
-correctly.  One way around this, which to be clear is a hack
-and not recommended for important work, is to _advise_ the
-`orgtbl-mode` alignment function so that at the end it converts
-the intersections back to Markdown pipe table form.
+If you toggle on `orgtbl-mode`, it will recognize either table, but
+when you re-align with `C-c C-c`, the result will be converted to Org
+format, which will not be rendered correctly by Markdown processors.
+One way around this---which to be clear is a hack and not recommended
+for important work---is to _advise_ the `orgtbl-mode` alignment
+function so that at the end it converts the intersections back to
+Markdown pipe table form.
 
 The following function temporarily narrows the buffer to the
 table in question and replaces instances of `-+-` with `-|-`.  It
@@ -3752,12 +3765,12 @@ disturb actual Org tables.
         (while (search-forward "-+-" nil t)
           (replace-match "-|-"))))))
 
-(advice-add 'org-table-align :after
-            'markdown-org-table-align-advice)
+(advice-add 'org-table-align :after 'markdown-org-table-align-advice)
 ```
 
-With this code installed, when you run `org-table-align`, such as when
-pressing `C-c C-c`, the table will be automatically adjusted.
+Once this code is evaluated, when you run `org-table-align`, such as
+when pressing `C-c C-c`, the table will be automatically converted
+back to Markdown format.
 
 W> This simple function does not handle the full syntax,
 W> such as indicators for table alignment, but it may be useful
@@ -3774,11 +3787,14 @@ at <https://github.com/jrblevin/markdown-mode>.
 
 If you would like to contribute to Markdown Mode development, the best
 way to start is to clone the Git repository.  You can clone the
-repository using several protocols:
+repository using the HTTPS, SSH, or Git protocols:
 
-* HTTPS: `git clone https://github.com/jrblevin/markdown-mode.git`
-* Git: `git clone git://github.com/jrblevin/markdown-mode.git`
-* SSH: `git clone ssh://git@github.com:jrblevin/markdown-mode.git`
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+git clone https://github.com/jrblevin/markdown-mode.git
+git clone git://github.com/jrblevin/markdown-mode.git
+git clone ssh://git@github.com:jrblevin/markdown-mode.git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Testing the Development Version
 
@@ -3792,12 +3808,12 @@ use unless you are fine with things occasionally breaking.  Function
 names, features, keybindings, etc. may change without notice.
 
 Supposing you have stored `markdown-mode.el` in directory named
-`/path/to/markdown-mode/`, then you'll probably need to make sure that
+`/path/to/markdown-mode`, then you'll probably need to make sure that
 Emacs can find it by adding something like the following to your init
 file:
 
 ``` emacs-lisp
-(add-to-list 'load-path "/path/to/markdown-mode/")
+(add-to-list 'load-path "/path/to/markdown-mode")
 ```
 
 Alternatively, you can install the `markdown-mode` package from the
