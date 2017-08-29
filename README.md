@@ -17,3 +17,12 @@ The *Guide to Markdown Mode for Emacs* is a complete reference for the [`markdow
 ### Meta Description
 
 The Guide to Markdown Mode for Emacs covers installation and configuration, advanced editing commands, customization, and useful tips and tricks.
+
+## License
+
+Unless otherwise noted, the contents of this repository are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][license].
+
+[![Creative Commons License][badge]][license]
+
+[license]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[badge]: https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png
