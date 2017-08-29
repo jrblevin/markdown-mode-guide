@@ -1,1 +1,1 @@
-markdown-mode-guide.md
+guide.txt
