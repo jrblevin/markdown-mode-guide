@@ -446,7 +446,7 @@ that Markdown Mode uses your Markdown processor of choice.
 If you are using the customize interface, you simply need to type the
 path to your Markdown script or binary in the "Markdown Command" field
 in the customize interface (e.g., `/usr/local/bin/multimarkdown`).  If
-you know the name of the executable, say `multimarkdown`, but you're
+you know the name of the executable, say `multimarkdown`, but you are
 not sure where it is located, and you are using macOS or Linux, you
 can find it by typing `which multimarkdown` at the command line.
 
@@ -580,7 +580,7 @@ E> 'markdown' is not recognized as an internal or external
 E>     command, operable program or batch file.
 E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-T> If you're having trouble setting your `exec-path`, a simple way to
+T> If you are having trouble setting your `exec-path`, a simple way to
 T> configure it is to install the
 T> [`exec-path-from-shell`](https://github.com/purcell/exec-path-from-shell)
 T> package.  Its purpose is to ensure that environment variables in
@@ -591,6 +591,9 @@ T> specifying the full path.
 
 ## Customization
 
+{width=70%}
+![Markdown Customize Group](images/customize-group-markdown.png)
+
 When in Markdown Mode, the `M-x customize-mode` command provides an
 interface to all of the available customizations.  If you are
 using a different mode, then you'll need to be more specific: `M-x
@@ -598,21 +601,18 @@ customize-mode RET markdown-mode`.  Alternatively, you can customize
 variables using `M-x customize-group RET markdown` (i.e., by
 customizing the _group_ rather than the _mode_).
 
-{width=80%}
-![Markdown Customize Group](images/customize-group-markdown.png)
-
 T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
 T> button.
+
+{width=70%}
+![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 Additionally, the faces used for font lock (syntax highlighting)
 can be modified to your liking---the font family, color,
 size, and so on---by issuing `M-x customize-group RET
 markdown-faces` or by using the "Markdown Faces" link at the
 bottom of the mode customization screen.
-
-{width=80%}
-![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 ------------------------------------------------------------------------------
 
@@ -622,11 +622,13 @@ This section describes the movement, insertion, and editing commands
 provided by Markdown Mode.  Commands pertaining to block elements are
 described first: headings, paragraphs, blockquotes, lists, code blocks,
 and horizontal rules.  Then, commands for editing span elements are
-described: emphasis, code, links, images, and comments.  Finally,
+ndescribed: emphasis, code, links, images, and comments.  Finally,
 miscellaneous editing commands are described for markup completion,
 markup cycling, indentation, etc.  Extensions, such as footnotes,
 fenced code blocks, wiki links, definition lists, and checkboxes
 are described in the [Extensions](#extensions) chapter that follows.
+
+![Markdown Menu in Emacs on macOS](images/menu-bar.png)
 
 Markdown Mode keybindings are grouped by prefixes based on their
 function.  Like other major modes, most commands begin with `C-c`, the
@@ -637,8 +639,6 @@ Similarly, commands for running Markdown and performing maintenance
 tasks reside under `C-c C-c` (`markdown-mode-command-map`).
 If you have `menu-bar-mode` on, you can also access these commands
 from the Markdown menu.
-
-![Markdown Menu in Emacs on macOS](images/menu-bar.png)
 
 Movement and shifting commands tend to be associated with paired
 delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.  If you are
@@ -1036,7 +1036,7 @@ for a specific heading level, customize that face individually.
 T> `markdown-header-face` inherits from `variable-pitch` by default,
 T> for contrast with the `default` face, which is a fixed width font by
 T> default.  If you don't like the appearance of headings on your
-T> system, first ensure that you're setting the family of
+T> system, first ensure that you are setting the family of
 T> `variable-pitch` to something that pairs well with your `default`
 T> font.
 
@@ -1214,7 +1214,7 @@ headings, etc.
 
 To move the point from one paragraph to another, use
 `M-{` and `M-}` (`markdown-backward-paragraph` and
-`markdown-forward-paragraph`).  These keys are usually bound to
+`markdown-forward-paragraph`).  By default, these keys are bound to
 `forward-paragraph` and `backward-paragraph`, but the built-in Emacs
 functions are based on simple regular expressions that fail in
 Markdown files.  To mark a paragraph, you can use
@@ -1290,7 +1290,8 @@ that are cycled through following a nested list when the point is at
 the block above position 5.  In order, these positions would be appropriate
 for 1) starting a new nested list item, 2) continuing the nested list
 item with indentation past the marker, 3) starting a list item with a
-deeper level of nesting, and 4) adding a nested indented code block.
+deeper level of nesting, 4) adding a nested indented code block, and
+5) starting a new list item at the top level of the list.
 
 If you so desire, you can fully customize this behavior by writing
 your own indentation function and setting the variable
@@ -1451,16 +1452,7 @@ redefining the variable `markdown-hr-strings`.
 
 `markdown-hr-strings`
 
-:   List of strings, default:
-
-    ``` emacs-lisp
-    '("-------------------------------------------------------------------------------"
-      "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *"
-      "---------------------------------------"
-      "* * * * * * * * * * * * * * * * * * * *"
-      "---------"
-      "* * * * *")
-    ```
+:   List of strings.
 
     Strings to use when inserting horizontal rules.
 
@@ -2182,8 +2174,8 @@ To insert a footnote in Markdown Mode press `C-c C-s f`
 positions the point for typing the footnote text.  Footnotes inserted
 this way are numbered, and the counter advances automatically.
 
-W> Footnotes are an extension to Markdown and are not supported by all
-W> processors.
+W> This footnote syntax is an extension to Markdown and although it is
+W> in common use, it is not supported by all processors.
 
 As with reference links, you can customize the location of footnote
 definitions.  Similarly, you can use `C-c C-d` (`markdown-do`) to jump
@@ -2571,11 +2563,12 @@ Mode as described below.
   variable names such as `a_test_variable` will not trigger
   italics.
 
-* **Fenced code blocks:**  Code blocks between backquotes (`` ``` ``),
-  with optional programming language keywords, are highlighted in both
-  Markdown Mode and GFM Mode.  They can be inserted with `C-c C-s C`
-  (`markdown-insert-gfm-code-block`) or by typing three backquotes
-  when `markdown-electric-backquote` is non-`nil`.
+* **Fenced code blocks:**  Code blocks between triple backquotes
+  (```` ``` ````), with optional programming language keywords, are
+  highlighted in both Markdown Mode and GFM Mode.  They can be
+  inserted with `C-c C-s C` (`markdown-insert-gfm-code-block`) or by
+  typing three backquotes when `markdown-electric-backquote` is
+  non-`nil`.
 
 * **Strikethrough:**  Strikethrough text is only supported in GFM Mode
   and can be inserted (and toggled) using `C-c C-s s`
@@ -2613,7 +2606,7 @@ Mode as described below.
   ```
 
 * **Preview:** GFM-specific preview can be powered by setting
-  `markdown-command` to use [Docter](https://github.com/alampros/Docter) (which, as of this writing is
+  `markdown-command` to use [Docter](https://github.com/alampros/Docter) (which, as of this writing, is
   unfortunately no longer maintained).  This may also be configured to
   work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
 
@@ -3082,6 +3075,7 @@ to that heading.  Alternatively, when invoking `M-x imenu` using the
 keyboard Emacs will present you with a list of headings in the
 minibuffer.
 
+{width=70%}
 ![`imenu` Index Menu](images/imenu-index.png)
 
 Markdown Mode adds a single period (`.`) to the top of each sub-menu.
@@ -3823,7 +3817,8 @@ repository in your init file, like so:
 
 ``` emacs-lisp
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 ```
 
@@ -3861,7 +3856,7 @@ patch.
     [Major Mode Conventions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Major-Mode-Conventions.html#Major-Mode-Conventions).
 
 *   Test cases are needed for significant changes.  Markdown Mode uses
-    the `ert` (Emacs Lisp Regression Testing) library.  If you're not
+    the `ert` (Emacs Lisp Regression Testing) library.  If you are not
     familiar with writing tests, there are hundreds of examples in
     `markdown-test.el` that you can use as a starting point for new
     tests.
