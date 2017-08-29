@@ -2622,24 +2622,24 @@ Mode as described below.
 # Previewing & Exporting Files {#preview-export}
 
 There are a variety of ways to preview and export files in Markdown
-Mode.  Perhaps the simplest way to "preview" what your Markdown will
-look like on the web or elsewhere is to hide the markup in the buffer
-itself.  Several other options are available, such as previewing in a
-browser, which use an external Markdown processor (e.g., Markdown.pl,
-Pandoc, or MultiMarkdown).  The various methods for previewing and
-exporting are summarized in the following table and described in more
-detail in the sections that follow.
+Mode.  Perhaps the simplest way to quickly "preview" what your
+Markdown will look like on the web is to hide the markup in the buffer
+itself.  Several other options are available which make use of an
+external Markdown processor (e.g., Markdown.pl, Pandoc, or
+MultiMarkdown).  The various methods for previewing and exporting are
+summarized in the following table and described in more detail in the
+sections that follow.
 
-| Description   | Keybinding     | Destination/Viewer            |
-|---------------|----------------|-------------------------------|
-| Hide Markup   | `C-c C-x C-m`  | Same buffer                   |
-| Compile       | `C-c C-c m`    | `*markdown-output*` buffer    |
-| Kill Ring     | `C-c C-c w`    | kill ring                     |
-| Preview       | `C-c C-c p`    | Browser (temporary file)      |
-| Export        | `C-c C-c e`    | `<basename>.html`             |
-| Export & View | `C-c C-c v`    | `<basename>.html` and browser |
-| Live Preview  | `C-c C-c l`    | `eww` in Emacs                |
-| Open          | `C-c C-c o`    | `markdown-open-command`       |
+| Description    | Keybinding     | Destination/Viewer              |
+|----------------|----------------|---------------------------------|
+| Hide Markup    | `C-c C-x C-m`  | Same buffer                     |
+| Compile        | `C-c C-c m`    | `*markdown-output*` buffer      |
+| Kill Ring Save | `C-c C-c w`    | kill ring                       |
+| Preview        | `C-c C-c p`    | Browser (temporary file)        |
+| Export         | `C-c C-c e`    | `<basename>.html`               |
+| Export & View  | `C-c C-c v`    | `<basename>.html`, then browser |
+| Live Preview   | `C-c C-c l`    | `eww` in an Emacs buffer        |
+| Open           | `C-c C-c o`    | `markdown-open-command`         |
 
 All commands except Hide Markup and Open involve the additional step
 of sending the contents of the buffer to an external processor
@@ -2650,19 +2650,21 @@ I> external Markdown processor, `markdown-command` must be configured
 I> as described in the [Configuring Markdown](#configuring-markdown)
 I> section.
 
-The Preview and Export commands are similar and worthy of discussion.
-The difference is that when _previewing_, the output is written to a
-temporary file and is then opened in a browser.  When _exporting_,
-the output is written to a file named like the one being visited,
-but with a `.html` extension, and it is not opened.  On the other
-hand, _viewing_ is a combination of previewing and exporting where
-the file is saved permanently and is also opened for viewing.
+The Preview and Export commands are similar and worthy of more
+discussion.  The difference is that when _previewing_, the output is
+written to a temporary that and is then opened in a browser.  When
+_exporting_, the output is written to a file named like the one being
+visited, with the extension changed to `.html` instead, but the file
+is not opened.  On the other hand, _viewing_ is a combination of
+exporting and previewing: the file is saved permanently and then
+also opened for viewing.
 
 W> For the Export and View commands, the output file of form
 W> `<basename>.html` will be overwritten without notice.
 
 T> The table above lists the keybindings for carrying out these
-T> commands, but they are also available from the Markdown menu.
+T> commands, but they are also available from the Markdown menu
+T> when `menu-bar-mode` is enabled.
 
 ## Markup Hiding {#markup-hiding}
 
@@ -2682,16 +2684,40 @@ markup hiding, the URL and surrounding markup is hidden entirely,
 while with URL hiding, only the URL itself is replaced by a
 composition character.
 
-When [Markup Hiding](#markup-hiding) is enabled, the `>` prefix for blockquotes will
-be displayed as a special Unicode block character.  To customize this
-character, you can set `markdown-blockquote-display-char`.
+When [Markup Hiding](#markup-hiding) is enabled, the `>` prefix for blockquotes
+will be displayed as a special box drawing character.  Horizontal
+rules, similarly, will be displayed using a line drawing character.
+List markers for unordered lists will be displayed using Unicode
+bullets, with different bullets for each level of nesting.  Definition
+list markers, similarly, will be displayed using an alternative glyph.
+The alternative display characters can be changed by customizing the
+following variables.
 
 `markdown-blockquote-display-char`
 
-: String, default: 0x258C (left half block).
+:   String, default: 0x258C (left half block).
 
     Character displayed when hiding blockquote markup.
 
+`markdown-hr-display-char`
+
+:   Character, default: `─`.
+
+    Character for hiding horizontal rule markup.
+
+`markdown-definition-display-char`
+
+:   Character, default: `⁘`.
+
+    Character for replacing definition list markup.
+
+`markdown-list-item-bullets`
+
+:   List of strings, default: `'("●" "◎" "○" "◆" "◇" "►" "•")`.
+
+    List of bullets to use for unordered lists.  It can contain any
+    number of symbols, which will be repeated if nesting exceeds the
+    list length.
 
 I> Markup hiding works by adding text properties to positions in the
 I> buffer---either the `invisible` property or the `display` property
@@ -2702,7 +2728,7 @@ I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g., using Pandoc) and then
 I> print.
 
-## Compiling to a Temporary Buffer or Kill Ring
+## Compiling to a Temporary Buffer or the Kill Ring
 
 _Compiling_ (i.e., running Markdown) with `C-c C-c m`
 (`markdown-other-window`) will send the
@@ -2721,15 +2747,18 @@ _Previewing_ the current buffer with `C-c C-c p` (`markdown-preview`)
 runs Markdown on the current buffer, stores the output in a temporary
 file, and opens or "previews" the file in the default browser.
 
-T> See the [Tips](#tips) section for details on how to configure the
+T> See the [Tips](#tips) chapter for details on how to configure the
 T> default browser in Emacs.
 
 ## Static HTML Export & View
 
-_Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown on
-the current buffer and save the result in the file `<basename>.html`,
-where `<basename>` is the name of the Markdown file visited by the
-current buffer, with the extension removed.
+_Exporting_ with `C-c C-c e` (`markdown-export`) will run Markdown
+(`markdown-command`) on the current buffer and save the result in the
+file `<basename>.html`, where `<basename>` is the name of the Markdown
+file visited by the current buffer, with the extension removed.
+
+X> As an example, if you are editing a file named `notes.md`, then the
+X> corresponding export file name would be `notes.html`.
 
 Similarly _viewing_ with `C-c C-c v` (`markdown-export-and-preview`)
 is the same as _exporting_ the file and opening it in the default
@@ -2737,12 +2766,13 @@ browser.
 
 ## Live Preview Mode
 
-![Live Preview Mode with `eww`](images/live-preview.png)
+![Live Preview Mode with the `eww` Browser](images/live-preview.png)
 
 Markdown Mode also includes a live preview mode, which opens a preview
-window in `eww`, which is a built-in browser available in Emacs.
-A timer periodically updates the HTML generated by `markdown-command`.
-Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
+window in `eww`, which is a built-in browser available in Emacs.  An
+idle timer periodically refreshes the HTML generated by
+`markdown-command`.  Press `C-c C-c l` to toggle
+`markdown-live-preview-mode`.
 
 `markdown-split-window-direction`
 
@@ -2752,9 +2782,10 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
     default value is `any`, which instructs Emacs to use
     `split-window-sensibly` to automatically choose how to split
     windows based on the values of `split-width-threshold` and
-    `split-height-threshold` and the available windows.  To force
-    vertically split windows (left and right), set this to `right`.
-    To force horizontally split windows, set this to `below`.
+    `split-height-threshold` and the current window configuration.  To
+    force vertically split windows (left and right), set this to
+    `right`.  To force horizontally split windows, set this to
+    `below`.
 
     _Example:_
 
@@ -2771,10 +2802,11 @@ Press `C-c C-c l` to toggle `markdown-live-preview-mode`.
     `markdown-live-preview-export`.  If set to `delete-on-export`,
     delete on every export.  When set to `delete-on-destroy`, delete
     when quitting `markdown-live-preview-mode`.  If set to `nil`,
-    never delete
+    never delete.
 
+T> For more complex configurations,
 T> `markdown-live-preview-window-function` can be customized to open
-T>  in a browser other than `eww`.
+T> in a browser other than `eww`.
 
 ## Opening in a Standalone Markdown Previewer
 
@@ -2798,7 +2830,7 @@ customized to use an available external previewer on your system.
     (setq markdown-open-command "/usr/local/bin/mark")
     ```
 
-T> As described in the Tips section, one popular viewer on macOS
+T> As described in the [Tips](#tips) chapter, one popular viewer on macOS
 T> is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs), which can easily be used as with Markdown Mode
 T> with a simple shell script acting as a `markdown-open-command`
 T> wrapper.
@@ -2809,7 +2841,7 @@ T> wrapper.
 
 :   String, default: `"^\\(<\\?xml\\|<!DOCTYPE\\|<html\\)"`.
 
-    Regular expression which Markdown Mode uses to determine whether
+    The regular expression that Markdown Mode uses to determine whether
     the output of `markdown-command` is a standalone HTML document or
     an HTML fragment.  If this regular expression not matched in the
     first five lines of output, Markdown Mode assumes the output is a
@@ -2819,7 +2851,7 @@ T> wrapper.
 
 :   List of strings, default: `nil`.
 
-    A list of CSS files to link to in the HTML output.
+    A list of CSS files (URLs) to link to in the HTML output.
 
 `markdown-content-type`
 
@@ -2829,6 +2861,10 @@ T> wrapper.
     included in the HTML `<head>` block.  If needed, the suggested
     values are `application/xhtml+xml` or `text/html`.  See also:
     `markdown-coding-system`.
+
+    ``` emacs-lisp
+    (setq markdown-content-type "application/xhtml+xml")
+    ```
 
 `markdown-coding-system`
 
@@ -2853,6 +2889,11 @@ T> wrapper.
 :   String, default: `""`.
 
     Additional content to include in the HTML `<head>` block.
+
+    ``` emacs-lisp
+    (setq markdown-xhtml-header-content
+          "<link rel=\"shortcut icon\" href=\"/favicon.ico\" type=\"image/png\"/>")
+    ```
 
 `markdown-before-export-hook`
 
@@ -3080,7 +3121,7 @@ the `*Ilist*` buffer.  Pressing `C-'` again hides the window.
 
 By default, the point stays in the original window and so the
 `*Ilist*` window is not focused.  Setting the variable
-`imenu-list-focus-after-activation` to a non-nil value, as above,
+`imenu-list-focus-after-activation` to a non-`nil` value, as above,
 changes the focus to the new window so that you can immediately issue
 commands.
 
@@ -3280,7 +3321,7 @@ reference labels, Markdown markup, and URLs.
 ![Local Wiki Files in Markdown Mode](images/local-wiki.png)
 
 Markdown Mode supports wiki links, so you can use it keep notes in a
-local wiki.  You can create `[[wiki links]` to other files and open
+local wiki.  You can create `[[wiki links]]` to other files and open
 them by moving the point to the link and pressing `C-c C-o`.  If a
 file doesn't exist, it will be created.  You can move quickly between
 links with `M-n` (`markdown-next-link`) and `M-p`
