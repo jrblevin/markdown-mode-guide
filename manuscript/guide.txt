@@ -3145,8 +3145,8 @@ End:
 
 A package called [`markdown-toc`](https://github.com/ardumont/markdown-toc)
 allows users to generate and update a table of contents in Markdown
-files.  Like Markdown Mode itself, you can install it from [MELPA](https://melpa.org/#/markdown-mode)
-or [MELPA Stable](https://stable.melpa.org/#/markdown-mode): `M-x package-install RET markdown-toc`.
+files.  Like Markdown Mode itself, you can install it from [MELPA](https://melpa.org/#/markdown-toc)
+or [MELPA Stable](https://stable.melpa.org/#/markdown-toc): `M-x package-install RET markdown-toc`.
 
 To insert the table of contents initially, place the point where you
 would like it to appear and issue `M-x markdown-toc-generate-toc`.
@@ -3555,8 +3555,8 @@ following tags for marking changes:
 
 [`cm-mode`](https://github.com/joostkremers/criticmarkup-emacs)
 is a minor mode that provides support for CriticMarkup
-in Emacs.  Like other packages described, it is available on [MELPA](https://melpa.org/#/markdown-mode)
-and [MELPA Stable](https://stable.melpa.org/#/markdown-mode).  First, it provides font-lock support for the
+in Emacs.  Like other packages described, it is available on [MELPA](https://melpa.org/#/cm-mode)
+and [MELPA Stable](https://stable.melpa.org/#/cm-mode).  First, it provides font-lock support for the
 markup tags above, and it defines the customizable faces used to
 highlight them.  To customize the faces, see the `criticmarkup-faces`
 group.  Second, it provides keybindings for insert CriticMarkup tags
@@ -3586,7 +3586,7 @@ transparent layer so that you can open an HTML file in Markdown Mode.
 It first converts the HTML to Markdown but any updates to the contents
 are converted back to HTML.
 
-To install the package from [MELPA](https://melpa.org/#/markdown-mode) or [MELPA Stable](https://stable.melpa.org/#/markdown-mode), simply
+To install the package from [MELPA](https://melpa.org/#/ham-mode) or [MELPA Stable](https://stable.melpa.org/#/ham-mode), simply
 run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
 
