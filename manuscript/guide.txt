@@ -171,7 +171,7 @@ implemented by others in a variety of programming languages.
 Some examples are, in no particular order, PHP Markdown Extra, Python
 Markdown, MultiMarkdown (Perl and C), Pandoc (Haskell), Discount (C),
 Maruku (Ruby), RedCarpet (Ruby), Kramdown (Ruby), Showdown
-(JavaScript), and CommonMark (C and Javascript).
+(JavaScript), and CommonMark (C and JavaScript).
 
 [^aaronsw]: John Gruber described Aaron Swartz as his "muse" while developing Markdown, due to his early enthusiasm for and feedback on the project.  Aaron Swartz also wrote [html2text](http://www.aaronsw.com/2002/html2text/), a popular HTML to Markdown converter written in Python.
 
@@ -1228,7 +1228,7 @@ blockquotes.  To move backward or forward by one block use
 `markdown-end-of-block`).  To mark a block, use `C-c M-h`
 (`markdown-mark-block`).  To narrow the buffer to the current
 block, use `C-x n b` (`markdown-narrow-to-block`) and to
-widen agan use `C-x n w` (`widen`).
+widen again use `C-x n w` (`widen`).
 
 To compare paragraph and block movement, consider some specific
 examples.  In terms of list items, paragraph movement moves
@@ -3116,7 +3116,7 @@ you can customize `markdown-nested-imenu-heading-index`.
 
 Another useful `imenu`-based package is [`imenu-list`](https://github.com/bmag/imenu-list), a
 third-party package which shows the current buffer's `imenu` entries
-in a popup buffer.  You can install `imenu-list` from MELPA.
+in a pop-up buffer.  You can install `imenu-list` from MELPA.
 With [use-package](https://github.com/jwiegley/use-package), you can configure it like so:
 
 ``` emacs-lisp
