@@ -2695,7 +2695,7 @@ following variables.
 
 `markdown-blockquote-display-char`
 
-:   String, default: 0x258C (left half block).
+:   String, default: 0x258C (left half block).[^unicode]
 
     Character displayed when hiding blockquote markup.
 
@@ -2707,13 +2707,20 @@ following variables.
 
 `markdown-definition-display-char`
 
-:   Character, default: `⁘`.
+:   Character, default: 0x2058 (four dot punctuation).
 
     Character for replacing definition list markup.
 
+    Test: ⁘
+
 `markdown-list-item-bullets`
 
-:   List of strings, default: `'("●" "◎" "○" "◆" "◇" "►" "•")`.
+:   List of strings, default: 0x25cf (black circle), 0x25ce
+    (bullseye), 0x25cb (white circle), 0x25c6 (black diamond), 0x25c7
+    (white diamond), 0x25ba (black right-pointing pointer), 0x2022
+    (bullet).
+
+    Test: ● ◎ ○ ◆ ◇ ► •
 
     List of bullets to use for unordered lists.  It can contain any
     number of symbols, which will be repeated if nesting exceeds the
@@ -2727,6 +2734,8 @@ I> Functions such as `htmlfontify-buffer` and `ps-print-buffer` will
 I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g., using Pandoc) and then
 I> print.
+
+[^unicode]: Due to technical limitations, some characters cannot be displayed in the text.  UTF-16 encodings and entity names are listed instead.
 
 ## Compiling to a Temporary Buffer or the Kill Ring
 
@@ -2912,7 +2921,9 @@ T> wrapper.
 
 ------------------------------------------------------------------------------
 
-# Tips & Tricks {#tips}
+# Tips {#tips}
+
+This chapter
 
 ## Using Markdown Mode with Other File Extensions {#extensions}
 
