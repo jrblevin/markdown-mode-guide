@@ -764,12 +764,10 @@ based on the previous heading.  By default, the new heading will be a
 sibling (same level).  A `C-u` prefix can be added to insert a heading
 that is _promoted_ (lower number) by one level or a `C-u C-u` prefix
 can be given to insert a heading that is _demoted_ (higher number) by
-one level.  In cases where the automatically-determined level is not
-what you intended, the level can be quickly replaced, promoted, or
-demoted as described below.
+one level.
 
 X> Suppose you are currently writing in a level-two section, as in the
-X> following example, and want to start a new section.
+X> following example, where `█` indicates the point:
 X>
 X> {lang="text"}
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -820,14 +818,12 @@ not blank, they use the text on the current line.  Otherwise, the user
 is prompted to provide the heading text.
 
 If the point is at a heading, these commands will replace the existing
-markup in order to update the level and/or type of the heading.  To
-remove the markup of the heading at the point, press `C-c C-k`
-(`markdown-kill-thing-at-point`) to kill the heading and press `C-y`
-to yank the heading text back into the buffer.
+markup in order to update the level and/or type of the heading.  This
+is useful, for example, when the automatically-determined heading level
+is not what you wanted: the heading level can be quickly changed as needed.
 
 X> Suppose you mistakenly insert a level-two heading and want to
-X> replace it, as in the following example, where `█` indicates the
-X> point:
+X> replace it, as in the following example:
 X>
 X> {lang="text"}
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -840,6 +836,11 @@ X> {lang="text"}
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 X> # Heading█#
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To remove the markup of the heading at the point, you can press `C-c C-k`
+(`markdown-kill-thing-at-point`) to kill the heading and add the text
+to the kill ring.  Press `C-y` to yank the heading text back into the
+buffer.
 
 I> Markdown.pl and several other processors allow one to omit the
 I> whitespace between the hash mark and the heading text, but some
