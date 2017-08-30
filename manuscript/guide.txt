@@ -1187,7 +1187,7 @@ default indentation amount by setting `markdown-list-indent-width`.
 
 `markdown-unordered-list-item-prefix`
 
-:   String, default: `"  * "`.
+:   String, default: `"  * "`.
 
     String to be inserted to create an unordered list item.
 
