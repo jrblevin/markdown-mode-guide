@@ -11,7 +11,7 @@ tags: Emacs, markdown, markdown-mode, writing, plain text
 
 ![Markdown Mode Screenshot](images/markdown-mode-2.3.png)
 
-This Guide describes how to install, use, and customize
+This _Guide_ describes how to install, use, and customize
 [Markdown Mode](https://jblevins.org/projects/markdown-mode/), a major mode for editing Markdown-formatted text
 files in [Emacs](https://www.gnu.org/software/emacs/).  It is not intended to be a replacement for the
 online manual, but rather to supplement and extend the manual for
@@ -206,14 +206,14 @@ Mode does not explicitly support inline HTML.
 For additional information on Markdown syntax, you can refer to the
 following links:
 
-*   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - original syntax description by John Gruber
-*   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - online converter using Markdown.pl
-*   [Babelmark 2](https://johnmacfarlane.net/babelmark2/) - online converter comparing many Markdown processors
-*   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - background information on Markdown with syntax examples
-*   [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - guide to Markdown and extensions by GitHub
+*   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - Original syntax description by John Gruber
+*   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - Online converter using Markdown.pl
+*   [Babelmark 2](https://johnmacfarlane.net/babelmark2/) - Online converter comparing many Markdown processors
+*   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - Background information on Markdown with syntax examples
+*   [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - Guide to Markdown and extensions by GitHub
 *   [Pandoc User's Guide](http://pandoc.org/MANUAL.html) - Markdown and Pandoc extensions
 *   [PHP Markdown Reference](https://michelf.ca/projects/php-markdown/reference/) - Markdown and PHP Markdown Extra extensions
-*   [Write better Markdown](http://brettterpstra.com/2015/08/24/write-better-markdown/) - a style guide by Brett Terpstra
+*   [Write better Markdown](http://brettterpstra.com/2015/08/24/write-better-markdown/) - Style guide by Brett Terpstra
 
 ## History
 
@@ -240,12 +240,12 @@ or those for previous versions:
   * 2007-05-25: [Version 1.2](https://jblevins.org/projects/markdown-mode/rev-1-2)
   * 2007-05-24: [Version 1.1](https://jblevins.org/projects/markdown-mode/rev-1-1)
 
-Historically, version numbering began at 1.1 because the source code
-was originally stored in RCS (Revision Control System), which numbers
-revisions starting at 1.1 by default.  After version 1.5, the source
-was moved to Git, where it still resides today.  See the chapter
-on [Markdown Mode Development](#devel) for instructions on how to obtain
-the source code.
+I> Historically, version numbering began at 1.1 because the source code
+I> was originally stored in RCS (Revision Control System), which numbers
+I> revisions starting at 1.1 by default.  After version 1.5, the source
+I> was moved to Git, where it still resides today.  See the chapter
+I> on [Markdown Mode Development](#devel) for instructions on how to obtain
+I> the source code.
 
 ## Acknowledgments
 
@@ -289,8 +289,8 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 
 There are many ways to load packages in Emacs, and the following three
 are covered in this section: installation using the built-in Emacs
-package manager (recommended), manual installation, and installation
-using a system-wide package manager.
+package manager (recommended), installation using a system-wide
+package manager, and manual installation.
 
 Markdown Mode is compatible with Emacs 24.3 and later, and it has few
 dependencies.  To preview files and export to HTML, you will need to
@@ -299,10 +299,10 @@ Also, to enable editing of code blocks in indirect buffers
 using `C-c '` (`markdown-edit-code-block`), you will need to install
 the [`edit-indirect`](https://github.com/Fanael/edit-indirect/) package.
 
-*Note:* This chapter covers installing the stable version of Markdown
-Mode, but installing the development version is similar.  If you'd
-like to test the development version see the [Markdown Mode Development](#devel)
-chapter at the end.
+I> This chapter covers installing the stable version of Markdown
+I> Mode, but installing the development version is similar.  If you would
+I> like to test the development version see the [Markdown Mode Development](#devel)
+I> chapter at the end.
 
 ## Installation Methods
 
@@ -313,7 +313,7 @@ Emacs package manager, `package.el`, which has been included in Emacs
 since version 23.  Markdown Mode can be installed via the `markdown-mode`
 package in the [MELPA Stable repository](https://stable.melpa.org/#/markdown-mode).[^MELPA]
 
-First, you'll need to configure the package manager to use the MELPA
+First, you will need to configure the package manager to use the MELPA
 Stable repository by adding the following to your `.emacs`, `init.el`,
 or equivalent init file:
 
@@ -341,12 +341,12 @@ so adjust the settings as needed):
   :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode))
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "/usr/local/bin/multimarkdown"))
 ```
 
 [^MELPA]: MELPA is Milkypostman's Emacs Lisp Package Archive at <http://melpa.org/>.
 
-[^extensions]: See the tip on [Using Markdown Mode with Other File Extensions](#file-extensions) for how to configure Emacs to use `markdown-mode` with file extensions other than `.md` and `.markdown`.
+[^extensions]: See the tip on [Using Markdown Mode with Other File Extensions](#file-extensions) for instructions on how to configure Emacs to use `markdown-mode` for file extensions other than `.md` and `.markdown`.
 
 ### OS Package Manager
 
@@ -355,7 +355,7 @@ operating systems.  You should confirm that the package you install
 contains the latest stable version (and please notify the package
 maintainer if not).  These packages also typically do not byte compile
 the source files or configure them to load automatically, so you may
-still need to follow the manual installation instructions in the
+still need to follow the [Manual Installation](#manual) instructions in the
 next section.
 
 **MacOS:** MacOS users who use Homebrew can install the
@@ -371,7 +371,7 @@ This will install files in
 `/usr/local/share/emacs/site-lisp/markdown-mode`.  Depending on where
 you obtained Emacs, this directory may or may not be in your
 `load-path`, so you may need to add it as described in the
-Manual Installation section that follows.
+[Manual Installation](#manual) section that follows.
 
 W> If you are a MacPorts user, unfortunately there does not seem to be
 W> an up-to-date port.  The existing [markdown-mode.el](https://trac.macports.org/browser/trunk/dports/editors/markdown-mode.el/Portfile) port
@@ -396,7 +396,7 @@ Installation instructions in the next section to load Markdown Mode.
 **NetBSD:** Markdown Mode is available in pkgsrc
 as [textproc/markdown-mode](http://pkgsrc.se/textproc/markdown-mode), but (as of May 8, 2017) it installs and
 byte-compiles an outdated version of Markdown Mode.  If you use this
-package, you'll also need to edit your init file following the Manual
+package, you will also need to edit your init file following the Manual
 Installation instructions below, to load Markdown Mode.  Rather than
 installing this package, use the Emacs package manager as described
 above.
@@ -405,7 +405,7 @@ above.
 pkg_add textproc/markdown-mode
 ```
 
-### Manual Download
+### Manual Installation {#manual}
 
 Alternatively, you can manually download and install Markdown Mode.
 First, download the [latest stable version](https://jblevins.org/projects/markdown-mode/markdown-mode.el)[^stable] and save
@@ -428,7 +428,7 @@ to load automatically by adding the following to your init file:
 
 ## Configuring Markdown  {#configuring-markdown}
 
-Although strictly speaking no configuration is *necessary*, there are
+Although strictly speaking no configuration is _necessary_, there are
 a few settings that most users will want to customize.  The most
 important of these is the `markdown-command` variable, which tells
 Markdown Mode where to find an external program on your system for
@@ -475,16 +475,16 @@ Then, in Emacs, type `M-x customize-mode RET markdown-mode` and set
 
 ### Configuring Markdown on Windows
 
-On Windows, you'll need to use the full path including the drive
+On Windows, you will need to use the full path including the drive
 letter.  For example, if you installed Pandoc in `C:\Utils\Console`,
-then you'd set `markdown-command` like this:
+then you would set `markdown-command` like this:
 
 ``` emacs-lisp
 (setq markdown-command "c:/Utils/Console/pandoc.exe")
 ```
 
 If you need to run Markdown as a script, with an interpreter, then
-you'll need to add that as well.  For example, to use Markdown.pl with
+you will need to add that as well.  For example, to use Markdown.pl with
 Perl (both need to be installed), something like this should suffice:
 
 ``` emacs-lisp
@@ -521,21 +521,21 @@ highlighting of code blocks.
 
 By default, Markdown Mode assumes that your Markdown processor accepts
 input via the standard input, or `stdin`.  That is, it assumes that if
-you were using it from the command line, you could *pipe* input to it
+you were using it from the command line, you could _pipe_ input to it
 like so:
 
 ``` text
 cat document.md | markdown
 ```
 
-If your Markdown processor needs to be passed a file name, you'll need
+If your Markdown processor needs to be passed a file name, you will need
 to set another variable: `markdown-command-needs-filename`.
-The default value is `nil`.  When this variable is `nil` (the default),
-Markdown Mode will pass the Markdown content to `markdown-command`
-using `stdin`.  When set to `t`, Markdown Mode will
-pass the name of the file as the final command line argument to
-`markdown-command`.  Note that in the latter case, you will only be
-able to run `markdown-command` from buffers which are visiting a file.
+When this variable is `nil` (the default), Markdown Mode will pass the
+Markdown content to `markdown-command` using `stdin`.  When set to
+`t`, Markdown Mode will pass the name of the file as the final command
+line argument to `markdown-command`.  Note that in the latter case,
+you will only be able to run `markdown-command` from buffers which are
+visiting a file.
 
 `markdown-command-needs-filename`
 
@@ -563,19 +563,22 @@ check whether Emacs can find an executable named `pandoc`, you can
 issue `M-: (executable-find "pandoc")`.  The return value will be
 displayed in the minibuffer.  If you see the path to `pandoc`, then
 Emacs can find it.  If you see `nil`, then `pandoc` could not be found
-in `exec-path`.
+in your `exec-path`.
 
 E> If you attempt to preview or export your buffer and you see an error
-E> regarding the `markdown` command, then most likely you need to check
+E> regarding the `markdown` command (which is the default value of the
+E> `markdown-command` variable), then most likely you need to check
 E> your `markdown-command` setting or install a Markdown processor (or
-E> both).  Below are some common error messages that indicate that either
-E> the `markdown` binary cannot be found or `markdown-command` should be
-E> customized to your system:
+E> both).  Below are some common error messages that indicate that
+E> either the `markdown` binary cannot be found or `markdown-command`
+E> should be customized to your system:
 E>
 E> {lang="text"}
 E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 E> /bin/bash: markdown: command not found
+E>
 E> zsh:1: command not found: markdown
+E>
 E> 'markdown' is not recognized as an internal or external
 E>     command, operable program or batch file.
 E> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -596,7 +599,7 @@ T> specifying the full path.
 
 When in Markdown Mode, the `M-x customize-mode` command provides an
 interface to all of the available customizations.  If you are
-using a different mode, then you'll need to be more specific: `M-x
+using a different mode, then you will need to be more specific: `M-x
 customize-mode RET markdown-mode`.  Alternatively, you can customize
 variables using `M-x customize-group RET markdown` (i.e., by
 customizing the _group_ rather than the _mode_).
@@ -622,7 +625,7 @@ This section describes the movement, insertion, and editing commands
 provided by Markdown Mode.  Commands pertaining to block elements are
 described first: headings, paragraphs, blockquotes, lists, code blocks,
 and horizontal rules.  Then, commands for editing span elements are
-ndescribed: emphasis, code, links, images, and comments.  Finally,
+described: emphasis, code, links, images, and comments.  Finally,
 miscellaneous editing commands are described for markup completion,
 markup cycling, indentation, etc.  Extensions, such as footnotes,
 fenced code blocks, wiki links, definition lists, and checkboxes
@@ -637,19 +640,15 @@ under a second-level prefix.  For example, the commands for styling
 text are grouped under `C-c C-s` (`markdown-mode-style-map`).
 Similarly, commands for running Markdown and performing maintenance
 tasks reside under `C-c C-c` (`markdown-mode-command-map`).
+Movement and shifting commands tend to be associated with paired
+delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.
 If you have `menu-bar-mode` on, you can also access these commands
 from the Markdown menu.
-
-Movement and shifting commands tend to be associated with paired
-delimiters such as `M-{` and `M-}` or `C-c <` and `C-c >`.  If you are
-familiar with `org-mode`, Markdown Mode uses the same outline
-navigation keybindings (`C-c C-n`, `C-c C-p`, `C-c C-f`, `C-c C-b`,
-and `C-c C-u`).
 
 We begin with a summary of Markdown Mode prefixes and mnemonics.  The
 commands in each group will be described in detail below.  You can
 obtain a list of all keybindings by pressing `C-c C-h` or `C-h m`.  To
-see commands under a specific prefix, then add `C-h` to the end of the
+see commands under a specific prefix, add `C-h` to the end of the
 prefix.  For example, press `C-c C-s C-h` to list all commands under
 `C-c C-s`.
 
@@ -729,10 +728,10 @@ Second section text.  No closing hash marks here.
 Third section text.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is also an alternative syntax for the first two levels of
-headings.  Instead of hash marks, you may use equals signs (`=`) or
-hyphens (`-`) to underline the heading text.  Headings of this form are
-called setext headings:
+The second type of headings supported in Markdown are called setext
+headings, for which only two levels are defined.  Instead of being
+surrounded by hash marks, equals signs (`=`) and hyphens (`-`) are
+used to underline the heading text.
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -745,7 +744,7 @@ Second-level heading
 
 ### Inserting & Replacing Headings
 
-There are two options for inserting or replacing headings: You can
+There are two options for inserting or replacing headings: you can
 either insert a heading of a specific level and type or let Markdown
 Mode determine the level and type for you.  To insert a heading of a
 specific level directly, simply use `C-c C-s #` where `#` is a number
@@ -754,7 +753,7 @@ specific level directly, simply use `C-c C-s #` where `#` is a number
 
 To insert setext headings directly, use
 `C-c C-s !` (`markdown-insert-header-setext-1`) for level one
-or `C-c C-s @` (`markdown-insert-header-setext-2`) or level two.
+or `C-c C-s @` (`markdown-insert-header-setext-2`) for level two.
 Noting that `!` is `S-1` and `@` is `S-2` may make these commands
 easier to remember.
 
@@ -818,7 +817,7 @@ not blank, they use the text on the current line.  Otherwise, the user
 is prompted to provide the heading text.
 
 If the point is at a heading, these commands will replace the existing
-markup in order to update the level and/or type of the heading.  This
+markup in order to update the level or type of the heading.  This
 is useful, for example, when the automatically-determined heading level
 is not what you wanted: the heading level can be quickly changed as needed.
 
@@ -850,7 +849,7 @@ I> requires whitespace.  This has other advantages, for example, it
 I> allows one to use #hashtags that might wrap to the beginning of the
 I> line.
 
-T> If the alignment of the underline characters is not exactly right,
+T> If the length of the underline characters is not exactly right,
 T> Markdown Mode can help keep things tidy by "completing" the markup
 T> for you after the fact.  See the [Markup Completion](#completion) section of
 T> this chapter for more details.
@@ -862,8 +861,8 @@ lists.  When the point is in a list, they move between list items.
 Otherwise, they move between headings.
 
 *   Use `C-c C-n` and `C-c C-p` (`markdown-outline-previous` and
-    `markdown-outline-next`) move to the next and previous visible
-    headings or list items of any level.
+    `markdown-outline-next`) to move to the next and previous visible
+    headings or list items _of any level_.
 *   Similarly, `C-c C-f` and `C-c C-b`
     (`markdown-outline-previous-same-level` and `markdown-outline-next-same-level`)
     move to the next and previous visible headings or list items
@@ -882,7 +881,7 @@ major definitions), but in Markdown Mode, **a defun is a section.** As
 usual, `C-M-a` (`beginning-of-defun`) will move the point to the
 beginning of the current or preceding defun, `C-M-e` (`end-of-defun`)
 will move to the end of the current or following defun, and `C-M-h`
-(`mark-defun`) will mark the entire defun.  To narrow
+(`mark-defun`) will mark the current defun.  To narrow
 the buffer to show only the current section, use `C-x n d`
 (`narrow-to-defun`) and to widen again, use `C-x n w` (`widen`) as
 usual.
@@ -894,8 +893,9 @@ T> `C-M-e`, and `C-M-h`) are the same as in Emacs more generally.
 T> Since Markdown has no functions, Markdown Mode considers section
 T> headings to be defuns.
 
-To include the entire subtree when marking and narrowing, Markdown
-Mode also defines `C-c C-M-h` (`markdown-mark-subtree`) and `C-x n s`
+To include the complete subtree (including any subsections) when
+marking and narrowing, Markdown Mode also defines `C-c C-M-h`
+(`markdown-mark-subtree`) and `C-x n s`
 (`markdown-narrow-to-subtree`).
 
 ### Movement by Page
@@ -960,7 +960,7 @@ headings are undefined).
 
 ### Heading Customization
 
-Markdown Mode distinguishes between *symmetric* and *asymmetric* atx
+Markdown Mode distinguishes between _symmetric_ and _asymmetric_ atx
 heading markup.  Symmetric headings have an equal number of hash marks
 at the beginning and end of the line.  Asymmetric headings have only
 leading hash marks.  Both are valid, so this is an aesthetic choice.
@@ -997,7 +997,7 @@ You can customize Markdown Mode to fit your preference by setting the
 
 Markdown Mode also has the ability to scale the font sizes used for
 headings in proportion to their importance (as in AUCTeX, for
-example).  To enable this, customize `markdown-header-scaling` or set
+instance).  To enable this, customize `markdown-header-scaling` or set
 it in your init file.
 
 `markdown-header-scaling`
@@ -1187,7 +1187,7 @@ default indentation amount by setting `markdown-list-indent-width`.
 
 `markdown-unordered-list-item-prefix`
 
-:   String, default: `"  * "`.
+:   String, default: "&nbsp;&nbsp;*&nbsp;".
 
     String to be inserted to create an unordered list item.
 
@@ -1233,12 +1233,8 @@ widen again use `C-x n w` (`widen`).
 To compare paragraph and block movement, consider some specific
 examples.  In terms of list items, paragraph movement moves
 item-by-item, regardless of the list item level.  On the other hand,
-block movement moves across the entire list.  So, with the point
-as in the following example, moving backwards by "paragraph"
-with `M-{` first moves the point back to the marker for item 3, then
-back to the marker for item 2, and so on.  Moving backwards by one
-"block" with `C-M-{`, on the other hand, moves the point immediately
-to the marker for item 1.
+block movement moves across the entire list.  Suppose the point is at
+the block, as in the following example:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1250,10 +1246,13 @@ Paragraph
 █
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Moving backwards by "paragraph" with `M-{` first moves the point back
+to the marker for item 3, then back to the marker for item 2, and so
+on.  Moving backwards by one "block" with `C-M-{`, on the other hand,
+moves the point immediately to the marker for item 1.
+
 Next, consider a blockquote with multiple paragraphs as in the following
-example.  Moving backward by one paragraph leaves the point at the `>`
-before blockquote paragraph 2 while moving backward by one block moves over the
-entire blockquote and leaves the point at the `>` before blockquote paragraph 1.
+example:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1265,6 +1264,10 @@ Regular paragraph
 █
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Moving backward by one paragraph leaves the point at the `>` before
+blockquote paragraph 2 while moving backward by one block moves over
+the entire blockquote and leaves the point at the `>` before
+blockquote paragraph 1.
 
 ## Indentation {#indentation}
 
@@ -1355,8 +1358,10 @@ to indent to the next logical position.
 
 Finally, when `markdown-indent-on-enter` is set to
 `indent-and-new-item`, Markdown Mode will automatically
-insert a new list item.  (With this setting, if you want
-to insert a literal newline, you will need to use `C-q C-j`.)
+insert a new list item.  With this setting, pressing `RET` again
+removes the empty list item and leaves a blank line.  If you want
+to insert a single literal newline, you can use `quoted-insert`
+via `C-q C-j`.
 
 {lang="text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1421,7 +1426,7 @@ I> In addition to indented code blocks, or pre blocks, Markdown Mode
 I> also supports several variations referred to as fenced code blocks.
 I> Rather than being indented, fenced code blocks are surrounded above
 I> and below by strings of tildes or backquotes.  We will return to
-I> fenced code blocks later in the [Extensions](#extensions) chapter.
+I> fenced code blocks later, in the [Extensions](#extensions) chapter.
 
 ## Horizontal Rules
 
@@ -1442,11 +1447,10 @@ ________________________________________
 To insert a horizontal rule, press `C-c C-s -` (`markdown-insert-hr`).
 Markdown Mode allows
 you to define several horizontal rules of decreasing prominence in a
-list variable named `markdown-hr-strings`.  By default, this insertion
+list variable named `markdown-hr-strings`.  By default, this
 command inserts the first string in `markdown-hr-strings`---the most
 prominent one.  With a `C-u` prefix, insert the last string.  With a
 numeric prefix `N`, insert the string in position `N` (starting at 1).
-
 The list of strings inserted by Markdown Mode can be customized by
 redefining the variable `markdown-hr-strings`.
 
@@ -1506,19 +1510,26 @@ underscores for italic or bold text is a personal preference in
 Markdown.  Markdown Mode lets you customize the default choice
 for inserting new markup via two variables described below.
 
+I> Brett Terpstra, in his [Write better Markdown]( 1/1 URL
+I> or [reference]:
+I> http://brettterpstra.com/2015/08/24/write-better-markdown/) style
+I> guide, recommends maintaining a consistent style with respect to
+I> asterisks and underscores throughout a document.  For example, you
+I> might always use underscores for italics and asterisks for bold.
+
 T> You can also _toggle_ between asterisks and underscores using the
 T> promotion and demotion commands, `C-c C--` and `C-c C-=`
 T> (`markdown-promote` and `markdown-demote`).
 
 W> Markdown processors differ as to how they handle inter-word
-W> underscores.  When Markdown.pl encounters _dis_functional, it
+W> underscores.  When Markdown.pl encounters `_dis_functional`, it
 W> assumes you intend to italicize "dis".  However, if you are writing
 W> technical documentation, perhaps you have a variable named
 W> `state_space_dimension`.  Unless you format that as inline code,
 W> then the middle word---`space`---would become italicized.  GitHub Flavored
 W> Markdown re-defines this behavior so that inter-word underscores do
 W> not trigger italics.  Markdown Mode includes a special
-W> mode, [GitHub Flavored Markdown Mode](#gfm-mode) or `gfm-mode`, and among
+W> mode, [GitHub Flavored Markdown Mode](#gfm) or `gfm-mode`, and among
 W> other differences, it uses the GitHub convention for underscores.
 W> This mode is described in the section on [GitHub Flavored Markdown](#gfm)
 W> in the [Extensions](#extensions) chapter.
@@ -1546,7 +1557,7 @@ W> in the [Extensions](#extensions) chapter.
     _Example:_
 
     ``` emacs-lisp
-    (setq markdown-italic-underscore t)
+    (setq markdown-bold-underscore nil)
     ```
 
 ## Inline Code
@@ -1591,17 +1602,18 @@ text in square brackets followed by the URL in parentheses:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Optionally, you can add "title text" (for the HTML `title` attribute)
-to the link which will appear when the user hovers over the link:
+to the link which will appear when the user's mouse pointer hovers
+over the link:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Link text](http://link.url/ "Title text")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A similar syntax is used for images: just add an exclamation point (`!`)
-before the square bracket.  There is no link text displayed for
-images, rather, the text in square brackets will be used for the "alt
-text" (for the HTML `alt` attribute):
+A similar syntax is used for images: just add an exclamation point
+(`!`) before the square bracket.  There is no equivalent of link text
+for images, so instead the text in square brackets will be used as the
+"alt text" (for the HTML `alt` attribute):
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1621,9 +1633,9 @@ You can define short reference link like this:
 [1]: http://link.url/
 
 You can still include a title, like this:
-[link text here][2]
+[link text here][ref]
 
-[2]: http://link.url/ "Title text"
+[ref]: http://link.url/ "Title text"
 
 Finally, you can use implicitly defined reference links
 where the reference label is the same as the link text:
@@ -1662,7 +1674,7 @@ either an inline or reference image:
     `![alt][reference]`.
 
 If there is an existing link or image at the point, these commands will
-edit the existing markup rather than insert new markup.  Otherwise,
+edit the existing markup rather than inserting new markup.  Otherwise,
 if `transient-mark-mode` is on and there is an active region, these
 commands use the region as either the default URL (if it seems to be a
 URL) or link text value otherwise.  In that case, the region will be
@@ -1710,17 +1722,18 @@ toggled as needed using `C-c C-x C-l` (`markdown-toggle-url-hiding`)
 or from the Markdown menu.  When URL hiding is enabled, the URL
 components of links will be displayed as a single, customizable
 character (`∞` by default).  That is, URLs will appear as `[link](∞)`
-instead of `[link](long/url)`.  To change the placeholder
-(composition) character used, set the variable
-`markdown-url-compose-char`.
+instead of `[link](long/url)`.
 
 URL hiding is accomplished in Emacs using _composition_, so the URLs
-are still part of the buffer.  When URL hiding is enabled, the link
-properties will be displayed in the minibuffer along with a hint to
-use `C-c C-l` for editing the link.  You can also edit a URL directly
-by deleting the final parenthesis, which disables fontification of the
-link and thus removes the composition property.  Finally, you can also
-hover your mouse pointer over the link text to see the URL.
+are still part of the buffer.  To change the placeholder (composition)
+character used, set the variable `markdown-url-compose-char`.
+
+When URL hiding is enabled, the link properties will be displayed in
+the minibuffer along with a hint to use `C-c C-l` for editing the
+link.  You can also edit a URL directly by deleting the final
+parenthesis, which disables fontification of the link and thus removes
+the composition property.  Finally, you can also hover your mouse
+pointer over the link text to see the URL.
 
 `markdown-hide-urls`
 
@@ -1788,8 +1801,6 @@ Markdown Mode highlights these spaces to draw attention to possibly
 spurious whitespace.  Markdown Mode also respects hard line breaks
 when filling paragraphs.
 
-W> Line break behavior is different in GitHub Flavored Markdown, where
-W> all newlines correspond to hard line breaks.
 
 ## Killing Elements
 
@@ -1821,9 +1832,9 @@ following table for a summary.
 
 ## Markdown Do
 
-Inspired by Org Mode, Markdown Mode defines `C-c C-d` (`markdown-do`),
-a command for doing something sensible with the object at the point.
-Depending on the context, it does the following:
+Markdown Mode defines `C-c C-d` (`markdown-do`), a command for doing
+something sensible with the object at the point.  Depending on the
+context, it does the following:
 
 *   Jumps between reference links and reference definitions.
 
@@ -1858,14 +1869,12 @@ forward through the `markdown-hr-strings` list.  For bold and italic
 text, promotion and demotion mean switching the markup from underscores
 to asterisks and back.
 
-I> To promote or demote markup at the point, where applicable, use
-I> `C-c C--` and `C-c C-=`.
-
-T> To remember the promotion and demotion commands, note that `-` is
-T> for decreasing the level, and `=` (on the same key as `+`) is for
-T> increasing the level.  Similarly, the left and right arrow keys
-T> indicate the direction in which the atx heading markup will move
-T> when promoting or demoting.
+T> To promote or demote markup at the point, where applicable, use
+T> `C-c C--` and `C-c C-=`.  To remember the promotion and demotion
+T> commands, note that `-` is for decreasing the level, and `=` (on
+T> the same key as `+`) is for increasing the level.  Similarly, the
+T> left and right arrow keys indicate the direction in which the atx
+T> heading markup will move when promoting or demoting.
 
 T> You can change the level of a heading level two ways:
 T>
@@ -1884,7 +1893,9 @@ hash marks of an atx heading are equal and that there is no extra
 whitespace.  To complete any incomplete markup at the point, press
 `C-c C-]` (`markdown-complete`).
 
-X> Suppose a buffer contains the following headings:
+X> Suppose a buffer contains the following headings, one with an
+X> underline that is too short and another with extra whitespace and
+X> a missing hash mark:
 X>
 X> {lang="text"}
 X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1906,7 +1917,7 @@ X> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Markdown Maintenance Commands
 
-Markdown Mode also provides some global maintenance commands under the
+Markdown Mode also provides some _global_ maintenance commands under the
 `C-c C-c` prefix for checking references, cleaning up list numbers,
 and completing markup in the buffer.
 
@@ -1945,7 +1956,7 @@ supported by all Markdown processors, a primary advantage is that they
 allow authors to indicate the name of the language of the source code
 contained within, to assist with syntax highlighting and CSS styling.
 They also remove the need to maintain the four-space leading
-indentation, which can make editing a code block more difficult.
+indentation, which can make editing code blocks more difficult.
 
 ### GFM Code Blocks
 
@@ -2055,6 +2066,12 @@ a one-line code block
 ~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+I> Markdown Mode supports font-lock and indirect editing of
+I> tilde-fenced code blocks, but it does not yet include a
+I> dedicated command for inserting them.
+
+### Language Strings
+
 Some processors allow you to specify the language of the source code
 using attribute lists of various formats, as in the following
 examples.  Markdown Mode takes an inclusive approach to highlighting
@@ -2063,13 +2080,13 @@ and so on:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```{r, eval=FALSE}
+summary(gdp)
+```
+
 ~~~~~~~~~~~~~~~~~~~ .html
 <p>hello, world</p>
 ~~~~~~~~~~~~~~~~~~~
-
-~~~ruby
-puts("hello, world")
-~~~
 
 ~~~~{.python}
 print("hello, world")
@@ -2082,17 +2099,13 @@ end program main
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-I> Markdown Mode supports font-lock and indirect editing of
-I> tilde-fenced code blocks, but it does not yet include a
-I> dedicated command for inserting them.
-
 ### Native Font Lock and Indirect Editing
 
 {width=80%}
 ![Native Font Lock for a JavaScript Code Block](images/native-font-lock.png)
 
 Markdown Mode can also optionally perform native syntax highlighting
-of source code in fenced code blocks.  This works for GFM or
+of source code in fenced code blocks.  This works for GFM and
 tilde-fenced code blocks for which a language name has been specified.
 You can toggle this mode with either `C-c C-x C-f` or
 `M-x markdown-toggle-fontify-code-blocks-natively` and you can set the
@@ -2149,11 +2162,11 @@ represents the language keyword specified for the code block:
 1. An entry with key `<lang>` specified in `markdown-code-lang-modes`.
 2. A function named `<lang>-mode`.
 
-As an example, suppose you have a code block with language name `matlab`.
-By default, there is no element of `markdown-code-lang-modes` with
-key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
-If so, it will be used for syntax highlighting of the code block and also
-for indirect editing of the code block.
+X> As an example, suppose you have a code block with language name `matlab`.
+X> By default, there is no element of `markdown-code-lang-modes` with
+X> key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
+X> If so, it will be used for syntax highlighting of the code block and also
+X> for indirect editing of the code block.
 
 ## Footnotes
 
@@ -2350,11 +2363,10 @@ the beginning of a file and is indicated by percent signs:
 % date
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Finally, Markdown Mode optionally supports YAML and TOML metadata
-blocks.  YAML and TOML metadata blocks begin with a line of three
-hyphens (`---`) and end with either a line of three hyphens (`---`) or
-three dots (`...`).  Pandoc, GitHub, and Jekyll all support YAML
-metadata.
+Finally, Markdown Mode supports YAML and TOML metadata blocks.  YAML
+and TOML metadata blocks begin with a line of three hyphens (`---`)
+and end with either a line of three hyphens (`---`) or three dots
+(`...`).  Pandoc, GitHub, and Jekyll all support YAML metadata.
 
 {lang=text}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2608,7 +2620,8 @@ Mode as described below.
 * **Preview:** GFM-specific preview can be powered by setting
   `markdown-command` to use [Docter](https://github.com/alampros/Docter) (which, as of this writing, is
   unfortunately no longer maintained).  This may also be configured to
-  work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.
+  work with [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&at=11l5Vs) for `markdown-open-command`.  See the [Tips](#tips)
+  chapter for details.
 
 ------------------------------------------------------------------------------
 
@@ -2627,7 +2640,7 @@ sections that follow.
 |----------------|----------------|---------------------------------|
 | Hide Markup    | `C-c C-x C-m`  | Same buffer                     |
 | Compile        | `C-c C-c m`    | `*markdown-output*` buffer      |
-| Kill Ring Save | `C-c C-c w`    | kill ring                       |
+| Kill Ring Save | `C-c C-c w`    | Kill ring                       |
 | Preview        | `C-c C-c p`    | Browser (temporary file)        |
 | Export         | `C-c C-c e`    | `<basename>.html`               |
 | Export & View  | `C-c C-c v`    | `<basename>.html`, then browser |
@@ -2645,7 +2658,7 @@ I> section.
 
 The Preview and Export commands are similar and worthy of more
 discussion.  The difference is that when _previewing_, the output is
-written to a temporary that and is then opened in a browser.  When
+written to a temporary file that is then opened in a browser.  When
 _exporting_, the output is written to a file named like the one being
 visited, with the extension changed to `.html` instead, but the file
 is not opened.  On the other hand, _viewing_ is a combination of
@@ -2666,9 +2679,6 @@ is one simple way to preview (and even edit) files.  The side-by-side
 screenshots below illustrate the effects of this.  Most markup will be hidden,
 including asterisks and underscores for italics and bold, square brackets and
 URLs for links, backquotes for inline code and fenced code blocks.
-Additionally, this enables Unicode bullet characters for lists,
-with different bullets for different nested list levels. Horizontal
-rules and blockquotes will also be styled nicely.
 
 ![Markup Hiding in Markdown Mode](images/markup-hiding.png)
 
@@ -2718,7 +2728,7 @@ following variables.
 I> Markup hiding works by adding text properties to positions in the
 I> buffer---either the `invisible` property or the `display` property
 I> in cases where alternative glyphs are used (e.g., list bullets).
-I> *This does not, however, affect printing or other output.*
+I> _This does not, however, affect printing or other output._
 I> Functions such as `htmlfontify-buffer` and `ps-print-buffer` will
 I> not honor these text properties.  For printing, it would be better
 I> to convert to HTML or PDF first (e.g., using Pandoc) and then
@@ -2965,7 +2975,7 @@ quickly fix the mistake in at least two ways.
 1. **Using the kill ring:**  Move the point to the erroneously bold
    word and press `C-c C-k` (`markdown-kill-thing-at-point`).  This
    removes the bold text and adds "italic", without the asterisks, to
-   the kill ring.  Then press `C-c C-s e` to insert an empty italic
+   the kill ring.  Then press `C-c C-s i` to insert an empty italic
    span and yank in the "italic" text with `C-y`.
 
 2. **Using markup toggling:**  Markdown Mode allows you to "toggle"
@@ -2989,10 +2999,10 @@ asterisks in bold and italic phrases by pressing either `C-c C--` or
 
 ## Linking to or Including Custom CSS
 
-The default stylesheet for HTML in most browsers is rather
-unattractive, so you may want to use a custom stylesheet by either
-linking to an external stylesheet or including a `<style>` block in
-the exported HTML itself.
+The default stylesheet for HTML in most browsers is rather plain by
+design, so you may want to use a custom stylesheet by either linking
+to an external stylesheet or including a `<style>` block in the
+exported HTML itself.
 
 ![Default and Custom CSS in Markdown Mode Output](images/custom-css.png)
 
@@ -3126,6 +3136,7 @@ This binds `C-'` (`imenu-list-smart-toggle`) so that when pressing it
 a window appears on the right side showing the heading hierarchy in
 the `*Ilist*` buffer.  Pressing `C-'` again hides the window.
 
+{width=80%}
 ![Markdown Mode with `imenu-list`](images/imenu-list.png)
 
 By default, the point stays in the original window and so the
@@ -3143,7 +3154,7 @@ There are several keybindings in the `*Ilist*` buffer for
 navigating between sections:
 
 * `RET` or mouse click - visit heading at point
-* `SPC` - visit heading, but keep focus on *Ilist* buffer
+* `SPC` - visit heading, but keep focus on `*Ilist*` buffer
 * `TAB` or `f` - fold/unfold subtree
 * `n` and `p` - next/previous line
 * `g` - refresh entries
@@ -3163,7 +3174,7 @@ specify such file local variables at either the beginning or end of a
 file.
 
 Perhaps you have seen lines like the following at the beginning of
-scripts.  This particular line tells Emacs that you'd like to open
+scripts.  This particular line tells Emacs that you would like to open
 this file using `cperl-mode`:
 
 ``` perl
@@ -3276,7 +3287,7 @@ generate-or-refresh command `M-x markdown-toc-generate-or-refresh-toc`.
 Finally, to remove it run `M-x markdown-toc-delete-toc`.
 
 W> Notice that `markdown-toc` generates anchors (e.g., `#quick-reference`)
-W> automatically.  You'll need to make sure that your Markdown processor
+W> automatically.  You will need to make sure that your Markdown processor
 W> of choice also generates these in the resulting HTML and that it
 W> follows the same format (i.e., replacing spaces with hyphens).  This is
 W> the format used by MultiMarkdown, for example.
@@ -3290,7 +3301,7 @@ You can also customize the title and the start and end comments:
  '(markdown-toc-header-toc-end "<!-- customized end -->"))
 ```
 
-## Displaying and Preserving Whitespace
+## Highlighting and Preserving Whitespace
 
 Whitespace is an important part of Markdown.  For example, two spaces
 at the end of a line produce a hard line break and blocks indented by
@@ -3398,7 +3409,7 @@ titling options.
 If you want to include mathematical expressions in LaTeX form in your
 Markdown files, Markdown Mode assists you with [Math Mode](#math) for
 editing (see the [Extensions](#extensions) chapter for details).  For viewing or
-publishing, you'll need some way to view the LaTeX in a readable form.
+publishing, you will need some way to view the LaTeX in a readable form.
 One option is to use [MathJax](https://www.mathjax.org), a cross-browser JavaScript package
 for rendering mathematics in LaTeX and MathML form.
 
@@ -3418,11 +3429,11 @@ to the `<head>` block of your HTML preview output using the
 
 W> The `TeX-MML-AM_CHTML` configuration in the example above very
 W> general, and therefore larger than other configurations.  It is
-W> useful as a default to get started, but you'll most likely want to
+W> useful as a default to get started, but you will most likely want to
 W> use a more appropriate, specific configuration for production use,
 W> for better performance.
 
-W> You'll need to make sure that your Markdown processor is generating
+W> You will need to make sure that your Markdown processor is generating
 W> HTML fragments, rather than standalone documents, so that Markdown
 W> Mode can add a header and footer with your custom `<script>` tag.
 
@@ -3430,7 +3441,7 @@ W> Mode can add a header and footer with your custom `<script>` tag.
 ## Using Pre- and Post-Processors
 
 A Unix "pipeline" is a sequence of processes connected through
-*pipes*.  The standard output of each process is directed to the
+_pipes_.  The standard output of each process is directed to the
 standard input of the following one.
 
 X> To give a generic example of pipes, the following command lists all
@@ -3446,7 +3457,7 @@ pre- or post-processors to your Markdown files.
 
 As an example, one common Markdown post-processor is [SmartyPants](http://daringfireball.net/projects/smartypants/),
 which implements "smart typography" (curly quotation marks, en-dashes,
-em-dashes, and so on).  To use it, you'll need to first install
+em-dashes, and so on).  To use it, you will need to first install
 SmartyPants.
 
 *   On Debian Linux, you can install `libtext-typography-perl`.
@@ -3484,7 +3495,7 @@ If you want to change the setting in your init file instead, you can
 simply add something like the following:
 
 ``` emacs-lisp
-(setq browse-url-browser-function 'browse-url-chrome)
+(setq browse-url-browser-function #'browse-url-chrome)
 ```
 
 For reference, here is a selection of the available `browse-url`
@@ -3516,13 +3527,13 @@ by "advising" the `markdown-preview` function:
 ``` emacs-lisp
 (advice-add 'markdown-preview :around
             (lambda (orig &rest args)
-              "Use Chromium as default browser"
+              "Use Chromium as default browser."
               (let ((browse-url-browser-function #'browse-url-chromium))
                 (apply orig args))))
 ```
 
 This example changes the browse function to `browse-url-chromium` for
-the `markdown-preview` function only.  See the section called
+the `markdown-preview` function only.  See the section on
 [Advising Emacs Lisp Functions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html) in the Emacs Lisp Reference
 Manual for additional details.
 
@@ -3533,7 +3544,7 @@ Manual for additional details.
 ![Marked 2 Preview of this Book](images/marked-2.png)
 
 You can customize the program used to "open" Markdown files from
-Markdown Mode via `C-c C-c o`.  The variable you'll want to customize
+Markdown Mode via `C-c C-c o`.  The variable you will want to customize
 is `markdown-open-command`.
 
 On macOS, a popular application for opening Markdown files is
@@ -3567,7 +3578,7 @@ multiple input formats to each of several output formats.  For
 example, it can also convert Markdown to LaTeX or Org format.
 
 [Pandoc Mode](https://joostkremers.github.io/pandoc-mode/) is an Emacs interface for Pandoc, implemented as a
-minor mode.  You can install it from MELPA or MELPA Stable and
+minor mode.  You can install it from [MELPA](https://melpa.org/#/pandoc-mode) or [MELPA Stable](https://stable.melpa.org/#/pandoc-mode) and
 activate it by typing `M-x pandoc-mode`.  The documentation summarizes
 Pandoc Mode as follows:
 
@@ -3592,9 +3603,8 @@ These are but a few of the available options.  Pandoc Mode also adds
 font lock support for Pandoc citations and numbered example lists.
 
 With Pandoc Mode you can create multiple output profiles for a single
-input file.  You might have a Markdown file that you want to translate
-to HTML for publishing on your website and also convert to PDF for
-printing.
+input file.  You might have a Markdown file that you want to convert
+to HTML for publishing on your website and to PDF for printing.
 
 You can change the output settings from the `pandoc-mode` menus, or
 you can store them in settings files on a per-project or global
@@ -3618,7 +3628,7 @@ included in the document.  R Markdown supports a variety of output
 formats, including HTML, PDF, and Word.
 
 R Markdown files have the `.Rmd` extension, so at the very least
-you'll want to use `markdown-mode` for those files.  For example:
+you will want to use `markdown-mode` for those files.  For example:
 
 ``` emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . markdown-mode))
@@ -3702,8 +3712,8 @@ an HTML file, run `M-x ham-mode`.
 
 ## Editing Markdown Tables with Org Table Mode
 
-Although there is no standard Markdown table syntax, several now
-widely accepted variations have emerged.  Implementing a full-featured
+Although there is no official table syntax in Markdown, a couple of
+widely accepted table formats have emerged.  Implementing a full-featured
 table editing mode, such as `orgtbl-mode` in Org Mode, would require
 tremendous effort, and so unfortunately Markdown Mode does not yet
 support table editing.  However, with a little work, and if one is
@@ -3723,7 +3733,7 @@ because of its similarity to Org Mode tables.
 
 This is a rather simple table, but notably the only difference
 with the Org table counterpart is the point at which the lines
-cross in the middle.  Instead of `-|-`, Org uses `-+-`:
+cross in the center.  Instead of `-|-`, Org uses `-+-`:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3736,7 +3746,7 @@ cross in the middle.  Instead of `-|-`, Org uses `-+-`:
 If you toggle on `orgtbl-mode`, it will recognize either table, but
 when you re-align with `C-c C-c`, the result will be converted to Org
 format, which will not be rendered correctly by Markdown processors.
-One way around this---which to be clear is a hack and not recommended
+One way around this---which to be clear is a hack and is not recommended
 for important work---is to _advise_ the `orgtbl-mode` alignment
 function so that at the end it converts the intersections back to
 Markdown pipe table form.
@@ -3781,7 +3791,7 @@ at <https://github.com/jrblevin/markdown-mode>.
 
 If you would like to contribute to Markdown Mode development, the best
 way to start is to clone the Git repository.  You can clone the
-repository using the HTTPS, SSH, or Git protocols:
+repository using the HTTPS, SSH, and Git protocols:
 
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3797,12 +3807,12 @@ To test the current development version, you may either download
 `markdown-mode` package from [MELPA](https://melpa.org/#/markdown-mode).
 
 Note that by nature, the development version of Markdown Mode may be
-unstable or even unusable at times.  I do not recommend it for daily
+unstable or even unusable at times.  It is not recommend for daily
 use unless you are fine with things occasionally breaking.  Function
 names, features, keybindings, etc. may change without notice.
 
 Supposing you have stored `markdown-mode.el` in directory named
-`/path/to/markdown-mode`, then you'll probably need to make sure that
+`/path/to/markdown-mode`, then you will probably need to make sure that
 Emacs can find it by adding something like the following to your init
 file:
 
@@ -3847,9 +3857,9 @@ should be submitted in the form of GitHub pull requests, but email
 patches are also fine if that is more convenient.  For pull requests,
 it is recommended to create a new feature branch (e.g.,
 `feat/my-new-feature`) and submit the pull request from that branch.
-If you add commits to the `master` branch in your own repository, it's
-more difficult to get back in sync if changes are required to the
-patch.
+(If you instead add commits to the `master` branch in your own
+repository, it's more difficult to get back in sync if changes are
+required to the patch.)
 
 *   Markdown mode contributions should adhere to both the
     [GNU Emacs Lisp coding conventions](https://www.gnu.org/software/emacs/manual/html_node/elisp/Coding-Conventions.html) and the
@@ -3863,7 +3873,7 @@ patch.
 
 *   You can confirm that your tests pass by either typing `make test`
     from the command line or by issuing a GitHub pull request and
-    letting the Travis CI integration on GitHub run the tests for you.
+    letting the [Travis CI](https://travis-ci.org/jrblevin/markdown-mode) integration on GitHub run the tests for you.
 
 *   Please be sure to update the documentation at the top of
     `markdown-mode.el` and the docstrings for related variables or
@@ -3884,8 +3894,8 @@ patch.
 When I wrote the first version of `markdown-mode.el` over ten years
 ago, I never imagined it would reach as many people as it has.  This
 was before GitHub was founded and around the same time `package.el`
-was initially being developed.[^ELPA]  Emacs 21.4 was the latest
-release and Markdown itself was three years old.
+was initially being developed.  Emacs 21.4 was the latest release and
+Markdown itself was three years old.
 
 Markdown Mode development continues and my goals for upcoming releases
 are to improve performance, streamline the code base, build a more
@@ -3917,7 +3927,7 @@ at <https://masteringemacs.org/>.
 
 There are also active Emacs communities on the [EmacsWiki](https://www.emacswiki.org/) at
 <https://www.emacswiki.org/>, the [Emacs StackExchange](https://emacs.stackexchange.com) at
-<https://emacs.stackexchange.com>, and on Reddit at
+<https://emacs.stackexchange.com>, and on [Reddit](https://www.reddit.com/r/emacs/) at
 <https://www.reddit.com/r/emacs/>.
 
 Finally, every Emacs user should practice getting help from within
@@ -3926,8 +3936,6 @@ and certainly the most convenient.  A few of the most useful commands
 are `C-h k` (`describe-key`), `C-h m` (`describe-mode`), `C-h f`
 (`describe-function`), and `C-h v` (`describe-variable`), and `C-h a`
 (`apropos-command`).
-
-[^ELPA]:  I didn't find out about package.el until much later, and I preferred to download and install packages manually at that time, so `markdown-mode` never made it into ELPA.
 
 <!--
 Local Variables:
