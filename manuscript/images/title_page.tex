@@ -1,5 +1,5 @@
 % LaTeX title page
-% Jason R. Blevins <jrblevin@sdf.org>
+% Jason R. Blevins <jblevins@xbeta.org>
 %
 % xelatex title_page.tex
 % convert -density 300 title_page.pdf -quality 100 title_page.png
@@ -7,7 +7,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{hyperref}
-\usepackage[paperwidth=6in,paperheight=9in,margin=1in]{geometry}
+\usepackage[paperwidth=7in,paperheight=9.1in,margin=1.25in]{geometry}
 \usepackage{fontspec}
 \usepackage{xcolor}
 
@@ -23,23 +23,24 @@
 
 \setmainfont[BoldFont=* Bold,ItalicFont=* Italic]{CamingoCode}
 \setmonofont{Source Code Pro} % to fix issue with backquotes
-%\setmainfont[BoldFont=* Bold,ItalicFont=* Italic]{Source Code Pro}
-%\setmainfont[BoldFont=Operator Mono Bold,ItalicFont=* Italic]{Operator Mono Book}
-%\setmainfont{Fira Mono}
-%\setmainfont{Inconsolata}
 
 % Colors
-\definecolor{GuideBlack}{rgb}{0.21,0.24,0.26}
-\definecolor{GuideBlue}{rgb}{0.34,0.45,0.66}
-\definecolor{GuideGreen}{rgb}{0.49,0.57,0.33}
-\definecolor{GuideYellow}{rgb}{0.96,0.67,0.20}
-\definecolor{GuideOrange}{rgb}{0.91,0.50,0.18}
-\definecolor{GuideGray}{rgb}{0.47,0.48,0.51}
-\definecolor{GuideRed}{rgb}{0.59,0.22,0.19}
-\definecolor{GuideLightGray}{rgb}{0.66,0.66,0.66}
-\definecolor{GuideDarkGray}{rgb}{0.22,0.25,0.28}
-\definecolor{GuideTeal}{rgb}{0.50,0.91,0.97}
-\definecolor{GuideWhite}{rgb}{1,1,1}
+\definecolor{GuideBlue}{HTML}{6C8ED8}
+\definecolor{GuideGreen}{HTML}{859e56}
+\definecolor{GuideOrange}{HTML}{E8802E}
+\definecolor{GuideGray}{HTML}{787A82}
+\definecolor{GuideLightGray}{HTML}{A8A8A8}
+\definecolor{GuideDarkGray}{HTML}{3A4048}
+
+% Style commands
+\newfontfamily\titleface{CamingoCode}
+\newcommand{\titlefont}[1]{{\titleface\fontsize{44}{44}\selectfont\color{GuideOrange} #1}}
+\newcommand{\underlinefont}[1]{{\titleface\fontsize{44}{44}\selectfont\color{GuideGray} #1}}
+\newfontfamily\codeface{CamingoCode}
+\newcommand{\codefont}[1]{{\codeface\color{GuideBlue} #1}}
+\newcommand{\markupfont}[1]{{\color{GuideGray} #1}}
+\newcommand{\authorfont}[1]{\textit{{\color{GuideGreen} #1}}}
+\newcommand{\backquote}{\color{GuideGray}{\texttt{\`{}}}} % Fix backquote issue
 
 % Don't indent paragraphs.
 \setlength\parindent{0em}
@@ -49,40 +50,29 @@
 \pagestyle{empty}
 \pagecolor{GuideDarkGray}
 
-\vspace*{1in}
-
-%\begin{centering}
+\vspace*{0.5in}
 
 \noindent
-{\fontsize{36}{36}\selectfont\color{GuideOrange}{Guide to}}\par
-
+\titlefont{Guide to}\par
 \vspace{1em}
-
 \noindent
-{\fontsize{36}{36}\selectfont\color{GuideOrange}{Markdown Mode}}\par
-
+\titlefont{Markdown Mode}\par
 \vspace{1em}
-
 \noindent
-{\fontsize{36}{36}\selectfont\color{GuideOrange}{for Emacs}}\par
-
+\titlefont{for Emacs}\par
 \vspace{1em}
+\noindent
+\underlinefont{=============}\par
+
+\vspace*{3em}
 
 \noindent
-{\fontsize{36}{36}\selectfont\color{GuideLightGray}{=============}}\par
-
-%\end{centering}
-
-\vspace*{0.6in}
-
-\noindent
-{\LARGE \color{GuideGray}{\texttt{\`{}}}\color{GuideBlue!90}{markdown-mode}\color{GuideGray}{\texttt{\`{}}} \color{GuideLightGray}{v2.3}}
-
+{\LARGE \backquote{}\codefont{markdown-mode}\backquote{} \color{GuideLightGray}{v2.3}}
 
 \vspace*{\fill}
 
 \noindent
-{\Large\color{GuideGray}{*}\textit{\color{GuideGreen!90}{Jason R. \kern-6pt Blevins}}\color{GuideGray}{*}}\par
+{\LARGE\markupfont{*}\authorfont{Jason R. \kern-6pt Blevins}\markupfont{*}}\par
 
 \clearpage
 
