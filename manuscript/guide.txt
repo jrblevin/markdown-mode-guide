@@ -1508,9 +1508,7 @@ underscores for italic or bold text is a personal preference in
 Markdown.  Markdown Mode lets you customize the default choice
 for inserting new markup via two variables described below.
 
-I> Brett Terpstra, in his [Write better Markdown]( 1/1 URL
-I> or [reference]:
-I> http://brettterpstra.com/2015/08/24/write-better-markdown/) style
+I> Brett Terpstra, in his [Write better Markdown](http://brettterpstra.com/2015/08/24/write-better-markdown/) style
 I> guide, recommends maintaining a consistent style with respect to
 I> asterisks and underscores throughout a document.  For example, you
 I> might always use underscores for italics and asterisks for bold.
