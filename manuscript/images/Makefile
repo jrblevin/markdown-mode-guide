@@ -1,4 +1,4 @@
-TARGETS=global-visibility.png title_page.png markup-hiding.png url-hiding.png
+TARGETS=global-visibility.png title_page.png title_page.tiff markup-hiding.png url-hiding.png
 
 all: $(TARGETS)
 
@@ -9,6 +9,9 @@ title_page.png: title_page.tex
 	xelatex title_page.tex
 	convert -density 300 title_page.pdf -quality 100 title_page.png
 	-rm title_page.{pdf,out,log,aux}
+
+title_page.tiff: title_page.png
+	convert $^ $@
 
 markup-hiding.png: markup-hiding-off.png markup-hiding-on.png
 	convert $^ -background transparent -splice 10x0+0+0 +append -chop 10x0+0+0 $@
