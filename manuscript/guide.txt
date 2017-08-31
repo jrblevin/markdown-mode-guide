@@ -2582,9 +2582,9 @@ Mode as described below.
   typing three backquotes when `markdown-electric-backquote` is
   non-`nil`.
 
-* **Strikethrough:**  Strikethrough text is only supported in GFM Mode
-  and can be inserted (and toggled) using `C-c C-s s`
-  (`markdown-insert-strike-through`).
+* **Strikethrough:**  Strikethrough text is supported in both Markdown
+  Mode and GFM Mode and can be inserted (and toggled) using
+  `C-c C-s s` (`markdown-insert-strike-through`).
 
 * **Task lists:** GFM task lists will be rendered as checkboxes,
   implemented using Emacs buttons, in both Markdown Mode and GFM Mode
