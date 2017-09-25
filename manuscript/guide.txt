@@ -2822,7 +2822,7 @@ customized to use an available external previewer on your system.
 
 `markdown-open-command`
 
-:   String, default: `nil`.
+:   File or `nil`, default: `nil`.
 
     The command used for calling a standalone Markdown previewer
     capable of opening Markdown source files directly.  This command
