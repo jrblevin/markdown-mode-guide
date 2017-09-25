@@ -5,12 +5,6 @@ BOOK = manuscript/Book.txt
 BOOK_SRC = $(shell cat $(BOOK))
 
 CURL = curl -s
-PANDOC=pandoc -S --highlight-style=tango -V geometry:"paperwidth=7in,paperheight=9.1in,margin=1in" --include-in-header=../preamble.tex --latex-engine=xelatex
-
-all: markdown-mode.pdf
-
-markdown-mode.pdf: manuscript/$(BOOK_SRC)
-	cd manuscript && $(PANDOC) -o ../markdown-mode.pdf $(BOOK_SRC)
 
 preview:
 	@echo "\nGenerating Preview…"
