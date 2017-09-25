@@ -435,11 +435,14 @@ that Markdown Mode uses your Markdown processor of choice.
 
 `markdown-command`
 
-:   String, default: `"markdown"`.
+:   String or function, default: `"markdown"`.
 
-    The command used to convert Markdown to HTML, along with any
-    necessary command-line options.  The default is to look for an
-    executable named `markdown` in the Emacs `exec-path`.
+    The command or function used to convert Markdown to HTML, along
+    with any necessary command-line options.  The default is to look
+    for an executable named `markdown` in the Emacs `exec-path`.
+    When this variable is a function, it will be called with three
+    arguments: the beginning of the region, the end of the region, and
+    a buffer to write the output to.
 
 If you are using the customize interface, you simply need to type the
 path to your Markdown script or binary in the "Markdown Command" field
@@ -542,6 +545,8 @@ visiting a file.
     Set to `t` if the program specified as `markdown-command`
     needs the filename to be specified as a command line argument,
     rather than reading the content from the standard input (`stdin`).
+    When `markdown-command` is a function, the value of this variable
+    is ignored.
 
 ### Markdown Command and `exec-path`
 
@@ -2822,12 +2827,14 @@ customized to use an available external previewer on your system.
 
 `markdown-open-command`
 
-:   File or `nil`, default: `nil`.
+:   File, function, or `nil`, default: `nil`.
 
-    The command used for calling a standalone Markdown previewer
-    capable of opening Markdown source files directly.  This command
-    will be called with a single argument, the file name of the
-    current buffer.
+    The command or function used for calling a standalone Markdown
+    previewer capable of opening Markdown source files directly.  When
+    this is a string corresponding to an executable, it will be called
+    with a single argument, the file name of the current buffer.
+    When this variable is a function, it will be called without
+    arguments to preview the current buffer.
 
     _Example:_
 
