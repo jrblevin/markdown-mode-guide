@@ -592,7 +592,6 @@ T> specifying the full path.
 
 ## Customization
 
-{width=70%}
 ![Markdown Customize Group](images/customize-group-markdown.png)
 
 When in Markdown Mode, the `M-x customize-mode` command provides an
@@ -606,7 +605,6 @@ T> If you use this built-in customize interface, be sure to save your
 T> changes before closing the buffer by clicking the "Apply and Save"
 T> button.
 
-{width=70%}
 ![Markdown Faces Customize Group](images/customize-group-markdown-faces.png)
 
 Additionally, the faces used for font lock (syntax highlighting)
@@ -1780,7 +1778,6 @@ that should be recognized automatically.
 
 ### Inline Image Display
 
-{width=80%}
 ![Inline Image Display in Markdown Mode](images/inline-images.png)
 
 Local images associated with image links may be displayed inline in
@@ -2097,7 +2094,6 @@ end program main
 
 ### Native Font Lock and Indirect Editing
 
-{width=80%}
 ![Native Font Lock for a JavaScript Code Block](images/native-font-lock.png)
 
 Markdown Mode can also optionally perform native syntax highlighting
@@ -2129,7 +2125,6 @@ the indirect buffer, press `C-c C-c` (`edit-indirect-commit`)
 to "commit" any changes and update the Markdown buffer or press
 `C-c C-k` (`edit-indirect-abort`) to cancel and ignore any changes.
 
-{width=80%}
 ![Editing a GFM Code Block in an Indirect Buffer](images/edit-indirect.png)
 
 Both native font lock and indirect editing require Markdown Mode to
@@ -2501,7 +2496,6 @@ non-`nil` value.
 
 ## Mathematical Expressions (LaTeX) {#math}
 
-{width=60%}
 ![LaTeX Math in Markdown Mode](images/math.png)
 
 Syntax highlighting for mathematical expressions written in LaTeX can
@@ -3081,7 +3075,6 @@ to that heading.  Alternatively, when invoking `M-x imenu` using the
 keyboard Emacs will present you with a list of headings in the
 minibuffer.
 
-{width=70%}
 ![`imenu` Index Menu](images/imenu-index.png)
 
 Markdown Mode adds a single period (`.`) to the top of each sub-menu.
@@ -3132,7 +3125,6 @@ This binds `C-'` (`imenu-list-smart-toggle`) so that when pressing it
 a window appears on the right side showing the heading hierarchy in
 the `*Ilist*` buffer.  Pressing `C-'` again hides the window.
 
-{width=80%}
 ![Markdown Mode with `imenu-list`](images/imenu-list.png)
 
 By default, the point stays in the original window and so the
@@ -3356,7 +3348,6 @@ above, set `markdown-wiki-link-fontify-missing` to `t`.
 
 ## Integration with Deft Mode
 
-{width=80%}
 ![Deft Mode with Notes in Markdown Format](images/deft.png)
 
 [Deft](https://jblevins.org/projects/deft/) is an Emacs mode for quickly browsing, filtering, and
@@ -3399,7 +3390,6 @@ titling options.
 
 ## MathJax Integration
 
-{width=80%}
 ![Markdown with Math Mode and MathJax Preview](images/mathjax.png)
 
 If you want to include mathematical expressions in LaTeX form in your
@@ -3484,7 +3474,6 @@ browse-url-browser-function`.  To use a different browser, customize the
 variable with `M-x customize-option RET browse-url-browser-function`
 and answer the questions presented.
 
-{width=80%}
 ![Customizing `browse-url-browser-function`](images/browse-url-browser-function.png)
 
 If you want to change the setting in your init file instead, you can
@@ -3536,7 +3525,6 @@ Manual for additional details.
 
 ## Using Marked 2 as a Standalone Previewer
 
-{width=60%}
 ![Marked 2 Preview of this Book](images/marked-2.png)
 
 You can customize the program used to "open" Markdown files from
@@ -3655,7 +3643,6 @@ blocks if you enable native font lock.  To do so, use
 
 ## Tracking Changes with CriticMarkup Mode
 
-{width=80%}
 ![CriticMarkup Mode and Markdown Mode](images/cm-mode.png)
 
 [CriticMarkup](http://criticmarkup.com) is a plain text markup language for tracking
