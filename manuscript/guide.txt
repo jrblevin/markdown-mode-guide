@@ -85,6 +85,7 @@ table including new version 2.3 features:
 | Move list item down                                 | `C-c <down>`      |
 | Outdent/promote list item                           | `C-c <left>`      |
 | Indent/demote list item                             | `C-c <right>`     |
+| Insert GFM checkbox                                 | `C-c C-s [`       |
 | Toggle GFM checkbox                                 | `C-c C-x C-x`     |
 | **Horizontal Rules**                                |                   |
 | Insert default horizontal rule string               | `C-c C-s -`       |
@@ -1843,6 +1844,8 @@ context, it does the following:
 
 *   Toggles the completion status of GFM task list items (checkboxes).
 
+*   Inserts a new GFM task list item.
+
 I> The Markdown Do command has evolved over the past three versions of
 I> Markdown Mode.  It derives from a previous command named
 I> `markdown-jump`, which was previously bound to `C-c C-j` in
@@ -2301,11 +2304,13 @@ modification of Markdown's unordered list syntax.
 - [x] Completed task
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, Markdown Mode activates these checkboxes so that they can
-be clicked using the mouse, or by pressing `RET` when the point is at
-a checkbox.  You can also toggle checkboxes using either the dedicated
-toggle command `C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) or
-the context-specific command `C-c C-d` (`markdown-do`).
+To insert a new GFM task list item, or to add a checkbox to an
+existing list item, use `C-c C-s [` (`markdown-insert-gfm-checkbox`).
+You can toggle checkboxes using either the dedicated toggle command
+`C-c C-x C-x` (`markdown-toggle-gfm-checkbox`) or the context-specific
+command `C-c C-d` (`markdown-do`).  By default, Markdown Mode also
+activates these checkboxes so that they can be clicked using the
+mouse, or by pressing `RET` when the point is at a checkbox.
 
 `markdown-make-gfm-checkboxes-buttons`
 
