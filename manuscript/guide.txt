@@ -266,11 +266,11 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 > Ephraim Curtis, Julien Danjou, Werner Dittmann, Jeremiah Dodds,
 > Carsten Dominik, Michael Dwyer, Dmitry Dzhus, Peter Eisentraut,
 > Conal Elliott, Bryan Fink, Gunnar Franke, Samuel Freilich, Shigeru
-> Fukaya, Peter S. Galbraith, Francois Gannaz, David Glasser, Matus
-> Goljer, Kévin Le Gouguec, Marijn Haverbeke, Isaac Hodes, Philippe
-> Ivaldi, Zhenlei Jia, Peter Jones, Antonis Kanouras, Marcin
-> Kasperski, Keshav Kini, Dave Kleinschmidt, Vasily Korytov, Joost
-> Kremers, Bryan Kyle, Kévin Le Gouguec, Chris Lott, Christopher
+> Fukaya, Peter S. Galbraith, Alexis Gallagher, Francois Gannaz, David
+> Glasser, Matus Goljer, Kévin Le Gouguec, Marijn Haverbeke, Isaac
+> Hodes, Philippe Ivaldi, Zhenlei Jia, Peter Jones, Antonis Kanouras,
+> Marcin Kasperski, Keshav Kini, Dave Kleinschmidt, Vasily Korytov,
+> Joost Kremers, Bryan Kyle, Kévin Le Gouguec, Chris Lott, Christopher
 > J. Madsen, Tom May, Danny McClanahan, Matt McClure, Howard Melman,
 > Eric Merritt, Nelson Minar, Stefan Monnier, Makoto Motohashi, Jon
 > Mountjoy, Akinori Musha, Pierre Neidhardt, Spanti Nicola, Theresa
@@ -1045,6 +1045,31 @@ T> system, first ensure that you are setting the family of
 T> `variable-pitch` to something that pairs well with your `default`
 T> font.
 
+To help with readability, Markdown Mode can also align the atx heading
+text by moving the leading hash marks to the left margin.  This is
+referred to in Markdown Mode as _header marginalization_.  To enable
+this, customize `markdown-marginalize-headers` or set it to a
+non-`nil` value in your init file.
+
+`markdown-marginalize-headers`
+
+:   Boolean, default: `nil`.
+
+    When non-`nil`, put opening atx header markup in the left margin.
+
+    This pairs well with `markdown-asymmetric-header`, but
+    unfortunately it conflicts with other modes that use the left
+    margin, such as `linum-mode`.
+
+`markdown-marginalize-headers-margin-width`
+
+:   Integer, default: 6.
+
+    Character width of margin used for marginalized headers.  The
+    default value is based on there being six heading levels defined
+    by Markdown and HTML.  Increasing this produces extra whitespace
+    on the left.  Decreasing it may be preferred when fewer than six
+    nested heading levels are used.
 
 ## Paragraphs
 
