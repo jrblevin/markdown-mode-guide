@@ -2839,7 +2839,8 @@ customized to use an available external previewer on your system.
     this is a string corresponding to an executable, it will be called
     with a single argument, the file name of the current buffer.
     When this variable is a function, it will be called without
-    arguments to preview the current buffer.
+    arguments to preview the current buffer.  This command will be
+    executed asynchronously.
 
     _Example:_
 
