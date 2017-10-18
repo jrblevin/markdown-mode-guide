@@ -274,13 +274,14 @@ M-x sort-regexp-fields RET \(.*\) \(.*?\)$ RET 2 RET
 > J. Madsen, Tom May, Danny McClanahan, Matt McClure, Howard Melman,
 > Eric Merritt, Nelson Minar, Stefan Monnier, Makoto Motohashi, Jon
 > Mountjoy, Akinori Musha, Pierre Neidhardt, Spanti Nicola, Theresa
-> O'Connor, George Ogata, Paul W. Rankin, Jose A. Ortega Ruiz, Max
-> Penet, Nicolas Petton, Jorge Israel Peña, Scott Pfister, Kevin
-> Porter, Steve Purcell, Alec Resnick, Christophe Rhodes, Enrico
-> Scholz, Dale Sedivec, Ankit Solanki, Tyler Smith, Michael Sperber,
-> Mike Sperber, Vitalie Spinu, Philipp Stephani, Moogen Tian, Vegard
-> Vesterheim, Tim Visher, Ben Voui, Sebastian Wiesner, Peter Williams,
-> Tianxiang Xiong, Ian Yang, Syohei Yoshida, and Google, Inc.
+> O'Connor, George Ogata, Jose A. Ortega Ruiz, Max Penet, Nicolas
+> Petton, Jorge Israel Peña, Scott Pfister, Kevin Porter, Steve
+> Purcell, Paul W. Rankin, Alec Resnick, Christophe Rhodes, Dmitry
+> Safronov, Enrico Scholz, Dale Sedivec, Ankit Solanki, Tyler Smith,
+> Michael Sperber, Mike Sperber, Vitalie Spinu, Philipp Stephani,
+> Moogen Tian, Vegard Vesterheim, Tim Visher, Ben Voui, Sebastian
+> Wiesner, Peter Williams, Tianxiang Xiong, Ian Yang, Syohei Yoshida,
+> and Google, Inc.
 
 ------------------------------------------------------------------------------
 
