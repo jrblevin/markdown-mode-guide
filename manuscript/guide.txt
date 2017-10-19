@@ -1045,6 +1045,8 @@ T> system, first ensure that you are setting the family of
 T> `variable-pitch` to something that pairs well with your `default`
 T> font.
 
+![Heading Marginalization](images/marginalize-headers.png)
+
 To help with readability, Markdown Mode can also align the atx heading
 text by moving the leading hash marks to the left margin.  This is
 referred to in Markdown Mode as _header marginalization_.  To enable
