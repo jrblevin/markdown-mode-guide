@@ -45,111 +45,111 @@ and it may be freely obtained from the [Markdown Mode homepage](https://jblevins
 If you are a seasoned Markdown Mode user, here is a quick reference
 table including new version 2.3 features:
 
-| Action                                              | Keybinding        |
-|-----------------------------------------------------|-------------------|
-| **Headings**                                        |                   |
-| Insert heading depending on context                 | `C-c C-s h`       |
-| Insert heading, prefer setext                       | `C-c C-s H`       |
-| Insert atx heading of level # = 1, 2, … 6           | `C-c C-s #`       |
-| Insert setext heading of level 1                    | `C-c C-s !`       |
-| Insert setext heading of level 2                    | `C-c C-s @`       |
-| **Inline Elements**                                 |                   |
-| Bold                                                | `C-c C-s b`       |
-| Italics                                             | `C-c C-s i`       |
-| Inline code                                         | `C-c C-s c`       |
-| `kbd` tag                                           | `C-c C-s k`       |
-| Wiki link                                           | `C-c C-s w`       |
-| **Block Elements**                                  |                   |
-| Preformatted/code block                             | `C-c C-s p`       |
-| Preformatted/code block (region)                    | `C-c C-s P`       |
-| Blockquote                                          | `C-c C-s q`       |
-| Blockquote (region)                                 | `C-c C-s Q`       |
-| GFM code block                                      | `C-c C-s C`       |
-| Edit code block in indirect buffer                  | `C-c '`           |
-| **Links and Images**                                |                   |
-| Insert or edit link (inline, reference, or URL)     | `C-c C-l`         |
-| Insert or edit image (inline or reference)          | `C-c C-i`         |
-| Follow link at point                                | `C-c C-o`         |
-| Jump between reference link and definition          | `C-c C-d`         |
-| Move to next link                                   | `M-n`             |
-| Move to previous link                               | `M-p`             |
-| **Footnotes**                                       |                   |
-| Insert footnote                                     | `C-c C-s f`       |
-| Jump between footnote and definition                | `C-c C-d`         |
-| **List Items & List Editing**                       |                   |
-| Insert new list item (same level)                   | `M-RET`           |
-| Insert new list item (same level)                   | `C-c C-j`         |
-| Insert new list item (parent level)                 | `C-u C-c C-j`     |
-| Insert new list item (child level)                  | `C-u C-u C-c C-j` |
-| Move list item up                                   | `C-c <up>`        |
-| Move list item down                                 | `C-c <down>`      |
-| Outdent/promote list item                           | `C-c <left>`      |
-| Indent/demote list item                             | `C-c <right>`     |
-| Insert GFM checkbox                                 | `C-c C-s [`       |
-| Toggle GFM checkbox                                 | `C-c C-x C-x`     |
-| **Horizontal Rules**                                |                   |
-| Insert default horizontal rule string               | `C-c C-s -`       |
-| **Killing and Yanking**                             |                   |
-| Kill element and keep text in kill ring             | `C-c C-k`         |
-| Yank text back into buffer                          | `C-y`             |
-| **Movement by Paragraph**                           |                   |
-| Backward paragraph                                  | `M-{`             |
-| Forward paragraph                                   | `M-}`             |
-| Mark paragraph                                      | `M-h`             |
-| **Movement by Block**                               |                   |
-| Backward block                                      | `C-M-{`           |
-| Forward block                                       | `C-M-}`           |
-| Mark block                                          | `C-c M-h`         |
-| Narrow to block                                     | `C-x n b`         |
-| Widen                                               | `C-x n w`         |
-| **Movement by Section (Defun)**                     |                   |
-| Beginning of section                                | `C-M-a`           |
-| End of section                                      | `C-M-e`           |
-| Mark section                                        | `C-M-h`           |
-| Mark subtree                                        | `C-c C-M-h`       |
-| Narrow to section                                   | `C-x n d`         |
-| Narrow to subtree                                   | `C-x n s`         |
-| Widen                                               | `C-x n w`         |
-| **Outline & List Movement**                         |                   |
-| Next heading or list item                           | `C-c C-n`         |
-| Previous heading or list item                       | `C-c C-p`         |
-| Next heading or list item (same level)              | `C-c C-f`         |
-| Previous heading or list item (same level)          | `C-c C-b`         |
-| Move up to parent heading or list item              | `C-c C-u`         |
-| **Outline Visibility Cycling**                      |                   |
-| Cycle visibility globally                           | `S-TAB`           |
-| Cycle visibility of heading at point                | `TAB`             |
-| **Outline Subtree Editing**                         |                   |
-| Move subtree up                                     | `C-c <up>`        |
-| Move subtree down                                   | `C-c <down>`      |
-| Promote subtree                                     | `C-c <left>`      |
-| Demote subtree                                      | `C-c <right>`     |
-| **Region Editing**                                  |                   |
-| Indent region                                       | `C-c >`           |
-| Exdent region                                       | `C-c <`           |
-| **Promotion and Demotion**                          |                   |
-| Promote element at point                            | `C-c -`           |
-| Demote element at point                             | `C-c =`           |
-| **Markup Completion**                               |                   |
-| Complete markup at point or in region               | `C-c C-]`         |
-| Complete markup in buffer                           | `C-c C-c ]`       |
-| **Markdown & Utility Commands**                     |                   |
-| Run Markdown, output to temporary buffer            | `C-c C-c m`       |
-| Run Markdown, export to file                        | `C-c C-c e`       |
-| Run Markdown, preview in browser                    | `C-c C-c p`       |
-| Run Markdown, export, and preview                   | `C-c C-c v`       |
-| Run Markdown, save to kill ring                     | `C-c C-c w`       |
-| Toggle live preview mode                            | `C-c C-c l`       |
-| Open external previewer                             | `C-c C-c o`       |
-| Check references in buffer                          | `C-c C-c c`       |
-| Renumber ordered lists in buffer                    | `C-c C-c n`       |
-| **Toggles and Settings**                            |                   |
-| Toggle markup hiding                                | `C-c C-x C-m`     |
-| Toggle URL hiding                                   | `C-c C-x C-l`     |
-| Toggle native code block font lock                  | `C-c C-x C-f`     |
-| Toggle inline images                                | `C-c C-x C-i`     |
-| Toggle LaTeX math support                           | `C-c C-x C-e`     |
-| Toggle GFM checkbox                                 | `C-c C-x C-x`     |
+| Action                                          | Keybinding        |
+|-------------------------------------------------|-------------------|
+| **Headings**                                    |                   |
+| Insert heading depending on context             | `C-c C-s h`       |
+| Insert heading, prefer setext                   | `C-c C-s H`       |
+| Insert atx heading of level # = 1, 2, … 6       | `C-c C-s #`       |
+| Insert setext heading of level 1                | `C-c C-s !`       |
+| Insert setext heading of level 2                | `C-c C-s @`       |
+| **Inline Elements**                             |                   |
+| Bold                                            | `C-c C-s b`       |
+| Italics                                         | `C-c C-s i`       |
+| Inline code                                     | `C-c C-s c`       |
+| `kbd` tag                                       | `C-c C-s k`       |
+| Wiki link                                       | `C-c C-s w`       |
+| **Block Elements**                              |                   |
+| Preformatted/code block                         | `C-c C-s p`       |
+| Preformatted/code block (region)                | `C-c C-s P`       |
+| Blockquote                                      | `C-c C-s q`       |
+| Blockquote (region)                             | `C-c C-s Q`       |
+| GFM code block                                  | `C-c C-s C`       |
+| Edit code block in indirect buffer              | `C-c '`           |
+| **Links and Images**                            |                   |
+| Insert or edit link (inline, reference, or URL) | `C-c C-l`         |
+| Insert or edit image (inline or reference)      | `C-c C-i`         |
+| Follow link at point                            | `C-c C-o`         |
+| Jump between reference link and definition      | `C-c C-d`         |
+| Move to next link                               | `M-n`             |
+| Move to previous link                           | `M-p`             |
+| **Footnotes**                                   |                   |
+| Insert footnote                                 | `C-c C-s f`       |
+| Jump between footnote and definition            | `C-c C-d`         |
+| **List Items & List Editing**                   |                   |
+| Insert new list item (same level)               | `M-RET`           |
+| Insert new list item (same level)               | `C-c C-j`         |
+| Insert new list item (parent level)             | `C-u C-c C-j`     |
+| Insert new list item (child level)              | `C-u C-u C-c C-j` |
+| Move list item up                               | `C-c <up>`        |
+| Move list item down                             | `C-c <down>`      |
+| Outdent/promote list item                       | `C-c <left>`      |
+| Indent/demote list item                         | `C-c <right>`     |
+| Insert GFM checkbox                             | `C-c C-s [`       |
+| Toggle GFM checkbox                             | `C-c C-x C-x`     |
+| **Horizontal Rules**                            |                   |
+| Insert default horizontal rule string           | `C-c C-s -`       |
+| **Killing and Yanking**                         |                   |
+| Kill element and keep text in kill ring         | `C-c C-k`         |
+| Yank text back into buffer                      | `C-y`             |
+| **Movement by Paragraph**                       |                   |
+| Backward paragraph                              | `M-{`             |
+| Forward paragraph                               | `M-}`             |
+| Mark paragraph                                  | `M-h`             |
+| **Movement by Block**                           |                   |
+| Backward block                                  | `C-M-{`           |
+| Forward block                                   | `C-M-}`           |
+| Mark block                                      | `C-c M-h`         |
+| Narrow to block                                 | `C-x n b`         |
+| Widen                                           | `C-x n w`         |
+| **Movement by Section (Defun)**                 |                   |
+| Beginning of section                            | `C-M-a`           |
+| End of section                                  | `C-M-e`           |
+| Mark section                                    | `C-M-h`           |
+| Mark subtree                                    | `C-c C-M-h`       |
+| Narrow to section                               | `C-x n d`         |
+| Narrow to subtree                               | `C-x n s`         |
+| Widen                                           | `C-x n w`         |
+| **Outline & List Movement**                     |                   |
+| Next heading or list item                       | `C-c C-n`         |
+| Previous heading or list item                   | `C-c C-p`         |
+| Next heading or list item (same level)          | `C-c C-f`         |
+| Previous heading or list item (same level)      | `C-c C-b`         |
+| Move up to parent heading or list item          | `C-c C-u`         |
+| **Outline Visibility Cycling**                  |                   |
+| Cycle visibility globally                       | `S-TAB`           |
+| Cycle visibility of heading at point            | `TAB`             |
+| **Outline Subtree Editing**                     |                   |
+| Move subtree up                                 | `C-c <up>`        |
+| Move subtree down                               | `C-c <down>`      |
+| Promote subtree                                 | `C-c <left>`      |
+| Demote subtree                                  | `C-c <right>`     |
+| **Region Editing**                              |                   |
+| Indent region                                   | `C-c >`           |
+| Exdent region                                   | `C-c <`           |
+| **Promotion and Demotion**                      |                   |
+| Promote element at point                        | `C-c -`           |
+| Demote element at point                         | `C-c =`           |
+| **Markup Completion**                           |                   |
+| Complete markup at point or in region           | `C-c C-]`         |
+| Complete markup in buffer                       | `C-c C-c ]`       |
+| **Markdown & Utility Commands**                 |                   |
+| Run Markdown, output to temporary buffer        | `C-c C-c m`       |
+| Run Markdown, export to file                    | `C-c C-c e`       |
+| Run Markdown, preview in browser                | `C-c C-c p`       |
+| Run Markdown, export, and preview               | `C-c C-c v`       |
+| Run Markdown, save to kill ring                 | `C-c C-c w`       |
+| Toggle live preview mode                        | `C-c C-c l`       |
+| Open external previewer                         | `C-c C-c o`       |
+| Check references in buffer                      | `C-c C-c c`       |
+| Renumber ordered lists in buffer                | `C-c C-c n`       |
+| **Toggles and Settings**                        |                   |
+| Toggle markup hiding                            | `C-c C-x C-m`     |
+| Toggle URL hiding                               | `C-c C-x C-l`     |
+| Toggle native code block font lock              | `C-c C-x C-f`     |
+| Toggle inline images                            | `C-c C-x C-i`     |
+| Toggle LaTeX math support                       | `C-c C-x C-e`     |
+| Toggle GFM checkbox                             | `C-c C-x C-x`     |
 
 ## Markdown
 
