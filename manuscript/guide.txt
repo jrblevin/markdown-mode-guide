@@ -124,6 +124,22 @@ table including new version 2.3 features:
 | Move subtree down                               | `C-c <down>`      |
 | Promote subtree                                 | `C-c <left>`      |
 | Demote subtree                                  | `C-c <right>`     |
+| **Table Editing**                               |                   |
+| Jump to next table cell                         | `TAB`             |
+| Jump to previous table cell                     | `S-TAB`           |
+| Move to next cell in same column                | `RET`             |
+| Move current row up                             | `C-c <up>`        |
+| Move current row down                           | `C-c <down>`      |
+| Move current column left                        | `C-c <left>`      |
+| Move current column right                       | `C-c <right>`     |
+| Kill the current row                            | `C-c S-<up>`      |
+| Insert new row above                            | `C-c S-<down>`    |
+| Kill the current column                         | `C-c S-<left>`    |
+| Insert new column to left                       | `C-c S-<right>`   |
+| Realign table                                   | `C-c C-d`         |
+| Sort table lines                                | `C-c C-c ^`       |
+| Convert region to table                         | `C-c C-c |`       |
+| Transpose table                                 | `C-c C-c t`       |
 | **Region Editing**                              |                   |
 | Indent region                                   | `C-c >`           |
 | Exdent region                                   | `C-c <`           |
@@ -933,7 +949,7 @@ levels of visibility, as shown in the screenshot below:
 
 ![Global Visibility Cycling](images/global-visibility.png)
 
-On the other hand, pressing `TAB` (`markdown-cycle`) while the point
+On the other hand, pressing `TAB` (`markdown-tab`) while the point
 is at a heading will cycle through three levels of visibility
 _locally_ for the current subtree:
 
@@ -1306,7 +1322,7 @@ blockquote paragraph 1.
 ### The Tab Key
 
 Markdown Mode attempts to be flexible in how it handles indentation.
-When you press `TAB` (`markdown-cycle`) repeatedly, the point will
+When you press `TAB` (`markdown-tab`) repeatedly, the point will
 cycle through several possible indentation levels corresponding to
 locations you might have in mind.  For example, you may want to start
 a new list item, continue a list item with hanging indentation, indent
@@ -2251,6 +2267,186 @@ T> Here is an inline footnote.^[Footnote text here.]
 T> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 T>
 T> This is, however, a processor-specific extension.
+
+## Tables
+
+Although there is no official table syntax in Markdown, many Markdown
+processors do include support for tables.  The most widely used table
+syntax, and the one supported by Markdown Mode, can be introduced by
+example:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Right | Left | Center | Default |
+|------:|:-----|:------:|---------|
+|    12 | 12   | 12     | 12      |
+|   123 | 123  | 123    | 123     |
+|     1 | 1    | 1      | 1       |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The first line contains the column headers and is followed by a
+horizontal separator line.  The next three lines are regular table
+rows.  Columns are always separated by the pipe character (`|`) and
+colons can optionally be used to specify column alignment.[^separator]
+
+This syntax is compatible with that proposed by PHP Markdown Extra and
+adopted by many subsequent Markdown processors such as Pandoc
+(`pipe_tables` extension), MultiMarkdown, Leanpub, and Python Markdown
+(Tables extension), among others.
+
+T> Although PHP Markdown Extra and other processors support tables
+T> without opening and closing pipe characters, these characters are
+T> required for proper detection of tables in Markdown Mode.
+
+[^separator]: Any line starting with `|-` or `|:` is considered to be
+a horizontal separator line.  Whitespace is not allowed between the
+opening pipe character and header separator symbol.
+
+### Inserting Tables
+
+There are two ways to create new tables in Markdown Mode.  The
+simplest approach is to simply start type the headings, separated by
+pipes, and optionally begin a separator line on a new line, like so
+(where `█` indicates the point):
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|Right|Left|Center|Default|
+|-█
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pressing `TAB` will then align the table and allow you to begin
+entering data in the cells:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Right | Left | Center | Default |
+|-------|------|--------|---------|
+| █     |      |        |         |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A second way to create a new table is to convert the region to a table
+using `C-c C-c |` (`markdown-table-convert-region`).  This function
+attempts to recognize comma, tab, and space separated data and split
+the data into cells appropriately.  For example, both of the following
+regions (where `⇥` denotes a tab, for clarity) will be converted to the
+same table:
+
+{lang="text"}
+~~~~~~~~~~~~~
+1,New York
+2,Los Angeles
+3,Chicago
+4,Houston
+5,Phoenix
+~~~~~~~~~~~~~
+
+{lang="text"}
+~~~~~~~~~~~~~
+1⇥New York
+2⇥Los Angeles
+3⇥Chicago
+4⇥Houston
+5⇥Phoenix
+~~~~~~~~~~~~~
+
+Using `C-c C-c |` with both of these regions yields the following
+table:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~
+| 1 | New York    |
+| 2 | Los Angeles |
+| 3 | Chicago     |
+| 4 | Houston     |
+| 5 | Phoenix     |
+~~~~~~~~~~~~~~~~~~~
+
+However, if spaces are used as delimiters instead of commas or tabs,
+the result may be unexpected:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~
+| 1 | New     | York    |
+| 2 | Los     | Angeles |
+| 3 | Chicago |         |
+| 4 | Houston |         |
+| 5 | Phoenix |         |
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### Navigating in Tables
+
+Once you have a table in a Markdown Mode buffer, you can press `TAB`
+to move to the next cell.  This moves from left to right and then to
+the beginning of the next row.  When the end of the table is reached,
+pressing `TAB` creates a new empty row.  Pressing `S-TAB` moves
+cell-by-cell in reverse.  Similarly, press `RET` to move to the next
+row in the same column.  This creates a new empty row at the end of
+the table or before horizontal separator lines.
+
+### Editing Tables
+
+Markdown Mode contains functions that assist in editing tables in
+several ways: you can realign tables, rearrange their rows and
+columns, sort the rows, kill their rows and columns, insert new
+rows and columns, or transpose the rows and columns.
+
+Although alignment isn't important when using a Markdown processor to
+convert to HTML, you might want to keep your tables _aligned_ to improve
+plain text readability.  Realignment happens automatically when using
+the navigation commands `TAB`, `S-TAB`, and `RET`.  If needed, you can
+also manually realign tables using `C-c C-d` (`markdown-do`) when the
+point is inside a table.
+
+I> The table editing functions try to handle markup hiding correctly
+I> when calculating column widths, however, columns containing hidden
+I> markup may not always be aligned properly.
+
+As with list items, you can _move_ table rows up and down with
+`C-c <up>` (`markdown-move-up`) and
+`C-c <down>` (`markdown-move-down`).
+Likewise, to move columns left or right use
+`C-c <left>` (`markdown-demote`) and
+`C-c <right>` (`markdown-promote`).
+
+To _kill_ the current row, press `C-c S-<up>`
+(`markdown-table-delete-row`), or to kill the current column, press
+`C-c S-<left>` (`markdown-table-delete-column`).
+
+On the other hand, to _insert_ a new row use `C-c S-<down>`
+(`markdown-table-insert-row`).  This will insert a new row _above_ the
+current row, but with an optional `C-u` argument the row will be
+inserted below instead.  Similarly, to insert a new column, use `C-C
+S-<right>` (`markdown-table-insert-column`).  The new column will be
+inserted to the left of the current one.
+
+You can _sort_ the lines of a table alphabetically or numerically by
+pressing `C-c C-c ^` (`markdown-table-sort-lines`).  This command
+prompts you for a column to sort on and a sort method.  Press a number
+`N` to denote the column and then press either `a` or `n` for
+alphabetical or numerical sort, or `A` or `N` for reverse alphabetical
+or numerical sort.  For example, sorting our table of U.S. cities on
+column `2` in alphabetical (`a`) order yields:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~
+| 3 | Chicago     |
+| 4 | Houston     |
+| 2 | Los Angeles |
+| 1 | New York    |
+| 5 | Phoenix     |
+~~~~~~~~~~~~~~~~~~~
+
+Finally, you can _transpose_ a table with `C-c C-c t`
+(`markdown-table-transpose`).  This operation swaps the rows and
+columns.  For example, transposing our table of U.S. cities yields the
+following:
+
+{lang="text"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| 1        | 2           | 3       | 4       | 5       |
+| New York | Los Angeles | Chicago | Houston | Phoenix |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## Definition Lists
 
@@ -3745,77 +3941,6 @@ are converted back to HTML.
 To install the package from [MELPA](https://melpa.org/#/ham-mode) or [MELPA Stable](https://stable.melpa.org/#/ham-mode), simply
 run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
-
-
-## Editing Markdown Tables with Org Table Mode
-
-Although there is no official table syntax in Markdown, a couple of
-widely accepted table formats have emerged.  Implementing a full-featured
-table editing mode, such as `orgtbl-mode` in Org Mode, would require
-tremendous effort, and so unfortunately Markdown Mode does not yet
-support table editing.  However, with a little work, and if one is
-brave enough, `orgtbl-mode` can be adapted to help in editing basic
-Markdown tables.
-
-Here, we consider the pipe table syntax of PHP Markdown Extra
-because of its similarity to Org Mode tables.
-
-{lang="text"}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| First Header | Second Header |
-|--------------|---------------|
-| Content Cell | Content Cell  |
-| Content Cell | Content Cell  |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This is a rather simple table, but notably the only difference
-with the Org table counterpart is the point at which the lines
-cross in the center.  Instead of `-|-`, Org uses `-+-`:
-
-{lang="text"}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| First Header | Second Header |
-|--------------+---------------|
-| Content Cell | Content Cell  |
-| Content Cell | Content Cell  |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you toggle on `orgtbl-mode`, it will recognize either table, but
-when you re-align with `C-c C-c`, the result will be converted to Org
-format, which will not be rendered correctly by Markdown processors.
-One way around this---which to be clear is a hack and is not recommended
-for important work---is to _advise_ the `orgtbl-mode` alignment
-function so that at the end it converts the intersections back to
-Markdown pipe table form.
-
-The following function temporarily narrows the buffer to the
-table in question and replaces instances of `-+-` with `-|-`.  It
-only does so in `markdown-mode` or `gfm-mode`, so as not to
-disturb actual Org tables.
-
-``` emacs-lisp
-(require 'org-table)
-
-(defun markdown-org-table-align-advice ()
-  "Replace \"+\" sign with \"|\" in tables."
-  (when (member major-mode '(markdown-mode gfm-mode))
-    (save-excursion
-      (save-restriction
-        (narrow-to-region (org-table-begin) (org-table-end))
-        (goto-char (point-min))
-        (while (search-forward "-+-" nil t)
-          (replace-match "-|-"))))))
-
-(advice-add 'org-table-align :after 'markdown-org-table-align-advice)
-```
-
-Once this code is evaluated, when you run `org-table-align`, such as
-when pressing `C-c C-c`, the table will be automatically converted
-back to Markdown format.
-
-W> This simple function does not handle the full syntax,
-W> such as indicators for table alignment, but it may be useful
-W> as a starting point for more robust versions.
 
 ------------------------------------------------------------------------------
 
