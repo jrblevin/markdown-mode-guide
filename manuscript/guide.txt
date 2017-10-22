@@ -649,8 +649,8 @@ and horizontal rules.  Then, commands for editing span elements are
 described: emphasis, code, links, images, and comments.  Finally,
 miscellaneous editing commands are described for markup completion,
 markup cycling, indentation, etc.  Extensions, such as footnotes,
-fenced code blocks, wiki links, definition lists, and checkboxes
-are described in the [Extensions](#extensions) chapter that follows.
+fenced code blocks, tables, wiki links, definition lists, and
+checkboxes are described in the [Extensions](#extensions) chapter that follows.
 
 ![Markdown Menu in Emacs on macOS](images/menu-bar.png)
 
