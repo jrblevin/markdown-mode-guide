@@ -2742,8 +2742,8 @@ Syntax highlighting for mathematical expressions written in LaTeX can
 be toggling with `C-c C-x C-e` (`markdown-toggle-math`), where
 the final `e` is for _equation_.  Importantly, this is _not_ full
 LaTeX support.  It only involves font lock and only for expressions
-delimited by `$..$`, `$$..$$`, or `\[..\]` are supported; this does
-not yet include dedicated commands for inserting or otherwise
+delimited by `$..$`, `$$..$$`, `\[..\]`, or `\\[..\\]` are supported;
+this does not yet include dedicated commands for inserting or otherwise
 manipulating mathematical markup.
 
 {lang=text}
@@ -2755,6 +2755,12 @@ A simple equation for a line in $\mathbb{R}^2$:
 Again, but with dollar signs:
 
 $$ y = mx + b $$
+
+Delimiters with two backslashes:
+
+\\[
+\Gamma(x) = \int_0^\infty t^{x-1}{\mathrm{e}}^{-t}\,{\mathrm{d}}
+\\]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Alternatively, you can enable this by default by setting
