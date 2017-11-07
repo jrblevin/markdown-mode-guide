@@ -3948,6 +3948,42 @@ To install the package from [MELPA](https://melpa.org/#/ham-mode) or [MELPA Stab
 run `M-x package-install RET ham-mode`.  To activate it while visiting
 an HTML file, run `M-x ham-mode`.
 
+## Adding Custom Font Lock Keywords
+
+Suppose there are certain phrases or patterns that you'd like to
+highlight in Markdown files.  Examples might include fixed words, such
+as "FIXME" and "TODO", or a pattern such as tags of the form "@closed"
+or "@new".  Emacs allows you to add custom font lock keywords to
+handle such cases by calling `font-lock-add-keywords`, as in the
+following examples.
+
+As a first simple example, to highlight "FIXME:" using
+`font-lock-warning-face` when editing files in `markdown-mode` , you
+can add the following to your init file:
+
+``` emacs-lisp
+(font-lock-add-keywords
+ 'markdown-mode
+ '(("\\<\\(FIXME\\):" 1 font-lock-warning-face t)))
+```
+
+Here we specify `markdown-mode` for the mode argument and then we give
+a list of "keywords".  In this case there is only one keyword which
+consists of a regular expression, a group number, and a face.
+
+As a second example, to highlight words beginning with "@", such as
+"@closed", using `font-lock-variable-name-face` when in
+`markdown-mode`, you could use the following:
+
+``` emacs-lisp
+(font-lock-add-keywords
+ 'markdown-mode
+ '(("\\W@\\w+" . font-lock-variable-name-face)))
+```
+
+See the section on [Search-based Fontification](https://www.gnu.org/software/emacs/manual/html_node/elisp/Search_002dbased-Fontification.html#Search_002dbased-Fontification) in the Emacs Lisp
+Reference Manual for details on the possible keyword forms.
+
 ------------------------------------------------------------------------------
 
 # Markdown Mode Development {#devel}
