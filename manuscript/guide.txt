@@ -2934,21 +2934,38 @@ following variables.
 
 `markdown-blockquote-display-char`
 
-:   String, default: 0x258C (left half block).[^unicode]
+:   String or list of strings,
+    default: 0x258C (left half block), 0x2503 (box drawings heavy
+    vertical).[^unicode]
 
-    Character displayed when hiding blockquote markup.
+    String displayed when hiding blockquote markup.
+
+    This may be a single string or a list of string.  In case
+    of a list, the first string for which all characters satisfy
+    `char-displayable-p` will be used.
 
 `markdown-hr-display-char`
 
-:   Character, default: `─`.
+:   Character or list of characters,
+    default: `─`, `━`, `-`.
 
     Character for hiding horizontal rule markup.
 
+    This may be a single character or a list of characters.  In case
+    of a list, the first character that satisfies `char-displayable-p`
+    will be used.
+
 `markdown-definition-display-char`
 
-:   Character, default: 0x2058 (four dot punctuation).
+:   Character or list of characters, default: 0x2058 (four dot
+    punctuation), 0x2059 (five dot punctuation), 0x2261 (identical
+    to), 0x2311 (square lozenge), 0x25ca (lozenge), 0x3a (colon).
 
     Character for replacing definition list markup.
+
+    This may be a single character or a list of characters.  In case
+    of a list, the first character that satisfies `char-displayable-p`
+    will be used.
 
 `markdown-list-item-bullets`
 
