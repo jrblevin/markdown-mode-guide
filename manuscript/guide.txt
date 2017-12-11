@@ -3112,7 +3112,7 @@ like `help-mode` and `view-mode`, such as `SPC`, `DEL`, `<`, and `>`
 for scrolling, `q` for quitting, and `?` or `h` for help.  Other keys
 are provided that mirror the outline navigation commands when editing:
 `n`, `p`, `f`, `b`, and `u`.  Both of these modes enable markup hiding
-by default, bit this can be customized by setting
+by default, but this can be customized by setting
 `markdown-hide-markup-in-view-modes`.
 
 ## Preview & Export Customization
