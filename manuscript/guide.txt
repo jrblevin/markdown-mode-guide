@@ -2872,20 +2872,23 @@ MultiMarkdown).  The various methods for previewing and exporting are
 summarized in the following table and described in more detail in the
 sections that follow.
 
-| Description    | Keybinding     | Destination/Viewer              |
-|----------------|----------------|---------------------------------|
-| Hide Markup    | `C-c C-x C-m`  | Same buffer                     |
-| Compile        | `C-c C-c m`    | `*markdown-output*` buffer      |
-| Kill Ring Save | `C-c C-c w`    | Kill ring                       |
-| Preview        | `C-c C-c p`    | Browser (temporary file)        |
-| Export         | `C-c C-c e`    | `<basename>.html`               |
-| Export & View  | `C-c C-c v`    | `<basename>.html`, then browser |
-| Live Preview   | `C-c C-c l`    | `eww` in an Emacs buffer        |
-| Open           | `C-c C-c o`    | `markdown-open-command`         |
+| Description        | Keybinding    | Destination/Viewer              |
+|--------------------|---------------|---------------------------------|
+| Hide Markup        | `C-c C-x C-m` | Same buffer                     |
+| Compile            | `C-c C-c m`   | `*markdown-output*` buffer      |
+| Kill Ring Save     | `C-c C-c w`   | Kill ring                       |
+| Preview            | `C-c C-c p`   | Browser (temporary file)        |
+| Export             | `C-c C-c e`   | `<basename>.html`               |
+| Export & View      | `C-c C-c v`   | `<basename>.html`, then browser |
+| Live Preview       | `C-c C-c l`   | `eww` in an Emacs buffer        |
+| Open               | `C-c C-c o`   | `markdown-open-command`         |
+| Markdown View Mode |               | `markdown-view-mode`            |
+| GFM View Mode      |               | `gfm-view-mode`                 |
 
-All commands except Hide Markup and Open involve the additional step
-of sending the contents of the buffer to an external processor
-(`markdown-command`) to convert Markdown to HTML.
+Some of these commands involve the additional step of sending the
+contents of the buffer to an external processor (`markdown-command`)
+to convert Markdown to HTML.  Exceptions to this are Hide Markup,
+Open, Markdown View, and the dedicated Markdown and GFM View modes.
 
 I> To use Compile and other command commands that make use of an
 I> external Markdown processor, `markdown-command` must be configured
@@ -3100,6 +3103,18 @@ T> is [Marked 2](https://geo.itunes.apple.com/us/app/marked-2/id890031187?mt=12&
 T> with a simple shell script acting as a `markdown-open-command`
 T> wrapper.
 
+## Markdown and GFM View Modes
+
+Two read-only viewing modes, `markdown-view-mode` and `gfm-view-mode`
+are also provided for viewing Markdown content.  These modes provide
+simplified keybindings for navigating the buffer.  Many of these are
+like `help-mode` and `view-mode`, such as `SPC`, `DEL`, `<`, and `>`
+for scrolling, `q` for quitting, and `?` or `h` for help.  Other keys
+are provided that mirror the outline navigation commands when editing:
+`n`, `p`, `f`, `b`, and `u`.  Both of these modes enable markup hiding
+by default, bit this can be customized by setting
+`markdown-hide-markup-in-view-modes`.
+
 ## Preview & Export Customization
 
 `markdown-xhtml-standalone-regexp`
@@ -3178,6 +3193,13 @@ T> wrapper.
 
     Hook run after HTML output has been saved.  Any changes to the
     output buffer made by this hook will be saved.
+
+`markdown-hide-markup-in-view-modes`
+
+:   Boolean, default: `t`.
+
+    When non-`nil`, enable hidden markup mode to hide Markdown markup
+    when using `markdown-view-mode` and `gfm-view-mode`.
 
 ------------------------------------------------------------------------------
 
