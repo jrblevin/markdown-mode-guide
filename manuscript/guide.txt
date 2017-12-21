@@ -2601,6 +2601,18 @@ the text.
 H~2~O is a liquid.  2^10^ is 1024.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+`markdown-sub-superscript-display`
+
+:   Cons of display specifications, default:
+    `(((raise -0.3) (height 0.7)) . ((raise 0.3) (height 0.7)))`
+
+    The `display` property specifications for subscript and
+    superscripts when markup hiding is enabled.  The car is used for
+    subscript, the cdr is used for superscripts.  By default,
+    superscripts are raised, subscripts are lowered, and both are
+    reduced in size.  Set to `(nil . nil)` if you wish to disable
+    this.
+
 ## Metadata
 
 Markdown Mode provides font lock support for several common metadata
