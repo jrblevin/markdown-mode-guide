@@ -2283,6 +2283,14 @@ between footnote markers and footnote definitions.
     (setq markdown-footnote-location 'subtree)
     ```
 
+`markdown-footnote-display`
+
+:   Display specification, default: `((raise 0.2) (height 0.8))`.
+
+    The `display` property specification for footnote markers and
+    inline footnotes.  By default, footnote text is reduced in size and
+    raised.  Set to `nil` if you wish to disable this.
+
 T> Markdown Mode also includes basic font lock support for Pandoc's
 T> _inline footnotes_:
 T>
