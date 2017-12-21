@@ -675,10 +675,10 @@ prefix.  For example, press `C-c C-s C-h` to list all commands under
 
 | Prefix    | Function               |
 |-----------|------------------------|
-| `C-c C-s` | **S**tyles               |
-| `C-c C-l` | **L**inks                |
-| `C-c C-i` | **I**mages               |
-| `C-c C-c` | **C**ommands             |
+| `C-c C-s` | **S**tyles             |
+| `C-c C-l` | **L**inks              |
+| `C-c C-i` | **I**mages             |
+| `C-c C-c` | **C**ommands           |
 | `C-c C-x` | Toggles                |
 
 When you use the `C-c C-s` or `C-c C-c` prefixes, prompts will
