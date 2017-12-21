@@ -3179,6 +3179,14 @@ by default, but this can be customized by setting
                   " type=\"image/png\"/>"))
     ```
 
+`markdown-export-kill-buffer`
+
+:   Boolean, default: `t`.
+
+    Kill output buffer after HTML export.  When non-`nil`, kill the
+    HTML output buffer after exporting with `markdown-export`.
+    Otherwise, keep it alive.
+
 `markdown-before-export-hook`
 
 :   List of functions, default: `nil`.
