@@ -2035,6 +2035,8 @@ To insert a GFM code block interactively in Markdown Mode, press
 with a minibuffer prompt asking for an optional programming language name.
 Markdown Mode includes a large list of known languages to select from.
 The default value will be the most recently used language.
+If you do not want to add an explicit languge identifier, you can
+press `C-g` at the prompt and a block with on language will be inserted.
 
 The GFM programming language prompt uses `completing-read`, which has
 several useful keybindings such as `M-n` and `M-p` to select the next
@@ -2180,6 +2182,11 @@ that it is being edited elsewhere.  When you are finished editing in
 the indirect buffer, press `C-c C-c` (`edit-indirect-commit`)
 to "commit" any changes and update the Markdown buffer or press
 `C-c C-k` (`edit-indirect-abort`) to cancel and ignore any changes.
+
+T> If you want to simultaneously insert and edit a GFM code block, you
+T> can give a prefix argument to `markdown-insert-gfm-code-block`
+T> as in `C-u C-c C-s C`.  This is a shortcut that issues the insertion
+T> (`C-c C-s C`) and indirect edit (`C-c '`) in one operation.
 
 {width=80%}
 ![Editing a GFM Code Block in an Indirect Buffer](images/edit-indirect.png)
