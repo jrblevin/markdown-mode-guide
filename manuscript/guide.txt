@@ -1791,10 +1791,16 @@ pointer over the link text to see the URL.
 
 `markdown-url-compose-char`
 
-:   Character, default: `∞`.
+:   Character or list of characters, default: 0x221e (infinity),
+    0x2026 (horizontal ellipsis), 0xx22ef (midline horizontal
+    ellipsis), 0x23 (number sign), 0x2605 (black star), 0x2693
+    (anchor).
 
-    Placeholder character for hidden URLs.  Depending on your font,
-    some other good choices are `…` and `#`.
+    Placeholder character for hidden URLs.
+
+    This may be a single character or a list of characters.  In case
+    of a list, the first which satisfies `char-displayable-p` will be
+    used.
 
 T> The interactive link and image commands `C-c C-l` and `C-c C-i`
 T> are especially useful when markup or URL hiding is enabled, in
