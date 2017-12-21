@@ -308,7 +308,7 @@ are covered in this section: installation using the built-in Emacs
 package manager (recommended), installation using a system-wide
 package manager, and manual installation.
 
-Markdown Mode is compatible with Emacs 24.3 and later, and it has few
+Markdown Mode is compatible with Emacs 24.4 and later, and it has few
 dependencies.  To preview files and export to HTML, you will need to
 install and configure a Markdown processor (e.g., Markdown.pl).
 Also, to enable editing of code blocks in indirect buffers
@@ -4152,7 +4152,7 @@ repository in your init file, like so:
 ## Reporting Bugs and Issues
 
 Markdown Mode is developed and tested primarily for compatibility with
-GNU Emacs 24.3 and later.  If you are using an older version of Emacs,
+GNU Emacs 24.4 and later.  If you are using an older version of Emacs,
 please update to a more recent version first to see if the issue
 persists.
 
