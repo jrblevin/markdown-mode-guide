@@ -1845,6 +1845,26 @@ the buffer by pressing
 This is a toggle command, so pressing this again will remove inline
 images.
 
+High resolution images may be rendered very large in Emacs buffers,
+but if your Emacs is compiled with ImageMagick support they can be
+scaled down automatically by setting `markdown-max-image-size`.
+
+`markdown-max-image-size`
+
+:   Cons of integers or `nil`, default: `nil`.
+
+    Maximum width and height for displayed inline images.  This
+    variable may be nil or a cons cell (MAX-WIDTH . MAX-HEIGHT).  When
+    `nil`, use the actual size.  Otherwise, use ImageMagick to resize
+    larger images to be of the given maximum dimensions.  This
+    requires Emacs to be built with ImageMagick support.
+
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-max-image-size '(640 . 480))
+    ```
+
 ## Line Breaks
 
 In Markdown, whitespace at the end of a line is meaningful.  Adding
