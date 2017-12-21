@@ -2223,6 +2223,18 @@ X> key `matlab`, so Markdown Mode checks to see if `matlab-mode` is defined.
 X> If so, it will be used for syntax highlighting of the code block and also
 X> for indirect editing of the code block.
 
+If a language is not specified, or a suitable mode is not found by
+`markdown-get-lang-mode`, then `markdown-edit-code-block-default-mode`
+will be used for editing the code block (but not for fontification).
+
+`markdown-edit-code-block-default-mode`
+
+:   Symbol, default: `normal-mode`.
+
+    Default mode to use for editing code blocks.  This mode is used
+    when automatic detection fails, such as for code blocks with no
+    language specified.
+
 ## Footnotes
 
 Footnotes are another common and reasonably standardized extension to
