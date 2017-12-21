@@ -2962,7 +2962,7 @@ following variables.
 
     String displayed when hiding blockquote markup.
 
-    This may be a single string or a list of string.  In case
+    This may be a single string or a list of strings.  In case
     of a list, the first string for which all characters satisfy
     `char-displayable-p` will be used.
 
