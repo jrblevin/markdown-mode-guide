@@ -3469,6 +3469,14 @@ you can customize `markdown-nested-imenu-heading-index`.
     the menu bar, but a flat list may allow for faster keyboard
     navigation via tab completion.
 
+`markdown-add-footnotes-to-imenu`
+
+:   Boolean, default: `t`.
+
+    Add a list of footnotes to the end of the imenu index.
+    The entries will be footnote markers (e.g., "^1") and
+    clicking an entry will take you to the footnote definition.
+
 Another useful `imenu`-based package is [`imenu-list`](https://github.com/bmag/imenu-list), a
 third-party package which shows the current buffer's `imenu` entries
 in a pop-up buffer.  You can install `imenu-list` from MELPA.
