@@ -2441,8 +2441,11 @@ the table or before horizontal separator lines.
 
 Markdown Mode contains functions that assist in editing tables in
 several ways: you can realign tables, rearrange their rows and
-columns, sort the rows, kill their rows and columns, insert new
-rows and columns, or transpose the rows and columns.
+columns, sort the rows, kill their rows and columns, insert new rows
+and columns, or transpose the rows and columns.  There are keybindings
+for each of these functions, described below, and if you have
+`menu-bar-mode` enabled you can also issue these commands from the
+Markdown menu.
 
 Although alignment isn't important when using a Markdown processor to
 convert to HTML, you might want to keep your tables _aligned_ to improve
