@@ -3247,6 +3247,32 @@ by default, but this can be customized by setting
                   " type=\"image/png\"/>"))
     ```
 
+`markdown-xhtml-body-preamble`
+
+:   String, default: `""`.
+
+    Additional content to include in the XHTML `<body>` block, before
+    the Markdown output.
+
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-xhtml-body-preamble "<div id='content'>")
+    ```
+
+`markdown-xhtml-body-epilogue`
+
+:   String, default: `""`.
+
+    Additional content to include in the XHTML `<body>` block, after
+    the Markdown output.
+
+    _Example:_
+
+    ``` emacs-lisp
+    (setq markdown-xhtml-body-preamble "</div")
+    ```
+
 `markdown-export-kill-buffer`
 
 :   Boolean, default: `t`.
