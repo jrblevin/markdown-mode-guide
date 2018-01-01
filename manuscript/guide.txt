@@ -2263,7 +2263,7 @@ will be used for editing the code block (but not for fontification).
 
 `markdown-edit-code-block-default-mode`
 
-:   Symbol, default: `normal-mode`.
+:   Function or nil, default: `normal-mode`.
 
     Default mode to use for editing code blocks.  This mode is used
     when automatic detection fails, such as for code blocks with no
