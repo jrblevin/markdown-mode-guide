@@ -1873,6 +1873,17 @@ Markdown Mode highlights these spaces to draw attention to possibly
 spurious whitespace.  Markdown Mode also respects hard line breaks
 when filling paragraphs.
 
+## HTML
+
+Most Markdown processors also support inline HTML tags and HTML
+blocks.  As such, Markdown Mode provides optional syntax highlighting
+for HTML tags.
+
+`markdown-enable-html`
+
+:   Boolean, default: `t`.
+
+    Enable font lock for HTML tags and attributes.
 
 ## Killing Elements
 
