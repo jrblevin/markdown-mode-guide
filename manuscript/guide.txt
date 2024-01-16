@@ -757,10 +757,10 @@ used to underline the heading text.
 {lang="text"}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 First-level heading
-==================
+===================
 
 Second-level heading
--------------------
+--------------------
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Inserting & Replacing Headings
