@@ -225,7 +225,7 @@ following links:
 
 *   [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) - Original syntax description by John Gruber
 *   [Markdown Dingus](http://daringfireball.net/projects/markdown/dingus) - Online converter using Markdown.pl
-*   [Babelmark 2](https://johnmacfarlane.net/babelmark2/) - Online converter comparing many Markdown processors
+*   [Babelmark 3](https://babelmark.github.io) - Online converter comparing many Markdown processors
 *   [Wikipedia article](http://en.wikipedia.org/wiki/Markdown) - Background information on Markdown with syntax examples
 *   [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) - Guide to Markdown and extensions by GitHub
 *   [Pandoc User's Guide](http://pandoc.org/MANUAL.html) - Markdown and Pandoc extensions
